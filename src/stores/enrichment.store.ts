@@ -39,29 +39,36 @@ const MAX_ACTIVITY_LOG = 50
 // ============================================================================
 
 /**
- * Generate a pseudo-random integer in [min, max] inclusive.
- * Uses Math.random -- acceptable for mock/seed data only.
+ * Deterministic seed values per district to avoid hydration mismatch.
+ * Math.random() differs between server and client, causing React to
+ * regenerate the tree. These fixed values provide the same visual variety.
  */
-function randInt(min: number, max: number): number {
-  return Math.floor(Math.random() * (max - min + 1)) + min
+const SEED_VALUES: Record<DistrictId, { uptime: number; responseTimeMs: number; activeWork: number; memoryUsagePct: number; cpuUsagePct: number }> = {
+  'agent-builder': { uptime: 9720, responseTimeMs: 42, activeWork: 7, memoryUsagePct: 48, cpuUsagePct: 22 },
+  'tarva-chat':    { uptime: 28350, responseTimeMs: 31, activeWork: 4, memoryUsagePct: 55, cpuUsagePct: 18 },
+  'project-room':  { uptime: 14400, responseTimeMs: 58, activeWork: 9, memoryUsagePct: 62, cpuUsagePct: 35 },
+  'tarva-core':    { uptime: 43200, responseTimeMs: 25, activeWork: 2, memoryUsagePct: 41, cpuUsagePct: 12 },
+  'tarva-erp':     { uptime: 7200, responseTimeMs: 67, activeWork: 11, memoryUsagePct: 38, cpuUsagePct: 40 },
+  'tarva-code':    { uptime: 36000, responseTimeMs: 44, activeWork: 5, memoryUsagePct: 52, cpuUsagePct: 28 },
 }
 
 /** Build the initial DistrictEnrichment for a single district. */
 function seedDistrict(id: DistrictId): DistrictEnrichment {
   const meta = DISTRICTS.find((d) => d.id === id)
+  const seed = SEED_VALUES[id]
   return {
     id,
     displayName: meta?.displayName ?? id,
     shortCode: DISTRICT_CODES[id],
     health: 'OPERATIONAL' as HealthState,
-    uptime: randInt(1000, 50000),
-    responseTimeMs: randInt(20, 80),
+    uptime: seed.uptime,
+    responseTimeMs: seed.responseTimeMs,
     alertCount: 0,
-    activeWork: randInt(1, 12),
+    activeWork: seed.activeWork,
     version: '1.2.0',
     freshness: 'LIVE',
-    memoryUsagePct: randInt(30, 65),
-    cpuUsagePct: randInt(10, 45),
+    memoryUsagePct: seed.memoryUsagePct,
+    cpuUsagePct: seed.cpuUsagePct,
   }
 }
 

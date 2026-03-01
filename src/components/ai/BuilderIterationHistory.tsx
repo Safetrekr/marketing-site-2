@@ -76,7 +76,7 @@ export function BuilderIterationHistory({ iterations }: BuilderIterationHistoryP
                 >
                   {/* Outcome Icon */}
                   <div className="mt-0.5">
-                    {iter.outcome === 'accepted' && <Check className="h-3 w-3 text-[#22c55e]" />}
+                    {iter.outcome === 'accepted' && <Check className="h-3 w-3 text-[var(--color-healthy)]" />}
                     {iter.outcome === 'rejected' && <X className="h-3 w-3 text-[#ef4444]" />}
                     {iter.outcome === 'iterated' && (
                       <RefreshCw className="h-3 w-3 text-[#ff773c]" />

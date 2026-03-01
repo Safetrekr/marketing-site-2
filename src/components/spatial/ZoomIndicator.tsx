@@ -40,7 +40,7 @@ export function ZoomIndicator({ className }: ZoomIndicatorProps) {
 
   return (
     <div
-      className={cn('pointer-events-auto fixed top-4 right-4', className)}
+      className={cn(className)}
     >
       <Badge
         variant="outline"

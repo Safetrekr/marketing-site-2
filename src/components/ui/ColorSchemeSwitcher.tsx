@@ -1,59 +1,51 @@
 /**
- * ColorSchemeSwitcher -- tiny pill toggle in the top-right corner
- * that lets the user switch between tarva-core (orange) and safetrekr (green)
- * color schemes. Always stays in dark mode. Persists choice in localStorage.
+ * ThemeModeSwitcher -- tiny pill toggle in the top-left area
+ * that lets the user switch between safetrekr light and dark modes.
+ * Persists choice via next-themes (localStorage).
  *
- * @module color-scheme-switcher
+ * @module theme-mode-switcher
  */
 
 'use client'
 
-import { useCallback, useEffect } from 'react'
-import { useTarvaTheme } from '@/components/providers/theme-provider'
-import type { ColorScheme } from '@tarva/ui'
+import { useCallback, useEffect, useState } from 'react'
+import { useTheme } from '@/components/providers/theme-provider'
 
-const STORAGE_KEY = 'tarva-launch-color-scheme'
-
-const SCHEMES: { id: ColorScheme; label: string; dot: string }[] = [
-  { id: 'safetrekr', label: 'TREK', dot: '#22c55e' },
-  { id: 'tarva-core', label: 'TARVA', dot: '#e05200' },
-]
+const MODES = [
+  { id: 'dark', label: 'DARK', dot: '#4ba467' },
+  { id: 'light', label: 'LIGHT', dot: '#4ba467' },
+] as const
 
 export function ColorSchemeSwitcher() {
-  const { colorScheme, setColorScheme } = useTarvaTheme()
+  const { theme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
 
-  // Hydrate from localStorage on mount
-  useEffect(() => {
-    const stored = localStorage.getItem(STORAGE_KEY) as ColorScheme | null
-    if (stored && SCHEMES.some((s) => s.id === stored) && stored !== colorScheme) {
-      setColorScheme(stored)
-    }
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps -- run once on mount
+  useEffect(() => setMounted(true), [])
 
-  const cycle = useCallback(() => {
-    const currentIdx = SCHEMES.findIndex((s) => s.id === colorScheme)
-    const next = SCHEMES[(currentIdx + 1) % SCHEMES.length]
-    setColorScheme(next.id)
-    localStorage.setItem(STORAGE_KEY, next.id)
-  }, [colorScheme, setColorScheme])
+  const resolvedTheme = theme === 'dark' ? 'dark' : 'light'
 
-  const current = SCHEMES.find((s) => s.id === colorScheme) ?? SCHEMES[0]
+  const toggle = useCallback(() => {
+    setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')
+  }, [resolvedTheme, setTheme])
+
+  // Use a stable default for SSR to avoid hydration mismatch
+  const current = mounted
+    ? (MODES.find((m) => m.id === resolvedTheme) ?? MODES[0])
+    : MODES[0]
 
   return (
     <button
-      onClick={cycle}
-      className="pointer-events-auto fixed top-4 left-[140px] z-40 flex items-center gap-2 rounded-md border border-white/[0.06] bg-white/[0.03] px-2.5 py-1.5 font-mono text-[9px] font-medium tracking-[0.1em] uppercase transition-all duration-200 hover:border-white/[0.12] hover:bg-white/[0.06] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-ring)]"
-      style={{ color: 'rgba(255, 255, 255, 0.35)' }}
-      aria-label={`Color scheme: ${current.label}. Click to switch.`}
+      onClick={toggle}
+      className="flex items-center gap-1.5 rounded-full border px-2 py-0.5 font-mono text-[10px] font-medium tracking-[0.06em] uppercase transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-ring)] border-white/8 bg-deep/60 text-text-secondary backdrop-blur-[8px] hover:border-white/12 hover:bg-deep/80"
+      aria-label={`Theme: ${current.label}. Click to switch.`}
     >
       <div
         style={{
-          width: 6,
-          height: 6,
+          width: 5,
+          height: 5,
           borderRadius: '50%',
           backgroundColor: current.dot,
           boxShadow: `0 0 6px ${current.dot}60`,
-          transition: 'background-color 300ms ease, box-shadow 300ms ease',
         }}
       />
       {current.label}

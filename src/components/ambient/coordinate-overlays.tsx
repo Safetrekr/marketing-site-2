@@ -39,9 +39,9 @@ const REG_HALF = REG_BOX / 2
 const REG_ARM = 20
 
 /** Stroke colors. */
-const CROSSHAIR_STROKE = 'rgba(255, 255, 255, 0.04)'
-const REG_STROKE = 'rgba(255, 255, 255, 0.06)'
-const LABEL_FILL = 'rgba(255, 255, 255, 0.04)'
+const CROSSHAIR_STROKE = 'rgba(var(--ambient-ink-rgb), 0.04)'
+const REG_STROKE = 'rgba(var(--ambient-ink-rgb), 0.06)'
+const LABEL_FILL = 'rgba(var(--ambient-ink-rgb), 0.04)'
 
 // ---------------------------------------------------------------------------
 // Corner bracket data

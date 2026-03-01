@@ -42,8 +42,8 @@ const COL_LABELS = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'] as const
 // Styles
 // ---------------------------------------------------------------------------
 
-const LINE_STROKE = 'rgba(255, 255, 255, 0.02)'
-const LABEL_FILL = 'rgba(255, 255, 255, 0.03)'
+const LINE_STROKE = 'rgba(var(--ambient-ink-rgb), 0.02)'
+const LABEL_FILL = 'rgba(var(--ambient-ink-rgb), 0.03)'
 
 /** Offset from intersection to label position (world-space pixels). */
 const LABEL_OFFSET_X = 12

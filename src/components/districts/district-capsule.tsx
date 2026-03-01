@@ -120,13 +120,13 @@ export const DistrictCapsule = forwardRef<HTMLDivElement, DistrictCapsuleProps>(
         className={cn(
           'district-capsule absolute rounded-[28px] p-5',
           // Glass material
-          'bg-white/[0.03] backdrop-blur-[12px] backdrop-saturate-[120%]',
-          'border border-white/[0.06]',
+          'bg-[rgba(var(--ambient-ink-rgb),0.05)] backdrop-blur-[12px] backdrop-saturate-[120%]',
+          'border border-[rgba(var(--ambient-ink-rgb),0.10)]',
           'contain-[layout_style]',
           'focus-visible:outline-2 focus-visible:outline-offset-2',
           'focus-visible:outline-[var(--color-ember-bright)]',
           'cursor-pointer',
-          isOffline && 'bg-white/[0.015] border-white/[0.03]',
+          isOffline && 'bg-[rgba(var(--ambient-ink-rgb),0.02)] border-[rgba(var(--ambient-ink-rgb),0.05)]',
           isUnknown && 'border-dashed',
         )}
         style={{

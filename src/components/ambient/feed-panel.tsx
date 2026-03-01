@@ -59,7 +59,7 @@ function formatTime(date: Date): string {
 const CATEGORY_COLORS: Record<ActivityEvent['category'], string> = {
   data: 'rgba(14, 165, 233, 0.5)',
   deploy: 'rgba(var(--ember-rgb), 0.5)',
-  system: 'rgba(255, 255, 255, 0.25)',
+  system: 'rgba(var(--ambient-ink-rgb), 0.25)',
 }
 
 // ---------------------------------------------------------------------------
@@ -88,7 +88,7 @@ const MONO: React.CSSProperties = {
 const GHOST: React.CSSProperties = {
   ...MONO,
   fontSize: 14,
-  color: 'rgba(255, 255, 255, 0.15)',
+  color: 'rgba(var(--ambient-ink-rgb), 0.15)',
   letterSpacing: '0.1em',
   textTransform: 'uppercase',
 }
@@ -202,8 +202,8 @@ export function FeedPanel() {
         style={{
           width: '100%',
           height: '100%',
-          background: 'rgba(255, 255, 255, 0.03)',
-          border: '1px solid rgba(255, 255, 255, 0.06)',
+          background: 'rgba(var(--ambient-ink-rgb), 0.03)',
+          border: '1px solid rgba(var(--ambient-ink-rgb), 0.06)',
           borderRadius: 16,
           padding: 24,
           display: 'flex',
@@ -216,7 +216,7 @@ export function FeedPanel() {
             ...MONO,
             fontSize: 20,
             fontWeight: 700,
-            color: 'rgba(255, 255, 255, 0.3)',
+            color: 'rgba(var(--ambient-ink-rgb), 0.3)',
             letterSpacing: '0.12em',
             marginBottom: 16,
           }}
@@ -245,7 +245,7 @@ export function FeedPanel() {
             display: 'flex',
             gap: 0,
             marginBottom: 24,
-            border: '1px solid rgba(255, 255, 255, 0.04)',
+            border: '1px solid rgba(var(--ambient-ink-rgb), 0.04)',
             borderRadius: 6,
             overflow: 'hidden',
           }}
@@ -260,10 +260,10 @@ export function FeedPanel() {
                 ...MONO,
                 fontSize: 16,
                 letterSpacing: '0.1em',
-                color: tab.active ? 'rgba(255, 255, 255, 0.7)' : 'rgba(255, 255, 255, 0.2)',
+                color: tab.active ? 'rgba(var(--ambient-ink-rgb), 0.7)' : 'rgba(var(--ambient-ink-rgb), 0.2)',
                 background: tab.active ? 'rgba(var(--ember-rgb), 0.15)' : 'transparent',
                 borderRight:
-                  index < TABS.length - 1 ? '1px solid rgba(255, 255, 255, 0.04)' : 'none',
+                  index < TABS.length - 1 ? '1px solid rgba(var(--ambient-ink-rgb), 0.04)' : 'none',
               }}
             >
               {tab.label}
@@ -288,7 +288,7 @@ export function FeedPanel() {
                   style={{
                     ...MONO,
                     fontSize: 16,
-                    color: 'rgba(255, 255, 255, 0.2)',
+                    color: 'rgba(var(--ambient-ink-rgb), 0.2)',
                     letterSpacing: '0.06em',
                   }}
                 >
@@ -298,7 +298,7 @@ export function FeedPanel() {
                   style={{
                     ...MONO,
                     fontSize: 16,
-                    color: 'rgba(255, 255, 255, 0.35)',
+                    color: 'rgba(var(--ambient-ink-rgb), 0.35)',
                     letterSpacing: '0.04em',
                   }}
                 >
@@ -318,7 +318,7 @@ export function FeedPanel() {
                 style={{
                   ...MONO,
                   fontSize: 12,
-                  color: 'rgba(255, 255, 255, 0.1)',
+                  color: 'rgba(var(--ambient-ink-rgb), 0.1)',
                   letterSpacing: '0.04em',
                 }}
               >
@@ -332,7 +332,7 @@ export function FeedPanel() {
                       style={{
                         ...MONO,
                         fontSize: 12,
-                        color: 'rgba(255, 255, 255, 0.12)',
+                        color: 'rgba(var(--ambient-ink-rgb), 0.12)',
                         letterSpacing: '0.04em',
                       }}
                     >
@@ -353,7 +353,7 @@ export function FeedPanel() {
                     style={{
                       ...MONO,
                       fontSize: 11,
-                      color: 'rgba(255, 255, 255, 0.1)',
+                      color: 'rgba(var(--ambient-ink-rgb), 0.1)',
                       letterSpacing: '0.04em',
                       paddingLeft: 12,
                       marginTop: 1,
@@ -371,7 +371,7 @@ export function FeedPanel() {
         <div
           style={{
             marginTop: 'auto',
-            border: '1px solid rgba(255, 255, 255, 0.04)',
+            border: '1px solid rgba(var(--ambient-ink-rgb), 0.04)',
             borderRadius: 8,
             padding: '10px 12px',
             display: 'flex',

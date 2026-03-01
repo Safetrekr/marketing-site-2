@@ -59,13 +59,13 @@ const GAUGE_DEFS: GaugeDef[] = [
 ]
 
 /** Track (background) color for unfilled arcs. */
-const TRACK_COLOR = 'rgba(255, 255, 255, 0.03)'
+const TRACK_COLOR = 'rgba(var(--ambient-ink-rgb), 0.03)'
 
 /** Tick mark color. */
-const TICK_COLOR = 'rgba(255, 255, 255, 0.04)'
+const TICK_COLOR = 'rgba(var(--ambient-ink-rgb), 0.04)'
 
 /** Label text color. */
-const LABEL_COLOR = 'rgba(255, 255, 255, 0.18)'
+const LABEL_COLOR = 'rgba(var(--ambient-ink-rgb), 0.18)'
 
 // ---------------------------------------------------------------------------
 // Arc geometry helpers

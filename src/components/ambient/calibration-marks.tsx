@@ -37,10 +37,10 @@ const EDGE_OFFSET = 12
 const ARM_LENGTH = 16
 
 /** Line color for corner marks. */
-const MARK_COLOR = 'rgba(255, 255, 255, 0.06)'
+const MARK_COLOR = 'rgba(var(--ambient-ink-rgb), 0.06)'
 
 /** Label text color. */
-const LABEL_COLOR = 'rgba(255, 255, 255, 0.08)'
+const LABEL_COLOR = 'rgba(var(--ambient-ink-rgb), 0.08)'
 
 // ---------------------------------------------------------------------------
 // Sector derivation

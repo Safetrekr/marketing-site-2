@@ -25,11 +25,13 @@ import type { DistrictId } from '@/lib/interfaces/district'
 // Constants
 // ---------------------------------------------------------------------------
 
-const LABEL_COLOR = 'rgba(255, 255, 255, 0.10)'
-const VALUE_COLOR = 'rgba(255, 255, 255, 0.22)'
+const LABEL_COLOR = 'rgba(var(--ambient-ink-rgb), 0.20)'
+const VALUE_COLOR = 'rgba(var(--ambient-ink-rgb), 0.35)'
 const TEAL_COLOR = 'rgba(14, 165, 233, 0.18)'
 const EMBER_COLOR = 'rgba(var(--ember-rgb), 0.16)'
-const SEPARATOR_COLOR = 'rgba(255, 255, 255, 0.04)'
+const WAVEFORM_TEAL = 'rgba(14, 165, 233, 0.55)'
+const WAVEFORM_GREEN = 'rgba(var(--ember-rgb), 0.50)'
+const SEPARATOR_COLOR = 'rgba(var(--ambient-ink-rgb), 0.04)'
 
 const FONT_STYLE: React.CSSProperties = {
   fontFamily: 'var(--font-mono, monospace)',
@@ -226,7 +228,7 @@ export const BottomStatusStrip = memo(function BottomStatusStrip() {
 
       {/* Center-left: Throughput */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-        <MiniWaveform color={TEAL_COLOR} />
+        <MiniWaveform color={WAVEFORM_TEAL} />
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 4 }}>
           <span style={{ ...FONT_STYLE, color: LABEL_COLOR }}>PKT/s</span>
           <span style={{ ...FONT_STYLE, color: VALUE_COLOR, fontSize: 9 }}>
@@ -259,7 +261,7 @@ export const BottomStatusStrip = memo(function BottomStatusStrip() {
             {latency}ms
           </span>
         </div>
-        <MiniWaveform color={EMBER_COLOR} />
+        <MiniWaveform color={WAVEFORM_GREEN} />
       </div>
 
       <div

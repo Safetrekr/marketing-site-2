@@ -234,7 +234,7 @@ const INSCRIPTIONS: Inscription[] = [
   { text: '', x: -300, y: 580, dynamic: true },
 ]
 
-const INSCRIPTION_FILL = 'rgba(255, 255, 255, 0.04)'
+const INSCRIPTION_FILL = 'rgba(var(--ambient-ink-rgb), 0.04)'
 
 function DataInscriptions() {
   const { level, zoom } = useSemanticZoom()

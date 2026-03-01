@@ -151,9 +151,7 @@ function DistrictDot({
         fill={fillColor}
         aria-label={`${district.displayName}: ${telemetry?.status ?? 'unknown'}`}
       >
-        <title>
-          {district.displayName} ({telemetry?.status ?? 'unknown'})
-        </title>
+        <title>{`${district.displayName} (${telemetry?.status ?? 'unknown'})`}</title>
       </circle>
 
       {/* District label */}
@@ -254,7 +252,7 @@ export function Minimap({
   return (
     <div
       className={cn(
-        'pointer-events-auto fixed right-4 bottom-4',
+        'pointer-events-auto fixed right-4 bottom-[44px]',
         'rounded-xl border border-white/6 bg-deep/80',
         'backdrop-blur-[8px]',
         'shadow-[inset_0_1px_0_0_rgba(255,255,255,0.03)]',

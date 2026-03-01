@@ -49,10 +49,10 @@ const LABEL_OFFSET = 24 // Extra offset beyond the outer ring for labels
 const SWEEP_RADIUS = RING_RADII[RING_RADII.length - 1]
 
 /** Ghost-white stroke color at very low opacity. */
-const RING_STROKE = 'rgba(255, 255, 255, 0.025)'
-const TICK_STROKE = 'rgba(255, 255, 255, 0.04)'
+const RING_STROKE = 'rgba(var(--ambient-ink-rgb), 0.025)'
+const TICK_STROKE = 'rgba(var(--ambient-ink-rgb), 0.04)'
 const SWEEP_STROKE = 'rgba(var(--ember-rgb), 0.06)'
-const LABEL_FILL = 'rgba(255, 255, 255, 0.05)'
+const LABEL_FILL = 'rgba(var(--ambient-ink-rgb), 0.05)'
 
 // ---------------------------------------------------------------------------
 // Static geometry (computed once at module level)
@@ -109,12 +109,12 @@ export function RangeRings() {
   const isTightening = useAttentionStore((s) => s.attentionState === 'tighten')
 
   const baseRingOpacity = isTightening ? 0.06 : 0.025
-  const tickStroke = `rgba(255, 255, 255, ${isTightening ? 0.08 : 0.04})`
+  const tickStroke = `rgba(var(--ambient-ink-rgb), ${isTightening ? 0.08 : 0.04})`
 
   /** Fade outer rings: first 3 at full opacity, then linear fade to ~40% of base. */
   function ringStrokeForIndex(i: number): string {
     const fade = i < 3 ? 1.0 : Math.max(0.4, 1.0 - (i - 2) * 0.08)
-    return `rgba(255, 255, 255, ${(baseRingOpacity * fade).toFixed(4)})`
+    return `rgba(var(--ambient-ink-rgb), ${(baseRingOpacity * fade).toFixed(4)})`
   }
 
   return (

@@ -26,7 +26,7 @@ export const ZOOM_MIN = 0.08
 export const ZOOM_MAX = 3.0
 
 /** Default zoom level on launch (Z1 -- Atrium level). */
-export const ZOOM_DEFAULT = 0.5
+export const ZOOM_DEFAULT = 0.7
 
 // ---------------------------------------------------------------------------
 // Semantic zoom thresholds (with hysteresis)

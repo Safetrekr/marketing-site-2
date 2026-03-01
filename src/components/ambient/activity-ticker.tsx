@@ -51,7 +51,7 @@ type EventCategory = 'data' | 'deploy' | 'system'
 const CATEGORY_COLORS: Record<EventCategory, string> = {
   data: 'rgba(14, 165, 233, 0.5)',
   deploy: 'rgba(var(--ember-rgb), 0.5)',
-  system: 'rgba(255, 255, 255, 0.25)',
+  system: 'rgba(var(--ambient-ink-rgb), 0.25)',
 }
 
 // ---------------------------------------------------------------------------
@@ -149,8 +149,8 @@ export function ActivityTicker() {
         style={{
           width: '100%',
           height: '100%',
-          background: 'rgba(255, 255, 255, 0.03)',
-          border: '1px solid rgba(255, 255, 255, 0.06)',
+          background: 'rgba(var(--ambient-ink-rgb), 0.03)',
+          border: '1px solid rgba(var(--ambient-ink-rgb), 0.06)',
           borderRadius: 16,
           padding: 20,
           display: 'flex',
@@ -164,7 +164,7 @@ export function ActivityTicker() {
             ...MONO,
             fontSize: 16,
             fontWeight: 700,
-            color: 'rgba(255, 255, 255, 0.3)',
+            color: 'rgba(var(--ambient-ink-rgb), 0.3)',
             letterSpacing: '0.12em',
             textTransform: 'uppercase',
             marginBottom: 8,
@@ -178,7 +178,7 @@ export function ActivityTicker() {
         <div
           style={{
             height: 1,
-            background: 'rgba(255, 255, 255, 0.06)',
+            background: 'rgba(var(--ambient-ink-rgb), 0.06)',
             marginBottom: 10,
             flexShrink: 0,
           }}
@@ -209,7 +209,7 @@ export function ActivityTicker() {
                     style={{
                       ...MONO,
                       fontSize: 13,
-                      color: 'rgba(255, 255, 255, 0.12)',
+                      color: 'rgba(var(--ambient-ink-rgb), 0.12)',
                       letterSpacing: '0.04em',
                     }}
                   >
@@ -231,7 +231,7 @@ export function ActivityTicker() {
                   style={{
                     ...MONO,
                     fontSize: 12,
-                    color: 'rgba(255, 255, 255, 0.1)',
+                    color: 'rgba(var(--ambient-ink-rgb), 0.1)',
                     letterSpacing: '0.04em',
                     paddingLeft: 16,
                     marginTop: 2,

@@ -97,11 +97,11 @@ function strokeForHealth(health: HealthState, isReasoning: boolean): string {
     case 'DEGRADED':
       return 'rgba(245, 158, 11, 0.15)'
     case 'DOWN':
-      return 'rgba(255, 255, 255, 0.04)'
+      return 'rgba(var(--ambient-ink-rgb), 0.04)'
     case 'OFFLINE':
     case 'UNKNOWN':
     default:
-      return 'rgba(255, 255, 255, 0.03)'
+      return 'rgba(var(--ambient-ink-rgb), 0.03)'
   }
 }
 
@@ -228,7 +228,7 @@ export function ConnectionPaths() {
               width = 1.5
             } else {
               // Dimmed: reduce to near-invisible
-              stroke = 'rgba(255, 255, 255, 0.03)'
+              stroke = 'rgba(var(--ambient-ink-rgb), 0.03)'
             }
           } else {
             // No focus: default health-based stroke

@@ -83,10 +83,10 @@ const FRAGMENTS: Fragment[] = [
 // ---------------------------------------------------------------------------
 
 const CROSSHAIR_SIZE = 12
-const CROSSHAIR_COLOR = 'rgba(255, 255, 255, 0.04)'
-const TEXT_COLOR = 'rgba(255, 255, 255, 0.06)'
-const HEADING_COLOR = 'rgba(255, 255, 255, 0.12)'
-const BORDER_COLOR = 'rgba(255, 255, 255, 0.03)'
+const CROSSHAIR_COLOR = 'rgba(var(--ambient-ink-rgb), 0.04)'
+const TEXT_COLOR = 'rgba(var(--ambient-ink-rgb), 0.06)'
+const HEADING_COLOR = 'rgba(var(--ambient-ink-rgb), 0.12)'
+const BORDER_COLOR = 'rgba(var(--ambient-ink-rgb), 0.03)'
 
 // ---------------------------------------------------------------------------
 // Sub-components

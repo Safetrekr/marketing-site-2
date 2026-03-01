@@ -32,7 +32,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" data-color-scheme="safetrekr" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}
         suppressHydrationWarning
@@ -41,7 +41,6 @@ export default function RootLayout({
           colorScheme="safetrekr"
           defaultTheme="dark"
           storageKey="safetrekr-theme"
-          enableSystem={false}
           disableTransitionOnChange
         >
           <QueryProvider>{children}</QueryProvider>

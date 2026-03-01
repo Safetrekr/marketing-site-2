@@ -340,9 +340,9 @@ export function BuilderModePanel({ builder }: BuilderModePanelProps) {
                     border: '1px solid rgba(var(--healthy-rgb), 0.2)',
                   }}
                 >
-                  <Check className="h-8 w-8 text-[#22c55e]" />
-                  <p className="text-sm font-medium text-[#4ade80]">Station Created</p>
-                  <p className="text-center text-xs text-[#22c55e]/70">
+                  <Check className="h-8 w-8 text-[var(--color-ember)]" />
+                  <p className="text-sm font-medium text-[var(--color-ember-bright)]">Station Created</p>
+                  <p className="text-center text-xs text-[var(--color-ember)]/70">
                     &quot;{session.currentProposal.template.displayName}&quot; has been added to{' '}
                     {session.targetDistrictId}. It will appear in the station panel for this
                     session.

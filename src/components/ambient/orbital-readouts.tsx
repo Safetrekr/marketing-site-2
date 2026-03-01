@@ -44,12 +44,12 @@ interface ReadoutPosition {
 }
 
 const POSITIONS: ReadoutPosition[] = [
-  { angle: 15, radius: 420, delay: 0 },
-  { angle: 75, radius: 440, delay: 2.4 },
-  { angle: 135, radius: 400, delay: 5.1 },
-  { angle: 195, radius: 460, delay: 1.7 },
-  { angle: 255, radius: 430, delay: 7.3 },
-  { angle: 315, radius: 410, delay: 3.8 },
+  { angle: 15, radius: 520, delay: 0 },
+  { angle: 75, radius: 540, delay: 2.4 },
+  { angle: 135, radius: 510, delay: 5.1 },
+  { angle: 195, radius: 550, delay: 1.7 },
+  { angle: 255, radius: 530, delay: 7.3 },
+  { angle: 315, radius: 515, delay: 3.8 },
 ]
 
 /** Convert degrees to radians. */
@@ -103,9 +103,9 @@ function focusOpacity(
   readoutId: string,
   focusedId: DistrictId | null,
 ): { label: number; value: number } {
-  if (focusedId === null) return { label: 0.15, value: 0.2 }
-  if (readoutId === focusedId) return { label: 0.5, value: 0.7 }
-  return { label: 0.06, value: 0.08 }
+  if (focusedId === null) return { label: 0.25, value: 0.32 }
+  if (readoutId === focusedId) return { label: 0.6, value: 0.8 }
+  return { label: 0.08, value: 0.12 }
 }
 
 // ---------------------------------------------------------------------------
@@ -157,7 +157,7 @@ export function OrbitalReadouts() {
                 fontFamily: 'var(--font-mono, monospace)',
                 fontSize: 18,
                 letterSpacing: '0.08em',
-                color: `rgba(255, 255, 255, ${opacity.label})`,
+                color: `rgba(var(--ambient-ink-rgb), ${opacity.label})`,
                 textTransform: 'uppercase',
                 transition: 'color 200ms ease',
               }}
@@ -171,7 +171,7 @@ export function OrbitalReadouts() {
                 fontFamily: 'var(--font-mono, monospace)',
                 fontSize: 14,
                 letterSpacing: '0.06em',
-                color: `rgba(255, 255, 255, ${opacity.value})`,
+                color: `rgba(var(--ambient-ink-rgb), ${opacity.value})`,
                 textTransform: 'uppercase',
                 animationDelay: `${readout.delay}s`,
                 transition: 'color 200ms ease',
@@ -186,7 +186,7 @@ export function OrbitalReadouts() {
                 fontFamily: 'var(--font-mono, monospace)',
                 fontSize: 14,
                 letterSpacing: '0.06em',
-                color: `rgba(255, 255, 255, ${opacity.value})`,
+                color: `rgba(var(--ambient-ink-rgb), ${opacity.value})`,
                 textTransform: 'uppercase',
                 animationDelay: `${readout.delay + 1.5}s`,
                 transition: 'color 200ms ease',

@@ -59,7 +59,7 @@ import {
   BottomStatusStrip,
 } from '@/components/ambient'
 import { DistrictViewOverlay } from '@/components/district-view'
-import { SafetrekrMarkIcon } from '@/components/districts/hub-center-glyph'
+
 import { usePanPause } from '@/hooks/use-pan-pause'
 import {
   useKeyboardShortcuts,
@@ -244,7 +244,7 @@ export default function LaunchPage() {
           {/* Morph Orchestrator: manages capsule ring + district shell.
               Re-enable pointer-events here because SpatialCanvas disables them
               (per Q4: children re-enable individually). */}
-          <div data-panning={isPanActive ? 'true' : 'false'} style={{ pointerEvents: 'auto' }}>
+          <div data-panning={isPanActive ? 'true' : 'false'} style={{ position: 'relative', zIndex: 10 }}>
             <MorphOrchestrator
               data={MOCK_CAPSULE_DATA}
               prefersReducedMotion={prefersReducedMotion}
@@ -324,22 +324,33 @@ export default function LaunchPage() {
 
       {/* Navigation HUD overlay (fixed, z-40) */}
       <NavigationHUD isPanActive={isPanActive}>
-        {/* Safetrekr logo -- top-left corner above breadcrumb */}
+        {/* Top-left: Safetrekr logo in header */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/images/logos/safetrekr-logo-horiz-light.svg"
+          src="/images/logos/safetrekr-logo-vert-light.svg"
           alt="Safetrekr"
-          className="pointer-events-none fixed top-4 left-4 opacity-40"
-          style={{ height: 20 }}
+          className="pointer-events-none fixed left-4 opacity-40 dark:block hidden"
+          style={{ height: 22, top: 21, transform: 'translateY(-50%)' }}
+        />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/images/logos/safetrekr-logo-vert-dark.svg"
+          alt="Safetrekr"
+          className="pointer-events-none fixed left-4 opacity-40 dark:hidden block"
+          style={{ height: 22, top: 21, transform: 'translateY(-50%)' }}
         />
         {breadcrumbVisible && <SpatialBreadcrumb />}
-        <ZoomIndicator />
         {minimapVisible && <Minimap />}
-        {/* Bottom-left: Safetrekr shield mark */}
-        <div className="pointer-events-auto fixed bottom-4 left-4 flex items-center gap-3">
-          <SafetrekrMarkIcon size={20} className="tarva-star-pulse text-white/60" />
-        </div>
       </NavigationHUD>
+
+      {/* Top-right: theme toggle + zoom indicator, vertically centered in header */}
+      <div
+        className="pointer-events-auto fixed right-4 z-40 flex items-center gap-2"
+        style={{ top: 21, transform: 'translateY(-50%)' }}
+      >
+        <ColorSchemeSwitcher />
+        <ZoomIndicator />
+      </div>
 
       {/* Fixed-position viewport overlays: scan line, timecode, calibration */}
       <HorizonScanLine />
@@ -347,9 +358,6 @@ export default function LaunchPage() {
       <CalibrationMarks />
       <TopTelemetryBar />
       <BottomStatusStrip />
-
-      {/* Color scheme switcher (top-right) */}
-      <ColorSchemeSwitcher />
 
       {/* Command palette (outside HUD, has its own z-50 via Dialog) */}
       <CommandPalette onRefresh={async () => { /* WS-1.5 telemetry refresh */ }} />

@@ -5,7 +5,7 @@
  * 1. Ember (#E05200 / --color-ember) is the primary luminous accent everywhere.
  * 2. Teal (#277389 / --color-teal) is the secondary data accent everywhere.
  * 3. No "frost", "cyan", "ice", or "blue-accent" naming exists in source files.
- * 4. Status colors match the Gap #3 five-state model:
+ * 4. Status colors match the five-state model (tarva-core defaults):
  *    OPERATIONAL=#22c55e, DEGRADED=#eab308, DOWN=#ef4444, OFFLINE=#6b7280.
  * 5. All color tokens in the DOM resolve to VISUAL-DESIGN-SPEC.md Section 6.1.
  *

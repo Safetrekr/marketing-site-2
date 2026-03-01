@@ -213,106 +213,162 @@
   --healthy-glow-rgb: 74, 222, 128;
   --text-primary-rgb: 222, 246, 255;
   --text-secondary-rgb: 146, 169, 180;
+
+  /* Ambient ink: base color for decorative overlays (scanlines, grids, readouts).
+     White in dark mode, black in light mode. Usage: rgba(var(--ambient-ink-rgb), 0.1) */
+  --ambient-ink-rgb: 255, 255, 255;
 }
 
 /* ===================================================================
    SAFETREKR COLOR SCHEME OVERRIDES
-   When data-color-scheme="safetrekr", the entire visual identity
-   shifts from tarva-core (blue-navy / ember-orange / teal) to
-   safetrekr (green-dark / green / amber). Background, text, accent,
-   border, status, and glow tokens are all overridden.
+   When data-color-scheme="safetrekr", the spatial tokens are
+   overridden for the safetrekr brand identity.
+
+   Shared tokens (accent, status, glows) are defined once on the
+   base selector. Background, text, and border tokens are split
+   between dark mode (.dark) and light mode (:not(.dark)).
+
+   @tarva/ui safetrekr --primary: rgb(75, 164, 103)
    =================================================================== */
+
+/* -- Shared safetrekr tokens (both light and dark) --------------- */
 [data-color-scheme='safetrekr'] {
   /* ============================================================
-     BACKGROUND SCALE (forest-dark, hue 150)
+     ACCENT: PRIMARY (Muted green, from @tarva/ui --primary)
      ============================================================ */
-  --color-void: #05110b;
-  --color-abyss: #0d1611;
-  --color-deep: #0f1f17;
-  --color-surface: #122019;
-  --color-raised: #1c2b23;
-  --color-overlay: #283e33;
+  --color-ember-dim: #0a3018;
+  --color-ember-muted: #1e5e34;
+  --color-ember: #4ba467;    /* @tarva/ui --primary rgb(75, 164, 103) */
+  --color-ember-bright: #6abf84;
+  --color-ember-glow: #92d4a6;
+  --color-ember-white: #c1e8ce;
 
   /* ============================================================
-     TEXT SCALE (green-tinted whites)
+     ACCENT: SECONDARY (Teal-slate)
      ============================================================ */
-  --color-text-primary: #e4f6ed;
-  --color-text-secondary: #92b3a3;
-  --color-text-tertiary: #557a68;
-  --color-text-ghost: #335a46;
+  --color-teal-dim: #081e28;
+  --color-teal-muted: #123646;
+  --color-teal: #365462;
+  --color-teal-bright: #59727e;
+  --color-teal-glow: #7a9aa8;
+  --color-teal-white: #b0ccd6;
 
   /* ============================================================
-     ACCENT: PRIMARY (Green, replaces Ember)
-     ============================================================ */
-  --color-ember-dim: #052e16;
-  --color-ember-muted: #166534;
-  --color-ember: #22c55e;
-  --color-ember-bright: #4ade80;
-  --color-ember-glow: #86efac;
-  --color-ember-white: #bbf7d0;
-
-  /* ============================================================
-     ACCENT: SECONDARY (Amber, replaces Teal)
-     ============================================================ */
-  --color-teal-dim: #241a05;
-  --color-teal-muted: #5c4010;
-  --color-teal: #b87a1c;
-  --color-teal-bright: #d4a030;
-  --color-teal-glow: #e8c060;
-  --color-teal-white: #f5e0a0;
-
-  /* ============================================================
-     BORDER (only opaque default shifts hue)
-     ============================================================ */
-  --color-border-default: #233329;
-
-  /* ============================================================
-     STATUS: HEALTHY (shifted to emerald to avoid primary conflict)
+     STATUS: HEALTHY (emerald, distinct from muted green primary)
      ============================================================ */
   --color-healthy-dim: #062e22;
   --color-healthy: #10b981;
   --color-healthy-glow: #34d399;
 
   /* ============================================================
-     STATUS: OFFLINE (green-tinted dim)
+     GLOW: PRIMARY (Muted green glow)
      ============================================================ */
-  --color-offline-dim: #1a241d;
-
-  /* ============================================================
-     GLOW: PRIMARY (Green, replaces Ember glow)
-     ============================================================ */
-  --glow-ember-subtle: 0 0 12px rgba(34, 197, 94, 0.08), 0 0 4px rgba(34, 197, 94, 0.12);
+  --glow-ember-subtle: 0 0 12px rgba(75, 164, 103, 0.08), 0 0 4px rgba(75, 164, 103, 0.12);
   --glow-ember-medium:
-    0 0 20px rgba(34, 197, 94, 0.12), 0 0 8px rgba(34, 197, 94, 0.22),
-    0 0 2px rgba(134, 239, 172, 0.35);
+    0 0 20px rgba(75, 164, 103, 0.12), 0 0 8px rgba(75, 164, 103, 0.22),
+    0 0 2px rgba(146, 212, 166, 0.35);
   --glow-ember-bright:
-    0 0 40px rgba(34, 197, 94, 0.18), 0 0 16px rgba(34, 197, 94, 0.3),
-    0 0 4px rgba(134, 239, 172, 0.5);
+    0 0 40px rgba(75, 164, 103, 0.18), 0 0 16px rgba(75, 164, 103, 0.3),
+    0 0 4px rgba(146, 212, 166, 0.5);
 
   /* ============================================================
-     GLOW: SECONDARY (Amber, replaces Teal glow)
+     GLOW: SECONDARY (Teal-slate glow)
      ============================================================ */
-  --glow-teal-subtle: 0 0 12px rgba(184, 122, 28, 0.08), 0 0 4px rgba(184, 122, 28, 0.12);
+  --glow-teal-subtle: 0 0 12px rgba(54, 84, 98, 0.08), 0 0 4px rgba(54, 84, 98, 0.12);
   --glow-teal-medium:
-    0 0 20px rgba(184, 122, 28, 0.12), 0 0 8px rgba(184, 122, 28, 0.22),
-    0 0 2px rgba(232, 192, 96, 0.35);
+    0 0 20px rgba(54, 84, 98, 0.12), 0 0 8px rgba(54, 84, 98, 0.22),
+    0 0 2px rgba(122, 154, 168, 0.35);
 
   /* ============================================================
-     GLOW: STATUS (healthy shifted to emerald)
+     GLOW: STATUS (healthy = emerald)
      ============================================================ */
   --glow-healthy: 0 0 16px rgba(16, 185, 129, 0.12), 0 0 4px rgba(52, 211, 153, 0.25);
 
   /* ============================================================
-     RGB COMPONENTS (for rgba() in inline styles)
+     RGB: PRIMARY ACCENT
      ============================================================ */
-  --ember-rgb: 34, 197, 94;
-  --ember-bright-rgb: 74, 222, 128;
-  --ember-glow-rgb: 134, 239, 172;
-  --teal-rgb: 184, 122, 28;
-  --teal-bright-rgb: 212, 160, 48;
-  --teal-glow-rgb: 232, 192, 96;
+  --ember-rgb: 75, 164, 103;
+  --ember-bright-rgb: 106, 191, 132;
+  --ember-glow-rgb: 146, 212, 166;
   --healthy-rgb: 16, 185, 129;
   --healthy-glow-rgb: 52, 211, 153;
-  --text-primary-rgb: 228, 246, 237;
-  --text-secondary-rgb: 146, 179, 163;
+}
+
+/* -- Safetrekr DARK mode ----------------------------------------- */
+/* Derived from @tarva/ui safetrekr .dark:
+     --background: rgb(6, 26, 35)      --card: rgb(10, 39, 51)
+     --secondary: rgb(18, 54, 70)      --muted: rgb(42, 74, 89)
+     --border: rgb(54, 84, 98)         --foreground: rgb(250, 250, 250)
+     --muted-foreground: rgb(146, 152, 153)                              */
+[data-color-scheme='safetrekr'].dark {
+  --color-void: #061a23;
+  --color-abyss: #08202b;
+  --color-deep: #0a2733;
+  --color-surface: #123646;
+  --color-raised: #2a4a59;
+  --color-overlay: #365462;
+
+  --color-text-primary: #e8f0f4;
+  --color-text-secondary: #929899;
+  --color-text-tertiary: #5a7a88;
+  --color-text-ghost: #33505e;
+
+  --color-border-default: #365462;
+  --color-offline-dim: #1a2830;
+
+  --teal-rgb: 54, 84, 98;
+  --teal-bright-rgb: 89, 114, 126;
+  --teal-glow-rgb: 122, 154, 168;
+  --text-primary-rgb: 232, 240, 244;
+  --text-secondary-rgb: 146, 152, 153;
+}
+
+/* -- Safetrekr LIGHT mode ---------------------------------------- */
+/* Derived from @tarva/ui safetrekr light:
+     --background: rgb(231, 236, 238)  --card: rgb(247, 248, 248)
+     --popover: rgb(231, 235, 236)     --muted: rgb(231, 236, 238)
+     --border: rgb(138, 149, 153)      --foreground: rgb(18, 54, 70)
+     --muted-foreground: rgb(97, 101, 103)                              */
+[data-color-scheme='safetrekr']:not(.dark) {
+  --color-void: #e7ecee;    /* @tarva/ui --background */
+  --color-abyss: #dde3e5;
+  --color-deep: #f7f8f8;    /* @tarva/ui --card */
+  --color-surface: #e7ebec; /* @tarva/ui --popover */
+  --color-raised: #d4dadc;
+  --color-overlay: #c8d0d3;
+
+  --color-text-primary: #123646; /* @tarva/ui --foreground */
+  --color-text-secondary: #616567; /* @tarva/ui --muted-foreground */
+  --color-text-tertiary: #8a9599;  /* @tarva/ui --border */
+  --color-text-ghost: #b8c3c7;
+
+  --color-border-default: #8a9599;
+  --color-offline-dim: #d4dadc;
+
+  /* Light mode overrides for accent dims (visible on light bg) */
+  --color-ember-dim: #c1e8ce;
+  --color-ember-muted: #3a8a54;
+  --color-teal-dim: #b0ccd6;
+  --color-teal-muted: #59727e;
+
+  /* Light-mode glows: use darker shadows for visibility */
+  --glow-ember-subtle: 0 0 12px rgba(75, 164, 103, 0.12), 0 0 4px rgba(75, 164, 103, 0.18);
+  --glow-ember-medium:
+    0 0 20px rgba(75, 164, 103, 0.16), 0 0 8px rgba(75, 164, 103, 0.28),
+    0 0 2px rgba(75, 164, 103, 0.40);
+  --glow-ember-bright:
+    0 0 40px rgba(75, 164, 103, 0.22), 0 0 16px rgba(75, 164, 103, 0.35),
+    0 0 4px rgba(75, 164, 103, 0.55);
+  --glow-teal-subtle: 0 0 12px rgba(54, 84, 98, 0.10), 0 0 4px rgba(54, 84, 98, 0.15);
+  --glow-teal-medium:
+    0 0 20px rgba(54, 84, 98, 0.14), 0 0 8px rgba(54, 84, 98, 0.26),
+    0 0 2px rgba(89, 114, 126, 0.38);
+  --glow-healthy: 0 0 16px rgba(16, 185, 129, 0.16), 0 0 4px rgba(52, 211, 153, 0.30);
+
+  --teal-rgb: 138, 149, 153;
+  --teal-bright-rgb: 89, 114, 126;
+  --teal-glow-rgb: 54, 84, 98;
+  --text-primary-rgb: 18, 54, 70;
+  --text-secondary-rgb: 97, 101, 103;
+  --ambient-ink-rgb: 0, 0, 0;
 }

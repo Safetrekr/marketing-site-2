@@ -159,9 +159,9 @@
   pointer-events: none;
   background-image: radial-gradient(
     circle at var(--pulse-x, 50%) var(--pulse-y, 50%),
-    rgba(255, 255, 255, 0.04) 0%,
-    rgba(255, 255, 255, 0.015) 30%,
-    rgba(255, 255, 255, 0.015) 100%
+    rgba(var(--ambient-ink-rgb), 0.04) 0%,
+    rgba(var(--ambient-ink-rgb), 0.015) 30%,
+    rgba(var(--ambient-ink-rgb), 0.015) 100%
   );
   animation: grid-pulse var(--duration-ambient-grid) ease-out infinite;
   opacity: 0;
@@ -174,7 +174,7 @@
 /* Resting state */
 .district-capsule {
   box-shadow:
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.02),
+    inset 0 1px 0 0 rgba(var(--ambient-ink-rgb), 0.02),
     0 0 8px color-mix(in srgb, var(--color-ember) 4%, transparent);
   transition:
     box-shadow 0.4s ease,
@@ -184,10 +184,10 @@
 
 /* Hover state */
 .district-capsule:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 255, 255, 0.10);
+  background: rgba(var(--ambient-ink-rgb), 0.05);
+  border-color: rgba(var(--ambient-ink-rgb), 0.10);
   box-shadow:
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.03),
+    inset 0 1px 0 0 rgba(var(--ambient-ink-rgb), 0.03),
     0 0 16px color-mix(in srgb, var(--color-ember) 8%, transparent),
     0 0 4px color-mix(in srgb, var(--color-ember-bright) 12%, transparent);
   z-index: 10;
@@ -197,7 +197,7 @@
 .district-capsule[data-selected='true'] {
   border-color: color-mix(in srgb, var(--color-ember-bright) 20%, transparent);
   box-shadow:
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.03),
+    inset 0 1px 0 0 rgba(var(--ambient-ink-rgb), 0.03),
     0 0 24px color-mix(in srgb, var(--color-ember) 10%, transparent),
     0 0 8px color-mix(in srgb, var(--color-ember-bright) 15%, transparent);
 }
@@ -205,13 +205,13 @@
 /* Offline capsule: suppress glow */
 .district-capsule[data-health='OFFLINE'],
 .district-capsule[data-health='UNKNOWN'] {
-  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.02);
+  box-shadow: inset 0 1px 0 0 rgba(var(--ambient-ink-rgb), 0.02);
 }
 
 .district-capsule[data-health='OFFLINE']:hover,
 .district-capsule[data-health='UNKNOWN']:hover {
   box-shadow:
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.02),
+    inset 0 1px 0 0 rgba(var(--ambient-ink-rgb), 0.02),
     0 0 8px rgba(107, 114, 128, 0.08);
 }
 
@@ -274,11 +274,11 @@
 
 [data-slot='dialog-content']:has([data-slot='command']) {
   max-width: 480px;
-  border-color: rgba(255, 255, 255, 0.08);
+  border-color: rgba(var(--ambient-ink-rgb), 0.08);
   background: rgba(40, 49, 62, 0.8);
   backdrop-filter: blur(24px);
   box-shadow:
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.04),
+    inset 0 1px 0 0 rgba(var(--ambient-ink-rgb), 0.04),
     0 8px 32px rgba(0, 0, 0, 0.5);
 }
 

@@ -57,7 +57,7 @@ interface WaveDef {
 const WAVES: WaveDef[] = [
   { color: 'rgba(14, 165, 233, 0.3)', frequency: 0.02, amplitude: 15, speed: 0.03 },
   { color: 'rgba(var(--ember-rgb), 0.2)', frequency: 0.035, amplitude: 10, speed: 0.02 },
-  { color: 'rgba(255, 255, 255, 0.1)', frequency: 0.05, amplitude: 8, speed: 0.015 },
+  { color: 'rgba(var(--ambient-ink-rgb), 0.1)', frequency: 0.05, amplitude: 8, speed: 0.015 },
 ]
 
 // ---------------------------------------------------------------------------
@@ -160,7 +160,7 @@ export function SignalPulseMonitor() {
 
     // Draw a faint center line
     ctx.beginPath()
-    ctx.strokeStyle = 'rgba(255, 255, 255, 0.03)'
+    ctx.strokeStyle = 'rgba(var(--ambient-ink-rgb), 0.03)'
     ctx.lineWidth = 1
     ctx.moveTo(0, centerY)
     ctx.lineTo(CANVAS_W, centerY)
@@ -220,8 +220,8 @@ export function SignalPulseMonitor() {
         style={{
           width: '100%',
           height: '100%',
-          background: 'rgba(255, 255, 255, 0.03)',
-          border: '1px solid rgba(255, 255, 255, 0.06)',
+          background: 'rgba(var(--ambient-ink-rgb), 0.03)',
+          border: '1px solid rgba(var(--ambient-ink-rgb), 0.06)',
           borderRadius: 16,
           padding: CANVAS_PAD_X,
           paddingTop: 0,
@@ -243,7 +243,7 @@ export function SignalPulseMonitor() {
             style={{
               ...MONO,
               fontSize: 16,
-              color: 'rgba(255, 255, 255, 0.3)',
+              color: 'rgba(var(--ambient-ink-rgb), 0.3)',
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
             }}
@@ -271,7 +271,7 @@ export function SignalPulseMonitor() {
         <div
           style={{
             flex: 1,
-            border: '1px solid rgba(255, 255, 255, 0.03)',
+            border: '1px solid rgba(var(--ambient-ink-rgb), 0.03)',
             borderRadius: 6,
             overflow: 'hidden',
             display: 'flex',

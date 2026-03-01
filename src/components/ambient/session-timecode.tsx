@@ -105,8 +105,9 @@ export const SessionTimecode = memo(function SessionTimecode() {
     <div
       style={{
         position: 'fixed',
-        bottom: 16,
+        bottom: 0,
         right: 16,
+        height: 28,
         display: 'flex',
         alignItems: 'center',
         gap: 6,
@@ -132,7 +133,7 @@ export const SessionTimecode = memo(function SessionTimecode() {
           fontFamily: 'var(--font-mono, monospace)',
           fontSize: 8,
           fontWeight: 500,
-          color: 'rgba(255, 255, 255, 0.15)',
+          color: 'rgba(var(--ambient-ink-rgb), 0.15)',
           letterSpacing: '0.06em',
           lineHeight: 1,
         }}
@@ -146,7 +147,7 @@ export const SessionTimecode = memo(function SessionTimecode() {
           fontFamily: 'var(--font-mono, monospace)',
           fontSize: 10,
           fontWeight: 500,
-          color: 'rgba(255, 255, 255, 0.25)',
+          color: 'rgba(var(--ambient-ink-rgb), 0.25)',
           letterSpacing: '0.04em',
           lineHeight: 1,
         }}

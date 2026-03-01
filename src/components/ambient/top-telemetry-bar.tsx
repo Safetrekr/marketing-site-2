@@ -23,12 +23,12 @@ import { DISTRICTS } from '@/lib/interfaces/district'
 // Constants
 // ---------------------------------------------------------------------------
 
-const LABEL_COLOR = 'rgba(255, 255, 255, 0.10)'
-const VALUE_COLOR = 'rgba(255, 255, 255, 0.22)'
-const ACCENT_COLOR = 'rgba(14, 165, 233, 0.18)'
-const SEPARATOR_COLOR = 'rgba(255, 255, 255, 0.04)'
-const DOT_ACTIVE = 'rgba(14, 165, 233, 0.25)'
-const DOT_DIM = 'rgba(255, 255, 255, 0.06)'
+const LABEL_COLOR = 'rgba(var(--ambient-ink-rgb), 0.20)'
+const VALUE_COLOR = 'rgba(var(--ambient-ink-rgb), 0.35)'
+const ACCENT_COLOR = 'rgba(14, 165, 233, 0.30)'
+const SEPARATOR_COLOR = 'rgba(var(--ambient-ink-rgb), 0.08)'
+const DOT_ACTIVE = 'rgba(14, 165, 233, 0.40)'
+const DOT_DIM = 'rgba(var(--ambient-ink-rgb), 0.10)'
 
 const FONT_STYLE: React.CSSProperties = {
   fontFamily: 'var(--font-mono, monospace)',
@@ -44,11 +44,10 @@ const FONT_STYLE: React.CSSProperties = {
 // ---------------------------------------------------------------------------
 
 function useEpochCounter(): string {
-  const [epoch, setEpoch] = useState(() =>
-    Math.floor(Date.now() / 1000).toString(16).toUpperCase(),
-  )
+  const [epoch, setEpoch] = useState('--------')
 
   useEffect(() => {
+    setEpoch(Math.floor(Date.now() / 1000).toString(16).toUpperCase())
     const interval = setInterval(() => {
       setEpoch(Math.floor(Date.now() / 1000).toString(16).toUpperCase())
     }, 1000)

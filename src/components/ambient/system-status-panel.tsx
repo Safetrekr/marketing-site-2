@@ -48,16 +48,16 @@ const HEALTH_COLORS: Record<HealthState, string> = {
   OPERATIONAL: 'rgba(var(--healthy-rgb), 0.8)',
   DEGRADED: 'rgba(234, 179, 8, 0.8)',
   DOWN: 'rgba(239, 68, 68, 0.8)',
-  OFFLINE: 'rgba(255, 255, 255, 0.2)',
-  UNKNOWN: 'rgba(255, 255, 255, 0.2)',
+  OFFLINE: 'rgba(var(--ambient-ink-rgb), 0.2)',
+  UNKNOWN: 'rgba(var(--ambient-ink-rgb), 0.2)',
 }
 
 const HEALTH_TEXT_COLORS: Record<HealthState, string> = {
   OPERATIONAL: 'rgba(var(--healthy-rgb), 0.5)',
   DEGRADED: 'rgba(234, 179, 8, 0.5)',
   DOWN: 'rgba(239, 68, 68, 0.5)',
-  OFFLINE: 'rgba(255, 255, 255, 0.15)',
-  UNKNOWN: 'rgba(255, 255, 255, 0.15)',
+  OFFLINE: 'rgba(var(--ambient-ink-rgb), 0.15)',
+  UNKNOWN: 'rgba(var(--ambient-ink-rgb), 0.15)',
 }
 
 // ---------------------------------------------------------------------------
@@ -81,7 +81,7 @@ const RESOURCE_DEFS: ResourceBar[] = [
   },
   {
     label: 'NET',
-    gradient: 'linear-gradient(to right, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0))',
+    gradient: 'linear-gradient(to right, rgba(var(--ambient-ink-rgb), 0.2), rgba(var(--ambient-ink-rgb), 0))',
   },
 ]
 
@@ -108,7 +108,7 @@ const MONO: React.CSSProperties = {
 const GHOST: React.CSSProperties = {
   ...MONO,
   fontSize: 14,
-  color: 'rgba(255, 255, 255, 0.15)',
+  color: 'rgba(var(--ambient-ink-rgb), 0.15)',
   letterSpacing: '0.1em',
   textTransform: 'uppercase',
 }
@@ -165,8 +165,8 @@ export function SystemStatusPanel() {
         style={{
           width: '100%',
           height: '100%',
-          background: 'rgba(255, 255, 255, 0.03)',
-          border: '1px solid rgba(255, 255, 255, 0.06)',
+          background: 'rgba(var(--ambient-ink-rgb), 0.03)',
+          border: '1px solid rgba(var(--ambient-ink-rgb), 0.06)',
           borderRadius: 16,
           padding: 24,
           display: 'flex',
@@ -223,7 +223,7 @@ export function SystemStatusPanel() {
             style={{
               ...MONO,
               fontSize: 28,
-              color: 'rgba(255, 255, 255, 0.6)',
+              color: 'rgba(var(--ambient-ink-rgb), 0.6)',
               letterSpacing: '0.04em',
               lineHeight: 1.2,
             }}
@@ -253,7 +253,7 @@ export function SystemStatusPanel() {
         {/* -- Districts section ---------------------------------------- */}
         <div
           style={{
-            border: '1px solid rgba(255, 255, 255, 0.04)',
+            border: '1px solid rgba(var(--ambient-ink-rgb), 0.04)',
             borderRadius: 8,
             padding: '12px 14px',
             marginBottom: 24,
@@ -263,7 +263,7 @@ export function SystemStatusPanel() {
             style={{
               ...MONO,
               fontSize: 12,
-              color: 'rgba(255, 255, 255, 0.12)',
+              color: 'rgba(var(--ambient-ink-rgb), 0.12)',
               letterSpacing: '0.14em',
               textTransform: 'uppercase',
               marginBottom: 10,
@@ -309,7 +309,7 @@ export function SystemStatusPanel() {
                     style={{
                       ...MONO,
                       fontSize: 15,
-                      color: 'rgba(255, 255, 255, 0.3)',
+                      color: 'rgba(var(--ambient-ink-rgb), 0.3)',
                       letterSpacing: '0.06em',
                       flex: 1,
                     }}
@@ -343,7 +343,7 @@ export function SystemStatusPanel() {
                     flex: 1,
                     height: 6,
                     borderRadius: 3,
-                    background: 'rgba(255, 255, 255, 0.04)',
+                    background: 'rgba(var(--ambient-ink-rgb), 0.04)',
                     overflow: 'hidden',
                   }}
                 >
@@ -360,7 +360,7 @@ export function SystemStatusPanel() {
                   style={{
                     ...MONO,
                     fontSize: 13,
-                    color: 'rgba(255, 255, 255, 0.25)',
+                    color: 'rgba(var(--ambient-ink-rgb), 0.25)',
                     letterSpacing: '0.06em',
                     minWidth: 60,
                     textAlign: 'right',
@@ -377,7 +377,7 @@ export function SystemStatusPanel() {
         <div
           style={{
             marginTop: 'auto',
-            borderTop: '1px solid rgba(255, 255, 255, 0.04)',
+            borderTop: '1px solid rgba(var(--ambient-ink-rgb), 0.04)',
             paddingTop: 16,
           }}
         >
@@ -385,7 +385,7 @@ export function SystemStatusPanel() {
             style={{
               ...MONO,
               fontSize: 12,
-              color: 'rgba(255, 255, 255, 0.1)',
+              color: 'rgba(var(--ambient-ink-rgb), 0.1)',
               letterSpacing: '0.12em',
               textTransform: 'uppercase',
               marginBottom: 8,
@@ -398,7 +398,7 @@ export function SystemStatusPanel() {
               style={{
                 ...MONO,
                 fontSize: 16,
-                color: 'rgba(255, 255, 255, 0.3)',
+                color: 'rgba(var(--ambient-ink-rgb), 0.3)',
                 letterSpacing: '0.06em',
               }}
             >
