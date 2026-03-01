@@ -1,0 +1,155 @@
+/**
+ * Gateway landing page animations.
+ *
+ * Pure CSS @keyframes for the ambient animation tier.
+ * Choreography-tier transitions use motion/react.
+ * rAF is reserved for progress bar fills only.
+ *
+ * @see src/components/gateway/
+ */
+
+/* =========================================================================
+   Shield Mark -- 5s breathing green glow
+   ========================================================================= */
+
+@keyframes gateway-shield-breathe {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 8px rgba(75, 164, 103, 0.30));
+  }
+  50% {
+    filter: drop-shadow(0 0 24px rgba(75, 164, 103, 0.55))
+            drop-shadow(0 0 8px rgba(146, 212, 166, 0.25));
+  }
+}
+
+.gateway-shield-breathe {
+  animation: gateway-shield-breathe 5s ease-in-out infinite;
+}
+
+/* =========================================================================
+   CTA -- 5s breathing box-shadow oscillation
+   ========================================================================= */
+
+@keyframes gateway-cta-breathe {
+  0%,
+  100% {
+    box-shadow:
+      0 0 20px rgba(75, 164, 103, 0.08),
+      0 0 8px rgba(75, 164, 103, 0.14),
+      0 0 2px rgba(146, 212, 166, 0.25);
+  }
+  50% {
+    box-shadow:
+      0 0 20px rgba(75, 164, 103, 0.18),
+      0 0 8px rgba(75, 164, 103, 0.28),
+      0 0 2px rgba(146, 212, 166, 0.45);
+  }
+}
+
+.gateway-cta-breathe {
+  animation: gateway-cta-breathe 5s ease-in-out infinite;
+}
+
+/* =========================================================================
+   Check completion pulse -- expanding ring from status dot
+   ========================================================================= */
+
+@keyframes gateway-check-pulse {
+  0% {
+    box-shadow: 0 0 0 0px rgba(75, 164, 103, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 0 8px rgba(75, 164, 103, 0);
+  }
+}
+
+.gateway-check-pulse {
+  animation: gateway-check-pulse 400ms var(--ease-out-expo, cubic-bezier(0.16, 1, 0.3, 1)) forwards;
+}
+
+/* =========================================================================
+   Edge strip dot scale-in
+   ========================================================================= */
+
+@keyframes gateway-dot-appear {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.gateway-dot-appear {
+  animation: gateway-dot-appear 300ms var(--ease-out-expo, cubic-bezier(0.16, 1, 0.3, 1)) forwards;
+}
+
+/* =========================================================================
+   Nominal flash -- brief green glow pulse
+   ========================================================================= */
+
+@keyframes gateway-nominal-flash {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  20% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  80% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.02);
+  }
+}
+
+.gateway-nominal-flash {
+  animation: gateway-nominal-flash 1200ms var(--ease-morph, cubic-bezier(0.22, 1, 0.36, 1)) forwards;
+}
+
+/* =========================================================================
+   Narrative text cross-fade
+   ========================================================================= */
+
+@keyframes gateway-narrative-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes gateway-narrative-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* =========================================================================
+   Reduced motion: disable all gateway animations
+   ========================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .gateway-shield-breathe,
+  .gateway-cta-breathe,
+  .gateway-check-pulse,
+  .gateway-dot-appear,
+  .gateway-nominal-flash {
+    animation: none !important;
+  }
+
+  .gateway-shield-breathe {
+    filter: drop-shadow(0 0 16px rgba(75, 164, 103, 0.40));
+  }
+}

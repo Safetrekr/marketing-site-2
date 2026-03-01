@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: 'Safetrekr',
-  description: 'Safetrekr — Adventure awaits',
+  description: 'Every traveler accounted for. Trip safety intelligence for schools, churches, and organizations.',
   icons: {
     icon: [
       { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
