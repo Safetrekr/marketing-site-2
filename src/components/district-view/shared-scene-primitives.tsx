@@ -64,7 +64,7 @@ export const GhostText = memo(function GhostText({
   style,
   className,
 }: GhostTextProps) {
-  const resolvedColor = color ?? `rgba(255, 255, 255, ${opacity})`
+  const resolvedColor = color ?? `rgba(var(--ambient-ink-rgb), ${opacity})`
 
   const classNames = [
     flicker ? 'enrichment-flicker' : '',
@@ -122,7 +122,7 @@ export const DataStream = memo(function DataStream({
   lines,
   width = 280,
   height = 400,
-  color = 'rgba(255,255,255,0.06)',
+  color = 'rgba(var(--ambient-ink-rgb),0.06)',
   fontSize = 9,
   scrollDuration = 45,
   style,
@@ -199,8 +199,8 @@ export const StatusDotGrid = memo(function StatusDotGrid({
   cols,
   dotSize = 3,
   gap = 6,
-  activeColor = 'rgba(14,165,233,0.25)',
-  dimColor = 'rgba(255,255,255,0.04)',
+  activeColor = 'rgba(var(--teal-bright-rgb),0.25)',
+  dimColor = 'rgba(var(--ambient-ink-rgb),0.04)',
   activeRatio = 0.7,
   labels,
   style,
@@ -242,7 +242,7 @@ export const StatusDotGrid = memo(function StatusDotGrid({
               style={{
                 fontFamily: MONO_FAMILY,
                 fontSize: 7,
-                color: 'rgba(255, 255, 255, 0.1)',
+                color: 'rgba(var(--ambient-ink-rgb), 0.1)',
                 textTransform: 'uppercase',
                 letterSpacing: '0.06em',
                 whiteSpace: 'pre',
@@ -306,9 +306,9 @@ export const ProgressBar = memo(function ProgressBar({
   value,
   width = 200,
   height = 4,
-  fillColor = 'rgba(14,165,233,0.3)',
-  trackColor = 'rgba(255,255,255,0.04)',
-  labelColor = 'rgba(255,255,255,0.12)',
+  fillColor = 'rgba(var(--teal-bright-rgb),0.3)',
+  trackColor = 'rgba(var(--ambient-ink-rgb),0.04)',
+  labelColor = 'rgba(var(--ambient-ink-rgb),0.12)',
   showValue = true,
   style,
 }: ProgressBarProps) {
@@ -431,7 +431,7 @@ export const GhostCounter = memo(function GhostCounter({
         style={{
           fontFamily: MONO_FAMILY,
           fontSize: size,
-          color: `rgba(255, 255, 255, ${numberOpacity})`,
+          color: `rgba(var(--ambient-ink-rgb), ${numberOpacity})`,
           fontWeight: 300,
           letterSpacing: '-0.02em',
           lineHeight: 1,
@@ -445,7 +445,7 @@ export const GhostCounter = memo(function GhostCounter({
         style={{
           fontFamily: MONO_FAMILY,
           fontSize: 9,
-          color: `rgba(255, 255, 255, ${labelOpacity})`,
+          color: `rgba(var(--ambient-ink-rgb), ${labelOpacity})`,
           textTransform: 'uppercase',
           letterSpacing: '0.12em',
           marginTop: 8,

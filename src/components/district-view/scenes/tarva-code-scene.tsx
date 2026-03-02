@@ -86,7 +86,7 @@ function KnowledgeTree() {
             y1={a.y}
             x2={b.x}
             y2={b.y}
-            stroke="rgba(99, 102, 241, 0.05)"
+            stroke="rgba(var(--teal-rgb), 0.05)"
             strokeWidth={1}
           />
         )
@@ -99,7 +99,7 @@ function KnowledgeTree() {
           cx={node.x}
           cy={node.y}
           r={6}
-          fill="rgba(99, 102, 241, 0.1)"
+          fill="rgba(var(--teal-rgb), 0.1)"
         />
       ))}
     </svg>
@@ -180,7 +180,7 @@ function EmbeddingCluster() {
           cx={dot.x}
           cy={dot.y}
           r={2}
-          fill="rgba(99, 102, 241, 0.08)"
+          fill="rgba(var(--teal-rgb), 0.08)"
           className={dot.pulse ? 'enrichment-circuit-pulse' : undefined}
         />
       ))}
@@ -256,7 +256,7 @@ export const TarvaCodeScene = memo(function TarvaCodeScene({ dockSide }: { dockS
           style={{
             fontFamily: 'var(--font-mono, monospace)',
             fontSize: 60,
-            color: 'rgba(255, 255, 255, 0.03)',
+            color: 'rgba(var(--ambient-ink-rgb), 0.03)',
             textTransform: 'uppercase',
             letterSpacing: '0.12em',
             fontWeight: 300,

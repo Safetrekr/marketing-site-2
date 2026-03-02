@@ -44,12 +44,12 @@ interface ReadoutPosition {
 }
 
 const POSITIONS: ReadoutPosition[] = [
-  { angle: 15, radius: 520, delay: 0 },
+  { angle: 5, radius: 520, delay: 0 },
   { angle: 75, radius: 540, delay: 2.4 },
   { angle: 135, radius: 510, delay: 5.1 },
   { angle: 195, radius: 550, delay: 1.7 },
-  { angle: 255, radius: 530, delay: 7.3 },
-  { angle: 315, radius: 515, delay: 3.8 },
+  { angle: 230, radius: 570, delay: 7.3 },
+  { angle: 315, radius: 590, delay: 3.8 },
 ]
 
 /** Convert degrees to radians. */

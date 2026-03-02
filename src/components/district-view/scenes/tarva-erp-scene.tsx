@@ -32,10 +32,10 @@ interface ErpModule {
 }
 
 const ERP_MODULES: ErpModule[] = [
-  { name: 'INVENTORY ', pct: 62, fillColor: 'rgba(245, 158, 11, 0.2)' },
+  { name: 'INVENTORY ', pct: 62, fillColor: 'rgba(var(--ember-rgb), 0.2)' },
   { name: 'PRODUCTION', pct: 78, fillColor: 'rgba(var(--healthy-rgb), 0.2)' },
   { name: 'QUALITY   ', pct: 91, fillColor: 'rgba(var(--healthy-rgb), 0.2)' },
-  { name: 'LOGISTICS ', pct: 45, fillColor: 'rgba(245, 158, 11, 0.2)' },
+  { name: 'LOGISTICS ', pct: 45, fillColor: 'rgba(var(--ember-rgb), 0.2)' },
   { name: 'PURCHASING', pct: 83, fillColor: 'rgba(var(--healthy-rgb), 0.2)' },
 ]
 
@@ -59,12 +59,12 @@ function ModuleStatusRow({ mod }: { mod: ErpModule }) {
       }}
     >
       {/* Module name */}
-      <span style={{ fontSize: 9, color: 'rgba(255, 255, 255, 0.15)' }}>
+      <span style={{ fontSize: 9, color: 'rgba(var(--ambient-ink-rgb), 0.15)' }}>
         {mod.name}
       </span>
 
       {/* Opening bracket */}
-      <span style={{ fontSize: 9, color: 'rgba(255, 255, 255, 0.08)' }}>
+      <span style={{ fontSize: 9, color: 'rgba(var(--ambient-ink-rgb), 0.08)' }}>
         [
       </span>
 
@@ -74,17 +74,17 @@ function ModuleStatusRow({ mod }: { mod: ErpModule }) {
       </span>
 
       {/* Empty segments */}
-      <span style={{ fontSize: 9, color: 'rgba(255, 255, 255, 0.08)' }}>
+      <span style={{ fontSize: 9, color: 'rgba(var(--ambient-ink-rgb), 0.08)' }}>
         {'-'.repeat(empty)}
       </span>
 
       {/* Closing bracket */}
-      <span style={{ fontSize: 9, color: 'rgba(255, 255, 255, 0.08)' }}>
+      <span style={{ fontSize: 9, color: 'rgba(var(--ambient-ink-rgb), 0.08)' }}>
         ]
       </span>
 
       {/* Percentage */}
-      <span style={{ fontSize: 9, color: 'rgba(255, 255, 255, 0.15)' }}>
+      <span style={{ fontSize: 9, color: 'rgba(var(--ambient-ink-rgb), 0.15)' }}>
         {String(mod.pct).padStart(2, ' ')}%
       </span>
     </div>
@@ -147,7 +147,7 @@ function DataTableGhost() {
           key={`h-${header}`}
           x={colOffsets[i] + 4}
           y={12}
-          fill="rgba(255, 255, 255, 0.1)"
+          fill="rgba(var(--ambient-ink-rgb), 0.1)"
           fontFamily="var(--font-mono, monospace)"
           fontSize={8}
           letterSpacing="0.06em"
@@ -164,7 +164,7 @@ function DataTableGhost() {
           y1={0}
           x2={x - 4}
           y2={totalHeight}
-          stroke="rgba(255, 255, 255, 0.03)"
+          stroke="rgba(var(--ambient-ink-rgb), 0.03)"
           strokeWidth={1}
         />
       ))}
@@ -180,7 +180,7 @@ function DataTableGhost() {
               y1={rowY}
               x2={TABLE_WIDTH}
               y2={rowY}
-              stroke="rgba(255, 255, 255, 0.03)"
+              stroke="rgba(var(--ambient-ink-rgb), 0.03)"
               strokeWidth={1}
             />
             {/* Blurred data cell rectangles */}
@@ -192,7 +192,7 @@ function DataTableGhost() {
                 width={w}
                 height={6}
                 rx={1}
-                fill="rgba(255, 255, 255, 0.03)"
+                fill="rgba(var(--ambient-ink-rgb), 0.03)"
               />
             ))}
           </g>
@@ -238,18 +238,18 @@ function WarehouseSchematic() {
             width={z.w}
             height={z.h}
             rx={2}
-            fill={z.active ? 'rgba(255, 255, 255, 0.01)' : 'transparent'}
+            fill={z.active ? 'rgba(var(--ambient-ink-rgb), 0.01)' : 'transparent'}
             stroke={
               z.active
-                ? 'rgba(255, 255, 255, 0.08)'
-                : 'rgba(255, 255, 255, 0.04)'
+                ? 'rgba(var(--ambient-ink-rgb), 0.08)'
+                : 'rgba(var(--ambient-ink-rgb), 0.04)'
             }
             strokeWidth={1}
           />
           <text
             x={z.x + z.w / 2}
             y={z.y + z.h / 2 + 3}
-            fill="rgba(255, 255, 255, 0.06)"
+            fill="rgba(var(--ambient-ink-rgb), 0.06)"
             fontFamily="var(--font-mono, monospace)"
             fontSize={8}
             textAnchor="middle"

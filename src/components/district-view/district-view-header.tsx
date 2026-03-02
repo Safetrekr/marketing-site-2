@@ -53,7 +53,7 @@ function PulsingChevrons({ direction }: { direction: 'left' | 'right' }) {
             fontFamily: 'var(--font-mono, monospace)',
             fontSize: 11,
             fontWeight: 300,
-            color: 'rgba(255, 255, 255, 0.25)',
+            color: 'rgba(var(--ambient-ink-rgb), 0.25)',
             lineHeight: 1,
           }}
           animate={{
@@ -84,12 +84,16 @@ function useBreathingGlow(ref: React.RefObject<HTMLButtonElement | null>) {
     const el = ref.current
     if (!el) return
 
+    // Read the ambient-ink-rgb value from CSS once
+    const cs = getComputedStyle(el)
+    const inkRgb = cs.getPropertyValue('--ambient-ink-rgb').trim() || '255, 255, 255'
+
     const animate = () => {
       const t = performance.now() / 1000
       const pulse = 0.5 + Math.sin(t * 1.8) * 0.5
       const alpha = 0.04 + pulse * 0.08
-      el.style.borderColor = `rgba(255, 255, 255, ${alpha.toFixed(3)})`
-      el.style.boxShadow = `0 0 ${8 + pulse * 12}px rgba(255, 255, 255, ${(alpha * 0.4).toFixed(3)})`
+      el.style.borderColor = `rgba(${inkRgb}, ${alpha.toFixed(3)})`
+      el.style.boxShadow = `0 0 ${8 + pulse * 12}px rgba(${inkRgb}, ${(alpha * 0.4).toFixed(3)})`
       raf.current = requestAnimationFrame(animate)
     }
     raf.current = requestAnimationFrame(animate)
@@ -147,7 +151,7 @@ export function DistrictViewHeader({
             fontFamily: 'var(--font-mono, monospace)',
             fontSize: 11,
             fontWeight: 500,
-            color: 'rgba(255, 255, 255, 0.35)',
+            color: 'rgba(var(--ambient-ink-rgb), 0.35)',
             letterSpacing: '0.12em',
             textTransform: 'uppercase',
             lineHeight: 1,
@@ -186,26 +190,26 @@ export function DistrictViewHeader({
           alignItems: 'center',
           padding: '10px 16px 10px 12px',
           borderRadius: 8,
-          border: '1px solid rgba(255, 255, 255, 0.06)',
-          background: 'rgba(255, 255, 255, 0.03)',
+          border: '1px solid rgba(var(--ambient-ink-rgb), 0.06)',
+          background: 'rgba(var(--ambient-ink-rgb), 0.03)',
           cursor: 'pointer',
           pointerEvents: 'auto',
           fontFamily: 'var(--font-mono, monospace)',
           fontSize: 9,
           fontWeight: 500,
-          color: 'rgba(255, 255, 255, 0.3)',
+          color: 'rgba(var(--ambient-ink-rgb), 0.3)',
           letterSpacing: '0.12em',
           textTransform: 'uppercase',
           lineHeight: 1,
           transition: 'color 200ms ease, background 200ms ease',
         }}
         onMouseEnter={(e) => {
-          e.currentTarget.style.color = 'rgba(255, 255, 255, 0.6)'
-          e.currentTarget.style.background = 'rgba(255, 255, 255, 0.06)'
+          e.currentTarget.style.color = 'rgba(var(--ambient-ink-rgb), 0.6)'
+          e.currentTarget.style.background = 'rgba(var(--ambient-ink-rgb), 0.06)'
         }}
         onMouseLeave={(e) => {
-          e.currentTarget.style.color = 'rgba(255, 255, 255, 0.3)'
-          e.currentTarget.style.background = 'rgba(255, 255, 255, 0.03)'
+          e.currentTarget.style.color = 'rgba(var(--ambient-ink-rgb), 0.3)'
+          e.currentTarget.style.background = 'rgba(var(--ambient-ink-rgb), 0.03)'
         }}
         aria-label={`Back to hub from ${displayName}`}
       >

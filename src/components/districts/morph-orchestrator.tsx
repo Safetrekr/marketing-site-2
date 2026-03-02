@@ -17,6 +17,7 @@
 'use client'
 
 import { useCallback, useMemo } from 'react'
+import { createPortal } from 'react-dom'
 import { AnimatePresence } from 'motion/react'
 import { useMorphChoreography } from '@/hooks/use-morph-choreography'
 import { useSemanticZoom } from '@/hooks/use-semantic-zoom'
@@ -119,7 +120,18 @@ export function MorphOrchestrator({
     selectedCapsuleCenter !== null &&
     selectedRingIndex !== null &&
     (phase === 'expanding' && direction === 'forward' ||
-     phase === 'settled')
+     phase === 'settled' ||
+     phase === 'entering-district' ||
+     phase === 'district')
+
+  // Panel is "promoted" to fixed viewport-centered during district view
+  const isDistrictView = phase === 'entering-district' || phase === 'district'
+
+  // Hide connector lines once the district overlay takes over
+  const showConnector = showPanel && !isDistrictView
+
+  // Always use the portalled (promoted) panel — no inline panel, no blink
+  const showPromotedPanel = showPanel && targetId && selectedRingIndex !== null
 
   return (
     <>
@@ -137,9 +149,8 @@ export function MorphOrchestrator({
             panelSide={panelSide}
             ringRotation={ringRotation}
           >
-            {/* Panel + connector rendered inside ring container for shared coords */}
             {/* Click-outside backdrop: closes the panel when clicking off it */}
-            {showPanel && (
+            {showPanel && !isDistrictView && (
               <div
                 style={{
                   position: 'fixed',
@@ -151,26 +162,37 @@ export function MorphOrchestrator({
               />
             )}
             <AnimatePresence>
-              {showPanel && selectedCapsuleCenter && selectedRingIndex !== null && targetId && (
-                <>
-                  <ConnectorLines
-                    key="connector"
-                    ringIndex={selectedRingIndex}
-                    capsuleCenter={selectedCapsuleCenter}
-                    ringShift={ringShift}
-                  />
-                  <DetailPanel
-                    key="panel"
-                    districtId={targetId}
-                    ringIndex={selectedRingIndex}
-                    onClose={reverseMorph}
-                  />
-                </>
+              {showConnector && selectedCapsuleCenter && selectedRingIndex !== null && (
+                <ConnectorLines
+                  key="connector"
+                  ringIndex={selectedRingIndex}
+                  capsuleCenter={selectedCapsuleCenter}
+                  ringShift={ringShift}
+                />
               )}
             </AnimatePresence>
+            {/* Panel is always rendered via portal below */}
           </CapsuleRing>
         )}
       </AnimatePresence>
+
+      {/* Promoted (viewport-fixed) panel during district view — portalled to body */}
+      {typeof document !== 'undefined' &&
+        createPortal(
+          <AnimatePresence>
+            {showPromotedPanel && (
+              <DetailPanel
+                key="promoted-panel"
+                districtId={targetId!}
+                ringIndex={selectedRingIndex!}
+                onClose={reverseMorph}
+                promoted
+                dockSide={panelSide ?? 'right'}
+              />
+            )}
+          </AnimatePresence>,
+          document.body,
+        )}
     </>
   )
 }

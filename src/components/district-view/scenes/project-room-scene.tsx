@@ -73,8 +73,8 @@ const DEP_WEB_SATELLITES = Array.from({ length: 8 }, (_, i) => {
 const PHASE_GATES = [
   { label: 'Discovery', value: 100, fillColor: 'rgba(var(--healthy-rgb), 0.3)' },
   { label: 'Planning', value: 100, fillColor: 'rgba(var(--healthy-rgb), 0.3)' },
-  { label: 'Execution', value: 67, fillColor: 'rgba(14, 165, 233, 0.3)' },
-  { label: 'Review', value: 0, fillColor: 'rgba(14, 165, 233, 0.3)' },
+  { label: 'Execution', value: 67, fillColor: 'rgba(var(--teal-bright-rgb), 0.3)' },
+  { label: 'Review', value: 0, fillColor: 'rgba(var(--teal-bright-rgb), 0.3)' },
 ] as const
 
 // ---------------------------------------------------------------------------
@@ -104,7 +104,7 @@ const WorkflowDag = memo(function WorkflowDag() {
           <path
             d="M0,0 L6,2 L0,4"
             fill="none"
-            stroke="rgba(255,255,255,0.06)"
+            stroke="rgba(var(--ambient-ink-rgb),0.06)"
             strokeWidth="1"
           />
         </marker>
@@ -120,7 +120,7 @@ const WorkflowDag = memo(function WorkflowDag() {
             y1={from.y}
             x2={to.x - NODE_W / 2}
             y2={to.y}
-            stroke="rgba(255,255,255,0.06)"
+            stroke="rgba(var(--ambient-ink-rgb),0.06)"
             strokeWidth={1}
             markerEnd="url(#dag-arrow)"
           />
@@ -145,12 +145,12 @@ const WorkflowDag = memo(function WorkflowDag() {
               fill={
                 isActive
                   ? 'rgba(var(--ember-rgb), 0.06)'
-                  : 'rgba(255, 255, 255, 0.02)'
+                  : 'rgba(var(--ambient-ink-rgb), 0.02)'
               }
               stroke={
                 isActive
                   ? 'rgba(var(--ember-rgb), 0.15)'
-                  : 'rgba(255, 255, 255, 0.06)'
+                  : 'rgba(var(--ambient-ink-rgb), 0.06)'
               }
               strokeWidth={1}
             />
@@ -162,7 +162,7 @@ const WorkflowDag = memo(function WorkflowDag() {
               fill={
                 isActive
                   ? 'rgba(var(--ember-rgb), 0.3)'
-                  : 'rgba(255, 255, 255, 0.08)'
+                  : 'rgba(var(--ambient-ink-rgb), 0.08)'
               }
               fontSize={8}
               fontFamily="var(--font-mono, monospace)"
@@ -195,13 +195,13 @@ const DependencyWeb = memo(function DependencyWeb() {
           y1={100}
           x2={sat.cx}
           y2={sat.cy}
-          stroke="rgba(255,255,255,0.04)"
+          stroke="rgba(var(--ambient-ink-rgb),0.04)"
           strokeWidth={1}
         />
       ))}
 
       {/* Central hub dot */}
-      <circle cx={100} cy={100} r={3} fill="rgba(255,255,255,0.06)" />
+      <circle cx={100} cy={100} r={3} fill="rgba(var(--ambient-ink-rgb),0.06)" />
 
       {/* Satellite dots */}
       {DEP_WEB_SATELLITES.map((sat, i) => (
@@ -210,7 +210,7 @@ const DependencyWeb = memo(function DependencyWeb() {
           cx={sat.cx}
           cy={sat.cy}
           r={3}
-          fill="rgba(255,255,255,0.06)"
+          fill="rgba(var(--ambient-ink-rgb),0.06)"
           className={sat.pulse ? 'enrichment-circuit-pulse' : undefined}
         />
       ))}
@@ -250,7 +250,7 @@ export const ProjectRoomScene = memo(function ProjectRoomScene({ dockSide }: { d
           lines={RUN_LOG_LINES}
           width={280}
           height={400}
-          color="rgba(255,255,255,0.05)"
+          color="rgba(var(--ambient-ink-rgb),0.05)"
           scrollDuration={50}
         />
       </div>

@@ -96,7 +96,7 @@ export function DistrictViewDock({ districtId, panelSide }: DistrictViewDockProp
         'overflow-y-auto',
       )}
       style={{
-        background: 'rgba(255, 255, 255, 0.04)',
+        background: 'rgba(var(--ambient-ink-rgb), 0.04)',
         zIndex: 31,
         pointerEvents: 'auto',
       }}
@@ -113,7 +113,7 @@ export function DistrictViewDock({ districtId, panelSide }: DistrictViewDockProp
         {/* District name */}
         <span
           className="block font-mono text-[18px] font-medium tracking-[0.08em] uppercase"
-          style={{ color: 'rgba(255, 255, 255, 0.3)' }}
+          style={{ color: 'rgba(var(--ambient-ink-rgb), 0.3)' }}
         >
           {displayName}
         </span>
@@ -122,7 +122,7 @@ export function DistrictViewDock({ districtId, panelSide }: DistrictViewDockProp
         {port !== null && (
           <span
             className="mt-1 block font-mono text-[11px] tracking-wider"
-            style={{ color: 'rgba(14, 165, 233, 0.2)' }}
+            style={{ color: 'rgba(var(--teal-bright-rgb), 0.2)' }}
           >
             localhost:{port}
           </span>
@@ -131,7 +131,7 @@ export function DistrictViewDock({ districtId, panelSide }: DistrictViewDockProp
         {/* Description */}
         <p
           className="mt-4 font-mono text-[11px] leading-[1.5]"
-          style={{ color: 'rgba(255, 255, 255, 0.25)' }}
+          style={{ color: 'rgba(var(--ambient-ink-rgb), 0.25)' }}
         >
           {config.description}
         </p>
@@ -151,7 +151,7 @@ export function DistrictViewDock({ districtId, panelSide }: DistrictViewDockProp
               'focus-visible:outline-[var(--color-ember-bright)]',
             )}
             style={{
-              color: 'rgba(255, 255, 255, 0.35)',
+              color: 'rgba(var(--ambient-ink-rgb), 0.35)',
               pointerEvents: 'auto',
             }}
           >
@@ -164,7 +164,7 @@ export function DistrictViewDock({ districtId, panelSide }: DistrictViewDockProp
           className="my-5"
           style={{
             height: 1,
-            backgroundColor: 'rgba(255, 255, 255, 0.04)',
+            backgroundColor: 'rgba(var(--ambient-ink-rgb), 0.04)',
           }}
         />
 
@@ -172,7 +172,7 @@ export function DistrictViewDock({ districtId, panelSide }: DistrictViewDockProp
         <div className="flex flex-col gap-2">
           <span
             className="block font-mono text-[9px] font-medium tracking-[0.1em] uppercase"
-            style={{ color: 'rgba(255, 255, 255, 0.15)' }}
+            style={{ color: 'rgba(var(--ambient-ink-rgb), 0.15)' }}
           >
             STATUS
           </span>
@@ -189,7 +189,7 @@ export function DistrictViewDock({ districtId, panelSide }: DistrictViewDockProp
             />
             <span
               className="font-mono text-[11px]"
-              style={{ color: 'rgba(255, 255, 255, 0.25)' }}
+              style={{ color: 'rgba(var(--ambient-ink-rgb), 0.25)' }}
             >
               Operational
             </span>
@@ -201,7 +201,7 @@ export function DistrictViewDock({ districtId, panelSide }: DistrictViewDockProp
           className="my-5"
           style={{
             height: 1,
-            backgroundColor: 'rgba(255, 255, 255, 0.04)',
+            backgroundColor: 'rgba(var(--ambient-ink-rgb), 0.04)',
           }}
         />
 
@@ -209,7 +209,7 @@ export function DistrictViewDock({ districtId, panelSide }: DistrictViewDockProp
         <div className="flex flex-col gap-3">
           <span
             className="block font-mono text-[9px] font-medium tracking-[0.1em] uppercase"
-            style={{ color: 'rgba(255, 255, 255, 0.15)' }}
+            style={{ color: 'rgba(var(--ambient-ink-rgb), 0.15)' }}
           >
             STATIONS
           </span>
@@ -223,7 +223,7 @@ export function DistrictViewDock({ districtId, panelSide }: DistrictViewDockProp
                   'bg-white/[0.02]',
                   'font-mono text-[9px] tracking-[0.08em] uppercase',
                 )}
-                style={{ color: 'rgba(255, 255, 255, 0.2)' }}
+                style={{ color: 'rgba(var(--ambient-ink-rgb), 0.2)' }}
               >
                 {station}
               </span>

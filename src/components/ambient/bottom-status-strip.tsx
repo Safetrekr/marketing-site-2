@@ -27,10 +27,10 @@ import type { DistrictId } from '@/lib/interfaces/district'
 
 const LABEL_COLOR = 'rgba(var(--ambient-ink-rgb), 0.20)'
 const VALUE_COLOR = 'rgba(var(--ambient-ink-rgb), 0.35)'
-const TEAL_COLOR = 'rgba(14, 165, 233, 0.18)'
+const TEAL_COLOR = 'rgba(var(--teal-bright-rgb), 0.18)'
 const EMBER_COLOR = 'rgba(var(--ember-rgb), 0.16)'
-const WAVEFORM_TEAL = 'rgba(14, 165, 233, 0.55)'
-const WAVEFORM_GREEN = 'rgba(var(--ember-rgb), 0.50)'
+const WAVEFORM_TEAL = 'teal-bright'
+const WAVEFORM_LATENCY = 'warning'
 const SEPARATOR_COLOR = 'rgba(var(--ambient-ink-rgb), 0.04)'
 
 const FONT_STYLE: React.CSSProperties = {
@@ -85,9 +85,38 @@ function usePacketCounter(): string {
 // Subcomponent: Tiny horizontal waveform
 // ---------------------------------------------------------------------------
 
+/** Maps a token name to its CSS var + opacity for canvas use. */
+const WAVEFORM_TOKEN_MAP: Record<string, { varName: string; fallback: string; alpha: number }> = {
+  'teal-bright': { varName: '--teal-bright-rgb', fallback: '58, 154, 181', alpha: 0.55 },
+  'warning': { varName: '--color-warning', fallback: '#eab308', alpha: 0.7 },
+}
+
 function MiniWaveform({ color }: { color: string }) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const rafRef = useRef<number | null>(null)
+  const resolvedColorRef = useRef<string>('')
+
+  useEffect(() => {
+    const canvas = canvasRef.current
+    if (!canvas) return
+
+    // Resolve CSS token to a canvas-compatible color
+    const token = WAVEFORM_TOKEN_MAP[color]
+    if (token) {
+      if (token.varName.startsWith('--color-')) {
+        // Direct color var (not rgb triplet)
+        const cs = getComputedStyle(canvas)
+        const resolved = cs.getPropertyValue(token.varName).trim() || token.fallback
+        resolvedColorRef.current = resolved
+      } else {
+        const cs = getComputedStyle(canvas)
+        const rgb = cs.getPropertyValue(token.varName).trim() || token.fallback
+        resolvedColorRef.current = `rgba(${rgb}, ${token.alpha})`
+      }
+    } else {
+      resolvedColorRef.current = color
+    }
+  }, [color])
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -102,7 +131,7 @@ function MiniWaveform({ color }: { color: string }) {
     const animate = () => {
       const t = performance.now() / 1000
       ctx.clearRect(0, 0, w, h)
-      ctx.strokeStyle = color
+      ctx.strokeStyle = resolvedColorRef.current || '#eab308'
       ctx.lineWidth = 1
       ctx.beginPath()
 
@@ -261,7 +290,7 @@ export const BottomStatusStrip = memo(function BottomStatusStrip() {
             {latency}ms
           </span>
         </div>
-        <MiniWaveform color={WAVEFORM_GREEN} />
+        <MiniWaveform color={WAVEFORM_LATENCY} />
       </div>
 
       <div

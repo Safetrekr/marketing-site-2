@@ -134,7 +134,7 @@ const NeuralMesh = memo(function NeuralMesh() {
           y1={edge.y1}
           x2={edge.x2}
           y2={edge.y2}
-          stroke="rgba(255,255,255,0.03)"
+          stroke="rgba(var(--ambient-ink-rgb),0.03)"
           strokeWidth={1}
         />
       ))}
@@ -150,8 +150,8 @@ const NeuralMesh = memo(function NeuralMesh() {
             r={4}
             fill={
               isBright
-                ? 'rgba(168, 85, 247, 0.2)'
-                : 'rgba(168, 85, 247, 0.08)'
+                ? 'rgba(var(--ember-bright-rgb), 0.2)'
+                : 'rgba(var(--ember-bright-rgb), 0.08)'
             }
             className={isBright ? 'district-node-pulse' : undefined}
           />
@@ -189,7 +189,7 @@ const MemoryArc = memo(function MemoryArc() {
           cx={50}
           cy={50}
           r={ARC_RADIUS}
-          stroke="rgba(168, 85, 247, 0.06)"
+          stroke="rgba(var(--ember-bright-rgb), 0.06)"
           strokeWidth={ARC_STROKE}
           fill="none"
           strokeDasharray={`${ARC_VISIBLE_LENGTH} ${ARC_CIRCUMFERENCE}`}
@@ -201,7 +201,7 @@ const MemoryArc = memo(function MemoryArc() {
           cx={50}
           cy={50}
           r={ARC_RADIUS}
-          stroke="rgba(168, 85, 247, 0.2)"
+          stroke="rgba(var(--ember-bright-rgb), 0.2)"
           strokeWidth={ARC_STROKE}
           fill="none"
           strokeDasharray={`${ARC_VISIBLE_LENGTH} ${ARC_CIRCUMFERENCE}`}
@@ -256,7 +256,7 @@ export const TarvaCoreScene = memo(function TarvaCoreScene({ dockSide }: { dockS
           lines={REASONING_TRACE_LINES}
           width={300}
           height={450}
-          color="rgba(168, 85, 247, 0.06)"
+          color="rgba(var(--ember-bright-rgb), 0.06)"
           scrollDuration={55}
         />
       </div>

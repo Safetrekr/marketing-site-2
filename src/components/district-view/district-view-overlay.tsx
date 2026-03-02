@@ -35,11 +35,11 @@ import { DistrictViewContent } from './district-view-content'
 
 const DISTRICT_TINTS: Record<DistrictId, string> = {
   'agent-builder': 'rgba(var(--ember-rgb), 0.06)',
-  'tarva-chat': 'rgba(14, 165, 233, 0.06)',
+  'tarva-chat': 'rgba(var(--teal-bright-rgb), 0.06)',
   'project-room': 'rgba(var(--healthy-rgb), 0.04)',
-  'tarva-core': 'rgba(168, 85, 247, 0.05)',
-  'tarva-erp': 'rgba(245, 158, 11, 0.04)',
-  'tarva-code': 'rgba(99, 102, 241, 0.04)',
+  'tarva-core': 'rgba(var(--ember-bright-rgb), 0.05)',
+  'tarva-erp': 'rgba(var(--ember-rgb), 0.04)',
+  'tarva-code': 'rgba(var(--teal-rgb), 0.04)',
 }
 
 // ---------------------------------------------------------------------------
@@ -99,7 +99,7 @@ export function DistrictViewOverlay() {
               position: 'absolute',
               inset: 0,
               background: `radial-gradient(ellipse at ${gradientOrigin}, ${DISTRICT_TINTS[districtId]} 0%, transparent 70%)`,
-              backgroundColor: 'rgba(5, 9, 17, 0.95)',
+              backgroundColor: 'color-mix(in srgb, var(--color-void) 95%, transparent)',
               pointerEvents: 'none',
             }}
             aria-hidden="true"

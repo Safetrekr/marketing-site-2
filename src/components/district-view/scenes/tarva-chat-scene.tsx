@@ -90,6 +90,21 @@ const LATENCY_AREA_POINTS = [
 function SignalWaveform() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const rafRef = useRef<number>(0)
+  const colorsRef = useRef({ teal: '', ember: '' })
+
+  useEffect(() => {
+    const canvas = canvasRef.current
+    if (!canvas) return
+
+    // Resolve CSS vars once from the DOM
+    const cs = getComputedStyle(canvas)
+    const tealRgb = cs.getPropertyValue('--teal-bright-rgb').trim() || '58, 154, 181'
+    const emberRgb = cs.getPropertyValue('--ember-rgb').trim() || '224, 82, 0'
+    colorsRef.current = {
+      teal: `rgba(${tealRgb}, 0.12)`,
+      ember: `rgba(${emberRgb}, 0.10)`,
+    }
+  }, [])
 
   const draw = useCallback((timestamp: number) => {
     const canvas = canvasRef.current
@@ -106,7 +121,7 @@ function SignalWaveform() {
 
     // Wave 1: teal
     ctx.beginPath()
-    ctx.strokeStyle = 'rgba(14, 165, 233, 0.12)'
+    ctx.strokeStyle = colorsRef.current.teal
     ctx.lineWidth = 1
     for (let x = 0; x < w; x++) {
       const y = h / 2 + Math.sin(x * 0.05 + t * 2) * (h * 0.35)
@@ -120,7 +135,7 @@ function SignalWaveform() {
 
     // Wave 2: ember
     ctx.beginPath()
-    ctx.strokeStyle = 'rgba(var(--ember-rgb), 0.10)'
+    ctx.strokeStyle = colorsRef.current.ember
     ctx.lineWidth = 1
     for (let x = 0; x < w; x++) {
       const y = h / 2 + Math.sin(x * 0.03 + t * 1.5 + 1) * (h * 0.3)
@@ -175,7 +190,7 @@ export const TarvaChatScene = memo(function TarvaChatScene({ dockSide }: { dockS
           lines={CHAT_LINES}
           width={320}
           height={500}
-          color="rgba(255, 255, 255, 0.05)"
+          color="rgba(var(--ambient-ink-rgb), 0.05)"
           scrollDuration={60}
         />
       </div>
@@ -209,7 +224,7 @@ export const TarvaChatScene = memo(function TarvaChatScene({ dockSide }: { dockS
           rows={3}
           cols={6}
           labels={MCP_LABELS}
-          activeColor="rgba(14, 165, 233, 0.25)"
+          activeColor="rgba(var(--teal-bright-rgb), 0.25)"
           activeRatio={0.85}
         />
       </div>
@@ -228,13 +243,13 @@ export const TarvaChatScene = memo(function TarvaChatScene({ dockSide }: { dockS
           {/* Area fill */}
           <polygon
             points={LATENCY_AREA_POINTS}
-            fill="rgba(14, 165, 233, 0.06)"
+            fill="rgba(var(--teal-bright-rgb), 0.06)"
           />
           {/* Stroke line */}
           <polyline
             points={LATENCY_LINE_POINTS}
             fill="none"
-            stroke="rgba(14, 165, 233, 0.12)"
+            stroke="rgba(var(--teal-bright-rgb), 0.12)"
             strokeWidth={1}
           />
         </svg>

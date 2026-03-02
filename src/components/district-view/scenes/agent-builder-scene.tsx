@@ -68,11 +68,11 @@ interface PipelineSegment {
 }
 
 const PIPELINE_SEGMENTS: PipelineSegment[] = [
-  { label: 'PARSE', fill: 'rgba(14, 165, 233, 0.25)' },
-  { label: 'VALIDATE', fill: 'rgba(14, 165, 233, 0.25)' },
+  { label: 'PARSE', fill: 'rgba(var(--teal-bright-rgb), 0.25)' },
+  { label: 'VALIDATE', fill: 'rgba(var(--teal-bright-rgb), 0.25)' },
   { label: 'GENERATE', fill: 'rgba(var(--ember-rgb), 0.3)' },
-  { label: 'TEST', fill: 'rgba(255, 255, 255, 0.04)' },
-  { label: 'DEPLOY', fill: 'rgba(255, 255, 255, 0.04)' },
+  { label: 'TEST', fill: 'rgba(var(--ambient-ink-rgb), 0.04)' },
+  { label: 'DEPLOY', fill: 'rgba(var(--ambient-ink-rgb), 0.04)' },
 ]
 
 // ---------------------------------------------------------------------------
@@ -89,7 +89,7 @@ function BlueprintGrid() {
   const width = 400
   const height = 300
   const spacing = 80
-  const strokeColor = 'rgba(255, 255, 255, 0.03)'
+  const strokeColor = 'rgba(var(--ambient-ink-rgb), 0.03)'
 
   // Vertical lines
   const verticals: number[] = []
@@ -185,7 +185,7 @@ function PipelinePhaseIndicator() {
             style={{
               fontFamily: 'var(--font-mono, monospace)',
               fontSize: 8,
-              color: 'rgba(255, 255, 255, 0.1)',
+              color: 'rgba(var(--ambient-ink-rgb), 0.1)',
               letterSpacing: '0.06em',
               textTransform: 'uppercase',
             }}
@@ -243,21 +243,21 @@ export const AgentBuilderScene = memo(function AgentBuilderScene({ dockSide }: {
           lines={CONFIG_LINES}
           width={180}
           height={350}
-          color="rgba(255, 255, 255, 0.05)"
+          color="rgba(var(--ambient-ink-rgb), 0.05)"
           scrollDuration={48}
         />
         <DataStream
           lines={AGENT_LINES}
           width={180}
           height={350}
-          color="rgba(255, 255, 255, 0.05)"
+          color="rgba(var(--ambient-ink-rgb), 0.05)"
           scrollDuration={52}
         />
         <DataStream
           lines={BUILD_LINES}
           width={180}
           height={350}
-          color="rgba(255, 255, 255, 0.05)"
+          color="rgba(var(--ambient-ink-rgb), 0.05)"
           scrollDuration={50}
         />
       </div>
@@ -279,7 +279,7 @@ export const AgentBuilderScene = memo(function AgentBuilderScene({ dockSide }: {
           rows={6}
           cols={8}
           labels={SKILL_LABELS}
-          activeColor="rgba(14, 165, 233, 0.25)"
+          activeColor="rgba(var(--teal-bright-rgb), 0.25)"
         />
       </div>
 
