@@ -84,7 +84,7 @@ export function BrandMark() {
       animate={{ opacity: transitioning ? 0 : 1 }}
       transition={{ duration: transitioning ? 0.6 : 0.8, ease: [0.22, 1, 0.36, 1] }}
     >
-      {/* Shield mark */}
+      {/* Horizontal logo */}
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -92,17 +92,10 @@ export function BrandMark() {
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/images/logos/safetrekr-mark-light.svg"
+          src="/images/logos/safetrekr-logo-horiz-light.png"
           alt="Safetrekr"
-          className="gateway-shield-breathe hidden dark:block"
-          style={{ width: 64, height: 64 }}
-        />
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/images/logos/safetrekr-mark-dark.svg"
-          alt="Safetrekr"
-          className="gateway-shield-breathe dark:hidden block"
-          style={{ width: 64, height: 64 }}
+          className="gateway-shield-breathe"
+          style={{ height: 96, width: 'auto' }}
         />
       </motion.div>
 
