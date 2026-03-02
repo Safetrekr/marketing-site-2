@@ -8,6 +8,16 @@
  * - Handles skip via keyboard/click
  * - Prefetches /launch route for instant transition
  *
+ * Layout: Uses absolute positioning for center stage elements
+ * so that brand mark stays fixed and nothing shifts as boot
+ * sequence transitions to CTAs.
+ *
+ * Z-index layers:
+ * - z-0:  Ambient background (horizon scan, timecode)
+ * - z-20: Edge panels (micro-telemetry)
+ * - z-30: Center stage content + nominal badge
+ * - z-40: Header bar + district dock
+ *
  * @module gateway-scene
  */
 
@@ -27,12 +37,14 @@ import {
 import { BrandMark } from './brand-mark'
 import { BootSequence } from './boot-sequence'
 import { ChoiceReveal } from './choice-reveal'
-import { EdgeStrip } from './edge-strip'
+import { EdgePanels } from './edge-panels'
 import { SecurityNarrative } from './security-narrative'
+import { NominalBadge } from './nominal-badge'
 import { SkipAffordance } from './skip-affordance'
+import { GatewayHeader } from './gateway-header'
+import { DistrictDock } from './district-dock'
 
 import { HorizonScanLine } from '@/components/ambient/horizon-scan-line'
-import { CalibrationMarks } from '@/components/ambient/calibration-marks'
 import { SessionTimecode } from '@/components/ambient/session-timecode'
 
 // ---------------------------------------------------------------------------
@@ -104,7 +116,7 @@ export function GatewayScene() {
 
   return (
     <motion.div
-      className="fixed inset-0 flex items-center justify-center overflow-hidden"
+      className="fixed inset-0 overflow-hidden"
       style={{
         background: 'var(--color-void)',
         cursor: phase === 'arriving' || phase === 'booting' ? 'pointer' : 'default',
@@ -115,21 +127,53 @@ export function GatewayScene() {
       }}
       transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
     >
-      {/* Ambient layer */}
-      <HorizonScanLine />
-      <CalibrationMarks />
-      <SessionTimecode />
-
-      {/* Edge strip dots */}
-      <EdgeStrip />
-
-      {/* Center stage */}
-      <div className="relative z-10 flex flex-col items-center gap-10">
-        <BrandMark />
-        <BootSequence />
-        <ChoiceReveal />
-        <SecurityNarrative />
+      {/* Ambient background layer -- lowest z-index */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <HorizonScanLine />
+        <SessionTimecode />
       </div>
+
+      {/* Edge panels: living micro-telemetry at viewport edges */}
+      <EdgePanels />
+
+      {/* Center stage -- absolute positioned to prevent layout shift.
+          Uses a fixed-size container centered on screen so brand mark
+          never moves as boot sequence transitions to CTAs. */}
+      <div className="fixed inset-0 z-30 flex items-center justify-center pointer-events-none">
+        <div className="flex flex-col items-center" style={{ width: '100%', maxWidth: 640 }}>
+          {/* Brand mark: always at the top of this centered block */}
+          <div className="pointer-events-auto">
+            <BrandMark />
+          </div>
+
+          {/* Boot/Reveal zone: fixed-height area below brand mark.
+              Both BootSequence and ChoiceReveal render here,
+              overlapping so the transition doesn't shift layout. */}
+          <div className="relative mt-10 w-full pointer-events-auto" style={{ minHeight: 280 }}>
+            {/* Boot sequence occupies this zone during booting */}
+            <div className="absolute inset-x-0 top-0 flex justify-center">
+              <BootSequence />
+            </div>
+
+            {/* Choice reveal occupies this zone after boot */}
+            <div className="absolute inset-x-0 top-0 flex flex-col items-center">
+              <ChoiceReveal />
+              <div className="mt-6">
+                <SecurityNarrative />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Nominal badge: flashes at center then morphs to top-left */}
+      <NominalBadge />
+
+      {/* Header: telemetry stats bar */}
+      <GatewayHeader />
+
+      {/* District dock: bottom icon buttons */}
+      <DistrictDock />
 
       {/* Skip affordance */}
       <SkipAffordance />

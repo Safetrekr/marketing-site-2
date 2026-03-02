@@ -21,10 +21,8 @@ import { SystemCheck } from './system-check'
 export function BootSequence() {
   const phase = useGatewayStore((s) => s.phase)
   const checks = useGatewayStore((s) => s.checks)
-  const nominalFlash = useGatewayStore((s) => s.nominalFlash)
-
   // Only show during booting phase
-  if (phase !== 'booting' && phase !== 'arriving' && !nominalFlash) return null
+  if (phase !== 'booting' && phase !== 'arriving') return null
 
   const visibleChecks = checks.filter(
     (c) => c.status === 'active' || c.status === 'complete',
@@ -46,18 +44,6 @@ export function BootSequence() {
         </AnimatePresence>
       </motion.div>
 
-      {/* ALL SYSTEMS NOMINAL flash */}
-      {nominalFlash && (
-        <div
-          className="gateway-nominal-flash font-mono text-[10px] font-semibold uppercase"
-          style={{
-            letterSpacing: '0.12em',
-            color: 'var(--color-ember-bright)',
-          }}
-        >
-          ALL SYSTEMS NOMINAL
-        </div>
-      )}
     </div>
   )
 }

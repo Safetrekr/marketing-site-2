@@ -3,6 +3,7 @@
  *
  * Fades in during the 'arriving' phase with staggered timing.
  * Shield mark has a breathing green glow animation.
+ * Text uses typewriter effect for character-by-character reveal.
  *
  * @module brand-mark
  */
@@ -12,6 +13,7 @@
 import { motion } from 'motion/react'
 
 import { useGatewayStore, type GatewayPhase } from '@/stores/gateway.store'
+import { useTypewriter } from '@/hooks/use-typewriter'
 
 // ---------------------------------------------------------------------------
 // Visibility helpers
@@ -26,13 +28,52 @@ function isTransitioning(phase: GatewayPhase): boolean {
 }
 
 // ---------------------------------------------------------------------------
+// Typewriter cursor
+// ---------------------------------------------------------------------------
+
+function TypewriterCursor({ visible }: { visible: boolean }) {
+  if (!visible) return null
+  return (
+    <span
+      className="gateway-cursor-blink"
+      style={{
+        display: 'inline-block',
+        width: 1,
+        height: '1em',
+        backgroundColor: 'currentColor',
+        marginLeft: 1,
+        verticalAlign: 'text-bottom',
+        opacity: 0.6,
+      }}
+      aria-hidden="true"
+    />
+  )
+}
+
+// ---------------------------------------------------------------------------
 // Component
 // ---------------------------------------------------------------------------
 
 export function BrandMark() {
   const phase = useGatewayStore((s) => s.phase)
 
-  if (!isVisible(phase)) return null
+  const isActive = isVisible(phase)
+
+  const tagline = useTypewriter({
+    text: 'Every traveler accounted for.',
+    enabled: isActive,
+    delay: 800,
+    speed: 40,
+  })
+
+  const subTagline = useTypewriter({
+    text: 'SAFETREKR // SECURITY PROTOCOL v2.1',
+    enabled: tagline.isComplete,
+    delay: 200,
+    speed: 25,
+  })
+
+  if (!isActive) return null
 
   const transitioning = isTransitioning(phase)
 
@@ -65,30 +106,27 @@ export function BrandMark() {
         />
       </motion.div>
 
-      {/* Primary tagline */}
-      <motion.p
+      {/* Primary tagline -- typewriter */}
+      <p
         className="text-center font-sans text-base font-normal tracking-wide"
-        style={{ color: 'var(--color-text-primary)', opacity: 0.85 }}
-        initial={{ opacity: 0, y: 8 }}
-        animate={{ opacity: 0.85, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+        style={{ color: 'var(--color-text-primary)', opacity: 0.85, minHeight: '1.5em' }}
       >
-        Every traveler accounted for.
-      </motion.p>
+        {tagline.displayText}
+        <TypewriterCursor visible={tagline.isTyping} />
+      </p>
 
-      {/* Sub-tagline */}
-      <motion.p
+      {/* Sub-tagline -- typewriter */}
+      <p
         className="text-center font-mono text-[10px] font-medium uppercase"
         style={{
           letterSpacing: '0.12em',
           color: 'rgba(var(--ambient-ink-rgb), 0.20)',
+          minHeight: '1.2em',
         }}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.4, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
       >
-        SAFETREKR // SECURITY PROTOCOL v2.1
-      </motion.p>
+        {subTagline.displayText}
+        <TypewriterCursor visible={subTagline.isTyping} />
+      </p>
     </motion.div>
   )
 }

@@ -137,6 +137,95 @@
 }
 
 /* =========================================================================
+   Edge panel: heartbeat trace draw (GuardianPanel)
+   ========================================================================= */
+
+@keyframes gateway-heartbeat-draw {
+  from {
+    stroke-dashoffset: 60;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.gateway-heartbeat-draw {
+  animation: gateway-heartbeat-draw 2s var(--ease-morph, cubic-bezier(0.22, 1, 0.36, 1)) forwards;
+}
+
+/* =========================================================================
+   Edge panel: route path flow (RoutePanel)
+   ========================================================================= */
+
+@keyframes gateway-route-flow {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -14;
+  }
+}
+
+.gateway-route-flow {
+  animation: gateway-route-flow 3s linear infinite;
+}
+
+/* =========================================================================
+   Edge panel: chrono ring fill (CommandPanel)
+   ========================================================================= */
+
+@keyframes gateway-chrono-fill {
+  from {
+    stroke-dashoffset: 37.7;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.gateway-chrono-fill {
+  animation: gateway-chrono-fill 30s linear infinite;
+}
+
+/* =========================================================================
+   Reduced motion: disable all gateway animations
+   ========================================================================= */
+
+/* =========================================================================
+   Typewriter cursor blink
+   ========================================================================= */
+
+@keyframes gateway-cursor-blink {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 0; }
+}
+
+.gateway-cursor-blink {
+  animation: gateway-cursor-blink 800ms step-end infinite;
+}
+
+/* =========================================================================
+   District dock button breathing glow
+   ========================================================================= */
+
+@keyframes gateway-dock-breathe {
+  0%, 100% {
+    box-shadow:
+      0 0 8px rgba(75, 164, 103, 0.06),
+      inset 0 0 4px rgba(75, 164, 103, 0.04);
+  }
+  50% {
+    box-shadow:
+      0 0 16px rgba(75, 164, 103, 0.14),
+      inset 0 0 8px rgba(75, 164, 103, 0.08);
+  }
+}
+
+.gateway-dock-breathe {
+  animation: gateway-dock-breathe 4s ease-in-out infinite;
+}
+
+/* =========================================================================
    Reduced motion: disable all gateway animations
    ========================================================================= */
 
@@ -145,7 +234,12 @@
   .gateway-cta-breathe,
   .gateway-check-pulse,
   .gateway-dot-appear,
-  .gateway-nominal-flash {
+  .gateway-nominal-flash,
+  .gateway-heartbeat-draw,
+  .gateway-route-flow,
+  .gateway-chrono-fill,
+  .gateway-cursor-blink,
+  .gateway-dock-breathe {
     animation: none !important;
   }
 

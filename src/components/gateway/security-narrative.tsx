@@ -2,16 +2,17 @@
  * SecurityNarrative -- post-reveal ambient text cycling.
  *
  * Displays rotating security-themed status messages below the CTAs.
- * Each message shows for 3s then cross-fades to the next.
+ * Each message types in character-by-character, holds, then types the next.
  *
  * @module security-narrative
  */
 
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 
 import { useGatewayStore, type GatewayPhase } from '@/stores/gateway.store'
+import { useTypewriter } from '@/hooks/use-typewriter'
 
 // ---------------------------------------------------------------------------
 // Narrative lines
@@ -42,23 +43,33 @@ function isAmbient(phase: GatewayPhase): boolean {
 export function SecurityNarrative() {
   const phase = useGatewayStore((s) => s.phase)
   const [index, setIndex] = useState(0)
-  const [fading, setFading] = useState(false)
+  const [hold, setHold] = useState(false)
 
+  const active = isAmbient(phase)
+
+  const handleComplete = useCallback(() => {
+    setHold(true)
+  }, [])
+
+  const { displayText, isTyping } = useTypewriter({
+    text: NARRATIVES[index],
+    enabled: active && !hold,
+    delay: 0,
+    speed: 30,
+    onComplete: handleComplete,
+  })
+
+  // Hold for 2.5s then advance
   useEffect(() => {
-    if (!isAmbient(phase)) return
+    if (!hold || !active) return
+    const timer = setTimeout(() => {
+      setHold(false)
+      setIndex((prev) => (prev + 1) % NARRATIVES.length)
+    }, 2500)
+    return () => clearTimeout(timer)
+  }, [hold, active])
 
-    const interval = setInterval(() => {
-      setFading(true)
-      setTimeout(() => {
-        setIndex((prev) => (prev + 1) % NARRATIVES.length)
-        setFading(false)
-      }, 300)
-    }, 3000)
-
-    return () => clearInterval(interval)
-  }, [phase])
-
-  if (!isAmbient(phase)) return null
+  if (!active) return null
 
   return (
     <div
@@ -66,12 +77,25 @@ export function SecurityNarrative() {
       style={{
         letterSpacing: '0.08em',
         color: 'rgba(var(--ambient-ink-rgb), 0.12)',
-        transition: 'opacity 300ms ease',
-        opacity: fading ? 0 : 1,
+        minHeight: '1.2em',
       }}
       aria-hidden="true"
     >
-      {NARRATIVES[index]}
+      {displayText}
+      {isTyping && (
+        <span
+          className="gateway-cursor-blink"
+          style={{
+            display: 'inline-block',
+            width: 1,
+            height: '1em',
+            backgroundColor: 'currentColor',
+            marginLeft: 1,
+            verticalAlign: 'text-bottom',
+            opacity: 0.6,
+          }}
+        />
+      )}
     </div>
   )
 }
