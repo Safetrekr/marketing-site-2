@@ -82,6 +82,8 @@ export interface CapsuleRingProps {
   panelSide?: PanelSide | null
   /** Rotation in degrees applied to the ring so the clicked capsule faces the panel. */
   ringRotation?: number
+  /** Stagger delay between capsule entrance animations (ms). 0 = no entrance animation. */
+  entranceStagger?: number
   /** Optional children rendered inside the ring container (e.g. DetailPanel, ConnectorLines). */
   children?: React.ReactNode
 }
@@ -104,6 +106,7 @@ export function CapsuleRing({
   morphPhase,
   panelSide = null,
   ringRotation = 0,
+  entranceStagger = 0,
   children,
 }: CapsuleRingProps) {
   const capsuleRefs = useMemo(() => {
@@ -160,13 +163,22 @@ export function CapsuleRing({
             activeMorphPhase,
           )
 
+          const entranceDelay = entranceStagger
+            ? capsule.district.ringIndex * (entranceStagger / 1000)
+            : 0
+
           return (
             <motion.div
               key={capsule.district.id}
               className="absolute"
               style={{ left: position.left, top: position.top }}
-              animate={{ rotate: -ringRotation }}
-              transition={RING_SHIFT_SPRING}
+              initial={entranceStagger ? { opacity: 0, scale: 0.85 } : undefined}
+              animate={{ rotate: -ringRotation, opacity: 1, scale: 1 }}
+              transition={{
+                rotate: RING_SHIFT_SPRING,
+                opacity: { duration: 0.6, delay: entranceDelay, ease: [0.4, 0, 0.2, 1] },
+                scale: { duration: 0.8, delay: entranceDelay, ease: [0.22, 1, 0.36, 1] },
+              }}
             >
               <DistrictCapsule
                 ref={capsuleRefs[capsule.district.id]}
@@ -180,7 +192,13 @@ export function CapsuleRing({
           )
         })}
 
-        <HubCenterGlyph hasSelection={hasSelection} />
+        <motion.div
+          initial={entranceStagger ? { opacity: 0, scale: 0.7 } : undefined}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <HubCenterGlyph hasSelection={hasSelection} />
+        </motion.div>
       </motion.div>
 
       {/* DetailPanel + ConnectorLines -- NOT shifted, stay in ring container coords */}

@@ -59,9 +59,9 @@ export function GridPulse({
           '--pulse-y': originY,
           backgroundImage: `radial-gradient(
             circle at var(--pulse-x, 50%) var(--pulse-y, 50%),
-            rgba(var(--ambient-ink-rgb), 0.04) 0%,
-            rgba(var(--ambient-ink-rgb), 0.015) 30%,
-            rgba(var(--ambient-ink-rgb), 0.015) 100%
+            rgba(var(--ambient-ink-rgb), 0.015) 0%,
+            rgba(var(--ambient-ink-rgb), 0.006) 30%,
+            rgba(var(--ambient-ink-rgb), 0.006) 100%
           )`,
           animation: isPanActive
             ? 'none'

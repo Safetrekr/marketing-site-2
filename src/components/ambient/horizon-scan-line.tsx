@@ -47,7 +47,7 @@ export function HorizonScanLine() {
             width: '100%',
             height: 40,
             background:
-              'linear-gradient(to bottom, transparent, rgba(14, 165, 233, 0.03))',
+              'linear-gradient(to bottom, transparent, rgba(14, 165, 233, 0.012))',
           }}
         />
         {/* Main scan line: 1px solid teal */}
@@ -55,7 +55,7 @@ export function HorizonScanLine() {
           style={{
             width: '100%',
             height: 1,
-            backgroundColor: 'rgba(14, 165, 233, 0.06)',
+            backgroundColor: 'rgba(14, 165, 233, 0.025)',
           }}
         />
         {/* Lower gradient: 8px trail below the line */}
@@ -64,7 +64,7 @@ export function HorizonScanLine() {
             width: '100%',
             height: 8,
             background:
-              'linear-gradient(to bottom, rgba(14, 165, 233, 0.02), transparent)',
+              'linear-gradient(to bottom, rgba(14, 165, 233, 0.008), transparent)',
           }}
         />
       </div>

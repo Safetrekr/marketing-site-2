@@ -167,10 +167,10 @@
   /* ============================================================
      OPACITY LEVELS
      ============================================================ */
-  --opacity-ambient-particle: 0.12;
-  --opacity-ambient-grid: 0.015;
-  --opacity-ambient-grid-peak: 0.04;
-  --opacity-ambient-grain: 0.035;
+  --opacity-ambient-particle: 0.05;
+  --opacity-ambient-grid: 0.006;
+  --opacity-ambient-grid-peak: 0.015;
+  --opacity-ambient-grain: 0.012;
   --opacity-dim-offline: 0.4;
   --opacity-glass-rest: 0.03;
   --opacity-glass-hover: 0.06;

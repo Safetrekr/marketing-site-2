@@ -39,7 +39,7 @@ export interface GlowBreathingProps {
 // ---------------------------------------------------------------------------
 
 const STATIC_GLOW =
-  '0 0 30px rgba(var(--ember-rgb), 0.10), 0 0 12px rgba(var(--ember-rgb), 0.16)'
+  '0 0 30px rgba(var(--ember-rgb), 0.04), 0 0 12px rgba(var(--ember-rgb), 0.06)'
 
 // ---------------------------------------------------------------------------
 // Component

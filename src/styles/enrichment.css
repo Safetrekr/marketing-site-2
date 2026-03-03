@@ -21,10 +21,10 @@
 @keyframes enrichment-halo-breathe {
   0%,
   100% {
-    opacity: 0.3;
+    opacity: 0.12;
   }
   50% {
-    opacity: 0.7;
+    opacity: 0.3;
   }
 }
 
@@ -202,6 +202,31 @@
 
 .enrichment-chrono-fill {
   animation: enrichment-chrono-fill 60s linear infinite;
+}
+
+/* =========================================================================
+   Launch entrance: hide world-space enrichments until enriching phase
+   ========================================================================= */
+
+/* Core center elements (.enrichment-halo, .enrichment-sweep) are NOT hidden —
+   they are part of the immediate focal point, visible from boot.
+   Only outer enrichment layers are deferred until the enriching phase. */
+[data-entrance='booting'] .enrichment-flicker,
+[data-entrance='flying'] .enrichment-flicker,
+[data-entrance='populating'] .enrichment-flicker,
+[data-entrance='booting'] .enrichment-flow,
+[data-entrance='flying'] .enrichment-flow,
+[data-entrance='populating'] .enrichment-flow,
+[data-entrance='booting'] .enrichment-chrono-fill,
+[data-entrance='flying'] .enrichment-chrono-fill,
+[data-entrance='populating'] .enrichment-chrono-fill {
+  opacity: 0 !important;
+}
+
+[data-entrance='enriching'] .enrichment-flicker,
+[data-entrance='enriching'] .enrichment-flow,
+[data-entrance='enriching'] .enrichment-chrono-fill {
+  transition: opacity 800ms ease;
 }
 
 /* =========================================================================
