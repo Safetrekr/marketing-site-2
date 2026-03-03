@@ -133,12 +133,14 @@ export function DistrictViewHeader({
 
   return (
     <>
-      {/* District name + health dot -- top bar */}
+      {/* District name + health dot -- top bar.
+          When the label is on the left, push it below the breadcrumb (which
+          sits at ~top-12 / 48px). */}
       <div
         style={{
           position: 'fixed',
-          top: 56,
-          [labelSide]: 32,
+          top: labelSide === 'left' ? 72 : 56,
+          [labelSide]: labelSide === 'left' ? 16 : 32,
           display: 'flex',
           alignItems: 'center',
           gap: 8,

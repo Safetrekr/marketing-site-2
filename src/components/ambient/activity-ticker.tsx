@@ -67,14 +67,14 @@ interface TickerEvent {
 }
 
 const STATIC_EVENTS: TickerEvent[] = [
-  { time: '14:22', verb: 'DEPLOY.AGENT', target: 'project-room', status: 'OK', category: 'deploy' },
-  { time: '14:19', verb: 'QUERY.KNOW', target: 'agent-builder', status: 'OK', category: 'data' },
-  { time: '14:15', verb: 'CHAT.MSG', target: 'tarva-chat', status: 'OK', category: 'data' },
-  { time: '14:12', verb: 'BUILD.AGENT', target: 'agent-builder', status: 'OK', category: 'deploy' },
-  { time: '14:08', verb: 'SYNC.ERP', target: 'tarva-erp', status: 'OK', category: 'data' },
-  { time: '14:03', verb: 'REASON.CORE', target: 'tarva-core', status: 'OK', category: 'system' },
-  { time: '13:57', verb: 'DEPLOY.SKILL', target: 'project-room', status: 'OK', category: 'deploy' },
-  { time: '13:52', verb: 'QUERY.VEC', target: 'agent-builder', status: 'OK', category: 'data' },
+  { time: '14:22', verb: 'TRACK.UPDATE', target: 'platform', status: 'OK', category: 'data' },
+  { time: '14:19', verb: 'CHECKIN.RCV', target: 'how-it-works', status: 'OK', category: 'data' },
+  { time: '14:15', verb: 'ALERT.CLR', target: 'security', status: 'OK', category: 'system' },
+  { time: '14:11', verb: 'PLAN.SYNC', target: 'pricing', status: 'OK', category: 'system' },
+  { time: '14:08', verb: 'USER.JOIN', target: 'get-started', status: 'OK', category: 'data' },
+  { time: '14:04', verb: 'REPORT.GEN', target: 'who-its-for', status: 'OK', category: 'data' },
+  { time: '13:57', verb: 'SCAN.DONE', target: 'platform', status: 'OK', category: 'system' },
+  { time: '13:52', verb: 'CERT.VALID', target: 'security', status: 'OK', category: 'data' },
 ]
 
 // ---------------------------------------------------------------------------

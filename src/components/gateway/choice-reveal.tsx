@@ -19,6 +19,7 @@ import { motion } from 'motion/react'
 import { useRouter } from 'next/navigation'
 import { useCallback } from 'react'
 
+import { trackConversion } from '@/lib/analytics'
 import { useGatewayStore, type GatewayPhase } from '@/stores/gateway.store'
 import { useTypewriter } from '@/hooks/use-typewriter'
 import { GatewayCTA } from './gateway-cta'
@@ -76,6 +77,7 @@ export function ChoiceReveal() {
   })
 
   const handleMissionControl = useCallback(() => {
+    trackConversion('gateway_choice', { destination: 'mission-control' })
     selectDestination('mission-control')
     // Delay router push to allow exit animation
     setTimeout(() => {
@@ -84,10 +86,13 @@ export function ChoiceReveal() {
   }, [selectDestination, router])
 
   const handleMarketing = useCallback(() => {
+    trackConversion('gateway_choice', { destination: 'marketing' })
     selectDestination('marketing')
-    // Placeholder URL -- traditional site not deployed yet
-    window.open('https://safetrekr.com', '_blank')
-  }, [selectDestination])
+    // Delay router push to allow exit animation (matches handleMissionControl pattern)
+    setTimeout(() => {
+      router.push('/landing')
+    }, 600)
+  }, [selectDestination, router])
 
   if (!isActive) return null
 

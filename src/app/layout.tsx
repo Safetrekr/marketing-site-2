@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import { ThemeProvider } from '@/components/providers/theme-provider'
 import { QueryProvider } from '@/components/providers/query-provider'
+import { GA4Script } from '@/components/analytics/ga4-script'
+import { SITE_CONFIG } from '@/lib/config/site'
 import './globals.css'
 
 const geistSans = Geist({
@@ -15,8 +17,17 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Safetrekr',
-  description: 'Every traveler accounted for. Trip safety intelligence for schools, churches, and organizations.',
+  // Title template: child pages provide a title, this template wraps it.
+  // If a child exports title: 'Pricing', the rendered title becomes 'Pricing | Safetrekr'.
+  // The `default` is used when no child provides a title (e.g., the gateway page at /).
+  title: {
+    template: `%s | ${SITE_CONFIG.name}`,
+    default: `${SITE_CONFIG.name} -- ${SITE_CONFIG.tagline}`,
+  },
+
+  description: SITE_CONFIG.description,
+
+  // Favicons (unchanged)
   icons: {
     icon: [
       { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
@@ -24,6 +35,33 @@ export const metadata: Metadata = {
     ],
     apple: '/apple-touch-icon.png',
   },
+
+  // Site-wide Open Graph defaults
+  openGraph: {
+    type: 'website',
+    siteName: SITE_CONFIG.name,
+    locale: SITE_CONFIG.locale,
+    images: [
+      {
+        url: `${SITE_CONFIG.url}${SITE_CONFIG.defaultOgImage}`,
+        width: SITE_CONFIG.ogImageDimensions.width,
+        height: SITE_CONFIG.ogImageDimensions.height,
+        alt: SITE_CONFIG.name,
+      },
+    ],
+  },
+
+  // Site-wide Twitter Card defaults
+  twitter: {
+    card: 'summary_large_image',
+    creator: `@${SITE_CONFIG.social.twitter}`,
+    site: `@${SITE_CONFIG.social.twitter}`,
+  },
+
+  // Resolves relative OG image URLs into absolute URLs.
+  // Without this, OG images may render as relative paths that social
+  // platforms cannot fetch.
+  metadataBase: new URL(SITE_CONFIG.url),
 }
 
 export default function RootLayout({
@@ -45,6 +83,7 @@ export default function RootLayout({
         >
           <QueryProvider>{children}</QueryProvider>
         </ThemeProvider>
+        <GA4Script />
       </body>
     </html>
   )

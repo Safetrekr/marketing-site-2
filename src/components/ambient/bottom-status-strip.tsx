@@ -171,12 +171,12 @@ function MiniWaveform({ color }: { color: string }) {
 const DEFAULT_HEALTH_LABELS = ['AGT', 'SYS', 'NET', 'DB', 'API', 'MEM'] as const
 
 const DISTRICT_HEALTH_LABELS: Record<DistrictId, readonly string[]> = {
-  'agent-builder': ['SDK', 'CLI', 'MCP', 'DB', 'TST', 'BLD'],
-  'tarva-chat': ['MSG', 'RTR', 'MCP', 'WSS', 'CTX', 'STR'],
-  'project-room': ['ORC', 'RUN', 'DAG', 'ART', 'QUE', 'LOG'],
-  'tarva-core': ['LLM', 'RSN', 'MEM', 'CTX', 'EMB', 'GPU'],
-  'tarva-erp': ['INV', 'MFG', 'BOM', 'QTY', 'WMS', 'RPT'],
-  'tarva-code': ['IDX', 'EMB', 'KNW', 'SRC', 'TAG', 'VEC'],
+  'how-it-works': ['TRK', 'MON', 'CHK', 'ALR', 'RPT', 'MAP'],
+  'who-its-for': ['MNG', 'CON', 'ENR', 'FOR', 'LNW', 'RMT'],
+  'platform': ['SAT', 'CEL', 'API', 'DSH', 'IOT', 'GPS'],
+  'security': ['AES', 'SOC', 'RBA', 'AUD', 'ENC', 'PEN'],
+  'pricing': ['FRE', 'PRO', 'ENT', 'VOL', 'SLA', 'SUP'],
+  'get-started': ['TRL', 'ONB', 'DEM', 'CAL', 'SET', 'GO!'],
 }
 
 function HealthDots({ labels }: { labels: readonly string[] }) {

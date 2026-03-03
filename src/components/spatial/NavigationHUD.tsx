@@ -41,6 +41,7 @@ export function NavigationHUD({
       )}
       aria-label="Navigation instruments"
       role="region"
+      data-hud
     >
       {children}
     </div>

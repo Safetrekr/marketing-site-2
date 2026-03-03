@@ -29,7 +29,7 @@ export interface StationAction {
   readonly variant: 'default' | 'secondary' | 'destructive' | 'outline' | 'ghost'
   /**
    * Command string to execute via CommandPalette when clicked.
-   * Example: "open agent-builder", "refresh health-checks"
+   * Example: "go how-it-works", "refresh health-checks"
    */
   readonly command: string
   /** Optional icon name from Lucide. */
@@ -80,8 +80,8 @@ export interface TriggerCondition {
   /**
    * Dot-path into SystemSnapshot.
    * Examples:
-   * - "apps.agent-builder.alertCount"
-   * - "apps.project-room.health"
+   * - "apps.how-it-works.alertCount"
+   * - "apps.platform.health"
    * - "globalMetrics.activeWork"
    */
   readonly field: string
@@ -104,7 +104,7 @@ export interface TriggerCondition {
  * reads templates and maps bodyType to the appropriate React component.
  */
 export interface StationTemplate {
-  /** Unique template identifier (e.g., "agent-builder--pipeline"). */
+  /** Unique template identifier (e.g., "how-it-works--overview"). */
   readonly id: string
   /**
    * Which district this template belongs to.
@@ -193,14 +193,10 @@ export interface StationTemplateRegistry {
  * Phase 1 StationTemplateRegistry. Contains the complete station catalog
  * from AD-8, hardcoded.
  *
- * Station list per AD-8:
+ * Station list per AD-8 (adapted for marketing districts):
  * - Universal: Launch, Status (every district)
- * - Agent Builder: Pipeline, Library
- * - Tarva Chat: Conversations, Agents
- * - Project Room: Runs, Artifacts, Governance
- * - TarvaCORE: Sessions
- * - TarvaERP: Manufacturing (placeholder)
- * - tarvaCODE: (stub only -- universal stations)
+ * - Marketing districts receive only universal stations.
+ *   App-specific stations are unused in the marketing site.
  */
 export class StaticStationTemplateRegistry implements StationTemplateRegistry {
   private templates: Map<string, StationTemplate> = new Map()
@@ -322,261 +318,7 @@ export class StaticStationTemplateRegistry implements StationTemplateRegistry {
       disposable: false,
     })
 
-    // --- Agent Builder Stations ---
-
-    this.registerTemplate({
-      id: 'agent-builder--pipeline',
-      districtId: 'agent-builder',
-      name: 'pipeline',
-      displayName: 'Pipeline',
-      description: 'Active generation run progress and recent runs.',
-      category: 'app-specific',
-      layout: {
-        header: { title: 'Pipeline', icon: 'GitBranch' },
-        bodyType: 'table',
-        actions: [
-          {
-            id: 'view-run',
-            label: 'View Run Details',
-            variant: 'default',
-            command: 'show run ${runId}',
-            icon: 'Eye',
-          },
-          {
-            id: 'cancel-run',
-            label: 'Cancel Run',
-            variant: 'destructive',
-            command: 'cancel run ${runId}',
-            icon: 'XCircle',
-          },
-        ],
-      },
-      triggers: [],
-      priority: 50,
-      disposable: false,
-    })
-
-    this.registerTemplate({
-      id: 'agent-builder--library',
-      districtId: 'agent-builder',
-      name: 'library',
-      displayName: 'Library',
-      description: 'Agent count, recent publishes, and skill maturity breakdown.',
-      category: 'app-specific',
-      layout: {
-        header: { title: 'Library', icon: 'Library' },
-        bodyType: 'list',
-        actions: [
-          {
-            id: 'browse-library',
-            label: 'Browse Library',
-            variant: 'default',
-            command: 'open agent-builder',
-            icon: 'BookOpen',
-          },
-        ],
-      },
-      triggers: [],
-      priority: 40,
-      disposable: false,
-    })
-
-    // --- Tarva Chat Stations ---
-
-    this.registerTemplate({
-      id: 'tarva-chat--conversations',
-      districtId: 'tarva-chat',
-      name: 'conversations',
-      displayName: 'Conversations',
-      description: 'Active conversations sorted by last activity.',
-      category: 'app-specific',
-      layout: {
-        header: { title: 'Conversations', icon: 'MessageSquare' },
-        bodyType: 'table',
-        actions: [
-          {
-            id: 'open-conversation',
-            label: 'Open Conversation',
-            variant: 'default',
-            command: 'open tarva-chat',
-            icon: 'ExternalLink',
-          },
-          {
-            id: 'new-conversation',
-            label: 'New Conversation',
-            variant: 'secondary',
-            command: 'open tarva-chat',
-            icon: 'Plus',
-          },
-        ],
-      },
-      triggers: [],
-      priority: 50,
-      disposable: false,
-    })
-
-    this.registerTemplate({
-      id: 'tarva-chat--agents',
-      districtId: 'tarva-chat',
-      name: 'agents',
-      displayName: 'Agents',
-      description: 'Loaded agent count and most-used agents.',
-      category: 'app-specific',
-      layout: {
-        header: { title: 'Agents', icon: 'Bot' },
-        bodyType: 'list',
-        actions: [
-          {
-            id: 'browse-agents',
-            label: 'Browse Agents',
-            variant: 'default',
-            command: 'open tarva-chat',
-            icon: 'Users',
-          },
-        ],
-      },
-      triggers: [],
-      priority: 40,
-      disposable: false,
-    })
-
-    // --- Project Room Stations ---
-
-    this.registerTemplate({
-      id: 'project-room--runs',
-      districtId: 'project-room',
-      name: 'runs',
-      displayName: 'Runs',
-      description: 'Active executions, queue depth, and recent completions.',
-      category: 'app-specific',
-      layout: {
-        header: { title: 'Runs', icon: 'Play' },
-        bodyType: 'table',
-        actions: [
-          {
-            id: 'view-run',
-            label: 'View Run',
-            variant: 'default',
-            command: 'show run ${runId}',
-            icon: 'Eye',
-          },
-          {
-            id: 'cancel-run',
-            label: 'Cancel Run',
-            variant: 'destructive',
-            command: 'cancel run ${runId}',
-            icon: 'XCircle',
-          },
-          {
-            id: 'open-project',
-            label: 'Open Project',
-            variant: 'secondary',
-            command: 'open project-room',
-            icon: 'ExternalLink',
-          },
-        ],
-      },
-      triggers: [],
-      priority: 50,
-      disposable: false,
-    })
-
-    this.registerTemplate({
-      id: 'project-room--artifacts',
-      districtId: 'project-room',
-      name: 'artifacts',
-      displayName: 'Artifacts',
-      description: 'Recent artifacts and dependency graph health.',
-      category: 'app-specific',
-      layout: {
-        header: { title: 'Artifacts', icon: 'Package' },
-        bodyType: 'table',
-        actions: [
-          {
-            id: 'browse-artifacts',
-            label: 'Browse Artifacts',
-            variant: 'default',
-            command: 'open project-room',
-            icon: 'FolderOpen',
-          },
-        ],
-      },
-      triggers: [],
-      priority: 40,
-      disposable: false,
-    })
-
-    this.registerTemplate({
-      id: 'project-room--governance',
-      districtId: 'project-room',
-      name: 'governance',
-      displayName: 'Governance',
-      description: 'Pending approvals, phase gate status, and recent truth entries.',
-      category: 'app-specific',
-      layout: {
-        header: { title: 'Governance', icon: 'Shield' },
-        bodyType: 'list',
-        actions: [
-          {
-            id: 'review-item',
-            label: 'Review Item',
-            variant: 'default',
-            command: 'open project-room',
-            icon: 'CheckCircle',
-          },
-          {
-            id: 'open-project',
-            label: 'Open Project',
-            variant: 'secondary',
-            command: 'open project-room',
-            icon: 'ExternalLink',
-          },
-        ],
-      },
-      triggers: [],
-      priority: 30,
-      disposable: false,
-    })
-
-    // --- TarvaCORE Stations ---
-
-    this.registerTemplate({
-      id: 'tarva-core--sessions',
-      districtId: 'tarva-core',
-      name: 'sessions',
-      displayName: 'Sessions',
-      description: 'Recent reasoning sessions. Fallback: "No session telemetry available."',
-      category: 'app-specific',
-      layout: {
-        header: { title: 'Sessions', icon: 'Brain' },
-        bodyType: 'list',
-        actions: [],
-      },
-      triggers: [],
-      priority: 50,
-      disposable: false,
-    })
-
-    // --- TarvaERP Stations ---
-
-    this.registerTemplate({
-      id: 'tarva-erp--manufacturing',
-      districtId: 'tarva-erp',
-      name: 'manufacturing',
-      displayName: 'Manufacturing',
-      description: 'Manufacturing dashboard placeholder.',
-      category: 'app-specific',
-      layout: {
-        header: { title: 'Manufacturing', icon: 'Factory' },
-        bodyType: 'metrics',
-        actions: [],
-      },
-      triggers: [],
-      priority: 50,
-      disposable: false,
-    })
-
-    // Note: tarvaCODE has no app-specific stations (stub district).
-    // It receives only the universal Launch and Status stations.
+    // Marketing districts have no app-specific stations.
+    // All districts receive only the universal Launch and Status stations.
   }
 }

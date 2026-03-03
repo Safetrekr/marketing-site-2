@@ -1,0 +1,97 @@
+---
+title: "Sample Post: Demonstrating Blog Features"
+description: "A test post that exercises all supported MDX components, code blocks, images, callouts, and typography features."
+date: "2026-01-01"
+author: "safetrekr-team"
+tags:
+  - product-updates
+  - internal
+category: "product-updates"
+draft: true
+featured: false
+---
+
+## Introduction
+
+This sample post demonstrates the full set of features available to blog authors. Use it as a reference when writing new posts.
+
+## Text Formatting
+
+Regular paragraphs with **bold text**, *italic text*, and `inline code`. Links look like [this example](https://safetrekr.com).
+
+## Code Blocks
+
+Code blocks with syntax highlighting:
+
+```typescript
+interface TripSafetyReport {
+  tripId: string
+  riskLevel: 'low' | 'moderate' | 'elevated' | 'high'
+  reviewDate: string
+  analyst: string
+}
+
+function assessRisk(trip: TripSafetyReport): string {
+  return `Risk level for trip ${trip.tripId}: ${trip.riskLevel}`
+}
+```
+
+## Callouts
+
+<Callout type="tip">
+This is a tip callout. Use it for helpful suggestions that enhance the reader's understanding.
+</Callout>
+
+<Callout type="warning">
+This is a warning callout. Use it for important caveats or potential pitfalls.
+</Callout>
+
+<Callout type="info">
+This is an info callout. Use it for supplementary information that adds context.
+</Callout>
+
+<Callout type="important" title="Key Takeaway">
+This is an important callout with a custom title.
+</Callout>
+
+## In-Post CTA
+
+<CTA
+  href="/contact"
+  label="Schedule a Briefing"
+  description="Ready to learn how Safetrekr protects your travelers?"
+/>
+
+## Lists
+
+Unordered list:
+- First item
+- Second item with a longer description that wraps
+- Third item
+  - Nested item A
+  - Nested item B
+
+Ordered list:
+1. Step one
+2. Step two
+3. Step three
+
+## Tables
+
+| Feature | Standard | Premium | Enterprise |
+|---------|----------|---------|------------|
+| Trip Planning | Yes | Yes | Yes |
+| Risk Assessment | Basic | Full 18-dimension | Custom |
+| Real-time Monitoring | No | Yes | Yes |
+
+## Blockquotes
+
+> "When someone asks 'Did you do everything you could?' -- Safetrekr is the documented answer."
+
+---
+
+## Conclusion
+
+This post exercises all supported features. Authors can copy sections from this file as a starting point for new posts.
+
+<CTA href="/blog" label="Back to Blog" variant="subtle" />

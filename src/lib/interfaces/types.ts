@@ -1,5 +1,5 @@
 /**
- * Shared domain types for Tarva Launch.
+ * Shared domain types for Safetrekr Launch.
  *
  * These types form the vocabulary of the Launch's core interfaces.
  * Every type here is referenced by at least two interface contracts.
@@ -20,45 +20,44 @@
 
 /**
  * Canonical application identifiers.
- * Matches the `code/ID` column in Gap #4 (App Naming).
- * tarvaCODE is included as a stub district per stakeholder directive.
+ * Remapped to Safetrekr marketing districts.
  */
 export type AppIdentifier =
-  | 'agent-builder'
-  | 'tarva-chat'
-  | 'project-room'
-  | 'tarva-core'
-  | 'tarva-erp'
-  | 'tarva-code'
+  | 'how-it-works'
+  | 'who-its-for'
+  | 'platform'
+  | 'security'
+  | 'pricing'
+  | 'get-started'
 
-/** Display names for each app. Used in capsules, breadcrumbs, and receipts. */
+/** Display names for each app. Used in capsules, breadcrumbs, and commands. */
 export const APP_DISPLAY_NAMES: Readonly<Record<AppIdentifier, string>> = {
-  'agent-builder': 'Agent Builder',
-  'tarva-chat': 'Tarva Chat',
-  'project-room': 'Project Room',
-  'tarva-core': 'TarvaCORE',
-  'tarva-erp': 'TarvaERP',
-  'tarva-code': 'tarvaCODE',
+  'how-it-works': 'How It Works',
+  'who-its-for': "Who It's For",
+  'platform': 'Platform',
+  'security': 'Security',
+  'pricing': 'Pricing',
+  'get-started': 'Get Started',
 } as const
 
-/** Two-letter codes for Z0 beacon labels. Per IA Assessment Section 4. */
+/** Two-letter codes for Z0 beacon labels. */
 export const APP_SHORT_CODES: Readonly<Record<AppIdentifier, string>> = {
-  'agent-builder': 'AB',
-  'tarva-chat': 'CH',
-  'project-room': 'PR',
-  'tarva-core': 'CO',
-  'tarva-erp': 'ER',
-  'tarva-code': 'CD',
+  'how-it-works': 'HW',
+  'who-its-for': 'WF',
+  'platform': 'PL',
+  'security': 'SE',
+  'pricing': 'PR',
+  'get-started': 'GS',
 } as const
 
 /** All known app identifiers as a readonly array. */
 export const ALL_APP_IDS: readonly AppIdentifier[] = [
-  'agent-builder',
-  'tarva-chat',
-  'project-room',
-  'tarva-core',
-  'tarva-erp',
-  'tarva-code',
+  'how-it-works',
+  'who-its-for',
+  'platform',
+  'security',
+  'pricing',
+  'get-started',
 ] as const
 
 // ============================================================================
@@ -145,10 +144,10 @@ export type ActivityStatus = 'pending' | 'active' | 'completed' | 'failed' | 'ca
 // Receipt Classification (IA Assessment Section 5)
 // ============================================================================
 
-/** Receipt event types. Used for Evidence Ledger faceted filtering. */
+/** Receipt event types. Used for faceted filtering. */
 export type EventType = 'navigation' | 'action' | 'error' | 'approval' | 'system'
 
-/** Severity levels. Used for Evidence Ledger faceted filtering. */
+/** Severity levels. Used for faceted filtering. */
 export type Severity = 'info' | 'warning' | 'error' | 'critical'
 
 /**

@@ -46,8 +46,8 @@ const PARALLAX_FACTOR = 0.3
 const WRAP_MARGIN = 20
 
 /** Opacity range for shimmer oscillation. */
-const OPACITY_MIN = 0.04
-const OPACITY_MAX = 0.20
+const OPACITY_MIN = 0.015
+const OPACITY_MAX = 0.08
 
 /** Shimmer period range in seconds. */
 const SHIMMER_PERIOD_MIN = 8

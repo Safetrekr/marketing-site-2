@@ -11,6 +11,7 @@
  * References:
  * - 001_launch_receipts.sql
  * - 002_launch_snapshots.sql
+ * - 003_demo_requests.sql
  */
 
 // ============================================================================
@@ -29,6 +30,11 @@ export interface Database {
         Row: LaunchSnapshotRow
         Insert: LaunchSnapshotInsert
         Update: LaunchSnapshotUpdate
+      }
+      demo_requests: {
+        Row: DemoRequestRow
+        Insert: DemoRequestInsert
+        Update: DemoRequestUpdate
       }
     }
     Views: Record<string, never>
@@ -129,3 +135,38 @@ export interface LaunchSnapshotInsert {
 
 /** Update type: all fields optional. */
 export type LaunchSnapshotUpdate = Partial<LaunchSnapshotInsert>
+
+// ============================================================================
+// demo_requests
+// ============================================================================
+
+/** Row type: what you get back from a SELECT. */
+export interface DemoRequestRow {
+  id: string // UUID v4
+  name: string
+  email: string
+  phone: string | null
+  organization: string
+  organization_type: string // 'k12' | 'higher_ed' | 'church' | 'youth_sports' | 'business' | 'other'
+  message: string | null
+  source_page: string
+  status: string // 'new' | 'contacted' | 'qualified' | 'closed'
+  created_at: string // TIMESTAMPTZ (ISO 8601)
+}
+
+/** Insert type: what you provide for an INSERT. */
+export interface DemoRequestInsert {
+  id?: string // defaults to gen_random_uuid()
+  name: string
+  email: string
+  phone?: string | null
+  organization: string
+  organization_type: string
+  message?: string | null
+  source_page?: string // defaults to '/contact'
+  status?: string // defaults to 'new'
+  created_at?: string // defaults to now()
+}
+
+/** Update type: all fields optional. */
+export type DemoRequestUpdate = Partial<DemoRequestInsert>

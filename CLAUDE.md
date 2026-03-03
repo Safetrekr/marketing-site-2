@@ -120,6 +120,32 @@ Heavy use of custom hooks. Key patterns:
 
 Core domain types: `district.ts` (district definitions, capsule data), `receipt-store.ts`, `camera-controller.ts`, `command-palette.ts`, `exception-triage.ts`, `ai-router.ts`, `station-template-registry.ts`, `system-state-provider.ts`
 
+## Visual Identity: Oblivion HUD / Mission-Control Aesthetic
+
+**This is the core design principle. All UI work must maintain this aesthetic.**
+
+The visual reference is the Oblivion (2013) film HUD — clean, dark, operational, alive with subtle data. This is not a "dark mode toggle." It IS the brand. The site should feel like stepping into a safety command center.
+
+**Why it works:** Every competitor uses stock photos + pastels + rounded corners. Our dark command-center identity tells security directors "we take this as seriously as you do."
+
+**Non-negotiable elements across ALL pages (gateway, launch, AND content pages):**
+- Dark backgrounds (`#061A23` void → `#0A2A38` deep → `#365462` overlay) — no white pages
+- Green primary accent (`#4BA467`) on all interactive elements
+- Glass-morphism cards: frosted glass, `backdrop-filter: blur()`, 1px borders
+- Breathing glow (`gateway-cta-breathe`) on primary CTAs only
+- Subtle ambient effects behind content (faint particle field, horizon scan at very low opacity)
+- Thin-stroke SVG icons (`strokeWidth: 1`, line-art style)
+- Monospace for metadata/labels/status codes; sans-serif (Geist Sans) for body and headlines
+- Typewriter text reveals for key taglines
+- Low-chrome 1px borders, no drop shadows
+
+**Content pages carry the same DNA** — glass section cards, ambient backgrounds, green accent interactions, monospace metadata labels. Walking from gateway → launch → content pages should feel like moving through zones of one command center, not leaving the aesthetic behind.
+
+**Calibrations:**
+- Readable text never below 40% opacity (office monitors under fluorescent lights)
+- Breathing glow on primary CTA only (one focal point, not eight)
+- Replace fake telemetry with real marketing metrics or value props
+
 ## Color Scheme
 
 Defaults to `safetrekr`:

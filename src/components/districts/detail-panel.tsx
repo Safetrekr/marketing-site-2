@@ -59,13 +59,15 @@ export function DetailPanel({
 
   // When promoted: fixed, centered in the content area between
   // back button (~70px) and dock (360px), above the overlay (zIndex 33).
+  // NOTE: No CSS `transform` here — Framer Motion controls `transform`
+  // for its animations (scale, x), so a CSS transform would be overridden.
   const promotedStyle: React.CSSProperties = promoted
     ? {
         position: 'fixed',
-        // Center in the content area (between back button and dock), nudged up + left
         top: '22%',
-        left: dockSide === 'right' ? 'calc((100vw - 360px) / 2 - 340px)' : 'calc(360px + (100vw - 360px) / 2 - 440px)',
-        transform: 'translate(-50%, -50%)',
+        left: dockSide === 'right'
+          ? 'calc((100vw - 360px) / 2 - 340px)'
+          : 'calc(360px + (100vw - 360px) / 2 - 440px)',
         width: Math.min(DETAIL_PANEL_DIMENSIONS.width, 800),
         height: 'min(80vh, 680px)',
         zIndex: 33,
@@ -94,7 +96,6 @@ export function DetailPanel({
         'shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04),0_0_1px_0_rgba(var(--ember-rgb),0.3),0_0_24px_rgba(var(--ember-rgb),0.1)]',
       )}
       style={promotedStyle}
-      layout
       initial={{ opacity: 0, x: promoted ? 0 : slideDirection, scale: 0.96 }}
       animate={{ opacity: 1, x: 0, scale: 1 }}
       exit={{

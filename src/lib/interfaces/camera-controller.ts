@@ -38,8 +38,8 @@ export type CameraTarget =
  * command palette "go core", return-to-hub hotkey).
  *
  * In Phase 3, the AI Camera Director produces directives from natural language:
- * "Show me what's broken" -> { target: { type: 'district', districtId: 'project-room' },
- *   highlights: ['project-room'], narration: 'Project Room has 2 active alerts...' }
+ * "Show me what's broken" -> { target: { type: 'district', districtId: 'security' },
+ *   highlights: ['security'], narration: 'Security has 2 active alerts...' }
  */
 export interface CameraDirective {
   /** Where to navigate. */
@@ -184,12 +184,12 @@ export class ManualCameraController implements CameraController {
   private static readonly DISTRICT_POSITIONS: Readonly<Record<string, CameraPosition>> = {
     home: { offsetX: 0, offsetY: 0, zoom: 0.5 },
     constellation: { offsetX: 0, offsetY: 0, zoom: 0.2 },
-    'agent-builder': { offsetX: -260, offsetY: 150, zoom: 1.0 },
-    'tarva-chat': { offsetX: 260, offsetY: 150, zoom: 1.0 },
-    'project-room': { offsetX: 0, offsetY: 300, zoom: 1.0 },
-    'tarva-core': { offsetX: 260, offsetY: -150, zoom: 1.0 },
-    'tarva-erp': { offsetX: -260, offsetY: -150, zoom: 1.0 },
-    'tarva-code': { offsetX: 0, offsetY: -300, zoom: 1.0 },
+    'how-it-works': { offsetX: -260, offsetY: 150, zoom: 1.0 },
+    'who-its-for': { offsetX: 260, offsetY: 150, zoom: 1.0 },
+    'platform': { offsetX: 0, offsetY: 300, zoom: 1.0 },
+    'security': { offsetX: 260, offsetY: -150, zoom: 1.0 },
+    'pricing': { offsetX: -260, offsetY: -150, zoom: 1.0 },
+    'get-started': { offsetX: 0, offsetY: -300, zoom: 1.0 },
   }
 
   async navigate(directive: CameraDirective): Promise<void> {

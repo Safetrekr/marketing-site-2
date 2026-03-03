@@ -69,9 +69,10 @@ export function GatewayScene() {
   // Drive the state machine
   useGatewayChoreography(prefersReducedMotion)
 
-  // Prefetch /launch route for instant transition
+  // Prefetch both destination routes for instant transition
   useEffect(() => {
     router.prefetch('/launch')
+    router.prefetch('/landing')
   }, [router])
 
   // Skip on any key during boot

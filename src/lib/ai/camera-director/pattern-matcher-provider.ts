@@ -479,12 +479,12 @@ export class PatternMatcherProvider {
    */
   private canonicalToAppId(canonical: string): AppIdentifier | null {
     const map: Record<string, AppIdentifier> = {
-      'Agent Builder': 'agent-builder',
-      'Tarva Chat': 'tarva-chat',
-      'Project Room': 'project-room',
-      'TarvaCORE': 'tarva-core',
-      'TarvaERP': 'tarva-erp',
-      'tarvaCODE': 'tarva-code',
+      'How It Works': 'how-it-works',
+      "Who It's For": 'who-its-for',
+      'Platform': 'platform',
+      'Security': 'security',
+      'Pricing': 'pricing',
+      'Get Started': 'get-started',
     }
     return map[canonical] ?? null
   }

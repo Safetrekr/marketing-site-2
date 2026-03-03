@@ -267,7 +267,7 @@ You MUST respond with a single JSON object (no markdown, no text outside the JSO
   "alternatives": [{"target": "<district-id>", "confidence": <number>, "reason": "<why this was considered>"}]
 }
 
-Valid district IDs: "agent-builder", "tarva-chat", "project-room", "tarva-core", "tarva-erp", "tarva-code"
+Valid district IDs: "how-it-works", "who-its-for", "platform", "security", "pricing", "get-started"
 
 Type meanings:
 - "flyTo": Navigate to a specific district. Requires "target" to be a valid district ID.

@@ -28,7 +28,7 @@ export function DotGrid({
         className="dot-grid absolute inset-0 z-0 pointer-events-none"
         style={{
           backgroundImage:
-            'radial-gradient(circle at center, rgba(var(--ambient-ink-rgb), 0.015) 1px, transparent 1px)',
+            'radial-gradient(circle at center, rgba(var(--ambient-ink-rgb), 0.006) 1px, transparent 1px)',
           backgroundSize: '48px 48px',
         }}
         aria-hidden="true"

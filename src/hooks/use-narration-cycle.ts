@@ -60,7 +60,7 @@ function buildSnapshotFromDistrictsStore(): SystemSnapshot | null {
   // Build AppState records from AppTelemetry
   const apps: Record<string, AppState> = {}
   let alertCount = 0
-  let activeWork = 0
+  const activeWork = 0
   let worstHealth: AppState['health'] = 'OPERATIONAL'
 
   const healthPriority: Record<string, number> = {

@@ -45,7 +45,6 @@ import {
 import {
   Home,
   Compass,
-  BookOpen,
   Navigation,
   ZoomIn,
   ZoomOut,
@@ -77,7 +76,6 @@ const COMMAND_ICONS: Record<string, React.ComponentType<{ className?: string }>>
   // Navigation
   'go-to-hub': Home,
   'go-to-constellation': Compass,
-  'go-to-evidence-ledger': BookOpen,
   // View -- zoom
   'zoom-in': ZoomIn,
   'zoom-out': ZoomOut,
@@ -238,7 +236,7 @@ export function CommandPalette({ onRefresh }: CommandPaletteProps) {
           showCloseButton={false}
         >
           <DialogTitle className="sr-only">
-            Tarva Launch Command Palette
+            Safetrekr Command Palette
           </DialogTitle>
           <Command
             /**

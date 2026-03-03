@@ -79,14 +79,14 @@ function formatCompactUptime(seconds: number): string {
 // District ordering (ring order)
 // ---------------------------------------------------------------------------
 
-const DISTRICT_ORDER = [
-  'agent-builder',
-  'tarva-chat',
-  'project-room',
-  'tarva-core',
-  'tarva-erp',
-  'tarva-code',
-] as const
+const DISTRICT_ORDER: DistrictId[] = [
+  'how-it-works',
+  'who-its-for',
+  'platform',
+  'security',
+  'pricing',
+  'get-started',
+]
 
 // ---------------------------------------------------------------------------
 // Focus-highlight opacity helpers

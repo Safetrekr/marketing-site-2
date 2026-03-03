@@ -222,7 +222,7 @@ async function checkTcp(config: TelemetryAppConfig): Promise<CheckResult> {
 }
 
 /** Stub check: always returns OFFLINE. */
-function checkStub(config: TelemetryAppConfig): CheckResult {
+function checkStub(_config: TelemetryAppConfig): CheckResult {
   return {
     reachable: false,
     status: 'OFFLINE',

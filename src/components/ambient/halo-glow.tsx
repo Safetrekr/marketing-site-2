@@ -33,7 +33,7 @@ const HALO_SIZE = 800
 export function HaloGlow() {
   const isTightening = useAttentionStore((s) => s.attentionState === 'tighten')
 
-  const centerOpacity = isTightening ? 0.08 : 0.04
+  const centerOpacity = isTightening ? 0.03 : 0.015
 
   return (
     <div

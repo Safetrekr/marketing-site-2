@@ -33,7 +33,7 @@ import {
 } from '@tarva/ui'
 
 import { useCameraStore } from '@/stores/camera.store'
-import { useUIStore } from '@/stores/ui.store'
+import { useUIStore, uiSelectors } from '@/stores/ui.store'
 import { DISTRICTS, type DistrictId } from '@/lib/interfaces/district'
 import { returnToHub, flyToDistrict } from '@/lib/spatial-actions'
 import { cn } from '@/lib/utils'
@@ -49,25 +49,35 @@ interface SpatialBreadcrumbProps {
 export function SpatialBreadcrumb({ className }: SpatialBreadcrumbProps) {
   const semanticLevel = useCameraStore((s) => s.semanticLevel)
   const selectedDistrictId = useUIStore((s) => s.selectedDistrictId)
+  const isDistrictView = useUIStore(uiSelectors.isDistrictView)
+  const morphTargetId = useUIStore(uiSelectors.morphTargetId)
+  const reverseMorph = useUIStore((s) => s.reverseMorph)
 
-  // Resolve district display name from the selected ID
-  const selectedDistrict = selectedDistrictId
-    ? DISTRICTS.find((d) => d.id === selectedDistrictId)
+  // Resolve district display name from the selected ID or morph target
+  const activeDistrictId = isDistrictView ? morphTargetId : selectedDistrictId
+  const selectedDistrict = activeDistrictId
+    ? DISTRICTS.find((d) => d.id === activeDistrictId)
     : null
 
   const handleLaunchClick = useCallback(() => {
-    returnToHub()
-  }, [])
+    if (isDistrictView) {
+      // In district view, go back through the morph state machine
+      reverseMorph()
+    } else {
+      returnToHub()
+    }
+  }, [isDistrictView, reverseMorph])
 
   const handleDistrictClick = useCallback(() => {
-    if (selectedDistrictId) {
-      flyToDistrict(selectedDistrictId as DistrictId)
+    if (activeDistrictId) {
+      flyToDistrict(activeDistrictId as DistrictId)
     }
-  }, [selectedDistrictId])
+  }, [activeDistrictId])
 
-  // Determine what segments to show based on semantic level
+  // Show district crumb when in district view OR at Z2/Z3 with a selection
   const showDistrict =
-    (semanticLevel === 'Z2' || semanticLevel === 'Z3') && selectedDistrict
+    (isDistrictView && selectedDistrict) ||
+    ((semanticLevel === 'Z2' || semanticLevel === 'Z3') && selectedDistrict)
   const showStation = semanticLevel === 'Z3' && selectedDistrict
 
   return (

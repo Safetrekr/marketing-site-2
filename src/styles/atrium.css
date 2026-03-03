@@ -32,12 +32,12 @@
 @keyframes breathe {
   0%,
   100% {
-    filter: drop-shadow(0 0 10px color-mix(in srgb, var(--color-ember) 15%, transparent))
-      drop-shadow(0 0 4px color-mix(in srgb, var(--color-ember) 10%, transparent));
+    filter: drop-shadow(0 0 10px color-mix(in srgb, var(--color-ember) 6%, transparent))
+      drop-shadow(0 0 4px color-mix(in srgb, var(--color-ember) 4%, transparent));
   }
   50% {
-    filter: drop-shadow(0 0 18px color-mix(in srgb, var(--color-ember) 25%, transparent))
-      drop-shadow(0 0 6px color-mix(in srgb, var(--color-ember) 15%, transparent));
+    filter: drop-shadow(0 0 18px color-mix(in srgb, var(--color-ember) 10%, transparent))
+      drop-shadow(0 0 6px color-mix(in srgb, var(--color-ember) 6%, transparent));
   }
 }
 
@@ -50,11 +50,11 @@
     background-size: 0% 0%;
   }
   8% {
-    opacity: 0.4;
+    opacity: 0.15;
     background-size: 20% 20%;
   }
   50% {
-    opacity: 0.2;
+    opacity: 0.08;
     background-size: 200% 200%;
   }
   100% {
@@ -159,9 +159,9 @@
   pointer-events: none;
   background-image: radial-gradient(
     circle at var(--pulse-x, 50%) var(--pulse-y, 50%),
-    rgba(var(--ambient-ink-rgb), 0.04) 0%,
-    rgba(var(--ambient-ink-rgb), 0.015) 30%,
-    rgba(var(--ambient-ink-rgb), 0.015) 100%
+    rgba(var(--ambient-ink-rgb), 0.015) 0%,
+    rgba(var(--ambient-ink-rgb), 0.006) 30%,
+    rgba(var(--ambient-ink-rgb), 0.006) 100%
   );
   animation: grid-pulse var(--duration-ambient-grid) ease-out infinite;
   opacity: 0;
@@ -283,6 +283,103 @@
 }
 
 /* =============================================================
+   LAUNCH ENTRANCE ANIMATION
+   Gated by [data-entrance] attribute on the page wrapper.
+   Phases: idle → booting → flying → populating → enriching → revealing → ready
+   ============================================================= */
+
+/* Hide page during idle (pre-hydration, prevents flash) */
+[data-entrance='idle'] {
+  opacity: 0;
+}
+
+/* Dot grid: radial reveal during boot */
+[data-entrance='booting'] .dot-grid-canvas {
+  opacity: 0;
+  animation: entrance-dot-grid-reveal 2.4s ease-out forwards;
+}
+
+@keyframes entrance-dot-grid-reveal {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* HUD elements: hidden until revealing phase */
+[data-entrance='booting'] [data-hud],
+[data-entrance='flying'] [data-hud],
+[data-entrance='populating'] [data-hud],
+[data-entrance='enriching'] [data-hud] {
+  opacity: 0 !important;
+  transition: none !important;
+}
+
+[data-entrance='revealing'] [data-hud] {
+  opacity: 1;
+  transition: opacity 1200ms ease !important;
+}
+
+/* Late HUD elements: staggered 400ms after revealing */
+[data-entrance='booting'] [data-hud-late],
+[data-entrance='flying'] [data-hud-late],
+[data-entrance='populating'] [data-hud-late],
+[data-entrance='enriching'] [data-hud-late] {
+  opacity: 0 !important;
+  transition: none !important;
+}
+
+[data-entrance='revealing'] [data-hud-late] {
+  opacity: 1;
+  transition: opacity 1200ms 800ms ease !important;
+}
+
+/* Core center enrichment (halo, sweep, rings): visible from boot.
+   [data-entrance-core] exempts this layer from the hide rules below. */
+[data-entrance='booting'] .morph-ambient-fade[data-entrance-core],
+[data-entrance='flying'] .morph-ambient-fade[data-entrance-core],
+[data-entrance='populating'] .morph-ambient-fade[data-entrance-core] {
+  opacity: 1 !important;
+}
+
+/* Outer enrichment layers: hidden until enriching phase */
+[data-entrance='booting'] .morph-ambient-fade:not([data-entrance-core]),
+[data-entrance='flying'] .morph-ambient-fade:not([data-entrance-core]),
+[data-entrance='populating'] .morph-ambient-fade:not([data-entrance-core]) {
+  opacity: 0 !important;
+  transition: none !important;
+}
+
+[data-entrance='enriching'] .morph-ambient-fade:not([data-entrance-core]) {
+  transition: opacity 800ms ease;
+}
+
+/* Scatter panels (All Clear, Signal Data, Feeds, Activity Log):
+   hidden until revealing phase — come in after capsules, slower fade. */
+[data-entrance='booting'] .morph-panels-scatter,
+[data-entrance='flying'] .morph-panels-scatter,
+[data-entrance='populating'] .morph-panels-scatter,
+[data-entrance='enriching'] .morph-panels-scatter {
+  opacity: 0 !important;
+  transition: none !important;
+}
+
+[data-entrance='revealing'] .morph-panels-scatter {
+  transition: opacity 2000ms ease;
+}
+
+/* Disable pointer events on capsules during boot */
+[data-entrance='booting'] [data-morph-phase],
+[data-entrance='flying'] [data-morph-phase],
+[data-entrance='populating'] [data-morph-phase] {
+  pointer-events: none !important;
+}
+
+/* =============================================================
    REDUCED MOTION
    Disable all ambient animations for accessibility.
    ============================================================= */
@@ -302,5 +399,11 @@
 
   .capsule-health-bar {
     opacity: 0.45;
+  }
+
+  /* Disable entrance animations */
+  [data-entrance='booting'] .dot-grid-canvas {
+    animation: none !important;
+    opacity: 1 !important;
   }
 }

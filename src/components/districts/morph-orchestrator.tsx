@@ -37,12 +37,18 @@ interface MorphOrchestratorProps {
   prefersReducedMotion: boolean
   /** Whether the ZUI viewport is actively panning. */
   isPanning?: boolean
+  /** When true, block capsule/beacon clicks (e.g. during entrance animation). */
+  disabled?: boolean
+  /** Stagger delay between capsule entrance animations (ms). 0 = no animation. */
+  entranceStagger?: number
 }
 
 export function MorphOrchestrator({
   data,
   prefersReducedMotion,
   isPanning = false,
+  disabled = false,
+  entranceStagger = 0,
 }: MorphOrchestratorProps) {
   const { isConstellation } = useSemanticZoom()
   const { phase, direction, targetId, startMorph, reverseMorph } = useMorphChoreography({
@@ -52,16 +58,18 @@ export function MorphOrchestrator({
   // Handle capsule selection (Z1+ click)
   const handleCapsuleSelect = useCallback(
     (id: DistrictId) => {
+      if (disabled) return
       if (phase === 'idle') {
         startMorph(id)
       }
     },
-    [phase, startMorph],
+    [disabled, phase, startMorph],
   )
 
   // Handle beacon selection (Z0 click): zoom in to district, then morph.
   const handleBeaconSelect = useCallback(
     (id: DistrictId) => {
+      if (disabled) return
       if (phase !== 'idle') return
 
       const district = getDistrictById(id)
@@ -79,7 +87,7 @@ export function MorphOrchestrator({
         startMorph(id)
       }, 350)
     },
-    [phase, startMorph],
+    [disabled, phase, startMorph],
   )
 
   // Compute capsule center for the selected district
@@ -148,6 +156,7 @@ export function MorphOrchestrator({
             morphPhase={phase}
             panelSide={panelSide}
             ringRotation={ringRotation}
+            entranceStagger={entranceStagger}
           >
             {/* Click-outside backdrop: closes the panel when clicking off it */}
             {showPanel && !isDistrictView && (

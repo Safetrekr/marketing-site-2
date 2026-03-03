@@ -5,18 +5,19 @@
  * while a separate DetailPanel appears alongside. Sibling capsules dim
  * to 0.5 opacity.
  *
+ * Marketing capsules are never offline -- all render in active state.
+ *
  * @module district-capsule
- * @see WS-1.2 Section 4.4
- * @see WS-2.1 Section 4.11
+ * @see WS-A.2 Section 4.4.2
  */
 
 'use client'
 
 import { forwardRef, useCallback, type KeyboardEvent } from 'react'
-import { motion, type Variants } from 'motion/react'
+import { motion } from 'motion/react'
 
 import { cn } from '@/lib/utils'
-import type { CapsuleData, DistrictId, HealthState } from '@/lib/interfaces/district'
+import type { CapsuleData, DistrictId } from '@/lib/interfaces/district'
 import { capsuleStateVariants } from '@/hooks/use-morph-variants'
 import { useEnrichmentStore } from '@/stores/enrichment.store'
 import { CapsuleHealthBar } from './capsule-health-bar'
@@ -34,10 +35,6 @@ function resolveVariant(
   if (isSelected) return 'selected'
   if (hasSelection) return 'dimmed'
   return 'idle'
-}
-
-function isOfflineState(health: HealthState): boolean {
-  return health === 'OFFLINE' || health === 'UNKNOWN'
 }
 
 // ---------------------------------------------------------------------------
@@ -69,9 +66,6 @@ export const DistrictCapsule = forwardRef<HTMLDivElement, DistrictCapsuleProps>(
     },
     ref,
   ) {
-    const isOffline = isOfflineState(data.telemetry.health)
-    const isUnknown = data.telemetry.health === 'UNKNOWN'
-
     // Variant resolution
     const resolvedVariant = morphAnimateTarget
       ? morphAnimateTarget
@@ -100,18 +94,16 @@ export const DistrictCapsule = forwardRef<HTMLDivElement, DistrictCapsuleProps>(
         ref={ref}
         role="button"
         tabIndex={0}
-        aria-label={`${data.district.displayName} district -- ${data.telemetry.health}`}
+        aria-label={`${data.district.displayName} -- ${data.telemetry.tagline}`}
         data-district={data.district.id}
         data-selected={isSelected || undefined}
         variants={capsuleStateVariants}
         initial="idle"
         animate={resolvedVariant}
         whileHover={
-          isOffline
-            ? { scale: 1.04 }
-            : hasSelection
-              ? undefined
-              : 'hover'
+          hasSelection
+            ? undefined
+            : 'hover'
         }
         onClick={() => onSelect(data.district.id)}
         onMouseEnter={handleMouseEnter}
@@ -126,14 +118,11 @@ export const DistrictCapsule = forwardRef<HTMLDivElement, DistrictCapsuleProps>(
           'focus-visible:outline-2 focus-visible:outline-offset-2',
           'focus-visible:outline-[var(--color-ember-bright)]',
           'cursor-pointer',
-          isOffline && 'bg-[rgba(var(--ambient-ink-rgb),0.02)] border-[rgba(var(--ambient-ink-rgb),0.05)]',
-          isUnknown && 'border-dashed',
         )}
         style={{
           ...(style ? { left: style.left, top: style.top } : {}),
           width: 192,
           height: 228,
-          filter: isOffline ? 'saturate(0.15)' : undefined,
         }}
       >
         <div className="flex h-full flex-col">
@@ -141,13 +130,13 @@ export const DistrictCapsule = forwardRef<HTMLDivElement, DistrictCapsuleProps>(
             <span className="font-sans text-[11px] font-semibold tracking-[0.08em] uppercase leading-none text-[var(--color-text-primary)] opacity-90">
               {data.district.displayName}
             </span>
-            <CapsuleHealthBar health={data.telemetry.health} capsuleIndex={data.district.ringIndex} />
+            <CapsuleHealthBar health="OPERATIONAL" capsuleIndex={data.district.ringIndex} isConversion={data.district.isConversionDistrict} />
           </div>
           <div className="mt-3 flex-1">
-            <CapsuleTelemetry telemetry={data.telemetry} isOffline={isOffline} />
+            <CapsuleTelemetry telemetry={data.telemetry} />
           </div>
           <div className="mt-auto h-8">
-            <CapsuleSparkline data={data.sparklineData} isOffline={isOffline} />
+            <CapsuleSparkline data={data.sparklineData} />
           </div>
         </div>
       </motion.div>

@@ -9,6 +9,7 @@ out/
 # Build
 build/
 dist/
+!vendor/**/dist/
 *.tsbuildinfo
 next-env.d.ts
 

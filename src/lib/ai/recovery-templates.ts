@@ -83,11 +83,11 @@ export const INTERVENTION_ESCALATION: StationTemplate = {
         icon: 'ExternalLink',
       },
       {
-        id: 'view-evidence',
-        label: 'View Evidence',
+        id: 'go-hub',
+        label: 'Return to Hub',
         variant: 'secondary',
-        command: 'go evidence-ledger',
-        icon: 'FileText',
+        command: 'go hub',
+        icon: 'Home',
       },
       {
         id: 'acknowledge',

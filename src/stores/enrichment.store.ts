@@ -44,12 +44,12 @@ const MAX_ACTIVITY_LOG = 50
  * regenerate the tree. These fixed values provide the same visual variety.
  */
 const SEED_VALUES: Record<DistrictId, { uptime: number; responseTimeMs: number; activeWork: number; memoryUsagePct: number; cpuUsagePct: number }> = {
-  'agent-builder': { uptime: 9720, responseTimeMs: 42, activeWork: 7, memoryUsagePct: 48, cpuUsagePct: 22 },
-  'tarva-chat':    { uptime: 28350, responseTimeMs: 31, activeWork: 4, memoryUsagePct: 55, cpuUsagePct: 18 },
-  'project-room':  { uptime: 14400, responseTimeMs: 58, activeWork: 9, memoryUsagePct: 62, cpuUsagePct: 35 },
-  'tarva-core':    { uptime: 43200, responseTimeMs: 25, activeWork: 2, memoryUsagePct: 41, cpuUsagePct: 12 },
-  'tarva-erp':     { uptime: 7200, responseTimeMs: 67, activeWork: 11, memoryUsagePct: 38, cpuUsagePct: 40 },
-  'tarva-code':    { uptime: 36000, responseTimeMs: 44, activeWork: 5, memoryUsagePct: 52, cpuUsagePct: 28 },
+  'how-it-works': { uptime: 9720, responseTimeMs: 42, activeWork: 7, memoryUsagePct: 48, cpuUsagePct: 22 },
+  'who-its-for':  { uptime: 28350, responseTimeMs: 31, activeWork: 4, memoryUsagePct: 55, cpuUsagePct: 18 },
+  'platform':     { uptime: 14400, responseTimeMs: 58, activeWork: 9, memoryUsagePct: 62, cpuUsagePct: 35 },
+  'security':     { uptime: 43200, responseTimeMs: 25, activeWork: 2, memoryUsagePct: 41, cpuUsagePct: 12 },
+  'pricing':      { uptime: 7200, responseTimeMs: 67, activeWork: 11, memoryUsagePct: 38, cpuUsagePct: 40 },
+  'get-started':  { uptime: 36000, responseTimeMs: 44, activeWork: 5, memoryUsagePct: 52, cpuUsagePct: 28 },
 }
 
 /** Build the initial DistrictEnrichment for a single district. */
@@ -74,12 +74,12 @@ function seedDistrict(id: DistrictId): DistrictEnrichment {
 
 /** All 6 district IDs in ring order. */
 const ALL_DISTRICT_IDS: DistrictId[] = [
-  'agent-builder',
-  'tarva-chat',
-  'project-room',
-  'tarva-core',
-  'tarva-erp',
-  'tarva-code',
+  'how-it-works',
+  'who-its-for',
+  'platform',
+  'security',
+  'pricing',
+  'get-started',
 ]
 
 /** Build the initial districts record. */
@@ -94,21 +94,21 @@ function seedDistricts(): Record<DistrictId, DistrictEnrichment> {
 /**
  * Build the initial 6 connections matching connection-paths.tsx.
  *
- * 1. agent-builder -> project-room  (AGENTS)
- * 2. agent-builder -> tarva-chat    (AGENTS)
- * 3. tarva-code    -> agent-builder (KNOWLEDGE)
- * 4. tarva-code    -> tarva-chat    (KNOWLEDGE)
- * 5. tarva-erp     -> project-room  (MFG DATA)
- * 6. tarva-core    -> null/hub      (REASONING)
+ * 1. how-it-works -> platform     (DATA LINK)
+ * 2. how-it-works -> who-its-for  (DATA LINK)
+ * 3. get-started  -> how-it-works (SYNC)
+ * 4. get-started  -> who-its-for  (SYNC)
+ * 5. pricing      -> platform     (CHANNEL)
+ * 6. security     -> null/hub     (CORE LINK)
  */
 function seedConnections(): ConnectionState[] {
   return [
-    { fromId: 'agent-builder', toId: 'project-room', health: 'OPERATIONAL', label: 'AGENTS' },
-    { fromId: 'agent-builder', toId: 'tarva-chat', health: 'OPERATIONAL', label: 'AGENTS' },
-    { fromId: 'tarva-code', toId: 'agent-builder', health: 'OPERATIONAL', label: 'KNOWLEDGE' },
-    { fromId: 'tarva-code', toId: 'tarva-chat', health: 'OPERATIONAL', label: 'KNOWLEDGE' },
-    { fromId: 'tarva-erp', toId: 'project-room', health: 'OPERATIONAL', label: 'MFG DATA' },
-    { fromId: 'tarva-core', toId: null, health: 'OPERATIONAL', label: 'REASONING' },
+    { fromId: 'how-it-works', toId: 'platform', health: 'OPERATIONAL', label: 'DATA LINK' },
+    { fromId: 'how-it-works', toId: 'who-its-for', health: 'OPERATIONAL', label: 'DATA LINK' },
+    { fromId: 'get-started', toId: 'how-it-works', health: 'OPERATIONAL', label: 'SYNC' },
+    { fromId: 'get-started', toId: 'who-its-for', health: 'OPERATIONAL', label: 'SYNC' },
+    { fromId: 'pricing', toId: 'platform', health: 'OPERATIONAL', label: 'CHANNEL' },
+    { fromId: 'security', toId: null, health: 'OPERATIONAL', label: 'CORE LINK' },
   ]
 }
 
@@ -116,7 +116,7 @@ function seedConnections(): ConnectionState[] {
 // State
 // ============================================================================
 
-interface EnrichmentStoreState extends EnrichmentSnapshot {}
+type EnrichmentStoreState = EnrichmentSnapshot
 
 // ============================================================================
 // Actions

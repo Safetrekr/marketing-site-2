@@ -59,12 +59,12 @@ const HEALTH_PRIORITY: Record<HealthState, number> = {
  * beyond the type system.
  */
 const APP_DISPLAY_NAMES: Record<string, string> = {
-  'agent-builder': 'Agent Builder',
-  'tarva-chat': 'Tarva Chat',
-  'project-room': 'Project Room',
-  'tarva-core': 'TarvaCORE',
-  'tarva-erp': 'TarvaERP',
-  'tarva-code': 'tarvaCODE',
+  'how-it-works': 'How It Works',
+  'who-its-for': "Who It's For",
+  'platform': 'Platform',
+  'security': 'Security',
+  'pricing': 'Pricing',
+  'get-started': 'Get Started',
 }
 
 // ============================================================================
