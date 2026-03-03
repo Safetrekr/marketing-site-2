@@ -1,0 +1,63 @@
+/* =================================================================
+   Platform Page -- CSS Animations & Overrides
+   =================================================================
+   Platform-specific styles. The mkt-cta-breathe animation is defined
+   in marketing.css (WS-A.1). This file covers only animations and
+   styles unique to the platform page.
+
+   Prefix: plt- (avoids collision with mkt-, gateway-, ambient-)
+   ================================================================= */
+
+/* -- Staggered card entrance (subtle fade-up) ---------------------- */
+
+@keyframes plt-card-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.plt-card-reveal {
+  animation: plt-card-reveal 0.5s var(--ease-default) both;
+}
+
+/* Stagger delays applied via inline style: style="animation-delay: ${index * 80}ms" */
+
+/* -- Domain card top accent line pulse (very subtle) --------------- */
+
+@keyframes plt-accent-breathe {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.plt-accent-breathe {
+  animation: plt-accent-breathe 6s var(--ease-glow) infinite;
+}
+
+/* -- Glass card fallback for browsers without backdrop-filter ------- */
+
+@supports not (backdrop-filter: blur(16px)) {
+  .glass-card-fallback {
+    background: rgba(18, 54, 70, 0.92);
+  }
+}
+
+/* -- Reduced motion: disable all platform animations --------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .plt-card-reveal,
+  .plt-accent-breathe {
+    animation: none !important;
+    opacity: 1;
+    transform: none;
+  }
+}
