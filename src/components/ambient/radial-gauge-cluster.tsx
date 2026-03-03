@@ -35,9 +35,9 @@ const CLUSTER_Y = -580
 
 /** SVG canvas size (must contain the largest arc + labels). */
 const SVG_W = 400
-const SVG_H = 270
+const SVG_H = 280
 const SVG_CX = SVG_W / 2
-const SVG_CY = SVG_H - 20 // Arc center near bottom of SVG
+const SVG_CY = 220 // Arc center pinned — extra space below for labels
 
 // ---------------------------------------------------------------------------
 // Gauge definitions (static parts -- percent comes from store)
