@@ -31,7 +31,7 @@ import { useEnrichmentStore } from '@/stores/enrichment.store'
 // ---------------------------------------------------------------------------
 
 /** Position of the gauge cluster center in world space, relative to (0,0). */
-const CLUSTER_Y = -580
+const CLUSTER_Y = -680
 
 /** SVG canvas size (must contain the largest arc + labels). */
 const SVG_W = 400
