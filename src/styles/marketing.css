@@ -1,0 +1,45 @@
+/* =================================================================
+   Safetrekr Marketing -- Layout Styles
+   =================================================================
+   Breathing glow animations for the marketing CTA, header
+   scroll-state transitions, and reduced motion overrides.
+
+   Imported by: src/app/(marketing)/layout.tsx
+   ================================================================= */
+
+/* CTA breathing glow -- 5s box-shadow oscillation */
+@keyframes mkt-cta-breathe {
+  0%, 100% {
+    box-shadow:
+      0 0 20px rgba(75, 164, 103, 0.08),
+      0 0 8px rgba(75, 164, 103, 0.14),
+      0 0 2px rgba(146, 212, 166, 0.25);
+  }
+  50% {
+    box-shadow:
+      0 0 20px rgba(75, 164, 103, 0.18),
+      0 0 8px rgba(75, 164, 103, 0.28),
+      0 0 2px rgba(146, 212, 166, 0.45);
+  }
+}
+
+.mkt-cta-breathe {
+  animation: mkt-cta-breathe 5s ease-in-out infinite;
+}
+
+/* Header scroll state -- applied via JS when scrollY > 20 */
+.mkt-header-scrolled {
+  background: rgba(6, 26, 35, 0.80);
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .mkt-cta-breathe {
+    animation: none !important;
+    box-shadow:
+      0 0 20px rgba(75, 164, 103, 0.12),
+      0 0 8px rgba(75, 164, 103, 0.20),
+      0 0 2px rgba(146, 212, 166, 0.35);
+  }
+}
