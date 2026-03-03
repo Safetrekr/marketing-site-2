@@ -85,9 +85,11 @@ export function ChoiceReveal() {
 
   const handleMarketing = useCallback(() => {
     selectDestination('marketing')
-    // Placeholder URL -- traditional site not deployed yet
-    window.open('https://safetrekr.com', '_blank')
-  }, [selectDestination])
+    // Delay router push to allow exit animation (matches handleMissionControl pattern)
+    setTimeout(() => {
+      router.push('/landing')
+    }, 600)
+  }, [selectDestination, router])
 
   if (!isActive) return null
 
