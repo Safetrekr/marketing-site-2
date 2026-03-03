@@ -1,0 +1,42 @@
+/* =================================================================
+   Safetrekr Marketing -- Social Proof Styles
+   =================================================================
+   Styles for the social proof system: logo bar animations,
+   testimonial treatments, and case study page-specific styles.
+
+   Imported by: src/app/(marketing)/layout.tsx
+   ================================================================= */
+
+/* -----------------------------------------------------------------
+   Logo bar auto-scroll
+   Infinite horizontal scroll with pause on hover.
+   ----------------------------------------------------------------- */
+@keyframes logo-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.logo-scroll-track {
+  animation: logo-scroll 30s linear infinite;
+  width: max-content;
+}
+
+.logo-scroll-track:hover,
+.logo-scroll-track:focus-within {
+  animation-play-state: paused;
+}
+
+/* -----------------------------------------------------------------
+   Reduced motion
+   ----------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .logo-scroll-track {
+    animation: none;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

@@ -2,30 +2,16 @@
 
 import { cn } from '@/lib/utils'
 import { SectionContainer } from '@/components/marketing/section-container'
-import { GlassCard } from '@/components/marketing/glass-card'
-
-const CAPABILITY_PROOFS = [
-  {
-    stat: '18',
-    label: 'Review dimensions per trip',
-    description:
-      'Every trip reviewed by an independent safety analyst across 18 safety dimensions before departure.',
-  },
-  {
-    stat: '46',
-    label: 'Protection endpoints',
-    description:
-      'Rally points, safe houses, geofencing, SMS broadcast, and evacuation plans -- active and connected.',
-  },
-  {
-    stat: '4',
-    label: 'Integrated portals',
-    description:
-      'Client, Analyst, HQ, and Traveler portals working from one system of record.',
-  },
-] as const
+import { TestimonialCard } from '@/components/marketing/social-proof/testimonial-card'
+import { CapabilityProofCard } from '@/components/marketing/social-proof/capability-proof-card'
+import { CustomerLogoBar } from '@/components/marketing/social-proof/customer-logo-bar'
+import { getLandingPageSocialProof } from '@/lib/data/testimonials'
+import { CUSTOMER_LOGOS, LOGO_BAR_MINIMUM } from '@/lib/data/customer-logos'
 
 export function SocialProofSection() {
+  const { testimonials, capabilityProofs, mode } = getLandingPageSocialProof()
+  const showLogos = CUSTOMER_LOGOS.length >= LOGO_BAR_MINIMUM
+
   return (
     <SectionContainer
       id="social-proof"
@@ -40,7 +26,7 @@ export function SocialProofSection() {
           'text-[var(--color-text-tertiary)]',
         )}
       >
-        Platform Metrics
+        {mode === 'capability' ? 'Platform Metrics' : 'Social Proof'}
       </p>
 
       {/* Section heading */}
@@ -53,46 +39,35 @@ export function SocialProofSection() {
           'mb-16 lg:mb-20',
         )}
       >
-        Trusted by organizations that take safety seriously.
+        {mode === 'capability'
+          ? 'Trusted by organizations that take safety seriously.'
+          : 'What our customers say.'}
       </h2>
 
-      <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-        {CAPABILITY_PROOFS.map((proof) => (
-          <GlassCard key={proof.stat}>
-            {/* Stat number */}
-            <p
-              className={cn(
-                'font-mono text-4xl font-bold',
-                'text-[var(--color-ember)]',
-                'lg:text-5xl',
-              )}
-            >
-              {proof.stat}
-            </p>
-
-            {/* Stat label */}
-            <p
-              className={cn(
-                'mt-2 font-sans text-sm font-medium uppercase',
-                'tracking-[0.04em]',
-                'text-[var(--color-text-primary)]',
-              )}
-            >
-              {proof.label}
-            </p>
-
-            {/* Description */}
-            <p
-              className={cn(
-                'mt-3 text-sm leading-relaxed',
-                'text-[var(--color-text-secondary)]',
-              )}
-            >
-              {proof.description}
-            </p>
-          </GlassCard>
+      {/* Card grid -- 3 slots, mixed content in hybrid mode */}
+      <div
+        className={cn(
+          'grid gap-8',
+          'grid-cols-1 md:grid-cols-2 lg:grid-cols-3',
+        )}
+      >
+        {testimonials.map((t) => (
+          <TestimonialCard key={t.id} testimonial={t} />
+        ))}
+        {capabilityProofs.map((cp, i) => (
+          <CapabilityProofCard key={`cap-${i}`} proof={cp} />
         ))}
       </div>
+
+      {/* Customer logo bar (renders only when sufficient logos exist) */}
+      {showLogos && (
+        <div className="mt-20">
+          <CustomerLogoBar
+            logos={CUSTOMER_LOGOS}
+            autoScroll={CUSTOMER_LOGOS.length >= 6}
+          />
+        </div>
+      )}
     </SectionContainer>
   )
 }
