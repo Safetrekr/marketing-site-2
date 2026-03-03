@@ -1,2 +1,6 @@
 export { MarketingHeader } from './marketing-header'
 export { MarketingFooter } from './marketing-footer'
+export { GlassCard } from './glass-card'
+export { SectionContainer } from './section-container'
+export { BreathingCTA } from './breathing-cta'
+export { MarketingParticleField } from './marketing-particle-field'

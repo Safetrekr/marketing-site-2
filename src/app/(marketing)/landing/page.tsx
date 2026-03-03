@@ -1,16 +1,24 @@
 // src/app/(marketing)/landing/page.tsx
 
+import '@/styles/landing.css'
+
 import { generatePageMetadata } from '@/lib/seo/metadata'
 import { JsonLd } from '@/components/seo/json-ld'
 import {
   softwareApplicationSchema,
   breadcrumbSchema,
 } from '@/lib/seo/structured-data'
+import { HeroSection } from '@/components/marketing/landing/hero-section'
+import { ValuePropsSection } from '@/components/marketing/landing/value-props-section'
+import { HowItWorksSection } from '@/components/marketing/landing/how-it-works-section'
+import { VerticalsSection } from '@/components/marketing/landing/verticals-section'
+import { SocialProofSection } from '@/components/marketing/landing/social-proof-section'
+import { BottomCTASection } from '@/components/marketing/landing/bottom-cta-section'
 
 export const metadata = generatePageMetadata({
-  title: 'Trip Safety Intelligence for Organizations',
+  title: 'Safetrekr -- Trip Safety Management for Organizations That Move People',
   description:
-    'Safetrekr manages trip safety for schools, churches, and organizations. Every trip independently reviewed by a certified safety analyst. Book a demo.',
+    'Every traveler accounted for. Safetrekr replaces spreadsheets and email chains with a documented, auditable safety platform. Independent analyst review. Real-time intelligence. Per-trip pricing.',
   path: '/landing',
   keywords: [
     'group travel safety management',
@@ -25,10 +33,12 @@ export default function LandingPage() {
     <>
       <JsonLd data={softwareApplicationSchema()} />
       <JsonLd data={breadcrumbSchema([])} />
-      <section>
-        <h1>Trip Safety Intelligence for Organizations</h1>
-        {/* Landing page content -- WS-B.2 */}
-      </section>
+      <HeroSection />
+      <ValuePropsSection />
+      <HowItWorksSection />
+      <VerticalsSection />
+      <SocialProofSection />
+      <BottomCTASection />
     </>
   )
 }

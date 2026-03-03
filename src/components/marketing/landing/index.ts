@@ -1,0 +1,8 @@
+export { HeroSection } from './hero-section'
+export { HeroCTAGroup } from './hero-cta-group'
+export { ValuePropsSection } from './value-props-section'
+export { HowItWorksSection } from './how-it-works-section'
+export { VerticalsSection } from './verticals-section'
+export { SocialProofSection } from './social-proof-section'
+export { BottomCTASection } from './bottom-cta-section'
+export { BottomCTAButtons } from './bottom-cta-buttons'

@@ -1,0 +1,39 @@
+/* =================================================================
+   Safetrekr Marketing -- Landing Page Styles
+   =================================================================
+   Section-specific styles for the landing page.
+   General marketing styles (mkt-cta-breathe, header scroll) live
+   in src/styles/marketing.css (WS-A.1).
+   ================================================================= */
+
+/* -----------------------------------------------------------------
+   How It Works: Step connector line
+   Uses border-image for gradient fade at endpoints.
+   ----------------------------------------------------------------- */
+.landing-step-connector {
+  border-top: 2px dashed var(--color-ember-muted);
+}
+
+.landing-step-connector-vertical {
+  border-left: 2px dashed var(--color-ember-muted);
+}
+
+/* -----------------------------------------------------------------
+   Glass card backdrop-filter fallback
+   For browsers that do not support backdrop-filter.
+   ----------------------------------------------------------------- */
+@supports not (backdrop-filter: blur(16px)) {
+  .glass-card-fallback {
+    background: rgba(6, 26, 35, 0.92);
+  }
+}
+
+/* -----------------------------------------------------------------
+   Reduced motion: disable any landing-specific animations
+   ----------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .landing-step-connector,
+  .landing-step-connector-vertical {
+    border-style: solid;       /* Dashed can cause visual vibration */
+  }
+}
