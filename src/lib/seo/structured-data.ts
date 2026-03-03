@@ -175,6 +175,73 @@ export function howToSchema(steps: HowToStep[]) {
   }
 }
 
+// --- Article Schema (for case studies) ------------------------------------
+// Placed on case study detail pages.
+// Rich result: shows article metadata in SERPs.
+
+export function articleSchema(options: {
+  headline: string
+  description: string
+  path: string
+  publishedAt: string
+  author?: string
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: options.headline,
+    description: options.description,
+    url: `${SITE_CONFIG.url}${options.path}`,
+    datePublished: options.publishedAt,
+    author: options.author
+      ? { '@type': 'Person', name: options.author }
+      : { '@type': 'Organization', name: SITE_CONFIG.name },
+    publisher: {
+      '@type': 'Organization',
+      name: SITE_CONFIG.name,
+      url: SITE_CONFIG.url,
+    },
+  }
+}
+
+// --- BlogPosting Schema (for blog posts) ---------------------------------
+// Placed on blog post detail pages.
+// Rich result: shows blog post metadata in SERPs.
+
+export function blogPostSchema(options: {
+  title: string
+  description: string
+  slug: string
+  date: string
+  updatedDate?: string
+  authorName: string
+  coverImage?: string
+  tags?: string[]
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: options.title,
+    description: options.description,
+    url: `${SITE_CONFIG.url}/blog/${options.slug}`,
+    datePublished: options.date,
+    ...(options.updatedDate && { dateModified: options.updatedDate }),
+    author: {
+      '@type': 'Person',
+      name: options.authorName,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: SITE_CONFIG.name,
+      url: SITE_CONFIG.url,
+    },
+    ...(options.tags &&
+      options.tags.length > 0 && {
+        keywords: options.tags.join(', '),
+      }),
+  }
+}
+
 // --- WebPage Schema (for pages without a more specific type) -------------
 // Optional enrichment for pages that do not fit other schema types.
 
