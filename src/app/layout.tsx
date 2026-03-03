@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import { ThemeProvider } from '@/components/providers/theme-provider'
 import { QueryProvider } from '@/components/providers/query-provider'
+import { GA4Script } from '@/components/analytics/ga4-script'
 import { SITE_CONFIG } from '@/lib/config/site'
 import './globals.css'
 
@@ -82,6 +83,7 @@ export default function RootLayout({
         >
           <QueryProvider>{children}</QueryProvider>
         </ThemeProvider>
+        <GA4Script />
       </body>
     </html>
   )
