@@ -3,6 +3,15 @@
 import { generatePageMetadata } from '@/lib/seo/metadata'
 import { JsonLd } from '@/components/seo/json-ld'
 import { breadcrumbSchema, howToSchema } from '@/lib/seo/structured-data'
+import { HowItWorksHero } from '@/components/marketing/how-it-works/hero'
+import { ProblemStatement } from '@/components/marketing/how-it-works/problem-statement'
+import { PhaseLifecycleNav } from '@/components/marketing/how-it-works/phase-lifecycle-nav'
+import { PlanPhaseSection } from '@/components/marketing/how-it-works/plan-phase-section'
+import { ReviewPhaseSection } from '@/components/marketing/how-it-works/review-phase-section'
+import { ProtectPhaseSection } from '@/components/marketing/how-it-works/protect-phase-section'
+import { MonitorPhaseSection } from '@/components/marketing/how-it-works/monitor-phase-section'
+import { DocumentationClosing } from '@/components/marketing/how-it-works/documentation-closing'
+import { BottomCtaSection } from '@/components/marketing/shared/bottom-cta-section'
 
 export const metadata = generatePageMetadata({
   title: 'How It Works -- 4-Phase Trip Safety',
@@ -44,10 +53,15 @@ export default function HowItWorksPage() {
           },
         ])}
       />
-      <section>
-        <h1>How Safetrekr Works</h1>
-        {/* How It Works page content -- WS-B.3 */}
-      </section>
+      <HowItWorksHero />
+      <ProblemStatement />
+      <PhaseLifecycleNav />
+      <PlanPhaseSection />
+      <ReviewPhaseSection />
+      <ProtectPhaseSection />
+      <MonitorPhaseSection />
+      <DocumentationClosing />
+      <BottomCtaSection page="how-it-works" />
     </>
   )
 }
