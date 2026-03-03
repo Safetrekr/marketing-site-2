@@ -61,7 +61,7 @@ export function PortalCard({ portal, index }: PortalCardProps) {
         aria-hidden="true"
       >
         <div className="flex h-full items-center justify-center">
-          <span className="font-mono text-xs text-[var(--color-text-ghost)]">
+          <span className="font-mono text-xs text-[var(--color-text-tertiary)]">
             Screenshot coming soon
           </span>
         </div>

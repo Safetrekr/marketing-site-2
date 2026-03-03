@@ -53,7 +53,7 @@ export function ValuePropsSection() {
               className={cn(
                 'font-mono text-xs font-medium uppercase',
                 'tracking-[0.12em]',
-                'text-[var(--color-ember)]',
+                'text-[var(--color-ember-bright)]',
                 'mb-3',
               )}
             >
@@ -61,14 +61,14 @@ export function ValuePropsSection() {
             </p>
 
             {/* Heading */}
-            <h2
+            <h3
               className={cn(
                 'font-sans text-xl font-semibold leading-snug',
                 'text-[var(--color-text-primary)]',
               )}
             >
               {prop.heading}
-            </h2>
+            </h3>
 
             {/* Body */}
             <p

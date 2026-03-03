@@ -66,7 +66,7 @@ export function PricingTierCard({ tier }: PricingTierCardProps) {
       {/* Price Display */}
       {tier.priceUsd !== null && (
         <div className="flex items-baseline gap-1 mt-4">
-          <span className="text-4xl sm:text-5xl font-bold text-[var(--color-text-primary)] tabular-nums">
+          <span className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[var(--color-text-primary)] tabular-nums">
             {formatPrice(tier.priceUsd)}
           </span>
           <span className="text-base text-[var(--color-text-secondary)]">
@@ -96,7 +96,7 @@ export function PricingTierCard({ tier }: PricingTierCardProps) {
                   'h-4 w-4 mt-0.5 shrink-0',
                   feature.included
                     ? 'text-[var(--color-ember-bright)]'
-                    : 'text-[var(--color-text-ghost)]',
+                    : 'text-[var(--color-text-tertiary)]',
                 )}
                 strokeWidth={1.5}
                 aria-hidden="true"
@@ -106,7 +106,7 @@ export function PricingTierCard({ tier }: PricingTierCardProps) {
                   'text-sm',
                   feature.included
                     ? 'text-[var(--color-text-primary)]'
-                    : 'text-[var(--color-text-ghost)] line-through',
+                    : 'text-[var(--color-text-tertiary)] line-through',
                 )}
               >
                 {feature.label}

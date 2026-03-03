@@ -42,7 +42,7 @@ export function ContactChannels({ channels }: ContactChannelsProps) {
             <a
               href={`mailto:${channel.email}`}
               className={cn(
-                'mt-2 text-sm text-[var(--color-ember)]',
+                'mt-2 text-sm text-[var(--color-ember-bright)]',
                 'underline-offset-4 hover:underline',
                 'focus-visible:outline-2 focus-visible:outline-offset-2',
                 'focus-visible:outline-[var(--color-ember-bright)]',

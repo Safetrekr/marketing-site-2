@@ -74,7 +74,7 @@ export function VerticalCard({ vertical }: VerticalCardProps) {
         </h3>
 
         {/* Tagline */}
-        <p className="mt-2 text-sm leading-relaxed text-[var(--color-ember)] md:text-base">
+        <p className="mt-2 text-sm leading-relaxed text-[var(--color-ember-bright)] md:text-base">
           {vertical.tagline}
         </p>
       </div>
@@ -108,7 +108,7 @@ export function VerticalCard({ vertical }: VerticalCardProps) {
 
       {/* Solutions */}
       <div className="px-6 pt-4 md:px-8">
-        <h4 className="text-xs font-semibold uppercase tracking-[0.08em] text-[var(--color-ember)]">
+        <h4 className="text-xs font-semibold uppercase tracking-[0.08em] text-[var(--color-ember-bright)]">
           Safetrekr solution
         </h4>
         <ul className="mt-3 space-y-2" role="list">

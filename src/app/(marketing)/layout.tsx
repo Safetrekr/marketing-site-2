@@ -2,19 +2,15 @@
 
 import { JsonLd } from '@/components/seo/json-ld'
 import { organizationSchema } from '@/lib/seo/structured-data'
+import { MarketingHeader } from '@/components/marketing/marketing-header'
+import { MarketingFooter } from '@/components/marketing/marketing-footer'
 
 /**
  * Marketing layout.
  *
  * Wraps all marketing pages under the (marketing) route group.
- * Injects Organization JSON-LD on every marketing page to avoid
- * duplicating the schema in each individual page file.
- *
- * Header and footer components will be added by WS-A.1 when those
- * components are built. This layout currently provides:
- * - Organization structured data
- * - Skip-to-content accessibility link
- * - Main content landmark
+ * Provides header/footer landmarks, Organization JSON-LD, and
+ * skip-to-content accessibility link.
  */
 export default function MarketingLayout({
   children,
@@ -30,7 +26,9 @@ export default function MarketingLayout({
       >
         Skip to main content
       </a>
+      <MarketingHeader />
       <main id="main-content">{children}</main>
+      <MarketingFooter />
     </>
   )
 }

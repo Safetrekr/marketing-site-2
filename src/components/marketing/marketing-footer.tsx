@@ -58,7 +58,7 @@ export function MarketingFooter() {
             {FOOTER_LEGAL_LINKS.map((item, index) => (
               <span key={item.href} className="inline-flex items-center gap-3">
                 {index > 0 && (
-                  <span aria-hidden="true" className="text-[var(--color-text-ghost)]">
+                  <span aria-hidden="true" className="text-[var(--color-text-tertiary)]">
                     &middot;
                   </span>
                 )}
