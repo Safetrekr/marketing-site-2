@@ -1,24 +1,29 @@
-import type { Metadata } from 'next'
+// src/app/(marketing)/legal/privacy/page.tsx
 
-export const metadata: Metadata = {
-  title: 'Privacy Policy | Safetrekr',
-  description: 'Safetrekr privacy policy.',
-}
+import { generatePageMetadata } from '@/lib/seo/metadata'
+import { JsonLd } from '@/components/seo/json-ld'
+import { breadcrumbSchema } from '@/lib/seo/structured-data'
+
+export const metadata = generatePageMetadata({
+  title: 'Privacy Policy',
+  description:
+    'Safetrekr privacy policy. Learn how we collect, use, and protect your data on the Safetrekr trip safety management platform.',
+  path: '/legal/privacy',
+  noIndex: false, // Legal pages should be indexable for transparency
+})
 
 export default function PrivacyPage() {
   return (
-    <div className="flex min-h-[calc(100vh-64px)] flex-col items-center justify-center px-6">
-      <div className="rounded-2xl border border-white/[0.08] bg-white/[0.04] px-12 py-16 text-center backdrop-blur-[8px]">
-        <p className="font-mono text-xs font-medium uppercase tracking-[0.12em] text-[var(--color-text-tertiary)]">
-          WS-B.8
-        </p>
-        <h1 className="mt-4 font-sans text-3xl font-bold text-[var(--color-text-primary)]">
-          Privacy Policy
-        </h1>
-        <p className="mt-2 text-sm text-[var(--color-text-secondary)]">
-          Content pending — Phase B
-        </p>
-      </div>
-    </div>
+    <>
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: 'Privacy Policy', path: '/legal/privacy' },
+        ])}
+      />
+      <section>
+        <h1>Privacy Policy</h1>
+        {/* Privacy Policy content -- WS-B.10 */}
+      </section>
+    </>
   )
 }

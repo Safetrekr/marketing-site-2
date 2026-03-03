@@ -1,25 +1,34 @@
-import type { Metadata } from 'next'
+// src/app/(marketing)/landing/page.tsx
 
-export const metadata: Metadata = {
-  title: 'Safetrekr — Trip Safety Intelligence',
+import { generatePageMetadata } from '@/lib/seo/metadata'
+import { JsonLd } from '@/components/seo/json-ld'
+import {
+  softwareApplicationSchema,
+  breadcrumbSchema,
+} from '@/lib/seo/structured-data'
+
+export const metadata = generatePageMetadata({
+  title: 'Trip Safety Intelligence for Organizations',
   description:
-    'Trip safety intelligence for schools, churches, and organizations.',
-}
+    'Safetrekr manages trip safety for schools, churches, and organizations. Every trip independently reviewed by a certified safety analyst. Book a demo.',
+  path: '/landing',
+  keywords: [
+    'group travel safety management',
+    'trip safety platform',
+    'travel risk management software',
+    'duty of care travel',
+  ],
+})
 
 export default function LandingPage() {
   return (
-    <div className="flex min-h-[calc(100vh-64px)] flex-col items-center justify-center px-6">
-      <div className="rounded-2xl border border-white/[0.08] bg-white/[0.04] px-12 py-16 text-center backdrop-blur-[8px]">
-        <p className="font-mono text-xs font-medium uppercase tracking-[0.12em] text-[var(--color-text-tertiary)]">
-          WS-B.2
-        </p>
-        <h1 className="mt-4 font-sans text-3xl font-bold text-[var(--color-text-primary)]">
-          Safetrekr
-        </h1>
-        <p className="mt-2 text-sm text-[var(--color-text-secondary)]">
-          Content pending — Phase B
-        </p>
-      </div>
-    </div>
+    <>
+      <JsonLd data={softwareApplicationSchema()} />
+      <JsonLd data={breadcrumbSchema([])} />
+      <section>
+        <h1>Trip Safety Intelligence for Organizations</h1>
+        {/* Landing page content -- WS-B.2 */}
+      </section>
+    </>
   )
 }

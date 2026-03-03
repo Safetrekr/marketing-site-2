@@ -1,24 +1,29 @@
-import type { Metadata } from 'next'
+// src/app/(marketing)/legal/terms/page.tsx
 
-export const metadata: Metadata = {
-  title: 'Terms of Service | Safetrekr',
-  description: 'Safetrekr terms of service.',
-}
+import { generatePageMetadata } from '@/lib/seo/metadata'
+import { JsonLd } from '@/components/seo/json-ld'
+import { breadcrumbSchema } from '@/lib/seo/structured-data'
+
+export const metadata = generatePageMetadata({
+  title: 'Terms of Service',
+  description:
+    'Safetrekr terms of service. Read our legal terms governing the use of the Safetrekr trip safety management platform.',
+  path: '/legal/terms',
+  noIndex: false, // Legal pages should be indexable for transparency
+})
 
 export default function TermsPage() {
   return (
-    <div className="flex min-h-[calc(100vh-64px)] flex-col items-center justify-center px-6">
-      <div className="rounded-2xl border border-white/[0.08] bg-white/[0.04] px-12 py-16 text-center backdrop-blur-[8px]">
-        <p className="font-mono text-xs font-medium uppercase tracking-[0.12em] text-[var(--color-text-tertiary)]">
-          WS-B.8
-        </p>
-        <h1 className="mt-4 font-sans text-3xl font-bold text-[var(--color-text-primary)]">
-          Terms of Service
-        </h1>
-        <p className="mt-2 text-sm text-[var(--color-text-secondary)]">
-          Content pending — Phase B
-        </p>
-      </div>
-    </div>
+    <>
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: 'Terms of Service', path: '/legal/terms' },
+        ])}
+      />
+      <section>
+        <h1>Terms of Service</h1>
+        {/* Terms of Service content -- WS-B.10 */}
+      </section>
+    </>
   )
 }

@@ -1,25 +1,32 @@
-import type { Metadata } from 'next'
+// src/app/(marketing)/solutions/page.tsx
 
-export const metadata: Metadata = {
-  title: 'Solutions | Safetrekr',
+import { generatePageMetadata } from '@/lib/seo/metadata'
+import { JsonLd } from '@/components/seo/json-ld'
+import { breadcrumbSchema } from '@/lib/seo/structured-data'
+
+export const metadata = generatePageMetadata({
+  title: 'Solutions by Industry',
   description:
-    'Safetrekr solutions for schools, churches, businesses, and youth sports.',
-}
+    'Trip safety management for K-12 schools, churches, youth sports, higher ed, and businesses. See how Safetrekr fits your organization. Compare solutions.',
+  path: '/solutions',
+  keywords: [
+    'school trip safety software',
+    'mission trip safety',
+    'youth sports travel management',
+    'study abroad risk management',
+  ],
+})
 
 export default function SolutionsPage() {
   return (
-    <div className="flex min-h-[calc(100vh-64px)] flex-col items-center justify-center px-6">
-      <div className="rounded-2xl border border-white/[0.08] bg-white/[0.04] px-12 py-16 text-center backdrop-blur-[8px]">
-        <p className="font-mono text-xs font-medium uppercase tracking-[0.12em] text-[var(--color-text-tertiary)]">
-          WS-B.7
-        </p>
-        <h1 className="mt-4 font-sans text-3xl font-bold text-[var(--color-text-primary)]">
-          Solutions
-        </h1>
-        <p className="mt-2 text-sm text-[var(--color-text-secondary)]">
-          Content pending — Phase B
-        </p>
-      </div>
-    </div>
+    <>
+      <JsonLd
+        data={breadcrumbSchema([{ name: 'Solutions', path: '/solutions' }])}
+      />
+      <section>
+        <h1>Solutions by Industry</h1>
+        {/* Solutions page content -- WS-B.6 */}
+      </section>
+    </>
   )
 }

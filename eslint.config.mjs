@@ -5,7 +5,7 @@ import nextTs from 'eslint-config-next/typescript'
 const eslintConfig = defineConfig([
   ...nextVitals,
   ...nextTs,
-  globalIgnores(['.next/**', 'out/**', 'build/**', 'next-env.d.ts', 'coverage/**', 'vendor/**']),
+  globalIgnores(['.next/**', 'out/**', 'build/**', 'next-env.d.ts', 'coverage/**', 'vendor/**', '.claude/**']),
   // Downgrade React compiler strict rules to warnings for existing spatial ZUI code.
   // These files use rAF animation loops, direct DOM writes, and ref-based patterns
   // that are valid for performance-critical spatial rendering but trip the React 19
