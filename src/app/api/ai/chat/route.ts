@@ -82,7 +82,6 @@ export async function POST(request: Request) {
     return handleChat(body as ChatRequest)
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error)
-    // eslint-disable-next-line no-console
     console.error('[/api/ai/chat] Request error:', message)
 
     return NextResponse.json(
@@ -177,7 +176,6 @@ async function handleChat(body: ChatRequest) {
     const isRateLimit = message.includes('rate limit')
     const isNetworkError = message.includes('ECONNREFUSED') || message.includes('fetch failed')
 
-    // eslint-disable-next-line no-console
     console.error('[/api/ai/chat] Ollama error:', {
       message,
       model,

@@ -49,8 +49,8 @@ const LABEL_OFFSET = 24 // Extra offset beyond the outer ring for labels
 const SWEEP_RADIUS = RING_RADII[RING_RADII.length - 1]
 
 /** Ghost-white stroke color at very low opacity. */
-const RING_STROKE = 'rgba(var(--ambient-ink-rgb), 0.025)'
-const TICK_STROKE = 'rgba(var(--ambient-ink-rgb), 0.04)'
+const _RING_STROKE = 'rgba(var(--ambient-ink-rgb), 0.025)'
+const _TICK_STROKE = 'rgba(var(--ambient-ink-rgb), 0.04)'
 const SWEEP_STROKE = 'rgba(var(--ember-rgb), 0.06)'
 const LABEL_FILL = 'rgba(var(--ambient-ink-rgb), 0.05)'
 

@@ -22,8 +22,6 @@ import type {
   ConnectionState,
   DistrictEnrichment,
   EnrichmentSnapshot,
-  PerformanceMetrics,
-  WaveformState,
 } from '@/lib/enrichment/enrichment-types'
 import { useAttentionStore } from '@/stores/attention.store'
 
@@ -116,7 +114,7 @@ function seedConnections(): ConnectionState[] {
 // State
 // ============================================================================
 
-interface EnrichmentStoreState extends EnrichmentSnapshot {}
+type EnrichmentStoreState = EnrichmentSnapshot
 
 // ============================================================================
 // Actions

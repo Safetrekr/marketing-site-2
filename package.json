@@ -19,7 +19,7 @@
     "@anthropic-ai/sdk": "^0.78.0",
     "@supabase/supabase-js": "^2.91.0",
     "@tanstack/react-query": "^5.0.0",
-    "@tarva/ui": "workspace:*",
+    "@tarva/ui": "file:./vendor/@tarva/ui",
     "clsx": "^2.1.1",
     "immer": "^11.1.3",
     "lucide-react": "^0.575.0",

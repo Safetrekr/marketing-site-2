@@ -116,7 +116,7 @@ export interface CameraPosition {
  * Spatial location context. Captures WHERE in the Launch an event originated.
  * Stored in receipts and used for receipt rehydration (viewport restore).
  */
-export interface SpatialLocation {
+export type SpatialLocation = {
   readonly semanticLevel: SemanticLevel
   readonly district: AppIdentifier | null
   readonly station: string | null

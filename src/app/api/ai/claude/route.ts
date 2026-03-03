@@ -115,9 +115,7 @@ export async function POST(request: NextRequest) {
       temperature,
     })
 
-    // eslint-disable-next-line no-console
     if (!result.success) {
-      // eslint-disable-next-line no-console
       console.error('[/api/ai/claude] Claude error:', result.error)
     }
 
@@ -131,7 +129,6 @@ export async function POST(request: NextRequest) {
     })
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error)
-    // eslint-disable-next-line no-console
     console.error('[/api/ai/claude] Request error:', message)
 
     return NextResponse.json(
@@ -159,7 +156,6 @@ export async function GET() {
     })
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error)
-    // eslint-disable-next-line no-console
     console.error('[/api/ai/claude] Health check error:', message)
 
     return NextResponse.json(
