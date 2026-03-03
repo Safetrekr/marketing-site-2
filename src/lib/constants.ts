@@ -25,8 +25,8 @@ export const ZOOM_MIN = 0.08
 /** Maximum zoom level (fully zoomed in). */
 export const ZOOM_MAX = 3.0
 
-/** Default zoom level on launch (Z1 -- Atrium level). */
-export const ZOOM_DEFAULT = 0.7
+/** Default zoom level on launch (Z2 -- Station level, cards more prominent). */
+export const ZOOM_DEFAULT = 0.85
 
 /** Starting zoom for the launch entrance animation (Z0 level). */
 export const ZOOM_ENTRANCE_START = 0.15

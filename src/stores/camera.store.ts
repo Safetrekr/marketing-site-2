@@ -116,7 +116,7 @@ const INITIAL_STATE: CameraState = {
   offsetX: 0,
   offsetY: 0,
   zoom: ZOOM_DEFAULT,
-  semanticLevel: 'Z1',
+  semanticLevel: 'Z2',
   isAnimating: false,
   isPanning: false,
   viewportWidth: 0,
