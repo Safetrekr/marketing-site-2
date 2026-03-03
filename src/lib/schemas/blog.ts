@@ -38,6 +38,5 @@ export interface BlogPost extends BlogPostFrontmatter {
   content: string // Raw MDX content (frontmatter stripped)
 }
 
-export interface BlogPostMeta extends Omit<BlogPost, 'content'> {
-  // Listing-page subset: everything except the full MDX content body
-}
+/** Listing-page subset: everything except the full MDX content body. */
+export type BlogPostMeta = Omit<BlogPost, 'content'>
