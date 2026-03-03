@@ -34,7 +34,6 @@ import { Minimap } from '@/components/spatial/Minimap'
 import { ZoomIndicator } from '@/components/spatial/ZoomIndicator'
 import { SpatialBreadcrumb } from '@/components/ui/SpatialBreadcrumb'
 import { CommandPalette } from '@/components/spatial/CommandPalette'
-import { EvidenceLedgerDistrict, EVIDENCE_LEDGER_POSITION } from '@/components/evidence-ledger/evidence-ledger-district'
 import {
   EnrichmentLayer,
   ZoomGate,
@@ -72,8 +71,7 @@ import { useUIStore } from '@/stores/ui.store'
 import { useSettingsStore } from '@/stores/settings.store'
 import { ColorSchemeSwitcher } from '@/components/ui/ColorSchemeSwitcher'
 import { returnToHub } from '@/lib/spatial-actions'
-import { DISTRICTS, MOCK_CAPSULE_DATA, type DistrictId } from '@/lib/interfaces/district'
-import { InMemoryReceiptStore } from '@/lib/interfaces/receipt-store'
+import { DISTRICTS, MARKETING_CAPSULE_DATA, type DistrictId } from '@/lib/interfaces/district'
 
 import '@/styles/atrium.css'
 import '@/styles/morph.css'
@@ -84,9 +82,6 @@ import '@/styles/district-view.css'
 // ---------------------------------------------------------------------------
 // Phase 3 side-effect hooks (mounted once, no UI)
 // ---------------------------------------------------------------------------
-
-/** Singleton receipt store for Evidence Ledger (in-memory fallback when Supabase isn't running). */
-const receiptStore = new InMemoryReceiptStore()
 
 function Phase3Effects() {
   const effectsEnabled = useSettingsStore((s) => s.effectsEnabled)
@@ -246,7 +241,7 @@ export default function LaunchPage() {
               (per Q4: children re-enable individually). */}
           <div data-panning={isPanActive ? 'true' : 'false'} style={{ position: 'relative', zIndex: 10 }}>
             <MorphOrchestrator
-              data={MOCK_CAPSULE_DATA}
+              data={MARKETING_CAPSULE_DATA}
               prefersReducedMotion={prefersReducedMotion}
               isPanning={isPanActive}
             />
@@ -303,19 +298,6 @@ export default function LaunchPage() {
             <EdgeFragments />
           </div>
 
-          {/* Evidence Ledger: NW quadrant, visible at Z2/Z3, hidden during morph */}
-          {!isMorphActive && (
-            <div
-              className="absolute"
-              style={{
-                left: EVIDENCE_LEDGER_POSITION.x,
-                top: EVIDENCE_LEDGER_POSITION.y,
-                pointerEvents: 'auto',
-              }}
-            >
-              <EvidenceLedgerDistrict receiptStore={receiptStore} />
-            </div>
-          )}
         </SpatialCanvas>
       </SpatialViewport>
 

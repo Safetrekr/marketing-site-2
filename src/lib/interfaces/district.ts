@@ -1,27 +1,28 @@
 /**
  * District type definitions and constants for the Launch Atrium.
  *
- * Defines the 6 Tarva districts, health states, telemetry shape,
- * and the health-to-color mapping consumed by capsule components.
+ * Defines the 6 Safetrekr marketing districts, health states,
+ * capsule telemetry shape, and the health-to-color mapping consumed
+ * by capsule and ambient components.
  *
  * @module district
- * @see WS-1.2 Section 4.1
+ * @see WS-A.2 Section 4.1
  */
 
 // ---------------------------------------------------------------------------
 // District identity
 // ---------------------------------------------------------------------------
 
-/** Unique identifier for each Tarva district. */
+/** Unique identifier for each Safetrekr marketing district. */
 export type DistrictId =
-  | 'agent-builder'
-  | 'tarva-chat'
-  | 'project-room'
-  | 'tarva-core'
-  | 'tarva-erp'
-  | 'tarva-code'
+  | 'how-it-works'
+  | 'who-its-for'
+  | 'platform'
+  | 'security'
+  | 'pricing'
+  | 'get-started'
 
-/** Operational health state of a district. */
+/** Operational health state of a district (used by ambient decorative effects). */
 export type HealthState =
   | 'OPERATIONAL'
   | 'DEGRADED'
@@ -33,36 +34,36 @@ export type HealthState =
 // Telemetry
 // ---------------------------------------------------------------------------
 
-/** Universal telemetry fields surfaced by every district capsule. */
+/** Marketing-relevant metadata surfaced by each district capsule. */
 export interface CapsuleTelemetry {
-  /** Current health state. */
-  health: HealthState
-  /** Human-readable pulse/heartbeat string (e.g. "120 rpm"). */
-  pulse: string
-  /** Human-readable last event description (e.g. "2m ago"). */
-  lastEvent: string
-  /** Active alert count. */
-  alerts: number
-  /** Data freshness indicator (e.g. "LIVE", "STALE"). */
-  freshness: string
+  /** Short tagline displayed on the capsule face. */
+  tagline: string
+  /** Stat line for visual interest (e.g. "256-bit AES" or "SOC 2 Type II"). */
+  statLine: string
+  /** Target marketing page path for navigation. */
+  targetPage: string
 }
 
 // ---------------------------------------------------------------------------
 // District metadata
 // ---------------------------------------------------------------------------
 
-/** Static metadata for a single district. */
+/** Static metadata for a single Safetrekr marketing district. */
 export interface DistrictMeta {
   /** Unique district identifier. */
   id: DistrictId
-  /** Full display name (e.g. "Agent Builder"). */
+  /** Full display name (e.g. "How It Works"). */
   displayName: string
-  /** Abbreviated name for tight spaces (e.g. "BUILDER"). */
+  /** Abbreviated name for tight spaces (e.g. "HOW"). */
   shortName: string
   /** Position index in the capsule ring (0-5). */
   ringIndex: 0 | 1 | 2 | 3 | 4 | 5
-  /** Dev server port, or null for desktop/CLI apps. */
-  port: number | null
+  /** Target marketing page path (e.g. "/how-it-works"). */
+  targetPage: string
+  /** Single-line tagline for capsule display. */
+  tagline: string
+  /** Whether this district uses amber accent for conversion emphasis. */
+  isConversionDistrict?: boolean
 }
 
 // ---------------------------------------------------------------------------
@@ -73,9 +74,9 @@ export interface DistrictMeta {
 export interface CapsuleData {
   /** Static district metadata. */
   district: DistrictMeta
-  /** Live telemetry snapshot. */
+  /** Marketing telemetry for capsule display. */
   telemetry: CapsuleTelemetry
-  /** Array of numeric data points for the sparkline chart. */
+  /** Array of numeric data points for the sparkline chart (decorative). */
   sparklineData: number[]
 }
 
@@ -83,55 +84,66 @@ export interface CapsuleData {
 // Constants
 // ---------------------------------------------------------------------------
 
-/** All 6 Tarva districts, ordered by ring position. */
+/** All 6 Safetrekr marketing districts, ordered by ring position. */
 export const DISTRICTS: readonly DistrictMeta[] = [
   {
-    id: 'agent-builder',
-    displayName: 'Agent Builder',
-    shortName: 'BUILDER',
+    id: 'how-it-works',
+    displayName: 'How It Works',
+    shortName: 'HOW',
     ringIndex: 0,
-    port: 3000,
+    targetPage: '/how-it-works',
+    tagline: 'See the system in action',
   },
   {
-    id: 'tarva-chat',
-    displayName: 'Tarva Chat',
-    shortName: 'CHAT',
+    id: 'who-its-for',
+    displayName: "Who It's For",
+    shortName: 'WHO',
     ringIndex: 1,
-    port: 4000,
+    targetPage: '/solutions',
+    tagline: 'Built for safety leaders',
   },
   {
-    id: 'project-room',
-    displayName: 'Project Room',
-    shortName: 'PROJECTS',
+    id: 'platform',
+    displayName: 'Platform',
+    shortName: 'PLATFORM',
     ringIndex: 2,
-    port: 3005,
+    targetPage: '/platform',
+    tagline: 'Architecture & capabilities',
   },
   {
-    id: 'tarva-core',
-    displayName: 'TarvaCORE',
-    shortName: 'CORE',
+    id: 'security',
+    displayName: 'Security',
+    shortName: 'SECURITY',
     ringIndex: 3,
-    port: null,
+    targetPage: '/security',
+    tagline: 'Enterprise-grade protection',
   },
   {
-    id: 'tarva-erp',
-    displayName: 'TarvaERP',
-    shortName: 'ERP',
+    id: 'pricing',
+    displayName: 'Pricing',
+    shortName: 'PRICING',
     ringIndex: 4,
-    port: null,
+    targetPage: '/pricing',
+    tagline: 'Transparent plans',
   },
   {
-    id: 'tarva-code',
-    displayName: 'tarvaCODE',
-    shortName: 'CODE',
+    id: 'get-started',
+    displayName: 'Get Started',
+    shortName: 'START',
     ringIndex: 5,
-    port: null,
+    targetPage: '/contact',
+    tagline: 'Schedule a briefing',
+    isConversionDistrict: true,
   },
 ] as const
 
 /**
  * Maps each HealthState to its CSS color token, glow token,
  * StatusBadge category, dot animation, and accessible label.
+ *
+ * Retained for ambient decorative effects (glowing dots, connection
+ * path colors, constellation view) even though capsules no longer
+ * represent real operational health.
  */
 export const HEALTH_STATE_MAP: Record<
   HealthState,
@@ -190,16 +202,16 @@ export const HEALTH_STATE_MAP: Record<
 // ---------------------------------------------------------------------------
 
 /** Two-letter compact codes for Z0 beacon labels. */
-export type DistrictCode = 'AB' | 'CH' | 'PR' | 'CO' | 'ER' | 'CD'
+export type DistrictCode = 'HW' | 'WF' | 'PL' | 'SE' | 'PR' | 'GS'
 
 /** Maps DistrictId to its compact code for Z0 display. */
 export const DISTRICT_CODES: Record<DistrictId, DistrictCode> = {
-  'agent-builder': 'AB',
-  'tarva-chat': 'CH',
-  'project-room': 'PR',
-  'tarva-core': 'CO',
-  'tarva-erp': 'ER',
-  'tarva-code': 'CD',
+  'how-it-works': 'HW',
+  'who-its-for': 'WF',
+  'platform': 'PL',
+  'security': 'SE',
+  'pricing': 'PR',
+  'get-started': 'GS',
 } as const
 
 /** Data shape for a single beacon at Z0. */
@@ -227,23 +239,31 @@ export interface ConstellationMetrics {
 }
 
 // ---------------------------------------------------------------------------
-// Mock data for initial rendering
+// Marketing capsule data
 // ---------------------------------------------------------------------------
 
-/** Sample sparkline data (12 points). */
+/** Sample sparkline data (12 points, decorative). */
 function generateSparklineData(): number[] {
   return [42, 55, 48, 62, 58, 71, 65, 78, 72, 85, 80, 88]
 }
 
-/** Demo telemetry for all 6 districts. */
-export const MOCK_CAPSULE_DATA: CapsuleData[] = DISTRICTS.map((district) => ({
+/** Per-district stat lines for capsule display. */
+const MARKETING_STAT_LINES: Record<DistrictId, string> = {
+  'how-it-works': '3-step process',
+  'who-its-for': '5 industries',
+  'platform': 'Real-time tracking',
+  'security': 'SOC 2 Type II',
+  'pricing': 'From $0/month',
+  'get-started': 'Free trial',
+}
+
+/** Marketing capsule data for all 6 districts. */
+export const MARKETING_CAPSULE_DATA: CapsuleData[] = DISTRICTS.map((district) => ({
   district,
   telemetry: {
-    health: 'OPERATIONAL' as HealthState,
-    pulse: district.port ? `${60 + district.ringIndex * 12} rpm` : '--',
-    lastEvent: district.port ? `${district.ringIndex + 1}m ago` : '--',
-    alerts: district.ringIndex === 1 ? 2 : 0,
-    freshness: district.port ? 'LIVE' : 'STALE',
+    tagline: district.tagline,
+    statLine: MARKETING_STAT_LINES[district.id],
+    targetPage: district.targetPage,
   },
   sparklineData: generateSparklineData(),
 }))

@@ -1,8 +1,12 @@
 /**
  * Telemetry aggregator configuration.
  *
- * Contains the app registry (all 6 Tarva apps), polling intervals,
- * and display constants consumed by the client-side hook and components.
+ * Contains the district registry (all 6 Safetrekr marketing districts),
+ * polling intervals, and display constants consumed by the client-side
+ * hook and components.
+ *
+ * In the marketing context, these are decorative entries used by ambient
+ * effects. No actual health check endpoints are polled.
  *
  * @module telemetry-config
  * @see WS-1.5
@@ -15,55 +19,50 @@ import type { TelemetryAppConfig } from './telemetry-types'
 // ---------------------------------------------------------------------------
 
 /**
- * Registry of all 6 Tarva apps monitored by the telemetry aggregator.
+ * Registry of all 6 Safetrekr marketing districts.
  *
- * Ports use CLAUDE.md canonical values:
- * - Agent Builder: 3000   (HTTP check)
- * - Tarva Chat: 4000      (HTTP check)
- * - Project Room: 3005    (HTTP check)
- * - TarvaCORE: 11435      (TCP check, Electron app)
- * - TarvaERP: null        (stub, desktop app - always OFFLINE)
- * - tarvaCODE: null        (stub, planning-only repo - always OFFLINE)
+ * Marketing districts do not have real health check endpoints.
+ * All entries use 'stub' checkType for decorative ambient effects.
  */
 export const TELEMETRY_APPS: TelemetryAppConfig[] = [
   {
-    id: 'agent-builder',
-    name: 'Agent Builder',
-    port: 3000,
-    healthPath: '/api/health',
-    checkType: 'http',
-  },
-  {
-    id: 'tarva-chat',
-    name: 'Tarva Chat',
-    port: 4000,
-    healthPath: '/api/health',
-    checkType: 'http',
-  },
-  {
-    id: 'project-room',
-    name: 'Project Room',
-    port: 3005,
-    healthPath: '/api/health',
-    checkType: 'http',
-  },
-  {
-    id: 'tarva-core',
-    name: 'TarvaCORE',
-    port: 11435,
-    healthPath: '',
-    checkType: 'tcp',
-  },
-  {
-    id: 'tarva-erp',
-    name: 'TarvaERP',
+    id: 'how-it-works',
+    name: 'How It Works',
     port: null,
     healthPath: '',
     checkType: 'stub',
   },
   {
-    id: 'tarva-code',
-    name: 'tarvaCODE',
+    id: 'who-its-for',
+    name: "Who It's For",
+    port: null,
+    healthPath: '',
+    checkType: 'stub',
+  },
+  {
+    id: 'platform',
+    name: 'Platform',
+    port: null,
+    healthPath: '',
+    checkType: 'stub',
+  },
+  {
+    id: 'security',
+    name: 'Security',
+    port: null,
+    healthPath: '',
+    checkType: 'stub',
+  },
+  {
+    id: 'pricing',
+    name: 'Pricing',
+    port: null,
+    healthPath: '',
+    checkType: 'stub',
+  },
+  {
+    id: 'get-started',
+    name: 'Get Started',
     port: null,
     healthPath: '',
     checkType: 'stub',

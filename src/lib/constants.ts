@@ -1,5 +1,5 @@
 /**
- * Application-wide constants for Tarva Launch.
+ * Application-wide constants for Safetrekr.
  *
  * ALL spatial constants live here -- hooks, stores, and math utilities
  * import from this module. No magic numbers in feature code.
@@ -12,8 +12,8 @@
 // Application
 // ---------------------------------------------------------------------------
 
-export const APP_NAME = 'Tarva Launch'
-export const APP_DESCRIPTION = 'Spatial mission control for the Tarva ecosystem'
+export const APP_NAME = 'Safetrekr'
+export const APP_DESCRIPTION = 'Safetrekr marketing site'
 
 // ---------------------------------------------------------------------------
 // Zoom range
@@ -27,6 +27,17 @@ export const ZOOM_MAX = 3.0
 
 /** Default zoom level on launch (Z1 -- Atrium level). */
 export const ZOOM_DEFAULT = 0.7
+
+/** Starting zoom for the launch entrance animation (Z0 level). */
+export const ZOOM_ENTRANCE_START = 0.15
+
+/** Spring config for the entrance fly-in animation. */
+export const ENTRANCE_SPRING_CONFIG = {
+  stiffness: 60,
+  damping: 18,
+  mass: 1.2,
+  restThreshold: 0.01,
+} as const
 
 // ---------------------------------------------------------------------------
 // Semantic zoom thresholds (with hysteresis)

@@ -21,7 +21,7 @@ export interface HubCenterGlyphProps {
  *
  * @deprecated Alias — use SafetrekrMarkIcon instead.
  */
-function TarvaStarIcon({ className, size = 28 }: { className?: string; size?: number }) {
+function HubStarIcon({ className, size = 28 }: { className?: string; size?: number }) {
   return <SafetrekrMarkIcon className={className} size={size} />
 }
 
@@ -46,7 +46,7 @@ function SafetrekrMarkIcon({ className, size = 28 }: { className?: string; size?
   )
 }
 
-export { TarvaStarIcon, SafetrekrMarkIcon }
+export { HubStarIcon, SafetrekrMarkIcon }
 
 export function HubCenterGlyph({
   hasSelection = false,

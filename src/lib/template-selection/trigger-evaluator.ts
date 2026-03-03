@@ -1,7 +1,7 @@
 /**
  * TriggerConditionEvaluator -- Rule engine core.
  *
- * Resolves dot-path field references (e.g., "apps.agent-builder.alertCount")
+ * Resolves dot-path field references (e.g., "apps.how-it-works.alertCount")
  * against a SystemSnapshot and applies comparison operators.
  *
  * Design constraints:
@@ -24,12 +24,12 @@ import type { TriggerEvaluationResult } from './types'
  * Resolve a dot-path string against an object.
  *
  * Examples:
- * - resolvePath(snapshot, "apps.agent-builder.alertCount") -> 3
+ * - resolvePath(snapshot, "apps.how-it-works.alertCount") -> 3
  * - resolvePath(snapshot, "globalMetrics.systemPulse") -> "OPERATIONAL"
  * - resolvePath(snapshot, "apps.nonexistent.health") -> undefined
  *
  * Handles bracket notation for keys with hyphens:
- * - "apps.agent-builder.alertCount" -> snapshot.apps['agent-builder'].alertCount
+ * - "apps.how-it-works.alertCount" -> snapshot.apps['how-it-works'].alertCount
  *
  * @returns The resolved value, or undefined if the path is invalid.
  */
@@ -56,8 +56,8 @@ export function resolvePath(obj: unknown, path: string): unknown {
 
 /**
  * Parse a dot-path string into segments.
- * Handles hyphenated keys (e.g., "apps.agent-builder.alertCount"
- * becomes ["apps", "agent-builder", "alertCount"]).
+ * Handles hyphenated keys (e.g., "apps.how-it-works.alertCount"
+ * becomes ["apps", "how-it-works", "alertCount"]).
  */
 function parseDotPath(path: string): string[] {
   return path.split('.')

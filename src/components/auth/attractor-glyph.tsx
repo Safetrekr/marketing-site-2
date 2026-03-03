@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { cn } from '@/lib/utils'
-import { TarvaStarIcon } from '@/components/districts/hub-center-glyph'
+import { HubStarIcon } from '@/components/districts/hub-center-glyph'
 
 interface AttractorGlyphProps {
   /** Whether the glyph is visible. Set to false after field materialization. */
@@ -40,7 +40,7 @@ export function AttractorGlyph({ visible, onClick, className }: AttractorGlyphPr
         className="attractor-glyph cursor-pointer border-0 p-0 outline-none focus-visible:ring-2 focus-visible:ring-ember-bright/40 focus-visible:ring-offset-4 focus-visible:ring-offset-void"
         aria-label="Enter passphrase"
       >
-        <TarvaStarIcon size={32} className="text-[var(--color-ember)]" />
+        <HubStarIcon size={32} className="text-[var(--color-ember)]" />
       </button>
       <span
         className={cn(

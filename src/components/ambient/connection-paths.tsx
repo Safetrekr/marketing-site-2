@@ -4,8 +4,8 @@
  *
  * Draws 6 connections on a 1600x1600 SVG (same coordinate system as
  * RangeRings) with animated dashed strokes to convey "data flowing"
- * between the 6 Tarva districts. Most paths use a teal tint; the
- * TarvaCORE "reasoning" path to hub center uses ember.
+ * between the 6 Safetrekr marketing districts. Most paths use a teal
+ * tint; the security "core link" path to hub center uses ember.
  *
  * Bezier control points are pushed outward from center by ~80px so
  * curves bow away from the hub glyph and don't overlap it.
@@ -65,7 +65,7 @@ interface Connection {
   to: number | null
   /** Descriptive label (not rendered, for code readability). */
   label: string
-  /** Whether this is the special REASONING connection (tarva-core -> hub). */
+  /** Whether this is the special core link connection (security -> hub). */
   isReasoning: boolean
 }
 
@@ -74,12 +74,12 @@ interface Connection {
  * `connections` array so we can use array index to look up health.
  */
 const CONNECTIONS: Connection[] = [
-  { from: 0, to: 2, label: 'agent-builder -> project-room (deployment)', isReasoning: false },
-  { from: 0, to: 1, label: 'agent-builder -> tarva-chat (deployment)', isReasoning: false },
-  { from: 5, to: 0, label: 'tarvacode -> agent-builder (knowledge)', isReasoning: false },
-  { from: 5, to: 1, label: 'tarvacode -> tarva-chat (knowledge)', isReasoning: false },
-  { from: 4, to: 2, label: 'tarva-erp -> project-room (manufacturing)', isReasoning: false },
-  { from: 3, to: null, label: 'tarvacore -> hub center (reasoning)', isReasoning: true },
+  { from: 0, to: 2, label: 'how-it-works -> platform (data link)', isReasoning: false },
+  { from: 0, to: 1, label: 'how-it-works -> who-its-for (data link)', isReasoning: false },
+  { from: 5, to: 0, label: 'get-started -> how-it-works (sync)', isReasoning: false },
+  { from: 5, to: 1, label: 'get-started -> who-its-for (sync)', isReasoning: false },
+  { from: 4, to: 2, label: 'pricing -> platform (channel)', isReasoning: false },
+  { from: 3, to: null, label: 'security -> hub center (core link)', isReasoning: true },
 ]
 
 // ---------------------------------------------------------------------------
@@ -156,12 +156,12 @@ function computePath(
 // ---------------------------------------------------------------------------
 
 const DISTRICT_RING_INDEX: Record<DistrictId, number> = {
-  'agent-builder': 0,
-  'tarva-chat': 1,
-  'project-room': 2,
-  'tarva-core': 3,
-  'tarva-erp': 4,
-  'tarva-code': 5,
+  'how-it-works': 0,
+  'who-its-for': 1,
+  'platform': 2,
+  'security': 3,
+  'pricing': 4,
+  'get-started': 5,
 }
 
 /**

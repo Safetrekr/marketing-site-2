@@ -83,7 +83,7 @@ export interface PaletteCommand {
   readonly id: string
   /** Primary verb (e.g., "go", "show", "open", "refresh"). */
   readonly verb: string
-  /** Primary object (e.g., "agent-builder", "status", "alerts"). */
+  /** Primary object (e.g., "how-it-works", "status", "alerts"). */
   readonly object: string
   /** Optional context qualifier (e.g., "in Project Room"). */
   readonly context?: string
@@ -129,52 +129,43 @@ export interface SynonymEntry {
 /** The complete synonym ring from IA Assessment Section 4. */
 export const SYNONYM_RING: readonly SynonymEntry[] = [
   {
-    canonical: 'Agent Builder',
-    synonyms: ['builder', 'agentgen', 'agent gen', 'agent builder', 'AB'],
+    canonical: 'How It Works',
+    synonyms: ['how', 'how it works', 'workflow', 'process', 'HW'],
   },
-  { canonical: 'Tarva Chat', synonyms: ['chat', 'tarva chat', 'CH'] },
-  { canonical: 'Project Room', synonyms: ['projects', 'project room', 'tarva project', 'PR'] },
-  { canonical: 'TarvaCORE', synonyms: ['core', 'tarva core', 'reasoning', 'CO'] },
-  { canonical: 'TarvaERP', synonyms: ['erp', 'tarva erp', 'manufacturing', 'warehouse', 'ER'] },
-  { canonical: 'tarvaCODE', synonyms: ['code', 'tarva code', 'CD'] },
   {
-    canonical: 'Evidence Ledger',
-    synonyms: ['evidence', 'ledger', 'receipts', 'audit', 'audit trail', 'EL'],
+    canonical: "Who It's For",
+    synonyms: ['who', 'audience', 'solutions', 'users', 'WF'],
+  },
+  {
+    canonical: 'Platform',
+    synonyms: ['platform', 'dashboard', 'product', 'features', 'PL'],
+  },
+  {
+    canonical: 'Security',
+    synonyms: ['security', 'secure', 'data', 'compliance', 'SE'],
+  },
+  {
+    canonical: 'Pricing',
+    synonyms: ['pricing', 'price', 'cost', 'plans', 'PR'],
+  },
+  {
+    canonical: 'Get Started',
+    synonyms: ['get started', 'start', 'contact', 'demo', 'trial', 'GS'],
   },
   {
     canonical: 'Constellation',
-    synonyms: ['overview', 'dashboard', 'sky', 'constellation', 'global'],
+    synonyms: ['overview', 'sky', 'constellation', 'global'],
   },
   { canonical: 'Status', synonyms: ['health', 'status', 'ops', 'operations', 'diagnostics'] },
   {
     canonical: 'Activity',
     synonyms: [
-      'run',
-      'runs',
-      'job',
-      'jobs',
-      'execution',
-      'executions',
-      'conversation',
-      'conversations',
-      'session',
-      'sessions',
-      'work',
-    ],
-  },
-  {
-    canonical: 'Alert',
-    synonyms: [
+      'activity',
+      'tracking',
+      'checkin',
+      'report',
+      'scan',
       'alert',
-      'alerts',
-      'warning',
-      'warnings',
-      'error',
-      'errors',
-      'problem',
-      'problems',
-      'issue',
-      'issues',
     ],
   },
 ] as const
@@ -360,12 +351,12 @@ export function createDefaultNavigationCommands(): PaletteCommand[] {
   })
 
   const districtIds: Record<string, AppIdentifier> = {
-    'agent-builder': 'agent-builder',
-    'tarva-chat': 'tarva-chat',
-    'project-room': 'project-room',
-    'tarva-core': 'tarva-core',
-    'tarva-erp': 'tarva-erp',
-    'tarva-code': 'tarva-code',
+    'how-it-works': 'how-it-works',
+    'who-its-for': 'who-its-for',
+    'platform': 'platform',
+    'security': 'security',
+    'pricing': 'pricing',
+    'get-started': 'get-started',
   }
 
   const commands: PaletteCommand[] = [
@@ -392,12 +383,12 @@ export function createDefaultNavigationCommands(): PaletteCommand[] {
       (s) =>
         s.canonical ===
         {
-          'agent-builder': 'Agent Builder',
-          'tarva-chat': 'Tarva Chat',
-          'project-room': 'Project Room',
-          'tarva-core': 'TarvaCORE',
-          'tarva-erp': 'TarvaERP',
-          'tarva-code': 'tarvaCODE',
+          'how-it-works': 'How It Works',
+          'who-its-for': "Who It's For",
+          'platform': 'Platform',
+          'security': 'Security',
+          'pricing': 'Pricing',
+          'get-started': 'Get Started',
         }[id]
     )
 

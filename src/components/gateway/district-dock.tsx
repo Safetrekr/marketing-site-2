@@ -42,30 +42,31 @@ const ICON_STYLE: React.SVGProps<SVGSVGElement> = {
   strokeLinejoin: 'round' as const,
 }
 
-// Agent Builder -- bot/agent icon
-function AgentIcon() {
+// How It Works -- workflow/steps icon
+function HowItWorksIcon() {
   return (
     <svg {...ICON_STYLE}>
-      <rect x={4} y={4} width={16} height={12} rx={2} />
-      <circle cx={9} cy={10} r={1} fill="currentColor" stroke="none" />
-      <circle cx={15} cy={10} r={1} fill="currentColor" stroke="none" />
-      <path d="M8 20h8M12 16v4" />
+      <path d="M4 6h16M4 12h10M4 18h6" />
+      <circle cx={20} cy={12} r={2} />
+      <circle cx={14} cy={18} r={2} />
     </svg>
   )
 }
 
-// Tarva Chat -- chat bubble
-function ChatIcon() {
+// Who It's For -- people/audience icon
+function WhoItsForIcon() {
   return (
     <svg {...ICON_STYLE}>
-      <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
-      <path d="M8 10h8M8 13h4" opacity={0.5} />
+      <circle cx={9} cy={7} r={3} />
+      <path d="M3 21v-2a4 4 0 014-4h4a4 4 0 014 4v2" />
+      <circle cx={17} cy={10} r={2} />
+      <path d="M21 21v-1a3 3 0 00-2-2.83" />
     </svg>
   )
 }
 
-// Project Room -- grid/kanban
-function ProjectIcon() {
+// Platform -- dashboard/grid icon
+function PlatformIcon() {
   return (
     <svg {...ICON_STYLE}>
       <rect x={3} y={3} width={7} height={9} rx={1} />
@@ -76,36 +77,30 @@ function ProjectIcon() {
   )
 }
 
-// TarvaCORE -- hexagon/core
-function CoreIcon() {
+// Security -- shield/lock icon
+function SecurityIcon() {
   return (
     <svg {...ICON_STYLE}>
-      <path d="M12 2l8.5 5v10L12 22l-8.5-5V7z" />
-      <circle cx={12} cy={12} r={3} />
+      <path d="M12 2l8 4v6c0 5.25-3.5 9.74-8 11-4.5-1.26-8-5.75-8-11V6l8-4z" />
+      <path d="M9 12l2 2 4-4" />
     </svg>
   )
 }
 
-// TarvaERP -- chart/analytics
-function ERPIcon() {
+// Pricing -- tag/price icon
+function PricingIcon() {
   return (
     <svg {...ICON_STYLE}>
-      <path d="M3 3v18h18" />
-      <path d="M7 16l4-5 4 3 5-7" />
-      <circle cx={7} cy={16} r={0.8} fill="currentColor" stroke="none" />
-      <circle cx={11} cy={11} r={0.8} fill="currentColor" stroke="none" />
-      <circle cx={15} cy={14} r={0.8} fill="currentColor" stroke="none" />
-      <circle cx={20} cy={7} r={0.8} fill="currentColor" stroke="none" />
+      <path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />
     </svg>
   )
 }
 
-// tarvaCODE -- terminal/code
-function CodeIcon() {
+// Get Started -- arrow/launch icon
+function GetStartedIcon() {
   return (
     <svg {...ICON_STYLE}>
-      <polyline points="4 17 10 11 4 5" />
-      <line x1={12} y1={19} x2={20} y2={19} />
+      <path d="M5 12h14M12 5l7 7-7 7" />
     </svg>
   )
 }
@@ -115,12 +110,12 @@ function CodeIcon() {
 // ---------------------------------------------------------------------------
 
 const DOCK_DISTRICTS: DockDistrict[] = [
-  { id: 'agent-builder', icon: <AgentIcon /> },
-  { id: 'tarva-chat', icon: <ChatIcon /> },
-  { id: 'project-room', icon: <ProjectIcon /> },
-  { id: 'tarva-core', icon: <CoreIcon /> },
-  { id: 'tarva-erp', icon: <ERPIcon /> },
-  { id: 'tarva-code', icon: <CodeIcon /> },
+  { id: 'how-it-works', icon: <HowItWorksIcon /> },
+  { id: 'who-its-for', icon: <WhoItsForIcon /> },
+  { id: 'platform', icon: <PlatformIcon /> },
+  { id: 'security', icon: <SecurityIcon /> },
+  { id: 'pricing', icon: <PricingIcon /> },
+  { id: 'get-started', icon: <GetStartedIcon /> },
 ]
 
 // ---------------------------------------------------------------------------

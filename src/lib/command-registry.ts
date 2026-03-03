@@ -1,30 +1,28 @@
 /**
  * Command registry for the full command palette.
  *
- * Creates all 24 structured commands across three IA categories:
- * - Navigation (9): go to districts, evidence ledger, hub, constellation
- * - View (9): zoom in/out, zoom to levels, toggle minimap/effects/breadcrumb
- * - Action (5): open apps in new tab, refresh telemetry, logout
+ * Creates structured commands across three IA categories:
+ * - Navigation: go to districts, hub, constellation
+ * - View: zoom in/out, zoom to levels, toggle minimap/effects/breadcrumb
+ * - Action: refresh telemetry, logout
  *
  * Each command includes its full synonym set from the IA synonym ring
  * (SYNONYM_RING in command-palette.ts) for fuzzy matching.
  *
- * The conditional "Ask AI..." command (1) is handled separately in the
+ * The conditional "Ask AI..." command is handled separately in the
  * component layer, gated by settings.store.aiCameraDirectorEnabled.
  *
  * @module command-registry
- * @see WS-3.3 Section 4.2
- * @see IA Assessment Section 4
+ * @see WS-A.2 Section 4.10
  */
 
-import type { AppIdentifier } from '@/lib/interfaces/types'
 import type {
   PaletteCommand,
   CommandCategory,
   CommandResult,
 } from '@/lib/interfaces/command-palette'
 import { SYNONYM_RING } from '@/lib/interfaces/command-palette'
-import { APP_DISPLAY_NAMES } from '@/lib/interfaces/types'
+import { DISTRICTS, type DistrictId } from '@/lib/interfaces/district'
 import {
   returnToHub,
   flyToDistrict,
@@ -36,21 +34,6 @@ import { useCameraStore } from '@/stores/camera.store'
 import { useSettingsStore } from '@/stores/settings.store'
 import { useAuthStore } from '@/stores/auth.store'
 import { ZOOM_DEFAULT } from '@/lib/constants'
-
-// ============================================================================
-// App Launch URLs (localhost)
-// ============================================================================
-
-/**
- * Localhost URLs for each Tarva app.
- * Per CLAUDE.md: Port 3000 = Agent Builder, 4000 = Chat, 3005 = Project Room.
- * TarvaERP is a desktop app (no web URL). TarvaCORE and tarvaCODE likewise.
- */
-const APP_URLS: Readonly<Partial<Record<AppIdentifier, string>>> = {
-  'agent-builder': 'http://localhost:3000',
-  'tarva-chat': 'http://localhost:4000',
-  'project-room': 'http://localhost:3005',
-} as const
 
 // ============================================================================
 // Helpers
@@ -68,13 +51,13 @@ function success(message: string): CommandResult {
 }
 
 // ============================================================================
-// Navigation Commands (9)
+// Navigation Commands
 // ============================================================================
 
 /**
- * Create the 9 navigation commands.
+ * Create navigation commands.
  *
- * go-to-{6 districts}, go-to-evidence-ledger, go-to-hub, go-to-constellation
+ * go-to-hub, go-to-constellation, go-to-{6 districts}
  */
 function createNavigationCommands(): PaletteCommand[] {
   const commands: PaletteCommand[] = []
@@ -107,43 +90,30 @@ function createNavigationCommands(): PaletteCommand[] {
     },
   })
 
-  // 3. Go to Evidence Ledger (NW quadrant)
-  commands.push({
-    id: 'go-to-evidence-ledger',
-    verb: 'go',
-    object: 'evidence-ledger',
-    displayLabel: 'Go to Evidence Ledger',
-    synonyms: [...findSynonyms('Evidence Ledger')],
-    category: 'navigation' as CommandCategory,
-    handler: async (): Promise<CommandResult> => {
-      flyToWorldPoint(-400, -400, 1.0)
-      return success('Navigated to Evidence Ledger')
-    },
-  })
-
-  // 4-9. Go to each of the 6 districts
-  const districtIds: AppIdentifier[] = [
-    'agent-builder',
-    'tarva-chat',
-    'project-room',
-    'tarva-core',
-    'tarva-erp',
-    'tarva-code',
+  // 3-8. Go to each of the 6 marketing districts
+  const districtIds: DistrictId[] = [
+    'how-it-works',
+    'who-its-for',
+    'platform',
+    'security',
+    'pricing',
+    'get-started',
   ]
 
-  for (const appId of districtIds) {
-    const displayName = APP_DISPLAY_NAMES[appId]
+  for (const districtId of districtIds) {
+    const district = DISTRICTS.find((d) => d.id === districtId)
+    const displayName = district?.displayName ?? districtId
     const synonyms = findSynonyms(displayName)
 
     commands.push({
-      id: `go-to-${appId}`,
+      id: `go-to-${districtId}`,
       verb: 'go',
-      object: appId,
+      object: districtId,
       displayLabel: `Go to ${displayName}`,
       synonyms: [...synonyms],
       category: 'navigation' as CommandCategory,
       handler: async (): Promise<CommandResult> => {
-        flyToDistrict(appId)
+        flyToDistrict(districtId)
         return success(`Navigated to ${displayName}`)
       },
     })
@@ -228,7 +198,6 @@ function createViewCommands(): PaletteCommand[] {
       category: 'view' as CommandCategory,
       handler: async (): Promise<CommandResult> => {
         const { viewportWidth, viewportHeight } = useCameraStore.getState()
-        // Zoom to 1.0 centered on current viewport center
         const cursorX = viewportWidth / 2
         const cursorY = viewportHeight / 2
         useCameraStore.getState().zoomTo(1.0, cursorX, cursorY)
@@ -304,41 +273,18 @@ function createViewCommands(): PaletteCommand[] {
 }
 
 // ============================================================================
-// Action Commands (5)
+// Action Commands
 // ============================================================================
 
 /**
- * Create the 5 action commands.
+ * Create action commands.
  *
- * open-agent-builder, open-tarva-chat, open-project-room,
  * refresh-telemetry, logout
  */
 function createActionCommands(
   onRefresh: () => Promise<void>,
 ): PaletteCommand[] {
   const commands: PaletteCommand[] = []
-
-  // "Open {app}" commands -- launch app in new browser tab
-  for (const [appId, url] of Object.entries(APP_URLS)) {
-    const displayName = APP_DISPLAY_NAMES[appId as AppIdentifier]
-
-    commands.push({
-      id: `open-${appId}`,
-      verb: 'open',
-      object: appId,
-      displayLabel: `Open ${displayName}`,
-      synonyms: [
-        `launch ${displayName.toLowerCase()}`,
-        `open ${displayName.toLowerCase()}`,
-        displayName.toLowerCase(),
-      ],
-      category: 'action' as CommandCategory,
-      handler: async (): Promise<CommandResult> => {
-        window.open(url, '_blank', 'noopener,noreferrer')
-        return success(`Opened ${displayName} in new tab`)
-      },
-    })
-  }
 
   // Refresh Telemetry
   commands.push({
@@ -384,7 +330,7 @@ function createActionCommands(
 // ============================================================================
 
 /**
- * Create the complete command set (24 commands).
+ * Create the complete command set.
  *
  * Call this once during palette initialization. The returned commands
  * are registered with the StructuredCommandPalette instance.

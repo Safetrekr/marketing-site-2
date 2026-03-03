@@ -1,5 +1,5 @@
 /**
- * DistrictViewDock -- glass panel with district information and controls.
+ * DistrictViewDock -- glass panel with marketing district information.
  *
  * Position mirrors based on `panelSide`: docks to the right for
  * right-opening districts, left for left-opening districts.
@@ -9,52 +9,61 @@
 
 'use client'
 
-import { useCallback } from 'react'
 import { motion } from 'motion/react'
+import Link from 'next/link'
 import { cn } from '@/lib/utils'
 import { DISTRICTS, type DistrictId } from '@/lib/interfaces/district'
 import type { PanelSide } from '@/lib/morph-types'
 
 // ---------------------------------------------------------------------------
-// Station configuration per district
+// Marketing district descriptions
 // ---------------------------------------------------------------------------
 
-interface StationConfig {
+interface MarketingDockConfig {
   readonly description: string
-  readonly url: string | null
-  readonly stations: readonly string[]
+  readonly bullets: readonly string[]
+  readonly ctaLabel: string
+  readonly ctaHref: string
+  readonly isConversion?: boolean
 }
 
-const STATION_CONFIG: Record<DistrictId, StationConfig> = {
-  'agent-builder': {
-    description: 'Web IDE for creating and managing AI agents',
-    url: 'http://localhost:3000',
-    stations: ['Launch', 'Status', 'Pipeline', 'Library'],
+const MARKETING_DOCK_CONFIG: Record<DistrictId, MarketingDockConfig> = {
+  'how-it-works': {
+    description: 'See how Safetrekr protects your people with real-time tracking and automated safety workflows.',
+    bullets: ['Real-time tracking', 'Automated check-ins', 'Emergency response'],
+    ctaLabel: 'Read More',
+    ctaHref: '/how-it-works',
   },
-  'tarva-chat': {
-    description: 'Multi-agent chat interface',
-    url: 'http://localhost:4000',
-    stations: ['Launch', 'Status', 'Conversations', 'Agents'],
+  'who-its-for': {
+    description: 'Built for safety leaders across mining, construction, energy, forestry, and remote operations.',
+    bullets: ['Safety managers', 'Lone workers', 'Compliance officers'],
+    ctaLabel: 'Read More',
+    ctaHref: '/solutions',
   },
-  'project-room': {
-    description: 'Agent orchestration and project management',
-    url: 'http://localhost:3005',
-    stations: ['Launch', 'Status', 'Runs', 'Artifacts', 'Governance'],
+  'platform': {
+    description: 'Satellite and cellular hybrid connectivity with a real-time dashboard and reporting engine.',
+    bullets: ['Hybrid connectivity', 'Real-time dashboard', 'API integrations'],
+    ctaLabel: 'Read More',
+    ctaHref: '/platform',
   },
-  'tarva-core': {
-    description: 'Autonomous reasoning engine',
-    url: null,
-    stations: ['Status', 'Sessions'],
+  'security': {
+    description: 'Enterprise-grade data protection with SOC 2 Type II certification and end-to-end encryption.',
+    bullets: ['SOC 2 Type II', 'E2E encryption', 'Audit logging'],
+    ctaLabel: 'Read More',
+    ctaHref: '/security',
   },
-  'tarva-erp': {
-    description: 'Manufacturing ERP frontend',
-    url: null,
-    stations: ['Status', 'Manufacturing'],
+  'pricing': {
+    description: 'Transparent per-seat pricing with a free tier for small teams and enterprise custom plans.',
+    bullets: ['Free tier', 'Volume discounts', 'Enterprise plans'],
+    ctaLabel: 'Read More',
+    ctaHref: '/pricing',
   },
-  'tarva-code': {
-    description: 'AI conversation knowledge management',
-    url: null,
-    stations: ['Status'],
+  'get-started': {
+    description: 'Start protecting your team today with a 15-minute onboarding walkthrough and free trial.',
+    bullets: ['Free trial', 'Onboarding specialist', '15-min walkthrough'],
+    ctaLabel: 'Schedule a Briefing',
+    ctaHref: '/contact',
+    isConversion: true,
   },
 }
 
@@ -74,17 +83,10 @@ interface DistrictViewDockProps {
 export function DistrictViewDock({ districtId, panelSide }: DistrictViewDockProps) {
   const district = DISTRICTS.find((d) => d.id === districtId)
   const displayName = district?.displayName ?? districtId
-  const port = district?.port ?? null
-  const config = STATION_CONFIG[districtId]
+  const config = MARKETING_DOCK_CONFIG[districtId]
 
   const isRight = panelSide === 'right'
   const slideFrom = isRight ? 40 : -40
-
-  const handleOpenApp = useCallback(() => {
-    if (config.url) {
-      window.open(config.url, '_blank', 'noopener,noreferrer')
-    }
-  }, [config.url])
 
   return (
     <motion.div
@@ -118,16 +120,6 @@ export function DistrictViewDock({ districtId, panelSide }: DistrictViewDockProp
           {displayName}
         </span>
 
-        {/* Port if applicable */}
-        {port !== null && (
-          <span
-            className="mt-1 block font-mono text-[11px] tracking-wider"
-            style={{ color: 'rgba(var(--teal-bright-rgb), 0.2)' }}
-          >
-            localhost:{port}
-          </span>
-        )}
-
         {/* Description */}
         <p
           className="mt-4 font-mono text-[11px] leading-[1.5]"
@@ -136,28 +128,28 @@ export function DistrictViewDock({ districtId, panelSide }: DistrictViewDockProp
           {config.description}
         </p>
 
-        {/* Open button (if URL exists) */}
-        {config.url && (
-          <button
-            onClick={handleOpenApp}
-            className={cn(
-              'mt-5 w-full rounded-md py-2',
-              'border border-white/[0.06]',
-              'bg-white/[0.04]',
-              'font-mono text-[9px] font-medium tracking-[0.1em] uppercase',
-              'transition-all duration-200',
-              'hover:border-white/[0.12] hover:bg-white/[0.06]',
-              'focus-visible:outline-2 focus-visible:outline-offset-2',
-              'focus-visible:outline-[var(--color-ember-bright)]',
-            )}
-            style={{
-              color: 'rgba(var(--ambient-ink-rgb), 0.35)',
-              pointerEvents: 'auto',
-            }}
-          >
-            Open {displayName}
-          </button>
-        )}
+        {/* CTA link */}
+        <Link
+          href={config.ctaHref}
+          className={cn(
+            'mt-5 block w-full rounded-md py-2 text-center',
+            'border border-white/[0.06]',
+            'bg-white/[0.04]',
+            'font-mono text-[9px] font-medium tracking-[0.1em] uppercase',
+            'transition-all duration-200',
+            'hover:border-white/[0.12] hover:bg-white/[0.06]',
+            'focus-visible:outline-2 focus-visible:outline-offset-2',
+            'focus-visible:outline-[var(--color-ember-bright)]',
+          )}
+          style={{
+            color: config.isConversion
+              ? '#F59E0B'
+              : 'rgba(var(--ambient-ink-rgb), 0.35)',
+            pointerEvents: 'auto',
+          }}
+        >
+          {config.ctaLabel}
+        </Link>
 
         {/* Separator */}
         <div
@@ -183,7 +175,9 @@ export function DistrictViewDock({ districtId, panelSide }: DistrictViewDockProp
                 width: 4,
                 height: 4,
                 borderRadius: '50%',
-                backgroundColor: 'var(--color-healthy, #22c55e)',
+                backgroundColor: config.isConversion
+                  ? '#F59E0B'
+                  : 'var(--color-healthy, #22c55e)',
                 flexShrink: 0,
               }}
             />
@@ -205,18 +199,18 @@ export function DistrictViewDock({ districtId, panelSide }: DistrictViewDockProp
           }}
         />
 
-        {/* Stations list */}
+        {/* Highlights list */}
         <div className="flex flex-col gap-3">
           <span
             className="block font-mono text-[9px] font-medium tracking-[0.1em] uppercase"
             style={{ color: 'rgba(var(--ambient-ink-rgb), 0.15)' }}
           >
-            STATIONS
+            HIGHLIGHTS
           </span>
           <div className="flex flex-wrap gap-2">
-            {config.stations.map((station) => (
+            {config.bullets.map((bullet) => (
               <span
-                key={station}
+                key={bullet}
                 className={cn(
                   'rounded-md px-2.5 py-1',
                   'border border-white/[0.06]',
@@ -225,7 +219,7 @@ export function DistrictViewDock({ districtId, panelSide }: DistrictViewDockProp
                 )}
                 style={{ color: 'rgba(var(--ambient-ink-rgb), 0.2)' }}
               >
-                {station}
+                {bullet}
               </span>
             ))}
           </div>

@@ -34,12 +34,12 @@ import { DistrictViewContent } from './district-view-content'
 // ---------------------------------------------------------------------------
 
 const DISTRICT_TINTS: Record<DistrictId, string> = {
-  'agent-builder': 'rgba(var(--ember-rgb), 0.06)',
-  'tarva-chat': 'rgba(var(--teal-bright-rgb), 0.06)',
-  'project-room': 'rgba(var(--healthy-rgb), 0.04)',
-  'tarva-core': 'rgba(var(--ember-bright-rgb), 0.05)',
-  'tarva-erp': 'rgba(var(--ember-rgb), 0.04)',
-  'tarva-code': 'rgba(var(--teal-rgb), 0.04)',
+  'how-it-works': 'rgba(var(--ember-rgb), 0.06)',
+  'who-its-for': 'rgba(var(--teal-bright-rgb), 0.06)',
+  'platform': 'rgba(var(--healthy-rgb), 0.04)',
+  'security': 'rgba(var(--ember-bright-rgb), 0.05)',
+  'pricing': 'rgba(var(--ember-rgb), 0.04)',
+  'get-started': 'rgba(245, 158, 11, 0.08)',
 }
 
 // ---------------------------------------------------------------------------

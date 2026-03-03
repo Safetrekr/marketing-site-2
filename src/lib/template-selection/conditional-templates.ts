@@ -6,7 +6,7 @@
  * the static AD-8 templates from WS-1.7.
  *
  * Naming convention: {districtId}--{name}--conditional
- * Example: "agent-builder--diagnostics--conditional"
+ * Example: "how-it-works--diagnostics--conditional"
  *
  * References: AD-8 (Station Content per District), AD-7 (disposable stations)
  */
@@ -17,13 +17,13 @@ import type { StationTemplate } from '@/lib/interfaces/station-template-registry
 // Agent Builder Conditional Templates
 // ============================================================================
 
-export const AGENT_BUILDER_DIAGNOSTICS: StationTemplate = {
-  id: 'agent-builder--diagnostics--conditional',
-  districtId: 'agent-builder',
+export const HOW_IT_WORKS_DIAGNOSTICS: StationTemplate = {
+  id: 'how-it-works--diagnostics--conditional',
+  districtId: 'how-it-works',
   name: 'diagnostics',
   displayName: 'Diagnostics',
   description:
-    'Active alerts and recent errors for Agent Builder. Surfaces when alertCount > 0 or health is DEGRADED/DOWN.',
+    'Active alerts and recent errors for How It Works. Surfaces when alertCount > 0 or health is DEGRADED/DOWN.',
   category: 'app-specific',
   layout: {
     header: { title: 'Diagnostics', icon: 'AlertTriangle' },
@@ -47,19 +47,19 @@ export const AGENT_BUILDER_DIAGNOSTICS: StationTemplate = {
   },
   triggers: [
     {
-      field: 'apps.agent-builder.alertCount',
+      field: 'apps.how-it-works.alertCount',
       operator: 'gt',
       value: 0,
       weight: 0.8,
     },
     {
-      field: 'apps.agent-builder.health',
+      field: 'apps.how-it-works.health',
       operator: 'eq',
       value: 'DEGRADED',
       weight: 0.6,
     },
     {
-      field: 'apps.agent-builder.health',
+      field: 'apps.how-it-works.health',
       operator: 'eq',
       value: 'DOWN',
       weight: 1.0,
@@ -73,36 +73,36 @@ export const AGENT_BUILDER_DIAGNOSTICS: StationTemplate = {
 // Tarva Chat Conditional Templates
 // ============================================================================
 
-export const TARVA_CHAT_ACTIVE_CONVERSATIONS: StationTemplate = {
-  id: 'tarva-chat--active-conversations--conditional',
-  districtId: 'tarva-chat',
-  name: 'active-conversations',
-  displayName: 'Active Conversations',
+export const WHO_ITS_FOR_HIGHLIGHTS: StationTemplate = {
+  id: 'who-its-for--highlights--conditional',
+  districtId: 'who-its-for',
+  name: 'highlights',
+  displayName: 'Highlights',
   description:
-    'Promoted view of active conversations. Surfaces when pulse indicates high conversation activity.',
+    'Promoted view of audience highlights. Surfaces when district is healthy and no active alerts.',
   category: 'app-specific',
   layout: {
-    header: { title: 'Active Conversations', icon: 'MessageCircle' },
-    bodyType: 'table',
+    header: { title: 'Highlights', icon: 'Users' },
+    bodyType: 'list',
     actions: [
       {
-        id: 'open-active',
-        label: 'Open Active',
+        id: 'go-district',
+        label: 'Explore',
         variant: 'default',
-        command: 'open tarva-chat',
-        icon: 'ExternalLink',
+        command: 'go who-its-for',
+        icon: 'ArrowRight',
       },
     ],
   },
   triggers: [
     {
-      field: 'apps.tarva-chat.health',
+      field: 'apps.who-its-for.health',
       operator: 'eq',
       value: 'OPERATIONAL',
       weight: 0.3,
     },
     {
-      field: 'apps.tarva-chat.alertCount',
+      field: 'apps.who-its-for.alertCount',
       operator: 'eq',
       value: 0,
       weight: 0.2,
@@ -116,13 +116,13 @@ export const TARVA_CHAT_ACTIVE_CONVERSATIONS: StationTemplate = {
 // Project Room Conditional Templates
 // ============================================================================
 
-export const PROJECT_ROOM_ALERT_SUMMARY: StationTemplate = {
-  id: 'project-room--alert-summary--conditional',
-  districtId: 'project-room',
+export const PLATFORM_ALERT_SUMMARY: StationTemplate = {
+  id: 'platform--alert-summary--conditional',
+  districtId: 'platform',
   name: 'alert-summary',
   displayName: 'Alert Summary',
   description:
-    'Aggregated alert view for Project Room. Surfaces when alertCount > 2 or health is not OPERATIONAL.',
+    'Aggregated alert view for Platform. Surfaces when alertCount > 2 or health is not OPERATIONAL.',
   category: 'app-specific',
   layout: {
     header: { title: 'Alert Summary', icon: 'ShieldAlert' },
@@ -136,29 +136,29 @@ export const PROJECT_ROOM_ALERT_SUMMARY: StationTemplate = {
         icon: 'Search',
       },
       {
-        id: 'open-project',
-        label: 'Open Project Room',
+        id: 'go-platform',
+        label: 'Go to Platform',
         variant: 'secondary',
-        command: 'open project-room',
-        icon: 'ExternalLink',
+        command: 'go platform',
+        icon: 'ArrowRight',
       },
     ],
   },
   triggers: [
     {
-      field: 'apps.project-room.alertCount',
+      field: 'apps.platform.alertCount',
       operator: 'gt',
       value: 2,
       weight: 0.7,
     },
     {
-      field: 'apps.project-room.health',
+      field: 'apps.platform.health',
       operator: 'eq',
       value: 'DEGRADED',
       weight: 0.5,
     },
     {
-      field: 'apps.project-room.health',
+      field: 'apps.platform.health',
       operator: 'eq',
       value: 'DOWN',
       weight: 1.0,
@@ -185,11 +185,11 @@ export const UNIVERSAL_SYSTEM_ALERT: StationTemplate = {
     bodyType: 'metrics',
     actions: [
       {
-        id: 'view-evidence',
-        label: 'View Evidence Ledger',
+        id: 'go-hub',
+        label: 'Return to Hub',
         variant: 'default',
-        command: 'go evidence-ledger',
-        icon: 'FileText',
+        command: 'go hub',
+        icon: 'Home',
       },
     ],
   },
@@ -223,8 +223,8 @@ export const UNIVERSAL_SYSTEM_ALERT: StationTemplate = {
 
 /** All Phase 3 conditional templates to register with the DynamicStationTemplateRegistry. */
 export const CONDITIONAL_TEMPLATES: readonly StationTemplate[] = [
-  AGENT_BUILDER_DIAGNOSTICS,
-  TARVA_CHAT_ACTIVE_CONVERSATIONS,
-  PROJECT_ROOM_ALERT_SUMMARY,
+  HOW_IT_WORKS_DIAGNOSTICS,
+  WHO_ITS_FOR_HIGHLIGHTS,
+  PLATFORM_ALERT_SUMMARY,
   UNIVERSAL_SYSTEM_ALERT,
 ] as const

@@ -48,20 +48,20 @@ const CYCLE_INTERVAL_MS = 2000
 
 /** All 6 district IDs for iteration. */
 const ALL_DISTRICT_IDS: DistrictId[] = [
-  'agent-builder',
-  'tarva-chat',
-  'project-room',
-  'tarva-core',
-  'tarva-erp',
-  'tarva-code',
+  'how-it-works',
+  'who-its-for',
+  'platform',
+  'security',
+  'pricing',
+  'get-started',
 ]
 
 // ---------------------------------------------------------------------------
 // Activity event verb pools
 // ---------------------------------------------------------------------------
 
-const VERBS_DATA = ['QUERY.KNOW', 'QUERY.VEC', 'CHAT.MSG', 'SYNC.ERP', 'FETCH.DOC'] as const
-const VERBS_DEPLOY = ['DEPLOY.AGENT', 'BUILD.AGENT', 'DEPLOY.SKILL'] as const
+const VERBS_DATA = ['TRACK.UPDATE', 'CHECKIN.RCV', 'REPORT.GEN', 'SCAN.DONE', 'CERT.VALID'] as const
+const VERBS_DEPLOY = ['PLAN.SYNC', 'USER.JOIN', 'ALERT.CLR'] as const
 const VERBS_SYSTEM = ['REASON.CORE', 'SCAN.INDEX', 'HEALTH.CHECK'] as const
 
 /** Map from category to verb pool. */
