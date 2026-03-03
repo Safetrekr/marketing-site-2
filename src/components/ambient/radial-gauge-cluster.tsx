@@ -31,7 +31,7 @@ import { useEnrichmentStore } from '@/stores/enrichment.store'
 // ---------------------------------------------------------------------------
 
 /** Position of the gauge cluster center in world space, relative to (0,0). */
-const CLUSTER_Y = -680
+const CLUSTER_Y = -580
 
 /** SVG canvas size (must contain the largest arc + labels). */
 const SVG_W = 400
@@ -178,9 +178,9 @@ export function RadialGaugeCluster() {
           const percent = gaugePercents[idx]
           const ticks = generateTicks(gauge.radius)
 
-          // Label position: at the 3 o'clock position (0deg) of the arc
+          // Label position: below the 3 o'clock endpoint of the arc
           const labelX = arcX(0, gauge.radius) + 10
-          const labelY = arcY(0, gauge.radius)
+          const labelY = arcY(0, gauge.radius) + 20
 
           return (
             <g key={gauge.radius}>
@@ -232,7 +232,7 @@ export function RadialGaugeCluster() {
               {/* Gauge name label (at 9 o'clock / 180deg position) */}
               <text
                 x={arcX(180, gauge.radius) - 10}
-                y={arcY(180, gauge.radius)}
+                y={arcY(180, gauge.radius) + 20}
                 textAnchor="end"
                 dominantBaseline="central"
                 fill={LABEL_COLOR}
