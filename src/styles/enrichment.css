@@ -205,6 +205,39 @@
 }
 
 /* =========================================================================
+   Feed Panel -- event slide-in and LIVE dot pulse
+   ========================================================================= */
+
+@keyframes enrichment-feed-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.enrichment-feed-event {
+  animation: enrichment-feed-slide-in 400ms ease-out both;
+}
+
+@keyframes enrichment-live-pulse {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.enrichment-live-dot {
+  animation: enrichment-live-pulse 1.5s ease-in-out infinite;
+}
+
+/* =========================================================================
    Launch entrance: hide world-space enrichments until enriching phase
    ========================================================================= */
 
@@ -242,7 +275,8 @@
 [data-panning='true'] .enrichment-horizon-sweep-vp,
 [data-panning='true'] .enrichment-capacitor-pulse,
 [data-panning='true'] .enrichment-rec-pulse,
-[data-panning='true'] .enrichment-chrono-fill {
+[data-panning='true'] .enrichment-chrono-fill,
+[data-panning='true'] .enrichment-live-dot {
   animation-play-state: paused;
 }
 
@@ -260,7 +294,9 @@
   .enrichment-horizon-sweep-vp,
   .enrichment-capacitor-pulse,
   .enrichment-rec-pulse,
-  .enrichment-chrono-fill {
+  .enrichment-chrono-fill,
+  .enrichment-feed-event,
+  .enrichment-live-dot {
     animation: none !important;
   }
 

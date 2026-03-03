@@ -25,7 +25,7 @@
 
 'use client'
 
-import { useMemo } from 'react'
+import { useMemo, useState, useEffect } from 'react'
 import { useEnrichmentStore } from '@/stores/enrichment.store'
 import { DISTRICTS } from '@/lib/interfaces/district'
 import type { DistrictId } from '@/lib/interfaces/district'
@@ -60,6 +60,23 @@ const CATEGORY_COLORS: Record<ActivityEvent['category'], string> = {
   data: 'rgba(14, 165, 233, 0.5)',
   deploy: 'rgba(var(--ember-rgb), 0.5)',
   system: 'rgba(var(--ambient-ink-rgb), 0.25)',
+}
+
+/** Status indicator dot colors. */
+const STATUS_DOT_COLORS: Record<ActivityEvent['status'], string> = {
+  OK: 'rgba(75, 164, 103, 0.7)',
+  WARN: 'rgba(245, 158, 11, 0.7)',
+  FAIL: 'rgba(239, 68, 68, 0.7)',
+}
+
+/** Format a relative time string from a Date. */
+function formatRelativeTime(date: Date, now: number): string {
+  const d = date instanceof Date ? date : new Date(date)
+  const diffSec = Math.max(0, Math.floor((now - d.getTime()) / 1000))
+  if (diffSec < 5) return 'just now'
+  if (diffSec < 60) return `${diffSec}s ago`
+  const diffMin = Math.floor(diffSec / 60)
+  return `${diffMin}m ago`
 }
 
 // ---------------------------------------------------------------------------
@@ -184,8 +201,15 @@ export function FeedPanel() {
     }
   }, [districts])
 
-  // First 5 activity events for the feed
-  const recentEvents = useMemo(() => activityLog.slice(0, 5), [activityLog])
+  // Recent activity events for the feed (up to 8)
+  const recentEvents = useMemo(() => activityLog.slice(0, 8), [activityLog])
+
+  // Ticking clock for relative timestamps (updates every 2s)
+  const [now, setNow] = useState(Date.now())
+  useEffect(() => {
+    const id = setInterval(() => setNow(Date.now()), 2000)
+    return () => clearInterval(id)
+  }, [])
 
   return (
     <div
@@ -310,9 +334,36 @@ export function FeedPanel() {
         </div>
 
         {/* -- Activity feed (replaces signal strength + radio) ------ */}
-        <div style={{ marginBottom: 20 }}>
-          <div style={{ ...GHOST, marginBottom: 10 }}>ACTIVITY</div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+        <div style={{ marginBottom: 20, flex: 1, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+          {/* ACTIVITY header with LIVE indicator */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
+            <span style={GHOST}>ACTIVITY</span>
+            {recentEvents.length > 0 && (
+              <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+                <span
+                  className="enrichment-live-dot"
+                  style={{
+                    width: 5,
+                    height: 5,
+                    borderRadius: '50%',
+                    background: 'rgba(75, 164, 103, 0.8)',
+                  }}
+                />
+                <span
+                  style={{
+                    ...MONO,
+                    fontSize: 10,
+                    color: 'rgba(75, 164, 103, 0.5)',
+                    letterSpacing: '0.08em',
+                  }}
+                >
+                  LIVE
+                </span>
+              </span>
+            )}
+          </div>
+          {/* Event list */}
+          <div style={{ flex: 1, overflow: 'hidden', display: 'flex', flexDirection: 'column', gap: 6 }}>
             {recentEvents.length === 0 ? (
               <span
                 style={{
@@ -322,22 +373,27 @@ export function FeedPanel() {
                   letterSpacing: '0.04em',
                 }}
               >
-                NO EVENTS
+                AWAITING TELEMETRY...
               </span>
             ) : (
-              recentEvents.map((evt) => (
-                <div key={evt.id}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+              recentEvents.map((evt, idx) => (
+                <div
+                  key={evt.id}
+                  className="enrichment-feed-event"
+                  style={{ animationDelay: `${idx * 50}ms` }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
+                    {/* Status dot */}
                     <span
                       style={{
-                        ...MONO,
-                        fontSize: 12,
-                        color: 'rgba(var(--ambient-ink-rgb), 0.12)',
-                        letterSpacing: '0.04em',
+                        width: 4,
+                        height: 4,
+                        borderRadius: '50%',
+                        background: STATUS_DOT_COLORS[evt.status],
+                        flexShrink: 0,
                       }}
-                    >
-                      [{formatTime(evt.timestamp)}]
-                    </span>
+                    />
+                    {/* Verb */}
                     <span
                       style={{
                         ...MONO,
@@ -348,6 +404,19 @@ export function FeedPanel() {
                     >
                       {evt.verb}
                     </span>
+                    {/* Relative timestamp */}
+                    <span
+                      style={{
+                        ...MONO,
+                        fontSize: 10,
+                        color: 'rgba(var(--ambient-ink-rgb), 0.12)',
+                        letterSpacing: '0.02em',
+                        marginLeft: 'auto',
+                        flexShrink: 0,
+                      }}
+                    >
+                      {formatRelativeTime(evt.timestamp, now)}
+                    </span>
                   </div>
                   <div
                     style={{
@@ -355,7 +424,7 @@ export function FeedPanel() {
                       fontSize: 11,
                       color: 'rgba(var(--ambient-ink-rgb), 0.1)',
                       letterSpacing: '0.04em',
-                      paddingLeft: 12,
+                      paddingLeft: 9,
                       marginTop: 1,
                     }}
                   >

@@ -376,12 +376,18 @@ export function useEnrichmentCycle(): void {
     }
 
     // -----------------------------------------------------------------------
-    // 4. Generate activity event (10% chance per tick)
+    // 4. Generate activity events (1–2 per tick for a lively feed)
     // -----------------------------------------------------------------------
-    if (Math.random() < 0.10) {
-      const event = generateActivityEvent()
-      pushActivity(event)
+    const eventRoll = Math.random()
+    if (eventRoll < 0.15) {
+      // 15% chance: two events in one tick (burst)
+      pushActivity(generateActivityEvent())
+      pushActivity(generateActivityEvent())
+    } else if (eventRoll < 0.55) {
+      // 40% chance: one event
+      pushActivity(generateActivityEvent())
     }
+    // 45% chance: no event this tick
 
     // -----------------------------------------------------------------------
     // 5. Compute aggregate metrics
