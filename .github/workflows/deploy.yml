@@ -34,6 +34,7 @@ jobs:
       - run: pnpm build
         env:
           NEXT_PUBLIC_SITE_URL: https://www.safetrekr.com
+          NEXT_PUBLIC_BASE_PATH: /marketing-site-2
 
       - uses: actions/upload-pages-artifact@v3
         with:
