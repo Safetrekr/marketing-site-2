@@ -6,6 +6,7 @@ import type {
   TechPartner,
   ContactChannel,
 } from '@/lib/interfaces/about-team'
+import { BASE_PATH } from '@/lib/config/site'
 
 // ---------------------------------------------------------------------------
 // Hero + Origin
@@ -29,7 +30,7 @@ export const LEADERS: Leader[] = [
     id: 'mike',
     name: 'Mike Dawson',
     title: 'Co-founder & Chief of Safety Operations',
-    photo: '/images/people/mike-dawson.png',
+    photo: `${BASE_PATH}/images/people/mike-dawson.png`,
     summary:
       '23 years U.S. Secret Service (Ret.). Turns field intelligence into simple trip playbooks schools can use.',
     owns: [
@@ -49,7 +50,7 @@ export const LEADERS: Leader[] = [
     id: 'alan',
     name: 'Alan D.',
     title: 'Chief of Protective Intelligence',
-    photo: '/images/people/alan-d.png',
+    photo: `${BASE_PATH}/images/people/alan-d.png`,
     summary:
       '25 years U.S. Secret Service (Ret.). Merges protective operations with digital forensics for audit-ready evidence.',
     owns: [
@@ -68,7 +69,7 @@ export const LEADERS: Leader[] = [
     id: 'bobby',
     name: 'Bobby Brasher',
     title: 'Co-founder & Chief of School Security',
-    photo: '/images/people/bobby-brasher.png',
+    photo: `${BASE_PATH}/images/people/bobby-brasher.png`,
     summary:
       'Former Director of School Security at Brook Hill. Turns classroom and field experience into safety playbooks schools actually adopt.',
     owns: [
@@ -102,70 +103,70 @@ export const AGENCY_BADGES: AgencyBadge[] = [
     id: 'usss',
     name: 'U.S. Secret Service',
     description: 'Presidential & VP Protection, Counter Assault Team',
-    image: '/images/squads/usss-badge.png',
+    image: `${BASE_PATH}/images/squads/usss-badge.png`,
     imageType: 'file',
   },
   {
     id: 'nsw',
     name: 'Naval Special Warfare',
     description: 'SEAL Teams',
-    image: '/images/squads/navy-seals-insignia.png',
+    image: `${BASE_PATH}/images/squads/navy-seals-insignia.png`,
     imageType: 'file',
   },
   {
     id: 'devgru',
     name: 'Naval Special Warfare Development Group',
     description: 'DEVGRU',
-    image: '/images/squads/devgru-insignia.png',
+    image: `${BASE_PATH}/images/squads/devgru-insignia.png`,
     imageType: 'file',
   },
   {
     id: 'arsf',
     name: 'U.S. Army Special Forces',
     description: 'Green Berets',
-    image: '/images/squads/army-sf-insignia.png',
+    image: `${BASE_PATH}/images/squads/army-sf-insignia.png`,
     imageType: 'file',
   },
   {
     id: '75th-ranger',
     name: '75th Ranger Regiment',
     description: 'Army Rangers, Direct Action & Reconnaissance',
-    image: '/images/squads/75th-ranger-insignia.png',
+    image: `${BASE_PATH}/images/squads/75th-ranger-insignia.png`,
     imageType: 'file',
   },
   {
     id: '160th-soar',
     name: '160th Special Operations Aviation Regiment',
     description: 'Night Stalkers',
-    image: '/images/squads/160th-soar-insignia.png',
+    image: `${BASE_PATH}/images/squads/160th-soar-insignia.png`,
     imageType: 'file',
   },
   {
     id: 'jcu',
     name: 'Joint Communications Unit',
     description: 'JSOC Signal & Communications Support',
-    image: '/images/squads/jcu-seal.png',
+    image: `${BASE_PATH}/images/squads/jcu-seal.png`,
     imageType: 'file',
   },
   {
     id: 'isa',
     name: 'Intelligence Support Activity',
     description: 'JSOC Intelligence, SIGINT/HUMINT',
-    image: '/images/squads/isa-badge.jpg',
+    image: `${BASE_PATH}/images/squads/isa-badge.jpg`,
     imageType: 'file',
   },
   {
     id: 'marsoc',
     name: 'Marine Forces Special Operations Command',
     description: 'MARSOC, Marine Raiders',
-    image: '/images/squads/marsoc-seal.png',
+    image: `${BASE_PATH}/images/squads/marsoc-seal.png`,
     imageType: 'file',
   },
   {
     id: '1st-sow',
     name: '1st Special Operations Wing',
     description: 'AFSOC, Air Force Special Operations',
-    image: '/images/squads/1st-sow-insignia.png',
+    image: `${BASE_PATH}/images/squads/1st-sow-insignia.png`,
     imageType: 'file',
   },
 ]
@@ -179,21 +180,21 @@ export const FEATURED_PARTNERS: TechPartner[] = [
     id: 'jesse-orrico',
     name: 'Jesse Orrico',
     domain: 'Business & Product',
-    photo: '/images/people/jesse-orrico.png',
+    photo: `${BASE_PATH}/images/people/jesse-orrico.png`,
     tier: 'featured',
   },
   {
     id: 'chris-heerdegen',
     name: 'Chris Heerdegen',
     domain: 'Ops & Monetization',
-    photo: '/images/people/chris-heerdegen.png',
+    photo: `${BASE_PATH}/images/people/chris-heerdegen.png`,
     tier: 'featured',
   },
   {
     id: 'justin-tabb',
     name: 'Justin Tabb',
     domain: 'AI & Emerging-Tech',
-    photo: '/images/people/justin-tabb.png',
+    photo: `${BASE_PATH}/images/people/justin-tabb.png`,
     tier: 'featured',
   },
 ]
@@ -203,21 +204,21 @@ export const ADDITIONAL_PARTNERS: TechPartner[] = [
     id: 'mike-miller',
     name: 'Mike Miller',
     domain: 'Dev/Sec/Ops',
-    photo: '/images/people/mike-miller.png',
+    photo: `${BASE_PATH}/images/people/mike-miller.png`,
     tier: 'standard',
   },
   {
     id: 'joe-yin',
     name: 'Joe Yin',
     domain: 'PMO Director',
-    photo: '/images/people/joe-yin.png',
+    photo: `${BASE_PATH}/images/people/joe-yin.png`,
     tier: 'standard',
   },
   {
     id: 'david-lindahl',
     name: 'David Lindahl',
     domain: 'AIO/DM Architecture',
-    photo: '/images/people/david-lindahl.png',
+    photo: `${BASE_PATH}/images/people/david-lindahl.png`,
     tier: 'standard',
   },
 ]

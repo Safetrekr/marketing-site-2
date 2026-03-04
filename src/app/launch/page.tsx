@@ -24,7 +24,7 @@
 'use client'
 
 import { useEffect, useMemo, useRef } from 'react'
-import Image from 'next/image'
+import { BASE_PATH } from '@/lib/config/site'
 
 import { SpatialViewport } from '@/components/spatial/SpatialViewport'
 import { SpatialCanvas } from '@/components/spatial/SpatialCanvas'
@@ -295,21 +295,19 @@ export default function LaunchPage() {
       {/* Navigation HUD overlay (fixed, z-40) */}
       <NavigationHUD isPanActive={isPanActive}>
         {/* Top-left: Safetrekr logo in header */}
-        <Image
-          src="/images/logos/safetrekr-logo-vert-light.svg"
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={`${BASE_PATH}/images/logos/safetrekr-logo-vert-light.svg`}
           alt="Safetrekr"
-          width={66}
-          height={22}
           className="pointer-events-none fixed left-4 opacity-40 dark:block hidden"
-          style={{ top: 21, transform: 'translateY(-50%)' }}
+          style={{ height: 22, top: 21, transform: 'translateY(-50%)' }}
         />
-        <Image
-          src="/images/logos/safetrekr-logo-vert-dark.svg"
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={`${BASE_PATH}/images/logos/safetrekr-logo-vert-dark.svg`}
           alt="Safetrekr"
-          width={66}
-          height={22}
           className="pointer-events-none fixed left-4 opacity-40 dark:hidden block"
-          style={{ top: 21, transform: 'translateY(-50%)' }}
+          style={{ height: 22, top: 21, transform: 'translateY(-50%)' }}
         />
         {breadcrumbVisible && <SpatialBreadcrumb />}
         {minimapVisible && <Minimap />}

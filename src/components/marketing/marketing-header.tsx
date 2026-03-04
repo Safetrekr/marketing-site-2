@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { BASE_PATH } from '@/lib/config/site'
 import { usePathname } from 'next/navigation'
 import { Menu } from 'lucide-react'
 import { cn } from '@/lib/utils'
@@ -45,7 +46,7 @@ export function MarketingHeader() {
           {/* Desktop logo */}
           <Link href="/launch" className="hidden md:block" aria-label="Safetrekr home">
             <Image
-              src="/images/logos/safetrekr-logo-horiz-light.svg"
+              src={`${BASE_PATH}/images/logos/safetrekr-logo-horiz-light.svg`}
               alt="Safetrekr"
               width={120}
               height={28}
@@ -57,7 +58,7 @@ export function MarketingHeader() {
           {/* Mobile logo mark */}
           <Link href="/launch" className="block md:hidden" aria-label="Safetrekr home">
             <Image
-              src="/images/logos/safetrekr-mark-light.svg"
+              src={`${BASE_PATH}/images/logos/safetrekr-mark-light.svg`}
               alt="Safetrekr"
               width={32}
               height={32}

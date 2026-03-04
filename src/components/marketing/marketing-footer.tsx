@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import { BASE_PATH } from '@/lib/config/site'
 import { FOOTER_NAV_COLUMNS, FOOTER_LEGAL_LINKS } from '@/lib/config/marketing-nav'
 
 export function MarketingFooter() {
@@ -14,7 +15,7 @@ export function MarketingFooter() {
           <div>
             <Link href="/launch" aria-label="Safetrekr home">
               <Image
-                src="/images/logos/safetrekr-logo-horiz-light.svg"
+                src={`${BASE_PATH}/images/logos/safetrekr-logo-horiz-light.svg`}
                 alt="Safetrekr"
                 width={120}
                 height={28}

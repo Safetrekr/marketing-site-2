@@ -8,6 +8,9 @@
  * reads from this file. When the domain is resolved, only this
  * file changes.
  */
+/** Base path for GitHub Pages subpath hosting. Empty string for root hosting. */
+export const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || ''
+
 export const SITE_CONFIG = {
   /** Primary domain with protocol. No trailing slash. */
   url: process.env.NEXT_PUBLIC_SITE_URL || 'https://www.safetrekr.com',
@@ -32,7 +35,7 @@ export const SITE_CONFIG = {
   contactEmail: 'hello@safetrekr.com',
 
   /** Logo URL path (relative to domain, used in structured data) */
-  logoPath: '/images/logos/safetrekr-logo-horiz-dark.svg',
+  logoPath: `${BASE_PATH}/images/logos/safetrekr-logo-horiz-dark.svg`,
 
   /** Default OG image path (relative to domain) */
   defaultOgImage: '/og/default.png',

@@ -10,8 +10,8 @@
 
 'use client'
 
-import Image from 'next/image'
 import { motion } from 'motion/react'
+import { BASE_PATH } from '@/lib/config/site'
 
 import { useGatewayStore, type GatewayPhase } from '@/stores/gateway.store'
 import { useTypewriter } from '@/hooks/use-typewriter'
@@ -91,13 +91,12 @@ export function BrandMark() {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       >
-        <Image
-          src="/images/logos/safetrekr-logo-horiz-light.png"
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={`${BASE_PATH}/images/logos/safetrekr-logo-horiz-light.png`}
           alt="Safetrekr"
-          width={288}
-          height={96}
-          className="gateway-shield-breathe h-24 w-auto"
-          priority
+          className="gateway-shield-breathe"
+          style={{ height: 96, width: 'auto' }}
         />
       </motion.div>
 
