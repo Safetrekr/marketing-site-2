@@ -6,168 +6,127 @@ import type {
   PricingFAQItem,
 } from '@/lib/interfaces/pricing'
 
-// ─── [UNVALIDATED] Flag ──────────────────────────────────────────
-// All dollar amounts in this file are working assumptions from the
-// product codebase. Business owner must confirm before the pricing
-// page goes live. See Q-1 (per-trip prices) and Q-2 (free trial).
-// ──────────────────────────────────────────────────────────────────
+// ─── Pricing Source ─────────────────────────────────────────────
+// Per-trip pricing confirmed via reference marketing site.
+// Business owner should verify before go-live.
+// ────────────────────────────────────────────────────────────────
 
 export const PRICING_TIERS: PricingTier[] = [
   {
     id: 'day-trip',
-    name: 'Day Trip',
-    tagline: 'Local and day travel with structured safety management.',
-    priceUsd: 450_00, // [UNVALIDATED] $450/trip
+    name: 'Domestic Day Trip',
+    tagline: 'Local field trips, day trips, single overnight stays, and in-state travel.',
+    priceUsd: 450_00,
     unit: '/trip',
     highlighted: false,
-    ctaLabel: 'Schedule a Briefing',
+    ctaLabel: 'Request a Sample Trip Package',
     ctaHref: '/contact',
     features: [
-      { label: '10-step trip planning wizard', included: true },
-      { label: 'Independent safety analyst review', included: true },
-      { label: 'Document and consent collection', included: true },
-      { label: 'Background check tracking', included: true },
-      { label: 'Emergency preparedness configuration', included: true },
-      { label: 'Safety checklist delivery', included: true },
+      { label: 'Professional analyst review across 18 dimensions', included: true },
+      { label: 'Structured emergency preparedness plan', included: true },
+      { label: 'Real-time intelligence monitoring', included: true },
+      { label: 'Traveler App for your entire group', included: true },
+      { label: 'Board-ready trip packets (4 role-based variants)', included: true },
       { label: 'Full audit trail', included: true },
-      { label: 'Lodging review with fire safety', included: false },
-      { label: 'Extended intelligence monitoring', included: false },
-      { label: 'International destination intelligence', included: false },
+      { label: 'Typical turnaround: 3-5 business days', included: true },
     ],
   },
   {
     id: 'domestic-overnight',
-    name: 'Domestic Overnight',
-    tagline: 'Multi-day domestic travel with extended monitoring.',
-    priceUsd: 750_00, // [UNVALIDATED] $750/trip
+    name: 'Domestic Multi-Day Trip',
+    tagline: 'Multi-day trips, out-of-state travel, multiple lodging sites, and regional tours.',
+    priceUsd: 750_00,
     unit: '/trip',
     highlighted: true,
     badge: 'Most Popular',
-    ctaLabel: 'Schedule a Briefing',
+    ctaLabel: 'Request a Sample Trip Package',
     ctaHref: '/contact',
     features: [
-      { label: '10-step trip planning wizard', included: true },
-      { label: 'Independent safety analyst review', included: true },
-      { label: 'Document and consent collection', included: true },
-      { label: 'Background check tracking', included: true },
-      { label: 'Emergency preparedness configuration', included: true },
-      { label: 'Safety checklist delivery', included: true },
-      { label: 'Full audit trail', included: true },
-      { label: 'Lodging review with fire safety', included: true },
-      { label: 'Extended intelligence monitoring', included: true },
-      { label: 'Day-by-day itinerary management', included: true },
-      { label: 'Transportation documentation', included: true },
-      { label: 'Lodging geofence with safe zone', included: true },
-      { label: 'International destination intelligence', included: false },
+      { label: 'Everything in Day Trip, plus:', included: true },
+      { label: 'Multi-site itinerary review', included: true },
+      { label: 'Route safety analysis', included: true },
+      { label: 'Multiple lodging verification with fire safety', included: true },
+      { label: 'Extended emergency resource mapping', included: true },
+      { label: 'Typical turnaround: 5-7 business days', included: true },
     ],
   },
   {
     id: 'international',
-    name: 'International',
-    tagline: 'International travel with full-spectrum safety intelligence.',
-    priceUsd: 1250_00, // [UNVALIDATED] $1,250/trip
+    name: 'International Trip',
+    tagline: 'International travel, study abroad, mission trips, and complex multi-destination itineraries.',
+    priceUsd: 1250_00,
     unit: '/trip',
     highlighted: false,
-    ctaLabel: 'Schedule a Briefing',
+    ctaLabel: 'Request a Sample Trip Package',
     ctaHref: '/contact',
     features: [
-      { label: '10-step trip planning wizard', included: true },
-      { label: 'Independent safety analyst review', included: true },
-      { label: 'Document and consent collection', included: true },
-      { label: 'Background check tracking', included: true },
-      { label: 'Emergency preparedness configuration', included: true },
-      { label: 'Safety checklist delivery', included: true },
-      { label: 'Full audit trail', included: true },
-      { label: 'Lodging review with fire safety', included: true },
-      { label: 'Extended intelligence monitoring', included: true },
-      { label: 'Day-by-day itinerary management', included: true },
-      { label: 'Transportation documentation', included: true },
-      { label: 'Lodging geofence with safe zone', included: true },
-      { label: 'International destination intelligence', included: true },
-      { label: 'Visa and passport tracking', included: true },
-      { label: 'Three-tier evacuation protocols', included: true },
-      { label: 'Medical facility directory', included: true },
-      { label: 'Senior analyst assignment', included: true },
-    ],
-  },
-  {
-    id: 'enterprise',
-    name: 'Enterprise',
-    tagline: 'High-volume organizations and custom requirements.',
-    priceUsd: null,
-    unit: '',
-    highlighted: false,
-    ctaLabel: 'Contact Sales',
-    ctaHref: '/contact',
-    features: [
-      { label: 'Volume pricing', included: true },
-      { label: 'Dedicated analyst teams', included: true },
-      { label: 'Custom integrations', included: true },
-      { label: 'Priority support', included: true },
-      { label: 'Custom reporting', included: true },
-      { label: 'SSO and provisioning', included: true },
+      { label: 'Everything in Multi-Day, plus:', included: true },
+      { label: 'International safety protocols', included: true },
+      { label: 'Embassy and consulate mapping', included: true },
+      { label: 'Medical evacuation planning', included: true },
+      { label: 'Country-specific intelligence assessment', included: true },
+      { label: 'Small groups (9 or fewer): $750', included: true },
+      { label: 'Typical turnaround: 7-10 business days', included: true },
     ],
   },
 ]
 
 export const PRICING_ADD_ONS: PricingAddOn[] = [
   {
-    name: 'Background Checks',
-    priceDisplay: '$35/check', // [UNVALIDATED]
+    name: 'Background Check (Domestic)',
+    priceDisplay: '$35/person',
     description:
-      '5 check types: criminal, sex offender, driving, employment, education. Results tracked in participant compliance matrix.',
+      'U.S. background checks for chaperones and volunteers. Five check types available: criminal, sex offender registry, driving record, employment verification, and education verification. Results tracked at the organization level across trips.',
     integrationNote: 'Checkr, Sterling, or GoodHire integration',
   },
   {
-    name: 'Travel Insurance',
-    priceDisplay: '$25/participant', // [UNVALIDATED]
+    name: 'Background Check (International)',
+    priceDisplay: '$65/person',
     description:
-      'Per-participant travel insurance integrated directly into the trip workflow. Added during Step 9 of the trip wizard.',
+      'International background checks for adults with international travel history. A chaperone cleared this semester does not need to be re-screened next semester if their check is current.',
   },
 ]
 
 export const PRICING_FAQ_ITEMS: PricingFAQItem[] = [
   {
-    question: 'Is there an annual fee?',
+    question: 'How do I know which tier is right for my trip?',
     answer:
-      'No. You pay per trip. No minimum commitment. No seat licenses. No annual contracts.',
-  },
-  {
-    question: 'What if we only run 2-3 trips a year?',
-    answer:
-      'Safetrekr is built for organizations of every size. Per-trip pricing means you pay only when you travel. Organizations with infrequent travel often have the least established safety processes -- which means they have the most to gain.',
-  },
-  {
-    question: 'Can we purchase trip credits in advance?',
-    answer:
-      'Yes. Credit packages are available for organizations that want volume pricing. Contact sales for details.',
-  },
-  {
-    question: 'What payment methods do you accept?',
-    answer:
-      'Credit card, check, and wire transfer. Stripe-powered payment processing with receipt generation.',
-  },
-  {
-    question: 'What exactly is included in each tier?',
-    answer:
-      'Every tier includes the full Safetrekr platform: 10-step trip wizard, independent analyst review, document collection, background check tracking, safety checklists, emergency preparedness, traveler delivery via mobile app, and complete audit trail. Higher tiers add capabilities matched to trip complexity -- lodging review, extended intelligence monitoring, and international documentation tracking.',
-  },
-  {
-    question: 'Is there a free trial?',
-    answer:
-      'Contact our team for current trial availability and pilot program options.',
-    unresolved: true, // Q-2 unresolved -- update when business owner confirms
-  },
-  {
-    question: 'What happens if I need to cancel a trip?',
-    answer:
-      'Contact our team for details on our cancellation and rescheduling policy.',
-    unresolved: true, // Cancellation policy TBD
+      'Our tier system is based on trip complexity, not distance or duration alone. Choose Tier 1 for local day trips or single-night stays within your state. Choose Tier 2 for multi-day domestic trips with multiple destinations. Choose Tier 3 for any international travel. Still unsure? Our team can help you select the right tier during the quote process.',
   },
   {
     question: 'Do you offer volume discounts?',
     answer:
-      'Yes. Organizations running more than 10 trips per year qualify for volume pricing through our Enterprise plan. Contact sales for a custom quote.',
+      'Yes! Organizations managing 5 or more trips per year qualify for volume pricing. Additionally, recurring annual trips (the same trip run each year) receive a 25% discount starting in year two. Contact us for a custom volume quote based on your trip mix.',
+  },
+  {
+    question: 'What\'s included in the base trip price?',
+    answer:
+      'Every trip includes: professional analyst review across 18 dimensions, structured emergency preparedness plan, real-time intelligence monitoring from 11+ authoritative government sources, Traveler App access for your entire group with live checklists and alerts, board-ready trip packets in 4 role-based variants, document and consent collection, certification tracking, and a full audit trail. Higher tiers add multi-site review, international protocols, embassy mapping, and evacuation planning.',
+  },
+  {
+    question: 'How do refunds work?',
+    answer:
+      'If you cancel a trip before our analyst begins work, you receive a full refund. If work has started but hasn\'t been completed, you receive a 50% refund. Once your trip packet is delivered, the fee is non-refundable (though you can use the packet for future trips to the same destinations). We understand plans change and work with you to reschedule or repurpose our work whenever possible.',
+  },
+  {
+    question: 'Can I pay via invoice or purchase order?',
+    answer:
+      'Absolutely! We accept credit card, ACH transfer, invoice (net 30), and purchase orders from schools, universities, churches, and established organizations. For first-time customers, we require payment upfront via credit card. After your first successful trip, we can set up invoicing or PO terms.',
+  },
+  {
+    question: 'Are there any hidden fees or per-user charges?',
+    answer:
+      'No. What you see is what you pay. Our pricing is per-trip, not per-user. You can have as many travelers, chaperones, and stakeholders as needed at no additional charge. The only additional costs are optional add-ons like background checks that you explicitly select. There are no setup fees, maintenance fees, or surprise charges.',
+  },
+  {
+    question: 'How does pricing work for recurring annual trips?',
+    answer:
+      'If you run the same trip annually (e.g., senior class trip to Washington DC), we offer a 25% discount on the second year and all subsequent years. Your analyst builds on the previous year\'s review, updates the trip with current conditions and intelligence, and re-validates all locations at the discounted rate.',
+  },
+  {
+    question: 'What if I need to change my trip after paying?',
+    answer:
+      'Minor changes (date adjustments, small itinerary tweaks) are accommodated as part of the review process. Major changes (destination changes, adding multiple days, changing from domestic to international) may require upgrading to a higher tier. We work with you to accommodate changing plans without unnecessary charges.',
   },
 ]
 
@@ -191,15 +150,21 @@ export const VALUE_REFRAME = {
   ],
   examples: [
     {
+      scenario: '30-person day trip',
+      tierPrice: 450,
+      perTraveler: 15,
+      tierName: 'T1',
+    },
+    {
       scenario: '30-person domestic overnight',
-      tierPrice: 750, // [UNVALIDATED]
-      perTraveler: 25, // $750 / 30
+      tierPrice: 750,
+      perTraveler: 25,
       tierName: 'T2',
     },
     {
-      scenario: '20-person international trip',
-      tierPrice: 1250, // [UNVALIDATED]
-      perTraveler: 62.5, // $1,250 / 20
+      scenario: '30-person international trip',
+      tierPrice: 1250,
+      perTraveler: 42,
       tierName: 'T3',
     },
   ],

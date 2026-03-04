@@ -24,17 +24,17 @@ import { PartnerGrid } from '@/components/marketing/about/partner-grid'
 import { ContactChannels } from '@/components/marketing/about/contact-channels'
 
 export const metadata = generatePageMetadata({
-  title: 'About',
+  title: 'About -- The Team Behind Professional Trip Safety Management',
   description:
-    'Meet the people behind Safetrekr. Ex-advance (United States Secret Service) + product and ops leads building trip safety that works in the real world.',
+    'Meet the people behind Safetrekr. Former U.S. Secret Service agents and school security professionals building trip safety management that works in the real world.',
   path: '/about',
   ogDescription:
-    'Ex-advance (Secret Service) + product and ops leads. We build trip safety that works in the real world.',
+    'Former U.S. Secret Service agents and school security professionals building trip safety that works in the real world.',
   keywords: [
     'safetrekr team',
-    'trip safety company',
-    'travel risk management company',
-    'school trip safety',
+    'trip safety mission',
+    'safety analysts',
+    'travel risk management',
     'secret service safety experts',
   ],
 })

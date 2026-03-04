@@ -74,7 +74,7 @@ function isGtagReady(): boolean {
  *
  * trackEvent('convert_cta_click', {
  *   cta_id: 'landing-hero-cta',
- *   cta_text: 'Schedule a Briefing',
+ *   cta_text: 'Request a Sample Trip Package',
  *   page_path: '/landing',
  *   destination_url: '/contact',
  * })

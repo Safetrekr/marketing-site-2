@@ -572,7 +572,7 @@ export function ContactForm({ sourcePage = '/contact' }: ContactFormProps) {
           isSubmitting && 'opacity-70 cursor-not-allowed'
         )}
       >
-        {isSubmitting ? 'Sending...' : 'Schedule a Briefing'}
+        {isSubmitting ? 'Sending...' : 'Request a Sample Trip Package'}
       </button>
     </form>
   )

@@ -8,28 +8,27 @@ import { GlassCard } from '@/components/marketing/glass-card'
 const VERTICALS = [
   {
     name: 'K-12 Schools',
+    slug: 'k12',
     description:
-      'Field trip safety, parental consent, background screening, and regulatory compliance -- documented for every trip.',
+      'Field trips, athletic travel, overnight excursions. Built for FERPA compliance and the duty-of-care requirements that schools face daily -- with background checks, document collection, and board-ready documentation that satisfies your board and your insurer.',
   },
   {
     name: 'Higher Education',
+    slug: 'higher-ed',
     description:
-      'Study abroad risk management, international safety review, and institutional audit documentation.',
+      'Study abroad, research travel, collegiate athletics. Designed for environments where Clery Act compliance, Title IX obligations, and institutional risk management are priorities.',
   },
   {
-    name: 'Churches',
+    name: 'Churches & Mission',
+    slug: 'churches',
     description:
-      'Mission trip safety planning, volunteer screening, international risk assessment, and emergency preparedness.',
+      'Mission trips, youth retreats, service projects. Insurance-compliant documentation, volunteer background screening, and professional safety planning for remote destinations and extended durations.',
   },
   {
-    name: 'Youth Sports',
+    name: 'Corporate & Sports',
+    slug: 'business',
     description:
-      'Tournament travel coordination, coach screening, medical consent, and real-time alerts for traveling teams.',
-  },
-  {
-    name: 'Business',
-    description:
-      'Corporate duty of care documented, not assumed. Travel risk management with per-trip pricing.',
+      'Conferences, tournaments, team travel, executive offsites. Duty-of-care compliance, real-time risk intelligence, and professional documentation for organizations that move groups of people.',
   },
 ] as const
 
@@ -40,15 +39,15 @@ export function VerticalsSection() {
       aria-labelledby="verticals-heading"
       className="bg-[var(--color-void)]"
     >
-      {/* Section monospace label */}
+      {/* Section eyebrow */}
       <p
         className={cn(
           'mb-4 text-center font-mono text-xs font-medium uppercase',
           'tracking-[0.12em]',
-          'text-[var(--color-text-tertiary)]',
+          'text-[var(--color-ember)]',
         )}
       >
-        Verticals
+        Solutions
       </p>
 
       {/* Section heading */}
@@ -58,15 +57,26 @@ export function VerticalsSection() {
           'text-center font-sans text-3xl font-bold',
           'md:text-4xl',
           'text-[var(--color-text-primary)]',
-          'mb-16 lg:mb-20',
+          'mb-4',
         )}
       >
-        Built for organizations that move people.
+        Built for your organization
       </h2>
 
-      {/* Cards grid -- first 3 in a row, last 2 centered */}
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {VERTICALS.slice(0, 3).map((vertical) => (
+      {/* Subtitle */}
+      <p
+        className={cn(
+          'mx-auto mb-16 max-w-[640px] text-center text-base leading-relaxed lg:mb-20',
+          'text-[var(--color-text-secondary)]',
+        )}
+      >
+        Every organization type has different compliance requirements, trip patterns, and
+        stakeholders. Safetrekr is built for all of them.
+      </p>
+
+      {/* Cards grid -- 2x2 */}
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+        {VERTICALS.map((vertical) => (
           <GlassCard key={vertical.name}>
             <h3
               className={cn(
@@ -87,7 +97,7 @@ export function VerticalsSection() {
             </p>
 
             <Link
-              href="/solutions"
+              href={`/solutions/${vertical.slug}`}
               className={cn(
                 'mt-4 inline-flex items-center gap-1.5',
                 'text-sm font-medium',
@@ -98,55 +108,11 @@ export function VerticalsSection() {
                 'focus-visible:outline-[var(--color-ember-bright)]',
               )}
             >
-              Learn more
+              Explore Solutions
               <span aria-hidden="true">&rarr;</span>
             </Link>
           </GlassCard>
         ))}
-
-        {/* Cards 4-5: centered in a spanning row on lg */}
-        <div className="flex flex-col gap-6 sm:col-span-2 sm:flex-row sm:justify-center lg:col-span-3">
-          {VERTICALS.slice(3).map((vertical) => (
-            <GlassCard
-              key={vertical.name}
-              className="sm:max-w-[calc(50%-12px)] lg:max-w-[calc(33.333%-16px)]"
-            >
-              <h3
-                className={cn(
-                  'font-sans text-lg font-semibold',
-                  'text-[var(--color-text-primary)]',
-                )}
-              >
-                {vertical.name}
-              </h3>
-
-              <p
-                className={cn(
-                  'mt-4 text-sm leading-relaxed',
-                  'text-[var(--color-text-secondary)]',
-                )}
-              >
-                {vertical.description}
-              </p>
-
-              <Link
-                href="/solutions"
-                className={cn(
-                  'mt-4 inline-flex items-center gap-1.5',
-                  'text-sm font-medium',
-                  'text-[var(--color-ember)]',
-                  'hover:text-[var(--color-ember-bright)]',
-                  'transition-colors duration-[var(--duration-hover)]',
-                  'focus-visible:outline-2 focus-visible:outline-offset-2',
-                  'focus-visible:outline-[var(--color-ember-bright)]',
-                )}
-              >
-                Learn more
-                <span aria-hidden="true">&rarr;</span>
-              </Link>
-            </GlassCard>
-          ))}
-        </div>
       </div>
     </SectionContainer>
   )

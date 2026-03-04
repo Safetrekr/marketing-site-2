@@ -50,6 +50,7 @@ const SEED_VALUES: Record<DistrictId, { uptime: number; responseTimeMs: number; 
   'security':     { uptime: 43200, responseTimeMs: 25, activeWork: 2, memoryUsagePct: 41, cpuUsagePct: 12 },
   'pricing':      { uptime: 7200, responseTimeMs: 67, activeWork: 11, memoryUsagePct: 38, cpuUsagePct: 40 },
   'get-started':  { uptime: 36000, responseTimeMs: 44, activeWork: 5, memoryUsagePct: 52, cpuUsagePct: 28 },
+  'about-us':     { uptime: 21600, responseTimeMs: 35, activeWork: 3, memoryUsagePct: 44, cpuUsagePct: 15 },
 }
 
 /** Build the initial DistrictEnrichment for a single district. */
@@ -72,7 +73,7 @@ function seedDistrict(id: DistrictId): DistrictEnrichment {
   }
 }
 
-/** All 6 district IDs in ring order. */
+/** All 7 district IDs in ring order. */
 const ALL_DISTRICT_IDS: DistrictId[] = [
   'how-it-works',
   'who-its-for',
@@ -80,6 +81,7 @@ const ALL_DISTRICT_IDS: DistrictId[] = [
   'security',
   'pricing',
   'get-started',
+  'about-us',
 ]
 
 /** Build the initial districts record. */

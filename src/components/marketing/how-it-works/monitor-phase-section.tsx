@@ -31,7 +31,7 @@ export function MonitorPhaseSection() {
     >
       {/* Phase badge */}
       <p className="text-xs font-semibold uppercase tracking-widest text-[var(--color-ember)]">
-        Phase {phase.number} -- {phase.label}
+        Step {phase.number} -- {phase.label}
       </p>
 
       {/* Heading */}

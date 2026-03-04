@@ -1,5 +1,6 @@
 // src/app/(marketing)/contact/page.tsx
 
+import Link from 'next/link'
 import { generatePageMetadata } from '@/lib/seo/metadata'
 import { JsonLd } from '@/components/seo/json-ld'
 import { breadcrumbSchema } from '@/lib/seo/structured-data'
@@ -7,19 +8,39 @@ import { SectionContainer } from '@/components/marketing/section-container'
 import { GlassCard } from '@/components/marketing/glass-card'
 import { ContactForm } from '@/components/marketing/contact-form'
 import { cn } from '@/lib/utils'
-import { Clock, Shield, FileCheck } from 'lucide-react'
+import { Clock, Shield, FileCheck, FileText, CalendarCheck, Download } from 'lucide-react'
 
 export const metadata = generatePageMetadata({
-  title: 'Schedule a Briefing',
+  title: 'Contact -- Request a Sample Trip Package',
   description:
-    'Request a personalized demo of Safetrekr for your organization. See how independent safety analyst review works for your trips. Schedule a briefing today.',
+    'Request a sample trip package to see what professional analyst review, real-time intelligence monitoring, and board-ready documentation look like for your organization.',
   path: '/contact',
   keywords: [
     'trip safety demo',
     'safetrekr demo request',
+    'sample trip package',
     'schedule safety briefing',
   ],
 })
+
+const QUICK_OPTIONS = [
+  {
+    icon: FileText,
+    heading: 'Sample Trip Package',
+    body: 'See what a professionally reviewed trip package looks like before committing to anything.',
+  },
+  {
+    icon: CalendarCheck,
+    heading: 'Schedule a Walkthrough',
+    body: 'A focused 20-minute walkthrough tailored to your organization type and trip profile.',
+  },
+  {
+    icon: Download,
+    heading: 'Free Resources',
+    body: 'Download free checklists, templates, and guides you can use today.',
+    href: '/resources',
+  },
+] as const
 
 const WHAT_TO_EXPECT = [
   {
@@ -66,7 +87,7 @@ export default function ContactPage() {
             'leading-[1.1]',
           )}
         >
-          Schedule a Briefing
+          Request a Sample Trip Package
         </h1>
         <p
           className={cn(
@@ -75,9 +96,58 @@ export default function ContactPage() {
             'mx-auto max-w-[560px]',
           )}
         >
-          Tell us about your organization and we&apos;ll show you how Safetrekr
-          can document every safeguard for your next trip.
+          See what professional analyst review, real-time intelligence
+          monitoring, and board-ready documentation look like for your
+          organization.
         </p>
+      </SectionContainer>
+
+      {/* Quick Options */}
+      <SectionContainer id="quick-options" className="!pt-0 !pb-8">
+        <div className="mx-auto grid max-w-5xl grid-cols-1 gap-4 sm:grid-cols-3">
+          {QUICK_OPTIONS.map((opt) => {
+            const inner = (
+              <div
+                key={opt.heading}
+                className={cn(
+                  'flex items-start gap-4 rounded-xl p-5',
+                  'border border-white/[0.06] bg-white/[0.03]',
+                  'transition-colors duration-200',
+                  'hover:bg-white/[0.06]',
+                )}
+              >
+                <div
+                  className={cn(
+                    'flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg',
+                    'bg-[rgba(var(--ember-rgb),0.08)]',
+                  )}
+                >
+                  <opt.icon
+                    size={20}
+                    className="text-[var(--color-ember-bright)]"
+                    aria-hidden="true"
+                    strokeWidth={1.5}
+                  />
+                </div>
+                <div>
+                  <h3 className="text-sm font-semibold text-[var(--color-text-primary)]">
+                    {opt.heading}
+                  </h3>
+                  <p className="mt-1 text-xs leading-relaxed text-[var(--color-text-secondary)]">
+                    {opt.body}
+                  </p>
+                </div>
+              </div>
+            )
+            return 'href' in opt && opt.href ? (
+              <Link key={opt.heading} href={opt.href}>
+                {inner}
+              </Link>
+            ) : (
+              <div key={opt.heading}>{inner}</div>
+            )
+          })}
+        </div>
       </SectionContainer>
 
       <SectionContainer id="contact-form" className="!pt-0">

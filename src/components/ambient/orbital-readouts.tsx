@@ -1,19 +1,12 @@
 /**
- * OrbitalReadouts -- monospace telemetry text blocks scattered around
- * the capsule ring at ~380-480px radius.
+ * OrbitalReadouts -- compact telemetry panel fixed in the bottom-right,
+ * positioned to the left of the minimap.
  *
- * Each readout displays district telemetry positioned at a specific
- * angle using trigonometry, oriented horizontally (not rotated along
- * the arc). Values periodically flicker via a CSS keyframe animation
- * defined in `enrichment.css`, with staggered animation-delay per
- * readout so they don't all blink in unison.
+ * Shows 7 district readouts (shortCode, uptime, response time) in a
+ * single-column list with staggered flicker animation.
  *
- * Reads live district data from the enrichment store. Shows 6 readouts
- * (one per district) with shortCode, uptime, and response time.
- *
- * At default zoom 0.5, the 18px world-space font renders at ~9px on
- * screen -- subtle enough to feel like ambient instrumentation without
- * competing with the capsule ring or hub glyph.
+ * Reads live district data from the enrichment store. Highlights the
+ * focused district row when a capsule is hovered.
  *
  * Purely decorative: pointer-events disabled, aria-hidden assumed
  * from the parent wrapper.
@@ -30,30 +23,10 @@ import type { DistrictId } from '@/lib/interfaces/district'
 import type { DistrictEnrichment } from '@/lib/enrichment/enrichment-types'
 
 // ---------------------------------------------------------------------------
-// Layout constants (world-space pixels)
+// Flicker delays (staggered so rows don't blink in unison)
 // ---------------------------------------------------------------------------
 
-/**
- * Angular positions and radii for the 6 readouts around the ring.
- * Distributed roughly evenly, with varied radii for organic feel.
- */
-interface ReadoutPosition {
-  angle: number
-  radius: number
-  delay: number
-}
-
-const POSITIONS: ReadoutPosition[] = [
-  { angle: 5, radius: 520, delay: 0 },
-  { angle: 75, radius: 540, delay: 2.4 },
-  { angle: 135, radius: 510, delay: 5.1 },
-  { angle: 195, radius: 550, delay: 1.7 },
-  { angle: 230, radius: 570, delay: 7.3 },
-  { angle: 315, radius: 590, delay: 3.8 },
-]
-
-/** Convert degrees to radians. */
-const toRad = (deg: number): number => (deg * Math.PI) / 180
+const FLICKER_DELAYS = [0, 2.4, 5.1, 1.7, 7.3, 3.8, 6.0]
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -86,19 +59,13 @@ const DISTRICT_ORDER: DistrictId[] = [
   'security',
   'pricing',
   'get-started',
+  'about-us',
 ]
 
 // ---------------------------------------------------------------------------
 // Focus-highlight opacity helpers
 // ---------------------------------------------------------------------------
 
-/**
- * Compute label and value opacities based on the current focus state.
- *
- * - No focus (null)   -> default ghost opacities (label 0.15, value 0.20)
- * - Focused & match   -> brightened (label 0.50, value 0.70)
- * - Focused & no match -> dimmed further (label 0.06, value 0.08)
- */
 function focusOpacity(
   readoutId: string,
   focusedId: DistrictId | null,
@@ -116,60 +83,54 @@ export function OrbitalReadouts() {
   const districts = useEnrichmentStore((s) => s.districts)
   const focusedDistrictId = useEnrichmentStore((s) => s.focusedDistrictId)
 
-  // Build readout data from store
   const readouts = useMemo(() => {
     return DISTRICT_ORDER.map((id, idx) => {
       const d: DistrictEnrichment = districts[id]
-      const pos = POSITIONS[idx]
       return {
         id,
         shortCode: d.shortCode,
         uptime: d.uptime,
         responseTimeMs: d.responseTimeMs,
-        angle: pos.angle,
-        radius: pos.radius,
-        delay: pos.delay,
+        delay: FLICKER_DELAYS[idx],
       }
     })
   }, [districts])
 
   return (
-    <>
+    <div
+      className="pointer-events-none fixed z-40 flex flex-col gap-[3px]"
+      style={{
+        left: 16,
+        bottom: 48,
+      }}
+    >
       {readouts.map((readout) => {
-        const x = Math.cos(toRad(readout.angle)) * readout.radius
-        const y = Math.sin(toRad(readout.angle)) * readout.radius
         const opacity = focusOpacity(readout.id, focusedDistrictId)
 
         return (
           <div
             key={readout.id}
-            className="absolute whitespace-nowrap"
-            style={{
-              left: x,
-              top: y,
-              transform: 'translate(-50%, -50%)',
-              pointerEvents: 'none',
-            }}
+            className="flex items-baseline gap-2 whitespace-nowrap"
           >
-            {/* Line 1: shortCode */}
-            <div
+            <span
+              className="enrichment-flicker"
               style={{
                 fontFamily: 'var(--font-mono, monospace)',
-                fontSize: 18,
+                fontSize: 9,
                 letterSpacing: '0.08em',
                 color: `rgba(var(--ambient-ink-rgb), ${opacity.label})`,
                 textTransform: 'uppercase',
                 transition: 'color 200ms ease',
+                minWidth: 22,
               }}
             >
               {readout.shortCode}
-            </div>
-            {/* Line 2: UPT compact uptime */}
-            <div
+            </span>
+            <span
               className="enrichment-flicker"
               style={{
                 fontFamily: 'var(--font-mono, monospace)',
-                fontSize: 14,
+                fontSize: 8,
                 letterSpacing: '0.06em',
                 color: `rgba(var(--ambient-ink-rgb), ${opacity.value})`,
                 textTransform: 'uppercase',
@@ -177,14 +138,13 @@ export function OrbitalReadouts() {
                 transition: 'color 200ms ease',
               }}
             >
-              UPT {formatCompactUptime(readout.uptime)}
-            </div>
-            {/* Line 3: RSP response time */}
-            <div
+              {formatCompactUptime(readout.uptime)}
+            </span>
+            <span
               className="enrichment-flicker"
               style={{
                 fontFamily: 'var(--font-mono, monospace)',
-                fontSize: 14,
+                fontSize: 8,
                 letterSpacing: '0.06em',
                 color: `rgba(var(--ambient-ink-rgb), ${opacity.value})`,
                 textTransform: 'uppercase',
@@ -192,11 +152,11 @@ export function OrbitalReadouts() {
                 transition: 'color 200ms ease',
               }}
             >
-              RSP {readout.responseTimeMs}ms
-            </div>
+              {readout.responseTimeMs}ms
+            </span>
           </div>
         )
       })}
-    </>
+    </div>
   )
 }

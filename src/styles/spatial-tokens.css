@@ -96,7 +96,7 @@
      ============================================================ */
   --space-capsule-padding: 20px;
   --space-capsule-gap: 48px;
-  --space-ring-radius: 300px;
+  --space-ring-radius: 400px;
   --space-district-padding: 64px;
   --space-station-margin: 32px;
   --space-station-gap: 24px;
@@ -106,8 +106,8 @@
   /* ============================================================
      DIMENSIONS: CAPSULE
      ============================================================ */
-  --capsule-width: 192px;
-  --capsule-height: 228px;
+  --capsule-width: 208px;
+  --capsule-height: 260px;
   --capsule-radius: 28px;
   --capsule-hover-scale: 1.12;
   --capsule-select-scale: 1.05;

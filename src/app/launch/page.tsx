@@ -2,7 +2,7 @@
  * Launch page -- the main spatial mission-control entry point.
  *
  * Renders the ZUI engine (SpatialViewport + SpatialCanvas) with the
- * Launch Atrium: 6 district capsules in a ring around a breathing hub
+ * Launch Atrium: 7 district capsules in a ring around a breathing hub
  * glyph, over an ambient dot grid with periodic radial pulse.
  *
  * WS-2.1: Uses MorphOrchestrator to coordinate the capsule ring and
@@ -58,6 +58,8 @@ import {
   BottomStatusStrip,
 } from '@/components/ambient'
 import { DistrictViewOverlay } from '@/components/district-view'
+import { ScrollHint } from '@/components/spatial/scroll-hint'
+import { IdleNudge } from '@/components/spatial/idle-nudge'
 
 import { usePanPause } from '@/hooks/use-pan-pause'
 import {
@@ -257,9 +259,6 @@ export default function LaunchPage() {
             data-morph-active={isMorphActive ? 'true' : 'false'}
           >
             <ZoomGate show={['Z1', 'Z2']}>
-              <OrbitalReadouts />
-            </ZoomGate>
-            <ZoomGate show={['Z1', 'Z2']}>
               <RadialGaugeCluster />
             </ZoomGate>
           </div>
@@ -298,6 +297,11 @@ export default function LaunchPage() {
             <EdgeFragments />
           </div>
 
+          {/* Idle nudge: world-space text below ring, appears after 5s idle */}
+          <ZoomGate show={['Z1', 'Z2']}>
+            <IdleNudge />
+          </ZoomGate>
+
         </SpatialCanvas>
       </SpatialViewport>
 
@@ -333,6 +337,33 @@ export default function LaunchPage() {
         <ColorSchemeSwitcher />
         <ZoomIndicator />
       </div>
+
+      {/* Tagline -- fixed upper-right, right-justified, below theme picker row */}
+      <div
+        className="pointer-events-none fixed right-4 z-40 flex flex-col items-end gap-1"
+        style={{ top: 48 }}
+      >
+        <span
+          className="font-mono text-[11px] tracking-[0.12em] uppercase text-right leading-[1.5]"
+          style={{ color: 'rgba(var(--ambient-ink-rgb), 0.4)' }}
+        >
+          EVERY TRAVELER
+          <br />
+          ACCOUNTED FOR
+        </span>
+        <span
+          className="font-mono text-[7px] tracking-[0.1em] uppercase text-right leading-none"
+          style={{ color: 'rgba(var(--ambient-ink-rgb), 0.18)' }}
+        >
+          PLAN / REVIEW / PROTECT / DOCUMENT
+        </span>
+      </div>
+
+      {/* Onboarding: scroll-to-zoom hint (fixed, viewport-bottom) */}
+      <ScrollHint />
+
+      {/* Orbital readouts -- fixed bottom-right, next to minimap */}
+      <OrbitalReadouts />
 
       {/* Fixed-position viewport overlays: scan line, timecode, calibration */}
       <HorizonScanLine />

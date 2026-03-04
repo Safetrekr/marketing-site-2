@@ -4,7 +4,7 @@ import type { VerticalDetailData } from '@/lib/interfaces/solutions'
 
 export const BUSINESS_VERTICAL: VerticalDetailData = {
   id: 'business',
-  name: 'Business',
+  name: 'Corporate Travel',
   iconName: 'Briefcase',
 
   // Hero
@@ -14,68 +14,57 @@ export const BUSINESS_VERTICAL: VerticalDetailData = {
 
   // The Challenge
   challengeIntro:
-    'Corporate travel safety is a recognized obligation that is rarely a documented practice. Duty of care policies exist in employee handbooks. What does not exist is a system that converts that policy into verifiable, auditable action for every trip.',
+    'The duty of care gap in group travel: organizations that send employees, athletes, or teams on trips carry a legal obligation to protect them. Most can articulate the obligation but cannot produce documented evidence of the precautions they took.',
   challenges: [
     {
-      title: 'Duty of Care Is Policy, Not Practice',
+      title: 'Duty of Care Without a System Behind It',
       description:
-        'Most companies have a duty of care statement in their travel policy. Few have a system that documents what specific safety measures were taken for each trip. The gap between policy and practice is where legal liability concentrates.',
+        'Organizations that send employees, athletes, or teams on trips carry a legal obligation to protect them. Most can articulate the obligation but cannot produce documented evidence of the precautions they took for any given trip.',
     },
     {
-      title: 'Variable Risk, Uniform Response',
+      title: 'No Real-Time Visibility into Travel Conditions',
       description:
-        'An employee traveling to London and an employee traveling to Lagos face different risk profiles. Most corporate travel programs manage both the same way -- with the same approval process, the same (minimal) safety briefing, and the same lack of documentation.',
+        'When severe weather, a security incident, or a health advisory affects a destination where your people are traveling, most organizations find out the same way their travelers do -- from a news alert. Getting safety guidance to every affected person means phone calls and text chains.',
     },
     {
-      title: 'No Centralized Proof',
+      title: 'Unstructured Emergency Response',
       description:
-        'When legal counsel, insurance providers, or auditors ask what safety measures were in place for a specific trip, the answer requires assembling information from email threads, approval chains, and travel booking systems. There is no single record that proves due diligence.',
+        'Most organizations have no pre-established evacuation plans, rally points, or emergency resource mapping for their travel destinations. When a crisis occurs, the first hours are spent gathering information instead of acting on it.',
     },
     {
-      title: 'Annual Contracts and Per-Seat Licensing',
+      title: 'Safety Planning Falls on People with Other Jobs',
       description:
-        'Traditional travel risk management platforms charge annual subscriptions and per-seat licensing. Companies with variable travel volumes pay for capacity they do not use. Small and mid-size companies are priced out entirely.',
-    },
-    {
-      title: 'Compliance Separation of Duties',
-      description:
-        'Many corporate compliance frameworks require separation of duties -- the person who approves a trip should not be the same person who assesses its safety. Without a dedicated safety review function, this separation exists in policy but not in practice.',
+        'The person coordinating team travel, the tournament director, the office manager planning the retreat -- they are not safety professionals. Their emergency planning is a contact list on a spreadsheet and a vague expectation that someone will handle it.',
     },
   ],
 
   // The Safetrekr Response
   responseIntro:
-    'Safetrekr gives corporate travel programs the same level of documented safety management that regulated industries require -- without the annual contracts, seat licenses, or implementation projects that make traditional solutions impractical.',
+    'Safetrekr gives corporate and sports organizations the same level of documented safety management that regulated industries require -- with per-trip pricing that aligns cost to actual travel volume.',
   responses: [
     {
-      title: 'Per-Trip Pricing',
+      title: 'Documented Duty of Care for Every Trip',
       description:
-        'No annual contracts. No seat licenses. Pay only when employees travel. Trip pricing is tiered by complexity: T1 (day trip), T2 (domestic overnight), T3 (international). Cost scales with actual travel volume.',
-      featureRef: 'Pricing model',
-    },
-    {
-      title: 'Tiered Risk Matching',
-      description:
-        'Trip complexity determines the safety requirements and analyst assignment level. A domestic day trip receives a different level of review than an international trip to a high-risk destination. The system matches safety rigor to actual risk.',
-      featureRef: 'Trip tier system',
-    },
-    {
-      title: 'Independent Analyst Review',
-      description:
-        'Every trip is reviewed by an independent safety analyst. This is not a checkbox. The analyst reviews 18 dimensions of the trip plan and documents a timestamped approval or rejection with reason codes. Separation of duties is enforced by the platform.',
+        'A professional safety analyst independently reviews your trip across 18 dimensions and produces a complete documented record -- emergency preparedness plans, safety checklists, real-time monitoring, and board-ready trip packets with a full audit trail. Defensible evidence of the precautions your organization took.',
       featureRef: 'Analyst review workflow',
     },
     {
-      title: 'Downloadable Audit Trail',
+      title: 'Real-Time Monitoring with Analyst-Reviewed Alerts',
       description:
-        'Every action is logged. The complete trip record -- planning, review, approval, alert delivery, acknowledgments -- is downloadable as documentation for legal, insurance, and procurement review.',
-      featureRef: 'Audit trail system',
+        'Continuous monitoring from 11+ authoritative government sources. When conditions change at your destination, alerts are reviewed by a human analyst and routed to your travelers via email, SMS, and in-app delivery -- with course-of-action guidance and acknowledgment tracking.',
+      featureRef: 'Intelligence engine',
     },
     {
-      title: 'Real-Time Destination Intelligence',
+      title: 'Traveler App for Your Entire Team',
       description:
-        'TarvaRI intelligence engine monitors destinations for security, weather, health, transport, and political risks. Alerts are risk-scored, analyst-triaged, and delivered to travelers and travel managers.',
-      featureRef: 'Intelligence engine',
+        'Every traveler gets the Safetrekr Traveler App with live safety checklists, real-time alerts, emergency contacts, medical facilities, and evacuation plans accessible on-device. For sports organizations, parents of minor athletes also access the app. Every acknowledgment is tracked.',
+      featureRef: 'Traveler App',
+    },
+    {
+      title: 'Background Checks and Screening',
+      description:
+        'Five check types through three integrated providers for coaches, chaperones, volunteers, and staff. A compliance matrix shows every participant\'s clearance status. Organization-level tracking maintains records across trips. $35/person domestic, $65/person international.',
+      featureRef: 'Background check system',
     },
   ],
 
@@ -107,7 +96,7 @@ export const BUSINESS_VERTICAL: VerticalDetailData = {
       description:
         'International standard providing guidance on travel risk management for organizations. Covers risk assessment, duty of care, traveler preparedness, monitoring, and incident response.',
       safetrekrAlignment:
-        "Safetrekr's lifecycle (Plan, Review, Protect, Monitor) is designed with ISO 31030's framework in mind. Independent analyst review addresses the risk assessment component. Real-time intelligence addresses monitoring. Emergency preparedness addresses incident response planning.",
+        "Safetrekr's lifecycle (Plan, Review, Connect, Monitor, Document) is designed with ISO 31030's framework in mind. Independent analyst review addresses the risk assessment component. Real-time intelligence addresses monitoring. Emergency preparedness addresses incident response planning.",
       verified: false,
     },
     {

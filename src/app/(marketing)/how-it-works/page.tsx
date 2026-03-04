@@ -8,20 +8,22 @@ import { ProblemStatement } from '@/components/marketing/how-it-works/problem-st
 import { PhaseLifecycleNav } from '@/components/marketing/how-it-works/phase-lifecycle-nav'
 import { PlanPhaseSection } from '@/components/marketing/how-it-works/plan-phase-section'
 import { ReviewPhaseSection } from '@/components/marketing/how-it-works/review-phase-section'
-import { ProtectPhaseSection } from '@/components/marketing/how-it-works/protect-phase-section'
+import { ConnectPhaseSection } from '@/components/marketing/how-it-works/connect-phase-section'
 import { MonitorPhaseSection } from '@/components/marketing/how-it-works/monitor-phase-section'
+import { DocumentPhaseSection } from '@/components/marketing/how-it-works/document-phase-section'
 import { DocumentationClosing } from '@/components/marketing/how-it-works/documentation-closing'
 import { BottomCtaSection } from '@/components/marketing/shared/bottom-cta-section'
 
 export const metadata = generatePageMetadata({
-  title: 'How It Works -- 4-Phase Trip Safety',
+  title: 'How It Works -- From Trip Idea to Defensible Record in 5 Steps',
   description:
-    'Plan, review, prepare, and travel with confidence. See how Safetrekr manages every phase of trip safety with independent analyst review. Learn more.',
+    'Safetrekr assigns a professional safety analyst to every trip. Plan, review, connect, monitor, and document -- see how every trip gets a defensible safety record. Per-trip pricing starting at $450.',
   path: '/how-it-works',
   keywords: [
     'how trip safety software works',
     'trip safety management process',
     'independent safety review',
+    'trip safety analyst',
   ],
 })
 
@@ -37,19 +39,23 @@ export default function HowItWorksPage() {
         data={howToSchema([
           {
             name: 'Plan Your Trip',
-            text: 'Define your itinerary, identify participants, and set safety parameters for your group trip.',
+            text: 'Complete our guided 10-step wizard in about 15 minutes with destinations, dates, travelers, flights, lodging, venues, itinerary, and transportation.',
           },
           {
-            name: 'Independent Safety Review',
-            text: 'A certified safety analyst reviews your trip plan, identifies risks, and provides actionable recommendations.',
+            name: 'Professional Analyst Review',
+            text: 'A trained safety analyst independently reviews your trip across 18 safety dimensions within 3-5 business days.',
           },
           {
-            name: 'Prepare and Coordinate',
-            text: 'Distribute safety briefings, assign chaperone roles, and complete pre-departure checklists.',
+            name: 'Travelers Get Connected',
+            text: 'Travelers, chaperones, and guardians access the Traveler App with live safety checklists, emergency information, and acknowledgment tracking.',
           },
           {
-            name: 'Travel with Confidence',
-            text: 'Real-time monitoring, geo-triggered alerts, and documented accountability throughout the trip.',
+            name: 'Travel With Confidence',
+            text: 'Safetrekr continuously monitors conditions at your destinations from 11+ authoritative sources with analyst-reviewed alerts.',
+          },
+          {
+            name: 'Document Everything',
+            text: 'Complete trip record with board-ready packets for every stakeholder -- every alert, checklist, and safety decision documented with timestamps.',
           },
         ])}
       />
@@ -58,8 +64,9 @@ export default function HowItWorksPage() {
       <PhaseLifecycleNav />
       <PlanPhaseSection />
       <ReviewPhaseSection />
-      <ProtectPhaseSection />
+      <ConnectPhaseSection />
       <MonitorPhaseSection />
+      <DocumentPhaseSection />
       <DocumentationClosing />
       <BottomCtaSection page="how-it-works" />
     </>

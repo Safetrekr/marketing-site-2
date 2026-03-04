@@ -22,7 +22,7 @@ export function PlatformCTA() {
         className="mkt-cta-breathe mt-8 inline-flex items-center justify-center rounded-full bg-[var(--color-ember)] px-8 py-4 text-lg font-semibold tracking-[0.02em] text-white transition-colors duration-[var(--duration-hover)] hover:bg-[var(--color-ember-bright)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-ember-bright)]"
         data-analytics-id="platform-cta-schedule-briefing"
       >
-        Schedule a Briefing
+        Request a Sample Trip Package
       </Link>
 
       {/* Micro-copy */}

@@ -40,6 +40,7 @@ const DISTRICT_TINTS: Record<DistrictId, string> = {
   'security': 'rgba(var(--ember-bright-rgb), 0.05)',
   'pricing': 'rgba(var(--ember-rgb), 0.04)',
   'get-started': 'rgba(245, 158, 11, 0.08)',
+  'about-us': 'rgba(var(--teal-bright-rgb), 0.04)',
 }
 
 // ---------------------------------------------------------------------------

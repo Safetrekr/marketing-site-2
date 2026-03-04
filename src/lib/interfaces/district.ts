@@ -1,7 +1,7 @@
 /**
  * District type definitions and constants for the Launch Atrium.
  *
- * Defines the 6 Safetrekr marketing districts, health states,
+ * Defines the 7 Safetrekr marketing districts, health states,
  * capsule telemetry shape, and the health-to-color mapping consumed
  * by capsule and ambient components.
  *
@@ -21,6 +21,7 @@ export type DistrictId =
   | 'security'
   | 'pricing'
   | 'get-started'
+  | 'about-us'
 
 /** Operational health state of a district (used by ambient decorative effects). */
 export type HealthState =
@@ -56,8 +57,8 @@ export interface DistrictMeta {
   displayName: string
   /** Abbreviated name for tight spaces (e.g. "HOW"). */
   shortName: string
-  /** Position index in the capsule ring (0-5). */
-  ringIndex: 0 | 1 | 2 | 3 | 4 | 5
+  /** Position index in the capsule ring (0-6). */
+  ringIndex: 0 | 1 | 2 | 3 | 4 | 5 | 6
   /** Target marketing page path (e.g. "/how-it-works"). */
   targetPage: string
   /** Single-line tagline for capsule display. */
@@ -84,7 +85,7 @@ export interface CapsuleData {
 // Constants
 // ---------------------------------------------------------------------------
 
-/** All 6 Safetrekr marketing districts, ordered by ring position. */
+/** All 7 Safetrekr marketing districts, ordered by ring position. */
 export const DISTRICTS: readonly DistrictMeta[] = [
   {
     id: 'how-it-works',
@@ -134,6 +135,14 @@ export const DISTRICTS: readonly DistrictMeta[] = [
     targetPage: '/contact',
     tagline: 'Schedule a briefing',
     isConversionDistrict: true,
+  },
+  {
+    id: 'about-us',
+    displayName: 'About Us',
+    shortName: 'ABOUT',
+    ringIndex: 6,
+    targetPage: '/about',
+    tagline: 'Our story & mission',
   },
 ] as const
 
@@ -202,7 +211,7 @@ export const HEALTH_STATE_MAP: Record<
 // ---------------------------------------------------------------------------
 
 /** Two-letter compact codes for Z0 beacon labels. */
-export type DistrictCode = 'HW' | 'WF' | 'PL' | 'SE' | 'PR' | 'GS'
+export type DistrictCode = 'HW' | 'WF' | 'PL' | 'SE' | 'PR' | 'GS' | 'AU'
 
 /** Maps DistrictId to its compact code for Z0 display. */
 export const DISTRICT_CODES: Record<DistrictId, DistrictCode> = {
@@ -212,6 +221,7 @@ export const DISTRICT_CODES: Record<DistrictId, DistrictCode> = {
   'security': 'SE',
   'pricing': 'PR',
   'get-started': 'GS',
+  'about-us': 'AU',
 } as const
 
 /** Data shape for a single beacon at Z0. */
@@ -255,9 +265,10 @@ const MARKETING_STAT_LINES: Record<DistrictId, string> = {
   'security': 'SOC 2 Type II',
   'pricing': 'From $0/month',
   'get-started': 'Free trial',
+  'about-us': 'US-based team',
 }
 
-/** Marketing capsule data for all 6 districts. */
+/** Marketing capsule data for all 7 districts. */
 export const MARKETING_CAPSULE_DATA: CapsuleData[] = DISTRICTS.map((district) => ({
   district,
   telemetry: {
@@ -267,3 +278,65 @@ export const MARKETING_CAPSULE_DATA: CapsuleData[] = DISTRICTS.map((district) =>
   },
   sparklineData: generateSparklineData(),
 }))
+
+// ---------------------------------------------------------------------------
+// Capsule card marketing config (Phase 2 redesign)
+// ---------------------------------------------------------------------------
+
+/** Marketing content for a single capsule card. */
+export interface CapsuleCardConfig {
+  /** Sector label in monospace (e.g. "OPERATIONS"). */
+  sectorLabel: string
+  /** 1-2 sentence benefit text. */
+  benefitText: string
+  /** Metric label in monospace (e.g. "PROCESS"). */
+  metricLabel: string
+  /** Metric value (e.g. "4 PHASES / 18 DIMENSIONS"). */
+  metricValue: string
+}
+
+/** Per-district marketing card content. */
+export const CAPSULE_CARD_CONFIG: Record<DistrictId, CapsuleCardConfig> = {
+  'how-it-works': {
+    sectorLabel: 'OPERATIONS',
+    benefitText: 'Every trip reviewed by a safety analyst before departure.',
+    metricLabel: 'PROCESS',
+    metricValue: '4 PHASES / 18 DIMENSIONS',
+  },
+  'who-its-for': {
+    sectorLabel: 'PERSONNEL',
+    benefitText: 'Built for the people accountable when the group travels.',
+    metricLabel: 'SECTORS',
+    metricValue: 'K-12 / CHURCHES / SPORTS / BUSINESS',
+  },
+  'platform': {
+    sectorLabel: 'CAPABILITIES',
+    benefitText: 'Four dashboards. One system of record. Every traveler tracked.',
+    metricLabel: 'DASHBOARDS',
+    metricValue: 'ADMIN / ANALYST / TRAVELER / HQ',
+  },
+  'security': {
+    sectorLabel: 'COMPLIANCE',
+    benefitText: 'SOC 2 certified. End-to-end encrypted. Audit-ready.',
+    metricLabel: 'PROTOCOLS',
+    metricValue: 'RLS / AES-256 / 2FA / RBAC',
+  },
+  'pricing': {
+    sectorLabel: 'PLANS',
+    benefitText: 'Per-trip pricing. No annual contract. No hidden fees.',
+    metricLabel: 'TIERS',
+    metricValue: 'DAY TRIP / DOMESTIC / INTERNATIONAL',
+  },
+  'get-started': {
+    sectorLabel: 'INITIATE',
+    benefitText: 'Schedule a 20-minute briefing. No commitment required.',
+    metricLabel: 'FORMAT',
+    metricValue: '20 MIN / LIVE WALKTHROUGH',
+  },
+  'about-us': {
+    sectorLabel: 'IDENTITY',
+    benefitText: 'Built by safety professionals. For safety professionals.',
+    metricLabel: 'TEAM',
+    metricValue: 'US-BASED / CREDENTIALED',
+  },
+}

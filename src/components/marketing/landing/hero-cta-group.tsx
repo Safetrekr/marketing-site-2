@@ -16,17 +16,12 @@ export function HeroCTAGroup() {
           size="lg"
           data-analytics-id="landing-hero-cta"
         >
-          Schedule a Briefing
+          Request a Sample Trip Package
         </BreathingCTA>
-
-        {/* Micro-copy (mobile -- between CTAs) */}
-        <p className="text-xs text-[var(--color-text-tertiary)] sm:hidden">
-          20-minute briefing. No obligation.
-        </p>
 
         {/* Secondary CTA */}
         <Link
-          href="/launch"
+          href="/contact?type=walkthrough"
           className={cn(
             'rounded-full px-6 py-3 text-sm font-medium',
             'text-[var(--color-text-secondary)]',
@@ -39,13 +34,13 @@ export function HeroCTAGroup() {
             'focus-visible:outline-[var(--color-ember-bright)]',
           )}
         >
-          Explore the Platform
+          Schedule a Walkthrough
         </Link>
       </div>
 
       {/* Micro-copy (desktop -- below CTA row) */}
       <p className="mt-4 hidden text-xs text-[var(--color-text-tertiary)] sm:block">
-        20-minute briefing. No obligation.
+        See the analyst review, Traveler App, and documentation we produce for every trip.
       </p>
     </>
   )

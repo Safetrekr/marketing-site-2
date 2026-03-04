@@ -177,6 +177,7 @@ const DISTRICT_HEALTH_LABELS: Record<DistrictId, readonly string[]> = {
   'security': ['AES', 'SOC', 'RBA', 'AUD', 'ENC', 'PEN'],
   'pricing': ['FRE', 'PRO', 'ENT', 'VOL', 'SLA', 'SUP'],
   'get-started': ['TRL', 'ONB', 'DEM', 'CAL', 'SET', 'GO!'],
+  'about-us': ['OUR', 'STY', 'TM', 'VAL', 'MSN', 'VIS'],
 }
 
 function HealthDots({ labels }: { labels: readonly string[] }) {

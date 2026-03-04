@@ -10,10 +10,11 @@ export const NAV_ITEMS: MarketingNavItem[] = [
   { label: 'Solutions', href: '/solutions' },
   { label: 'Pricing', href: '/pricing' },
   { label: 'Security', href: '/security' },
+  { label: 'Resources', href: '/resources' },
 ]
 
 export const CTA_CONFIG: MarketingCTAConfig = {
-  label: 'Schedule a Briefing',
+  label: 'Request a Sample Trip Package',
   href: '/contact',
 }
 
@@ -38,6 +39,7 @@ export const FOOTER_NAV_COLUMNS: MarketingFooterColumn[] = [
   {
     heading: 'Resources',
     items: [
+      { label: 'Free Resources', href: '/resources' },
       { label: 'Mission Control', href: '/launch' },
     ],
   },

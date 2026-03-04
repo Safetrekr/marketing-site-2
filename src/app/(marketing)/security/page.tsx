@@ -21,6 +21,9 @@ import {
   COMPLIANCE_INTRO,
   COMPLIANCE_CERTIFICATIONS,
   COMPLIANCE_FOOTER,
+  REGULATORY_ALIGNMENT,
+  PROCUREMENT_INFO,
+  SECURITY_FAQ_ITEMS,
   BOTTOM_CTA,
 } from '@/lib/data/security-content'
 import {
@@ -253,6 +256,157 @@ export default function SecurityPage() {
         </section>
 
         {/* ================================================================
+            Section 7: Regulatory Alignment
+            ================================================================ */}
+        <section className="relative py-20 md:py-28">
+          <div className="mx-auto max-w-6xl px-6">
+            <SectionHeader
+              metaLabel="COMPLIANCE // REGULATORY"
+              title="Designed for your compliance requirements"
+            />
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+              {REGULATORY_ALIGNMENT.map((reg) => (
+                <article
+                  key={reg.id}
+                  className={cn(
+                    'rounded-2xl p-6 lg:p-8',
+                    'bg-white/[0.06] backdrop-blur-[12px] backdrop-saturate-[130%]',
+                    'border border-white/[0.08]',
+                  )}
+                >
+                  <h3 className="font-mono text-sm font-semibold uppercase tracking-widest text-[var(--color-ember)]">
+                    {reg.name}
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-[var(--color-text-secondary)]">
+                    {reg.description}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ================================================================
+            Section 8: Procurement
+            ================================================================ */}
+        <section className="relative bg-white/[0.02] py-20 md:py-28">
+          <div className="mx-auto max-w-6xl px-6">
+            <SectionHeader
+              metaLabel="PURCHASING // PROCUREMENT"
+              title={PROCUREMENT_INFO.heading}
+              subtitle={PROCUREMENT_INFO.subtitle}
+            />
+
+            {/* Payment methods */}
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {PROCUREMENT_INFO.paymentMethods.map((method) => (
+                <div
+                  key={method.name}
+                  className={cn(
+                    'rounded-2xl p-5',
+                    'bg-white/[0.06] backdrop-blur-[12px]',
+                    'border border-white/[0.08]',
+                  )}
+                >
+                  <h3 className="text-sm font-semibold text-[var(--color-text-primary)]">
+                    {method.name}
+                  </h3>
+                  <p className="mt-2 text-xs leading-relaxed text-[var(--color-text-secondary)]">
+                    {method.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            {/* Contract terms */}
+            <div className="mt-12">
+              <h3 className="mb-4 font-mono text-xs uppercase tracking-widest text-[var(--color-text-tertiary)]">
+                Contract Terms
+              </h3>
+              <ul className="space-y-2">
+                {PROCUREMENT_INFO.contractTerms.map((term) => (
+                  <li
+                    key={term}
+                    className="flex items-start gap-2 text-sm text-[var(--color-text-secondary)]"
+                  >
+                    <span className="mt-1 text-[var(--color-ember)]" aria-hidden="true">
+                      &bull;
+                    </span>
+                    {term}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Vendor evaluation */}
+            <div className="mt-12">
+              <h3 className="mb-4 font-mono text-xs uppercase tracking-widest text-[var(--color-text-tertiary)]">
+                Vendor Evaluation -- We Are Prepared To
+              </h3>
+              <ul className="space-y-2">
+                {PROCUREMENT_INFO.vendorEvaluation.map((item) => (
+                  <li
+                    key={item}
+                    className="flex items-start gap-2 text-sm text-[var(--color-text-secondary)]"
+                  >
+                    <span className="mt-1 text-[var(--color-ember)]" aria-hidden="true">
+                      &bull;
+                    </span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* ================================================================
+            Section 9: Security FAQs
+            ================================================================ */}
+        <section className="relative py-20 md:py-28">
+          <div className="mx-auto max-w-4xl px-6">
+            <SectionHeader
+              metaLabel="FAQ // SECURITY"
+              title="Frequently asked questions"
+            />
+            <div className="space-y-6">
+              {SECURITY_FAQ_ITEMS.map((item) => (
+                <details
+                  key={item.question}
+                  className={cn(
+                    'group rounded-2xl',
+                    'bg-white/[0.04] backdrop-blur-[12px]',
+                    'border border-white/[0.06]',
+                    'open:border-white/[0.10]',
+                    'transition-colors duration-200',
+                  )}
+                >
+                  <summary
+                    className={cn(
+                      'flex cursor-pointer items-center justify-between px-6 py-5',
+                      'text-sm font-semibold text-[var(--color-text-primary)]',
+                      'list-none',
+                      '[&::-webkit-details-marker]:hidden',
+                    )}
+                  >
+                    {item.question}
+                    <span
+                      className="ml-4 shrink-0 text-[var(--color-text-tertiary)] transition-transform duration-200 group-open:rotate-45"
+                      aria-hidden="true"
+                    >
+                      +
+                    </span>
+                  </summary>
+                  <div className="px-6 pb-5 text-sm leading-relaxed text-[var(--color-text-secondary)]">
+                    {item.answer}
+                  </div>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ================================================================
             Bottom CTA
             ================================================================ */}
         <section className="relative py-20 md:py-28">
@@ -263,7 +417,7 @@ export default function SecurityPage() {
             <p className="mt-4 text-base text-[var(--color-text-secondary)]">
               {BOTTOM_CTA.supportingText}
             </p>
-            <div className="mt-8">
+            <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center sm:gap-6">
               <Link
                 href={BOTTOM_CTA.primaryButton.href}
                 className={cn(
@@ -277,6 +431,20 @@ export default function SecurityPage() {
                 )}
               >
                 {BOTTOM_CTA.primaryButton.label}
+              </Link>
+              <Link
+                href={BOTTOM_CTA.secondaryButton.href}
+                className={cn(
+                  'inline-flex items-center rounded-lg px-8 py-3',
+                  'bg-white/[0.06] text-base font-medium text-[var(--color-text-primary)]',
+                  'border border-white/[0.08]',
+                  'hover:bg-white/[0.10]',
+                  'transition-all duration-200',
+                  'focus-visible:outline-2 focus-visible:outline-offset-2',
+                  'focus-visible:outline-[var(--color-ember-bright)]',
+                )}
+              >
+                {BOTTOM_CTA.secondaryButton.label}
               </Link>
             </div>
           </div>

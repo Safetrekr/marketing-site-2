@@ -46,7 +46,7 @@ import { useSettingsStore } from '@/stores/settings.store'
 /** Cycle interval in milliseconds. Offset by 100ms from the attention 2s cycle. */
 const CYCLE_INTERVAL_MS = 2000
 
-/** All 6 district IDs for iteration. */
+/** All 7 district IDs for iteration. */
 const ALL_DISTRICT_IDS: DistrictId[] = [
   'how-it-works',
   'who-its-for',
@@ -54,6 +54,7 @@ const ALL_DISTRICT_IDS: DistrictId[] = [
   'security',
   'pricing',
   'get-started',
+  'about-us',
 ]
 
 // ---------------------------------------------------------------------------

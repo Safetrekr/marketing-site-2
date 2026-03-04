@@ -9,6 +9,7 @@
  */
 
 import type { DistrictId } from '@/lib/interfaces/district'
+import { CAPSULE_ANGULAR_SPACING } from '@/lib/constants'
 
 // ============================================================
 // MORPH STATE MACHINE
@@ -122,8 +123,8 @@ export const DETAIL_PANEL_DIMENSIONS = {
 
 /** Dimensions of a capsule at Z1. */
 export const CAPSULE_DIMENSIONS = {
-  width: 192,
-  height: 228,
+  width: 208,
+  height: 260,
   borderRadius: 28,
   padding: 20,
 } as const
@@ -166,9 +167,9 @@ export function computeRingRotation(ringIndex: number): {
   rotation: number
   panelSide: PanelSide
 } {
-  // Each capsule's starting angle: START_ANGLE + index * 60
+  // Each capsule's starting angle: START_ANGLE + index * ANGULAR_SPACING
   // START_ANGLE = -90 (12 o'clock)
-  const capsuleAngle = -90 + ringIndex * 60
+  const capsuleAngle = -90 + ringIndex * CAPSULE_ANGULAR_SPACING
 
   // Target: 0° (3:00) or 180° (9:00)
   // Rotation needed = target - capsuleAngle (rotate the ring so capsule lands at target)

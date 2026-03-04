@@ -20,7 +20,7 @@ export function BottomCTASection() {
           'lg:px-16 lg:py-20',
         )}
       >
-        {/* Emotional close */}
+        {/* Heading */}
         <h2
           id="bottom-cta-heading"
           className={cn(
@@ -30,19 +30,22 @@ export function BottomCTASection() {
             'leading-snug',
           )}
         >
-          Your travelers trust you to bring them home safely.
+          Start with one trip
         </h2>
 
-        {/* Resolution line */}
+        {/* Body */}
         <p
           className={cn(
             'mt-4 text-base leading-relaxed',
             'text-[var(--color-text-secondary)]',
-            'mx-auto max-w-[480px]',
+            'mx-auto max-w-[560px]',
           )}
         >
-          Safetrekr makes sure that trust is backed by a system -- not just good
-          intentions.
+          At $450, a single domestic day trip falls within discretionary spending
+          authority at most schools. No procurement committee. No board approval
+          required. Request a sample trip package and see the analyst review,
+          emergency preparedness plan, Traveler App experience, and board-ready
+          documentation that Safetrekr produces for every trip.
         </p>
 
         {/* CTA buttons (client island) */}

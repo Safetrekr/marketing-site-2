@@ -15,12 +15,12 @@ export function BottomCTAButtons() {
         size="lg"
         data-analytics-id="landing-bottom-cta"
       >
-        Schedule a Briefing
+        Request a Sample Trip Package
       </BreathingCTA>
 
       {/* Secondary CTA */}
       <Link
-        href="/pricing"
+        href="/resources"
         className={cn(
           'rounded-full px-6 py-3 text-sm font-medium',
           'text-[var(--color-text-secondary)]',
@@ -33,7 +33,7 @@ export function BottomCTAButtons() {
           'focus-visible:outline-[var(--color-ember-bright)]',
         )}
       >
-        See Pricing
+        Download Free Trip Safety Checklist
       </Link>
     </div>
   )

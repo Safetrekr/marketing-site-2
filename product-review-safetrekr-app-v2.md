@@ -1,12 +1,12 @@
-# SafeTrekr Platform -- Product Capabilities
+# Safetrekr Platform -- Product Capabilities
 
 ## Executive Summary
 
-SafeTrekr is an enterprise trip safety management platform purpose-built for organizations that move groups of people. Schools sending students abroad, churches organizing mission trips, youth sports teams traveling to tournaments, and businesses managing corporate travel all share a common challenge: ensuring the safety, compliance, and coordination of every traveler before, during, and after a trip. SafeTrekr replaces scattered spreadsheets, email chains, and paper-based safety checklists with a single, auditable system of record.
+Safetrekr is an enterprise trip safety management platform purpose-built for organizations that move groups of people. Schools sending students abroad, churches organizing mission trips, youth sports teams traveling to tournaments, and businesses managing corporate travel all share a common challenge: ensuring the safety, compliance, and coordination of every traveler before, during, and after a trip. Safetrekr replaces scattered spreadsheets, email chains, and paper-based safety checklists with a single, auditable system of record.
 
-The platform operates through four integrated portals. Organization administrators use the **Client Portal** to plan trips, manage rosters, collect documents, and monitor real-time intelligence alerts. Dedicated **Safety Analysts** use the Analyst Portal to independently review every trip for safety compliance -- verifying lodging, evaluating emergency preparedness, and approving trips before departure. SafeTrekr's own operations team uses the **HQ Console** to manage the entire ecosystem of organizations, analysts, policies, and intelligence infrastructure. And travelers, chaperones, and guardians access the **Traveler App** -- a dedicated mobile-first portal that delivers live safety checklists, real-time intelligence alerts, itineraries, emergency preparedness information, and acknowledgment workflows directly to participants before and during travel.
+The platform operates through four integrated portals. Organization administrators use the **Client Portal** to plan trips, manage rosters, collect documents, and monitor real-time intelligence alerts. Dedicated **Safety Analysts** use the Analyst Portal to independently review every trip for safety compliance -- verifying lodging, evaluating emergency preparedness, and approving trips before departure. Safetrekr's own operations team uses the **HQ Console** to manage the entire ecosystem of organizations, analysts, policies, and intelligence infrastructure. And travelers, chaperones, and guardians access the **Traveler App** -- a dedicated mobile-first portal that delivers live safety checklists, real-time intelligence alerts, itineraries, emergency preparedness information, and acknowledgment workflows directly to participants before and during travel.
 
-SafeTrekr serves organizations across five verticals -- K-12 schools, colleges and universities, churches and faith-based organizations, youth sports organizations, and businesses -- with a tiered pricing model that scales from simple day trips (T1) through domestic overnight travel (T2) to complex international itineraries (T3). Each tier unlocks progressively deeper safety features, ensuring organizations pay only for the complexity they need.
+Safetrekr serves organizations across five verticals -- K-12 schools, colleges and universities, churches and faith-based organizations, youth sports organizations, and businesses -- with a tiered pricing model that scales from simple day trips (T1) through domestic overnight travel (T2) to complex international itineraries (T3). Each tier unlocks progressively deeper safety features, ensuring organizations pay only for the complexity they need.
 
 ---
 
@@ -35,7 +35,7 @@ SafeTrekr serves organizations across five verticals -- K-12 schools, colleges a
 
 ### Guided Trip Creation Wizard
 
-SafeTrekr walks organization administrators through a 10-step trip creation process that captures every detail a safety reviewer needs -- from basic logistics to granular flight assignments. The wizard enforces completeness at each stage, reducing back-and-forth between trip organizers and safety teams.
+Safetrekr walks organization administrators through a 10-step trip creation process that captures every detail a safety reviewer needs -- from basic logistics to granular flight assignments. The wizard enforces completeness at each stage, reducing back-and-forth between trip organizers and safety teams.
 
 **Step 1 -- Trip Type Selection.** Choose the complexity tier that matches the trip: T1 (day trip), T2 (domestic overnight), or T3 (international). The selected tier determines which subsequent steps appear and which safety requirements apply.
 
@@ -98,11 +98,11 @@ The Client Portal dashboard provides organization administrators with an at-a-gl
 
 ### Traveler Registry (Prefill Cache)
 
-Organizations that run recurring trips benefit from SafeTrekr's persistent traveler registry. Every traveler added to a trip is automatically catalogued, building an institutional memory that accelerates future trip planning.
+Organizations that run recurring trips benefit from Safetrekr's persistent traveler registry. Every traveler added to a trip is automatically catalogued, building an institutional memory that accelerates future trip planning.
 
 - **Persistent Records** -- Traveler profiles persist across trips, storing contact information, address, medical notes (allergies, medications, dietary restrictions), and emergency contacts.
-- **Intelligent Matching** -- When adding participants to a new trip, SafeTrekr searches the registry and presents match candidates with confidence scoring. Matches are scored across multiple signals: email match (highest confidence), phone match (high confidence), name-plus-date-of-birth match (medium-high confidence), and name-only match (lower confidence).
-- **Bulk Import** -- Upload a CSV or Excel file and map columns to SafeTrekr fields. The import engine reports imported, updated, skipped, and error counts with row-level error details. Every import is audit-logged with file metadata, row counts, and duration.
+- **Intelligent Matching** -- When adding participants to a new trip, Safetrekr searches the registry and presents match candidates with confidence scoring. Matches are scored across multiple signals: email match (highest confidence), phone match (high confidence), name-plus-date-of-birth match (medium-high confidence), and name-only match (lower confidence).
+- **Bulk Import** -- Upload a CSV or Excel file and map columns to Safetrekr fields. The import engine reports imported, updated, skipped, and error counts with row-level error details. Every import is audit-logged with file metadata, row counts, and duration.
 - **Deduplication** -- Automatic deduplication on canonical email, normalized phone (E.164 format), and name-plus-date-of-birth prevents duplicate traveler records from accumulating.
 - **Quick Prefill** -- Select a registry match and auto-populate all participant fields, eliminating redundant data entry.
 
@@ -120,7 +120,7 @@ Guardian relationships are tracked explicitly, with a guardian bypass workflow a
 
 ## 3. Background Checks and Screening
 
-SafeTrekr provides a structured background check workflow that ensures every adult with supervisory responsibility has been properly screened before a trip is approved.
+Safetrekr provides a structured background check workflow that ensures every adult with supervisory responsibility has been properly screened before a trip is approved.
 
 ### Check Types
 
@@ -136,7 +136,7 @@ Five categories of background check are supported:
 
 ### Provider Integration
 
-Organizations can select from three integrated background check providers -- **Checkr**, **Sterling**, and **GoodHire** -- or manage checks through their existing provider and record results in SafeTrekr.
+Organizations can select from three integrated background check providers -- **Checkr**, **Sterling**, and **GoodHire** -- or manage checks through their existing provider and record results in Safetrekr.
 
 ### Compliance Matrix
 
@@ -154,7 +154,7 @@ KPI cards on the background checks view surface aggregate statistics -- total ch
 
 ## 4. Document and Consent Collection
 
-SafeTrekr replaces paper permission slips and emailed waivers with a structured, trackable document collection system.
+Safetrekr replaces paper permission slips and emailed waivers with a structured, trackable document collection system.
 
 ### Requirement Types
 
@@ -193,7 +193,7 @@ Uploaded trip documents can be categorized (insurance, policy, waiver, itinerary
 
 ## 5. Safety Guidance and Checklist Delivery
 
-SafeTrekr's guidance system delivers context-appropriate safety information to the right people at the right time through configurable checklists. Checklists are pushed live to the Traveler App, where travelers, chaperones, and guardians receive and acknowledge them -- not just bundled into static packets.
+Safetrekr's guidance system delivers context-appropriate safety information to the right people at the right time through configurable checklists. Checklists are pushed live to the Traveler App, where travelers, chaperones, and guardians receive and acknowledge them -- not just bundled into static packets.
 
 ### Checklist Categories
 
@@ -229,13 +229,13 @@ Checklist items support priority levels (info, important, critical), detailed bo
 
 ### Acknowledgment Tracking
 
-When a checklist requires acknowledgment, SafeTrekr tracks which participants have acknowledged and which have not. Per-checklist and per-participant completion percentages provide visibility into compliance readiness.
+When a checklist requires acknowledgment, Safetrekr tracks which participants have acknowledged and which have not. Per-checklist and per-participant completion percentages provide visibility into compliance readiness.
 
 ---
 
 ## 6. Emergency Preparedness Planning
 
-Every trip in SafeTrekr has a dedicated emergency preparedness configuration, built by the assigned safety analyst and made available (read-only) to the organization administrator and to travelers, chaperones, and guardians through the Traveler App.
+Every trip in Safetrekr has a dedicated emergency preparedness configuration, built by the assigned safety analyst and made available (read-only) to the organization administrator and to travelers, chaperones, and guardians through the Traveler App.
 
 ### Emergency Contacts
 
@@ -259,7 +259,7 @@ Comprehensive evacuation planning covers three escalation tiers:
 
 ### Emergency Kit Profiles
 
-SafeTrekr recommends medical kit profiles based on the trip's characteristics:
+Safetrekr recommends medical kit profiles based on the trip's characteristics:
 
 | Profile | When Recommended |
 |---|---|
@@ -278,7 +278,7 @@ Named emergency rally and relocation points are recorded with GPS coordinates, p
 
 ## 7. Real-Time Intelligence and Alerts
 
-SafeTrekr's intelligence system, powered by the TarvaRI engine, continuously monitors conditions at trip destinations and delivers risk alerts to the people who need them.
+Safetrekr's intelligence system, powered by the TarvaRI engine, continuously monitors conditions at trip destinations and delivers risk alerts to the people who need them.
 
 ### Alert Classification
 
@@ -290,7 +290,7 @@ Each alert carries relevance scoring and risk percentile bands (P5, P50, P95) so
 
 ### Acknowledgment Workflow
 
-When an alert is delivered, SafeTrekr tracks which travelers, chaperones, and administrators have acknowledged it, providing a clear record that the information reached the intended recipients. Alerts are pushed live to the Traveler App, where participants can review details and submit acknowledgments directly from their mobile device.
+When an alert is delivered, Safetrekr tracks which travelers, chaperones, and administrators have acknowledged it, providing a clear record that the information reached the intended recipients. Alerts are pushed live to the Traveler App, where participants can review details and submit acknowledgments directly from their mobile device.
 
 ### Continuous Feed
 
@@ -300,7 +300,7 @@ The Client Portal intel view presents alerts in a continuously updating feed wit
 
 ## 8. Independent Safety Review and Approval
 
-SafeTrekr enforces a separation of duties between trip organizers and safety reviewers. Every trip submitted by an organization passes through an independent analyst review before it can be approved for travel.
+Safetrekr enforces a separation of duties between trip organizers and safety reviewers. Every trip submitted by an organization passes through an independent analyst review before it can be approved for travel.
 
 ### Analyst Review Workspace
 
@@ -380,11 +380,11 @@ The approval workflow supports approve, reject, and conditional approval outcome
 
 ## 9. Live Traveler Delivery and Trip Packet Generation
 
-SafeTrekr delivers trip information to participants through two complementary channels: the **Traveler App** for live, interactive access and **trip packets** for offline reference.
+Safetrekr delivers trip information to participants through two complementary channels: the **Traveler App** for live, interactive access and **trip packets** for offline reference.
 
 ### Traveler App (Live Delivery)
 
-The SafeTrekr Traveler App is a dedicated mobile-first portal for travelers, chaperones, and guardians. Rather than relying solely on static documents, participants receive live access to:
+The Safetrekr Traveler App is a dedicated mobile-first portal for travelers, chaperones, and guardians. Rather than relying solely on static documents, participants receive live access to:
 
 - **Trip itineraries** -- Day-by-day schedules with real-time updates as changes are made by organizers or analysts.
 - **Safety checklists** -- Context-triggered guidance delivered before and during travel, with in-app acknowledgment.
@@ -395,7 +395,7 @@ The SafeTrekr Traveler App is a dedicated mobile-first portal for travelers, cha
 
 ### Trip Packets (Offline Reference)
 
-In addition to live delivery, SafeTrekr's packet builder assembles customized trip information packets for offline reference and distribution.
+In addition to live delivery, Safetrekr's packet builder assembles customized trip information packets for offline reference and distribution.
 
 ### Role-Based Variants
 
@@ -413,7 +413,7 @@ A single build action can generate packets for all role variants simultaneously,
 
 ## 10. Certification and Training Tracking
 
-SafeTrekr tracks staff certifications and training credentials to ensure chaperones and trip leaders meet organizational and regulatory requirements.
+Safetrekr tracks staff certifications and training credentials to ensure chaperones and trip leaders meet organizational and regulatory requirements.
 
 ### Predefined Certification Types
 
@@ -425,7 +425,7 @@ Organizations can also define custom certification types for specialized trainin
 
 ### Expiration Monitoring
 
-Each certification record includes issue date, expiration date, certifying organization, and optional document upload. SafeTrekr automatically computes expiration status:
+Each certification record includes issue date, expiration date, certifying organization, and optional document upload. Safetrekr automatically computes expiration status:
 
 | Status | Condition |
 |---|---|
@@ -446,7 +446,7 @@ A dedicated widget surfaces certifications approaching expiration with user name
 
 ## 11. Insurance Policy Management
 
-SafeTrekr provides structured insurance policy tracking at the trip level, ensuring coverage documentation is centralized and reviewable.
+Safetrekr provides structured insurance policy tracking at the trip level, ensuring coverage documentation is centralized and reviewable.
 
 ### Coverage Types
 
@@ -470,7 +470,7 @@ Policy expiration status is computed automatically (valid, expiring soon, expire
 
 ### Tiered Trip Pricing
 
-SafeTrekr uses a per-trip pricing model scaled to trip complexity:
+Safetrekr uses a per-trip pricing model scaled to trip complexity:
 
 | Trip Type | Description | Base Price |
 |---|---|---|
@@ -579,7 +579,7 @@ Users can create and store digital signatures for use across trip packets and of
 
 #### Privacy and Data Governance
 
-SafeTrekr provides users with direct control over their personal data and privacy settings:
+Safetrekr provides users with direct control over their personal data and privacy settings:
 
 - **Contact Visibility** -- Granular controls to show or hide phone number and email address from teammates, ensuring users share only the contact information they are comfortable making visible.
 - **Analytics Opt-In/Out** -- Users can choose whether their usage data is included in platform analytics.
@@ -596,7 +596,7 @@ New users follow a guided onboarding flow: account activation via invite link, a
 
 ## 14. Operational Command Center (HQ Console)
 
-The HQ Console gives SafeTrekr's internal operations team full visibility and control over the platform ecosystem.
+The HQ Console gives Safetrekr's internal operations team full visibility and control over the platform ecosystem.
 
 ### System Overview Dashboard
 
@@ -680,7 +680,7 @@ Ten roles with ascending privilege levels control access across the platform:
 | Billing Admin | Client | Financial management |
 | Security Officer | Client | Safety and compliance |
 | Analyst | Analyst | Independent safety reviewer |
-| HQ Admin | HQ | SafeTrekr operations |
+| HQ Admin | HQ | Safetrekr operations |
 | HQ Supervisor | HQ | Operations management |
 | HQ Security | HQ | Platform security |
 | HQ Ops | HQ | Day-to-day operations |
@@ -714,7 +714,7 @@ A system-aware theme with manual override provides comfortable viewing in any li
 
 ### Real-Time Data Subscriptions
 
-SafeTrekr uses Supabase Realtime subscriptions to deliver live data updates in the Analyst Portal, with TanStack Query cache invalidation ensuring data freshness across all three portals:
+Safetrekr uses Supabase Realtime subscriptions to deliver live data updates in the Analyst Portal, with TanStack Query cache invalidation ensuring data freshness across all three portals:
 
 - **Review Queue Live Updates** -- New trip submissions and status transitions surface in the analyst review queue in real time, ensuring analysts always see the current queue state.
 - **Intel Queue Live Updates** -- New intelligence alerts from the TarvaRI engine appear in the analyst intel queue as they are routed, enabling immediate triage without polling or manual refresh.
@@ -725,7 +725,7 @@ This real-time infrastructure enables safety analysts and HQ operations staff to
 
 ### Automated Monitoring and Alerts (Planned)
 
-SafeTrekr is architected to run automated daily monitoring checks that surface expiring compliance records before they become safety gaps. Expiration status computation is implemented in the UI (see Section 10 and Section 11); the automated notification delivery pipeline described below is planned.
+Safetrekr is architected to run automated daily monitoring checks that surface expiring compliance records before they become safety gaps. Expiration status computation is implemented in the UI (see Section 10 and Section 11); the automated notification delivery pipeline described below is planned.
 
 #### Insurance Policy Expiration Alerts
 
@@ -741,7 +741,7 @@ An integrated help center provides a structured knowledge base with full-text se
 
 - **Getting Started** -- Onboarding guides that walk new users through initial platform setup and core workflows.
 - **How-To Articles** -- Step-by-step instructions for specific tasks and features, with deep-linked topics for contextual access.
-- **Glossary** -- Definitions of SafeTrekr-specific terminology, trip tiers, roles, and safety concepts.
+- **Glossary** -- Definitions of Safetrekr-specific terminology, trip tiers, roles, and safety concepts.
 - **Troubleshooting** -- Diagnostic guides for common issues and resolution steps.
 
 ---
@@ -755,7 +755,7 @@ An integrated help center provides a structured knowledge base with full-text se
 | **Supabase** | Cloud-hosted PostgreSQL database with Row Level Security, authentication, and file storage. Serves as the shared data layer across all services. |
 | **Stripe** | Payment processing for trip purchases, credit packages, and add-on services. Supports saved payment methods and receipt generation. |
 | **AviationStack** | Real-time flight data lookup by flight number, auto-populating airline, airport, terminal, and gate information during trip creation. |
-| **TarvaRI** | SafeTrekr's proprietary intelligence aggregation engine. Ingests data from multiple intelligence sources, normalizes and bundles alerts, applies risk scoring with percentile bands, and routes alerts to affected trips. |
+| **TarvaRI** | Safetrekr's proprietary intelligence aggregation engine. Ingests data from multiple intelligence sources, normalizes and bundles alerts, applies risk scoring with percentile bands, and routes alerts to affected trips. |
 | **MapLibre GL** | Open-source map rendering for interactive lodging, venue, rally point, and emergency facility visualization. |
 | **Checkr / Sterling / GoodHire** | Background check provider integrations for criminal, sex offender, driving, employment, and education screening. |
 
@@ -768,7 +768,7 @@ An integrated help center provides a structured knowledge base with full-text se
 - **Runtime Configuration** -- Environment variables are injected at runtime (not build time), enabling the same build artifact to serve development, staging, and production environments.
 - **Containerized Deployment** -- Docker builds deploy to Kubernetes via CI/CD with separate development and production environments.
 - **Audit Trail** -- All review actions, status changes, and administrative operations are logged with timestamps, user attribution, and contextual metadata.
-- **Progressive Web App (PWA)** -- The platform supports Progressive Web App installation with a web manifest and Android-optimized icons (192x192 and 512x512), enabling users to add SafeTrekr to their device home screens for a native-like experience with faster access and offline-capable shell loading.
+- **Progressive Web App (PWA)** -- The platform supports Progressive Web App installation with a web manifest and Android-optimized icons (192x192 and 512x512), enabling users to add Safetrekr to their device home screens for a native-like experience with faster access and offline-capable shell loading.
 
 ### Data Flow
 
@@ -779,7 +779,7 @@ Organization Admin (Client Portal)
 Trip Creation --> Supabase (PostgreSQL + RLS)
                         |
                         v
-               SafeTrekr Core API (FastAPI)
+               Safetrekr Core API (FastAPI)
                         |
                         v
 Safety Analyst (Analyst Portal) <-- TarvaRI Intelligence Engine
@@ -808,4 +808,4 @@ Intelligence alerts flow through a multi-stage pipeline: raw data ingestion from
 
 ---
 
-*This document reflects the SafeTrekr platform capabilities as implemented in the v2 codebase. Features marked as "planned" are architected with routing and UI scaffolding in place but are pending full implementation. Some settings interfaces (such as language selection and privacy data export) reflect UI-ready configuration forms whose full backend integration is in progress. The interface is currently delivered in English. Pricing figures reflect current application defaults and are subject to change. Feature availability may vary by organization plan and trip tier.*
+*This document reflects the Safetrekr platform capabilities as implemented in the v2 codebase. Features marked as "planned" are architected with routing and UI scaffolding in place but are pending full implementation. Some settings interfaces (such as language selection and privacy data export) reflect UI-ready configuration forms whose full backend integration is in progress. The interface is currently delivered in English. Pricing figures reflect current application defaults and are subject to change. Feature availability may vary by organization plan and trip tier.*

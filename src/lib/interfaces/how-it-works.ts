@@ -1,10 +1,10 @@
 // src/lib/interfaces/how-it-works.ts
 
-/** One of the four lifecycle phases. */
+/** One of the five lifecycle steps. */
 export interface Phase {
-  /** Unique phase identifier: 'plan' | 'review' | 'protect' | 'monitor' */
-  id: 'plan' | 'review' | 'protect' | 'monitor'
-  /** Display number (1-4) */
+  /** Unique step identifier */
+  id: 'plan' | 'review' | 'connect' | 'monitor' | 'document'
+  /** Display number (1-5) */
   number: number
   /** Short phase name for the lifecycle nav */
   label: string

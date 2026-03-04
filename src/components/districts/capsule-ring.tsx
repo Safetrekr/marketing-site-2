@@ -18,7 +18,7 @@
 import { createRef, useMemo, type RefObject } from 'react'
 import { motion } from 'motion/react'
 
-import { CAPSULE_RING_RADIUS, CAPSULE_ANGULAR_SPACING } from '@/lib/constants'
+import { CAPSULE_RING_RADIUS, CAPSULE_ANGULAR_SPACING, CAPSULE_RING_CONTAINER_SIZE } from '@/lib/constants'
 import type { CapsuleData, DistrictId } from '@/lib/interfaces/district'
 import type { MorphPhase, PanelSide } from '@/lib/morph-types'
 import { RING_SHIFT } from '@/lib/morph-types'
@@ -30,10 +30,10 @@ import { HubCenterGlyph } from './hub-center-glyph'
 // Layout constants
 // ---------------------------------------------------------------------------
 
-export const RING_SIZE = 840
+export const RING_SIZE = CAPSULE_RING_CONTAINER_SIZE
 export const RING_CENTER = RING_SIZE / 2
-const CAPSULE_WIDTH = 192
-const CAPSULE_HEIGHT = 228
+const CAPSULE_WIDTH = 208
+const CAPSULE_HEIGHT = 260
 const START_ANGLE_DEG = -90
 
 // ---------------------------------------------------------------------------

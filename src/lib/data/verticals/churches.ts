@@ -4,7 +4,7 @@ import type { VerticalDetailData } from '@/lib/interfaces/solutions'
 
 export const CHURCHES_VERTICAL: VerticalDetailData = {
   id: 'churches',
-  name: 'Churches & Faith-Based Organizations',
+  name: 'Churches & Mission Organizations',
   iconName: 'Church',
 
   // Hero
@@ -14,68 +14,57 @@ export const CHURCHES_VERTICAL: VerticalDetailData = {
 
   // The Challenge
   challengeIntro:
-    'Faith-based organizations send more people on international travel than most corporations. Mission trips, service projects, youth retreats, and conferences involve volunteers of every age -- many traveling internationally for the first time. The safety planning rarely matches the ambition of the mission.',
+    'The safety gap in ministry travel: the person planning your mission trip or youth retreat is a pastor, a volunteer, or a ministry staff member. They are called to serve, not trained in emergency management.',
   challenges: [
     {
-      title: 'Volunteer Screening Inconsistency',
+      title: 'Volunteer Leaders, Not Safety Professionals',
       description:
-        'Churches rely on volunteers for everything -- including supervising children during travel. Background check requirements vary by denomination and state. Screening is often handled through manual forms with no central tracking of who has been checked, when the check expires, or whether new requirements have taken effect.',
+        'The person planning your mission trip or youth retreat is a pastor, a volunteer, or a ministry staff member. Their safety plan is assembled from Google searches and past experience -- and it has never been tested.',
     },
     {
-      title: 'International Travel to Complex Environments',
+      title: 'Remote and High-Risk Destinations',
       description:
-        'Mission trips often go to regions with limited infrastructure, political instability, or active security concerns. Risk assessment is informal -- based on past experience or denominational familiarity with a region -- rather than on current intelligence data.',
+        'Mission trips go where the need is greatest -- often to locations with limited medical infrastructure, political instability, or civil unrest. Planning safe travel to these destinations requires intelligence and expertise that most ministry teams do not have access to.',
     },
     {
-      title: 'Emergency Plans That Live in a Binder',
+      title: 'Insurance Expects Documentation You Do Not Have',
       description:
-        'Emergency preparedness for mission trips is typically a phone tree and a contact sheet. Rally points, medical facilities, and evacuation routes are not mapped. When a crisis occurs at 2 AM in a foreign country, the mission team leader is making decisions from memory, not from a system.',
+        'Church insurance policies increasingly require documented safety plans, volunteer screening records, and evidence of reasonable precautions for group travel. Most churches can produce a sign-up sheet and a prayer list, but not a structured safety record that satisfies an insurer or a board.',
     },
     {
-      title: 'No Documentation Trail',
+      title: 'Tight Ministry Budgets',
       description:
-        'When a church board, a parent, or a denomination asks what safeguards were in place for a trip, the answer depends on which mission team leader kept notes. There is no centralized record of planning decisions, volunteer screenings, or safety measures.',
-    },
-    {
-      title: 'Well-Intentioned But Untrained Teams',
-      description:
-        'Mission team volunteers are motivated by service, not by safety operations. They receive minimal training on emergency response, risk mitigation, or crisis communication. The safety planning burden falls on the trip leader, who is also coordinating logistics, fundraising, and ministry activities.',
+        'Professional risk management feels out of reach when your trip budget is funded by bake sales and congregational giving. But a single trip-related incident can cost $50,000 to $500,000 or more in legal fees, settlements, and insurance increases -- far more than the cost of preparation.',
     },
   ],
 
   // The Safetrekr Response
   responseIntro:
-    'Safetrekr provides the operational backbone for mission trip safety -- so trip leaders can focus on the mission while the platform handles the screening, documentation, intelligence, and emergency preparedness.',
+    'Your ministry team focuses on the mission. A trained Safetrekr analyst handles the safety planning -- reviewing your trip across 18 dimensions, mapping emergency resources, and producing the documentation your insurer requires.',
   responses: [
     {
-      title: 'Comprehensive Volunteer Screening',
+      title: 'A Professional Safety Analyst for Every Trip',
       description:
-        "5 background check types (criminal, sex offender, driving, employment, education) across 3 integrated providers. A compliance matrix shows every volunteer's screening status at a glance. Expiration monitoring ensures checks stay current.",
+        'Your ministry team focuses on the mission. A trained Safetrekr analyst handles the safety planning -- reviewing your trip across 18 dimensions, mapping emergency resources at every destination, building evacuation plans, and producing the documentation your insurer requires.',
+      featureRef: 'Analyst review workflow',
+    },
+    {
+      title: 'Volunteer Screening Built into the Workflow',
+      description:
+        'Background check processing for all adult volunteers and leaders directly within the trip workflow. Five check types through three integrated providers -- or record results from your existing screening provider. Organization-level tracking maintains clearance records across trips. $35/person domestic, $65/person international.',
       featureRef: 'Background check system',
     },
     {
-      title: 'International Risk Intelligence',
+      title: 'Traveler App for Every Participant',
       description:
-        'Real-time monitoring of destination countries for security, weather, health, transport, and political risks. Alerts are risk-scored and analyst-triaged. Mission teams receive only what is relevant, delivered on schedule.',
-      featureRef: 'Intelligence engine',
+        'Team members, chaperones, and families access the Safetrekr Traveler App with live safety checklists, real-time alerts, emergency preparedness information on-device, and document submission. Your team leader sees exactly who has received safety guidance and who has not.',
+      featureRef: 'Traveler App',
     },
     {
-      title: 'Three-Tier Evacuation Planning',
+      title: 'Per-Trip Pricing for Ministry Budgets',
       description:
-        'Shelter in place, local evacuation, and full relocation protocols. Rally points with GPS coordinates. Safe houses with approval workflows. Medical facility directories with trauma capability levels. Emergency kit profile recommendations based on trip characteristics.',
-      featureRef: 'Protection system',
-    },
-    {
-      title: 'SMS Emergency Broadcast',
-      description:
-        'Mission team leaders can send SMS broadcast messages to all trip participants directly from the app. Chaperones receive alerts. Participants acknowledge receipt. Every communication documented.',
-      featureRef: 'Emergency broadcast',
-    },
-    {
-      title: 'Complete Audit Trail',
-      description:
-        'From volunteer screening through trip completion, every action is logged. When a church board or denomination asks what safeguards were in place, the answer is specific, timestamped, and attributed.',
-      featureRef: 'Audit trail system',
+        'Starting at $450 for a domestic day trip. About $15 per traveler for a group of 30. No subscription. No per-user fees. No setup costs. Pay only for the trips you plan. Recurring annual trips receive a 25% discount starting in year two.',
+      featureRef: 'Pricing model',
     },
   ],
 

@@ -4,7 +4,7 @@ import type { VerticalDetailData } from '@/lib/interfaces/solutions'
 
 export const YOUTH_SPORTS_VERTICAL: VerticalDetailData = {
   id: 'youth-sports',
-  name: 'Youth Sports',
+  name: 'Youth & Club Sports',
   iconName: 'Trophy',
 
   // Hero

@@ -5,22 +5,24 @@ import { PHASES } from '@/lib/data/how-it-works'
 import {
   ClipboardList,
   ShieldCheck,
-  Shield,
-  Radio,
+  Smartphone,
+  Radar,
+  FileCheck,
 } from 'lucide-react'
 
 const ICON_MAP = {
   ClipboardList,
   ShieldCheck,
-  Shield,
-  Radio,
+  Smartphone,
+  Radar,
+  FileCheck,
 } as const
 
 export function PhaseLifecycleNav() {
   return (
     <nav
-      aria-label="Trip lifecycle phases"
-      className="mx-auto max-w-4xl px-6 py-12 lg:px-8 lg:py-16"
+      aria-label="Trip lifecycle steps"
+      className="mx-auto max-w-5xl px-6 py-12 lg:px-8 lg:py-16"
     >
       {/* Desktop: horizontal row */}
       <ol className="hidden items-center justify-between md:flex">
@@ -35,7 +37,7 @@ export function PhaseLifecycleNav() {
               <a
                 href={`#phase-${phase.id}`}
                 className={cn(
-                  'flex flex-col items-center gap-2 rounded-xl px-4 py-3',
+                  'flex flex-col items-center gap-2 rounded-xl px-3 py-3',
                   'transition-colors duration-200',
                   'hover:bg-white/[0.04]',
                   'focus-visible:outline-2 focus-visible:outline-offset-2',
@@ -52,9 +54,9 @@ export function PhaseLifecycleNav() {
                   {Icon && <Icon className="h-5 w-5" aria-hidden="true" />}
                 </div>
                 <span className="text-xs font-semibold uppercase tracking-widest text-[var(--color-text-secondary)]">
-                  Phase {phase.number}
+                  Step {phase.number}
                 </span>
-                <span className="text-sm font-medium text-[var(--color-text-primary)]">
+                <span className="text-sm font-medium text-[var(--color-text-primary)] text-center">
                   {phase.label}
                 </span>
               </a>
@@ -98,7 +100,7 @@ export function PhaseLifecycleNav() {
                 </div>
                 <div>
                   <span className="text-xs font-semibold uppercase tracking-widest text-[var(--color-text-tertiary)]">
-                    Phase {phase.number}
+                    Step {phase.number}
                   </span>
                   <span className="ml-2 text-sm font-medium text-[var(--color-text-primary)]">
                     {phase.label}

@@ -7,31 +7,38 @@ import { SectionContainer } from '@/components/marketing/section-container'
 const STEPS = [
   {
     number: 1,
-    label: 'Phase 01 // Plan',
-    name: 'Plan',
+    label: 'Step 01 // Plan',
+    name: 'Plan Your Trip',
     description:
-      'Guided 10-step wizard captures every detail: logistics, rosters, lodging, venues, transportation, and emergency preparedness.',
+      'Complete our guided 10-step wizard in about 15 minutes. Destinations, dates, travelers, flights, lodging, venues, itinerary, and transportation -- with interactive maps and bulk participant import.',
   },
   {
     number: 2,
-    label: 'Phase 02 // Review',
-    name: 'Review',
+    label: 'Step 02 // Review',
+    name: 'Professional Analyst Review',
     description:
-      'An independent safety analyst reviews every trip across 18 dimensions. Separation of duties is enforced by the platform, not by policy.',
+      'A safety analyst validates every location across 18 dimensions within 3-5 business days. They build your emergency preparedness plan, map nearby hospitals with trauma levels, and assess real-time intelligence for your destinations.',
   },
   {
     number: 3,
-    label: 'Phase 03 // Protect',
-    name: 'Protect',
+    label: 'Step 03 // Connect',
+    name: 'Travelers Get Connected',
     description:
-      '46-endpoint protection system activates rally points, safe houses, geofencing, and SMS emergency broadcast. Intelligence alerts are delivered in real time.',
+      'Travelers, chaperones, and guardians access the Traveler App. Safety checklists are delivered live. Emergency information is on-device. Documents and consents can be submitted directly. Every acknowledgment is tracked.',
   },
   {
     number: 4,
-    label: 'Phase 04 // Monitor',
-    name: 'Monitor',
+    label: 'Step 04 // Monitor',
+    name: 'Travel With Confidence',
     description:
-      'Live traveler delivery through the mobile app. Geo-triggered checklists. Alert acknowledgment tracking. Every interaction documented.',
+      'During travel, Safetrekr continuously monitors conditions at your destinations. Alerts are reviewed by analysts and routed to your team via email, SMS, and in-app -- with acknowledgment tracking, escalation, and course-of-action guidance.',
+  },
+  {
+    number: 5,
+    label: 'Step 05 // Document',
+    name: 'Document Everything',
+    description:
+      'After travel, your complete record is ready -- every alert sent, every checklist acknowledged, every safety decision documented with timestamps. Board-ready packets for your board, insurer, and parents.',
   },
 ] as const
 
@@ -42,15 +49,15 @@ export function HowItWorksSection() {
       aria-labelledby="how-it-works-heading"
       className="bg-[var(--color-abyss)]"
     >
-      {/* Section monospace label */}
+      {/* Section eyebrow */}
       <p
         className={cn(
           'mb-4 text-center font-mono text-xs font-medium uppercase',
           'tracking-[0.12em]',
-          'text-[var(--color-text-tertiary)]',
+          'text-[var(--color-ember)]',
         )}
       >
-        System Overview
+        How It Works
       </p>
 
       {/* Section heading */}
@@ -63,7 +70,7 @@ export function HowItWorksSection() {
           'mb-16 lg:mb-20',
         )}
       >
-        Four phases. One system of record.
+        From trip idea to defensible record in 5 steps
       </h2>
 
       {/* Steps grid */}
@@ -71,15 +78,15 @@ export function HowItWorksSection() {
         {/* Desktop horizontal connector line */}
         <div
           className={cn(
-            'absolute top-6 left-[calc(12.5%+24px)] right-[calc(12.5%+24px)]',
-            'hidden md:block',
+            'absolute top-6 left-[calc(10%+24px)] right-[calc(10%+24px)]',
+            'hidden lg:block',
             'h-0 border-t-2 border-dashed border-[var(--color-ember-muted)]',
             'landing-step-connector',
           )}
           aria-hidden="true"
         />
 
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-4 md:gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-5 md:gap-8 lg:gap-6">
           {STEPS.map((step, index) => (
             <div key={step.number} className="relative">
               {/* Mobile vertical connector line (between steps, not after last) */}
@@ -89,7 +96,7 @@ export function HowItWorksSection() {
                     'absolute left-6 top-12 h-[calc(100%+48px)] w-0',
                     'border-l-2 border-dashed border-[var(--color-ember-muted)]',
                     'landing-step-connector-vertical',
-                    'md:hidden',
+                    'lg:hidden',
                   )}
                   aria-hidden="true"
                 />
@@ -157,7 +164,7 @@ export function HowItWorksSection() {
             'focus-visible:outline-[var(--color-ember-bright)]',
           )}
         >
-          See how it works
+          Learn More About the Process
           <span aria-hidden="true">&rarr;</span>
         </Link>
       </div>

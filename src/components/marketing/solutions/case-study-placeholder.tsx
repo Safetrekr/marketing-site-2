@@ -52,7 +52,7 @@ export function CaseStudyPlaceholder({
               'focus-visible:outline-[var(--color-ember-bright)]',
             )}
           >
-            Schedule a Briefing
+            Request a Sample Trip Package
           </Link>
         </div>
       </div>

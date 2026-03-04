@@ -14,9 +14,9 @@ import type {
 // ---------------------------------------------------------------------------
 
 export const HOW_IT_WORKS_SEO = {
-  title: 'How Safetrekr Works -- Plan, Review, Protect, Monitor',
+  title: 'How Safetrekr Works -- From Trip Idea to Defensible Record in 5 Steps',
   description:
-    'Four phases cover the full trip lifecycle. Independent analyst review across 18 dimensions. 46-endpoint protection system. Geo-triggered traveler delivery. See how Safetrekr documents every safeguard.',
+    'Safetrekr assigns a professional safety analyst to every trip. They review your plans, verify your destinations, monitor conditions during travel, and deliver a documented safety record. Per-trip pricing starting at $450.',
   canonical: '/how-it-works',
 } as const
 
@@ -25,8 +25,8 @@ export const HOW_IT_WORKS_SEO = {
 // ---------------------------------------------------------------------------
 
 export const HERO = {
-  h1: 'From trip planning to traveler protection. One system of record.',
-  h2: 'Safetrekr replaces scattered spreadsheets, email chains, and paper checklists with a verified, auditable safety platform that covers every stage of the trip lifecycle.',
+  h1: 'From trip idea to defensible record in 5 steps',
+  h2: 'Safetrekr assigns a professional safety analyst to every trip. They review your plans, verify your destinations, monitor conditions during travel, and deliver a documented safety record -- while your travelers receive live checklists and real-time alerts directly through the Traveler App.',
 } as const
 
 // ---------------------------------------------------------------------------
@@ -34,8 +34,8 @@ export const HERO = {
 // ---------------------------------------------------------------------------
 
 export const PROBLEM_STATEMENT = {
-  intro: 'Spreadsheets. Email chains. Paper checklists. Hope.',
-  body: 'That is how most organizations manage trip safety today. It works -- until it does not. Until a background check expires and nobody notices. Until an emergency contact form is missing and nobody follows up. Until someone asks: "Did you do everything you could?"',
+  intro: 'Five steps from trip idea to defensible record',
+  body: 'You plan the trip. A professional analyst reviews it. Your travelers get connected. Conditions are monitored in real time. Everything is documented for the record.',
   close: 'Safetrekr replaces hope with a system.',
 } as const
 
@@ -47,44 +47,54 @@ export const PHASES: Phase[] = [
   {
     id: 'plan',
     number: 1,
-    label: 'Plan',
+    label: 'Plan Your Trip',
     iconName: 'ClipboardList',
-    heading: 'Plan with structure, not spreadsheets.',
-    body: "Safetrekr's 10-step trip creation wizard walks administrators through every detail a safety reviewer needs -- from basic logistics to emergency preparedness. The wizard enforces completeness at each stage, reducing back-and-forth between trip organizers and safety teams.",
+    heading: 'Plan Your Trip',
+    body: 'Complete our guided 10-step wizard with everything a safety analyst needs to review your trip: destinations, dates, travelers, flights, lodging, venues, day-by-day itinerary, ground transportation, add-on services, and a final review.',
     supportingStatement:
-      'Every trip starts as a draft and moves through a clear lifecycle: draft, in review, active, in progress, completed. Nothing falls through the cracks because the system enforces the process.',
+      'Import participants in bulk from CSV or Excel with intelligent matching against your traveler registry. Interactive maps visualize every location on your itinerary. Lodging entries automatically flag rooms above the sixth floor for fire safety review.',
   },
   {
     id: 'review',
     number: 2,
-    label: 'Review',
+    label: 'Professional Analyst Review',
     iconName: 'ShieldCheck',
-    heading: 'Verify with independence, not assumption.',
-    body: 'This is what makes Safetrekr fundamentally different. Every trip submitted by an organization passes through an independent analyst review before it can be approved for travel. The analyst is not part of the trip planning team. They are a separate pair of eyes -- enforced by the platform, not by policy.',
+    heading: 'Professional Analyst Review',
+    body: 'A trained safety analyst independently reviews your trip across 18 safety dimensions. They validate every location, route, and lodging -- then build a structured emergency preparedness plan tailored to your specific trip, destinations, and group composition.',
     supportingStatement:
-      "Analysts are assigned by tier: junior analysts review day trips, mid-level analysts handle domestic overnight travel, senior analysts cover international trips. Each analyst's workload is tracked, and every review decision is timestamped and attributed.",
+      'Nearby hospitals mapped with trauma capability levels and estimated travel times. Three-tier evacuation plans with rally points on interactive maps. Safety checklists assigned across eight categories with timing triggers. Real-time intelligence assessed from 11+ government sources.',
     objectionHook:
-      '"We already have a safety review process." -- Safetrekr does not replace your process. It documents and standardizes it, adds independent verification, and creates the audit trail that proves it happened.',
+      'Review timelines vary by trip complexity -- domestic day trips in 3-5 business days, multi-day and international trips may require additional time.',
   },
   {
-    id: 'protect',
+    id: 'connect',
     number: 3,
-    label: 'Protect',
-    iconName: 'Shield',
-    heading: 'Protect with systems, not checklists on a shelf.',
-    body: "Safetrekr's protection system goes beyond static emergency preparedness data. A 46-endpoint API manages rally points, safe houses, musters, check-ins, and evacuation plans -- all connected to active geofencing on travelers' devices.",
+    label: 'Travelers Get Connected',
+    iconName: 'Smartphone',
+    heading: 'Travelers Get Connected',
+    body: 'Before your group departs, travelers, chaperones, and guardians access the Safetrekr Traveler App -- a mobile-first portal that delivers live safety information directly to their devices.',
     supportingStatement:
-      'Emergency preparedness is not a binder on a shelf. It is an active, connected system that knows where your travelers are and what threats are nearby.',
+      'Safety checklists delivered live with timing triggers. Emergency preparedness information accessible on-device. Day-by-day itineraries with real-time updates. Documents and consents submitted directly through the app. Every acknowledgment tracked.',
   },
   {
     id: 'monitor',
     number: 4,
-    label: 'Monitor',
-    iconName: 'Radio',
-    heading: 'Deliver to every traveler. Document every interaction.',
-    body: "The Safetrekr Traveler App puts safety information directly in participants' hands -- with proof that it was received.",
+    label: 'Travel With Confidence',
+    iconName: 'Radar',
+    heading: 'Travel With Confidence',
+    body: 'On travel days, Safetrekr continuously monitors conditions at your destinations from 11+ authoritative government and international sources. When risks are identified, alerts are surfaced for analyst review and routed to affected trips with course-of-action guidance.',
     supportingStatement:
-      'When a parent asks whether their child received the safety briefing, the answer is not "we sent an email." The answer is: "They acknowledged it on their phone at 3:47 PM on Tuesday. Here is the record."',
+      'Monitoring sources include NWS, USGS, CDC, State Department, FEMA, FAA, GDACS, and ReliefWeb. Alerts are reviewed by analysts before delivery. Automatic escalation for critical events when alerts go unacknowledged.',
+  },
+  {
+    id: 'document',
+    number: 5,
+    label: 'Document Everything',
+    iconName: 'FileCheck',
+    heading: 'Document Everything',
+    body: 'After travel, your complete trip record is ready. Every precaution your organization took is documented with timestamps, and board-ready trip packets are generated for every stakeholder who needs them.',
+    supportingStatement:
+      'Every alert sent, every checklist acknowledged, every analyst review decision documented with evidence and audit trail. Board-ready trip packets in four role-based variants: traveler, chaperone, guardian, and administrator. Trip packets carry your organization\'s branding.',
   },
 ]
 
@@ -357,12 +367,12 @@ export const DOCUMENTATION_CLOSING = {
 // ---------------------------------------------------------------------------
 
 export const BOTTOM_CTA: HowItWorksCta = {
-  headline: 'Your travelers trust you to bring them home safely.',
-  body: 'Safetrekr makes sure that trust is backed by a system -- not just good intentions.',
-  primaryLabel: 'Schedule a Briefing',
+  headline: 'Start with one trip',
+  body: 'At $450, a single domestic day trip falls within discretionary spending authority at most schools. No procurement committee. No board approval required. One trip gives your board, your insurance provider, and the parents of every traveler a documented record that every precaution was taken.',
+  primaryLabel: 'Request a Sample Trip Package',
   primaryHref: '/contact',
-  primaryMicrocopy: '20 minutes. No obligation.',
-  secondaryLabel: 'Download the Platform Overview',
-  secondaryHref: '/resources/platform-overview',
-  secondaryMicrocopy: '4-page overview. PDF.',
+  primaryMicrocopy: 'See the analyst review, Traveler App, and documentation we produce.',
+  secondaryLabel: 'View Pricing Details',
+  secondaryHref: '/pricing',
+  secondaryMicrocopy: 'Per-trip pricing starting at $450.',
 }

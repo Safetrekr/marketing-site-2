@@ -126,6 +126,9 @@
 .capsule-health-bar[data-index='5'] {
   --heartbeat-delay: 6s;
 }
+.capsule-health-bar[data-index='6'] {
+  --heartbeat-delay: 7.2s;
+}
 
 /* Offline: no heartbeat, reduced opacity */
 .capsule-health-bar[data-health='OFFLINE'],

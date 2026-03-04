@@ -41,11 +41,11 @@ const MARKETING_DISTRICT_CONFIG: Record<DistrictId, MarketingDistrictConfig> = {
     ctaHref: '/how-it-works',
   },
   'who-its-for': {
-    headline: 'Built for safety-critical industries',
+    headline: 'Built for the people accountable when the group travels',
     bullets: [
-      'Mining, construction, energy, and forestry',
-      'Lone workers and remote site teams',
-      'Safety managers and compliance officers',
+      'Schools, churches, youth sports, and businesses',
+      'Trip leaders, chaperones, and safety officers',
+      'Administrators and compliance teams',
     ],
     ctaLabel: 'Read More',
     ctaHref: '/solutions',
@@ -87,9 +87,19 @@ const MARKETING_DISTRICT_CONFIG: Record<DistrictId, MarketingDistrictConfig> = {
       'Free trial with full platform access',
       'Dedicated onboarding specialist',
     ],
-    ctaLabel: 'Schedule a Briefing',
+    ctaLabel: 'Request a Sample Trip Package',
     ctaHref: '/contact',
     isConversion: true,
+  },
+  'about-us': {
+    headline: 'Built by safety professionals',
+    bullets: [
+      'US-based team with safety industry credentials',
+      'Built for schools, churches, youth sports, and businesses',
+      'Backed by real-world field operations experience',
+    ],
+    ctaLabel: 'Read More',
+    ctaHref: '/about',
   },
 }
 

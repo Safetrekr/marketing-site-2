@@ -15,32 +15,27 @@ export const HIGHER_ED_VERTICAL: VerticalDetailData = {
 
   // The Challenge
   challengeIntro:
-    'Higher education travel is high-stakes, high-complexity, and high-visibility. Study abroad programs, faculty research trips, athletic travel, and conference attendance create a web of institutional liability that most risk management offices navigate with spreadsheets and institutional memory.',
+    'The complexity of institutional travel safety: study abroad programs, faculty research travel, and student organization trips span dozens of countries with distinct risk profiles.',
   challenges: [
     {
-      title: 'International Risk at Scale',
+      title: 'International Risk Complexity',
       description:
-        'A mid-sized university may operate programs in 20+ countries simultaneously. Each destination carries distinct security, health, political, and infrastructure risks. Risk assessment is often performed once at program inception and rarely updated.',
+        'Study abroad programs, faculty research travel, and student organization trips span dozens of countries with distinct risk profiles. Monitoring political instability, health advisories, and security conditions across those destinations is a full-time job that most offices are not resourced to do.',
     },
     {
-      title: 'Institutional Liability Exposure',
+      title: 'Inconsistent Safety Standards Across Departments',
       description:
-        'When a student is harmed abroad, the institution\'s legal exposure depends on what safeguards were documented -- not what safeguards were intended. Risk management offices need proof that due diligence was performed for every trip, not just the high-profile ones.',
+        'When every department manages trips differently, the institution has no unified view of who is traveling where, what safety planning has been done, or whether documented precautions meet the institution\'s duty of care standard.',
     },
     {
-      title: 'Compliance Across Departments',
+      title: 'Compliance Documentation Gaps',
       description:
-        'Study abroad, athletics, research, and faculty travel are managed by different offices with different processes. Compliance documentation is siloed. No single system tracks safety measures across all institutional travel programs.',
+        'Clery Act reporting, Title IX obligations, and institutional risk management all require documented evidence of the precautions taken during student and faculty travel. Most institutions produce that documentation retroactively -- if at all.',
     },
     {
-      title: 'Clery Act Reporting Obligations',
+      title: 'Emergency Response Coordination',
       description:
-        'The Clery Act requires reporting of certain crimes at locations associated with the institution, including study abroad sites. Institutions need documented awareness of safety conditions at program locations.',
-    },
-    {
-      title: 'Duty of Care Documentation',
-      description:
-        'Institutional duty of care for student safety abroad is well-established in case law. What is less established is how institutions document that duty in practice. The gap between policy and documentation is where liability lives.',
+        'When a crisis occurs during off-campus travel, the institution needs to know immediately: who is affected, what safety information has been communicated, and whether everyone has been reached. Without a structured system, the first hours of a crisis are spent assembling information instead of acting on it.',
     },
   ],
 

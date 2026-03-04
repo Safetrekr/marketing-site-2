@@ -37,8 +37,8 @@ export const ZOOM_STEP = 0.15 as const
 /**
  * Calculate the world-space position of a district from its ring index.
  *
- * Districts are arranged in a ring of radius CAPSULE_RING_RADIUS (300px),
- * spaced CAPSULE_ANGULAR_SPACING (60deg) apart, starting at -90deg (12 o'clock).
+ * Districts are arranged in a ring of radius CAPSULE_RING_RADIUS (400px),
+ * spaced CAPSULE_ANGULAR_SPACING (~51.4deg) apart, starting at -90deg (12 o'clock).
  */
 export function getDistrictWorldPosition(ringIndex: number): {
   x: number

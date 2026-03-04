@@ -24,9 +24,9 @@ import { PricingBottomCta } from '@/components/marketing/pricing/pricing-bottom-
 // ─── SEO Metadata ─────────────────────────────────────────────────
 
 export const metadata = generatePageMetadata({
-  title: 'Pricing -- Per-Trip Safety Management',
+  title: 'Pricing -- Transparent, Trip-Based Safety Management',
   description:
-    'Per-trip pricing from $450. No annual contracts. Every trip includes independent safety review, intelligence monitoring, and full audit trail. Compare plans.',
+    'Per-trip pricing from $450. No subscriptions, no per-user fees, no hidden costs. Every trip includes professional analyst review, real-time intelligence, Traveler App, and board-ready documentation.',
   path: '/pricing',
   keywords: [
     'trip safety management pricing',
@@ -40,10 +40,7 @@ export const metadata = generatePageMetadata({
 // ─── Page Component ───────────────────────────────────────────────
 
 export default function PricingPage() {
-  // Prepare FAQ items for structured data (strip unresolved items)
-  const resolvedFaqItems = PRICING_FAQ_ITEMS.filter(
-    (item) => !item.unresolved,
-  ).map((item) => ({
+  const faqItems = PRICING_FAQ_ITEMS.map((item) => ({
     question: item.question,
     answer: item.answer,
   }))
@@ -52,7 +49,7 @@ export default function PricingPage() {
     <>
       {/* Structured Data */}
       <JsonLd data={productSchema()} />
-      <JsonLd data={faqPageSchema(resolvedFaqItems)} />
+      <JsonLd data={faqPageSchema(faqItems)} />
       <JsonLd
         data={breadcrumbSchema([{ name: 'Pricing', path: '/pricing' }])}
       />

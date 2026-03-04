@@ -19,10 +19,10 @@ import type {
 // ---------------------------------------------------------------------------
 
 export const SECURITY_HERO = {
-  metaLabel: 'SYSTEM // SECURITY ARCHITECTURE',
-  title: 'Security architecture',
+  metaLabel: 'SECURITY // PRIVACY // COMPLIANCE',
+  title: 'Security, Privacy & Compliance',
   subtitle:
-    'Safetrekr handles sensitive personal information -- student records, medical data, emergency contacts, minor children\u2019s safety records. Here is exactly how we protect it.',
+    'Safetrekr handles sensitive data -- student information, emergency contacts, background check records, and compliance documentation. Here\'s exactly how that data is collected, stored, accessed, and protected.',
 } as const
 
 // ---------------------------------------------------------------------------
@@ -33,29 +33,24 @@ export const SECURITY_HERO = {
 
 export const ARCHITECTURE_BADGES: ArchitectureBadge[] = [
   {
-    id: 'rls',
-    label: 'Row Level Security',
-    iconName: 'Database',
-  },
-  {
-    id: '2fa',
-    label: 'Two-Factor Authentication',
+    id: 'ferpa',
+    label: 'Designed for FERPA Compliance',
     iconName: 'ShieldCheck',
   },
   {
-    id: 'encryption',
-    label: 'Encrypted at Rest and In Transit',
-    iconName: 'Lock',
-  },
-  {
-    id: 'gdpr',
-    label: 'GDPR-Compliant Data Governance',
+    id: 'clery',
+    label: 'Clery Act Support',
     iconName: 'FileCheck',
   },
   {
-    id: 'invite-only',
-    label: 'Invite-Only Access',
-    iconName: 'UserCheck',
+    id: 'gdpr',
+    label: 'GDPR-Aligned',
+    iconName: 'Lock',
+  },
+  {
+    id: 'audit',
+    label: 'Audit-Ready Documentation',
+    iconName: 'ScrollText',
   },
 ]
 
@@ -425,15 +420,142 @@ export const COMPLIANCE_FOOTER =
   'Contact us for the current status of any compliance certification.'
 
 // ---------------------------------------------------------------------------
+// Section 7: Regulatory Alignment
+// Source: reference marketing site security.html
+// ---------------------------------------------------------------------------
+
+export const REGULATORY_ALIGNMENT = [
+  {
+    id: 'ferpa',
+    name: 'FERPA',
+    description:
+      'Safetrekr is designed for FERPA compliance. The platform supports organizations that handle student information through role-based access control, data minimization (no SSNs, academic records, or disciplinary records stored), guardian consent tracking, and comprehensive audit trails. Safetrekr does not claim FERPA certification -- no third party certifies FERPA compliance. The platform is designed so that organizations using Safetrekr can meet their own FERPA obligations when managing student trip data.',
+  },
+  {
+    id: 'title-ix',
+    name: 'Title IX',
+    description:
+      'Organizations with Title IX obligations can use Safetrekr\'s documentation and safety review capabilities to support their compliance posture for group travel: background check and screening workflows, documented safety review across 18 dimensions, time-stamped records of every communication and acknowledgment, and board-ready documentation packages.',
+  },
+  {
+    id: 'clery',
+    name: 'Clery Act',
+    description:
+      'For colleges and universities subject to the Clery Act, Safetrekr provides documentation that supports campus safety reporting obligations related to off-campus travel: time-stamped incident and alert records, documented safety reviews with analyst sign-off, communication logs, and searchable audit trails.',
+  },
+  {
+    id: 'gdpr',
+    name: 'GDPR',
+    description:
+      'For organizations with international travel involving EU travelers or destinations, Safetrekr\'s data handling practices support GDPR alignment: right to access, right to data portability, right to erasure (user-initiated deletion with 30-day grace period), timestamped consent management, data minimization, and granular privacy controls.',
+  },
+] as const
+
+// ---------------------------------------------------------------------------
+// Section 8: Procurement
+// Source: reference marketing site security.html
+// ---------------------------------------------------------------------------
+
+export const PROCUREMENT_INFO = {
+  heading: 'Purchasing information for institutional buyers',
+  subtitle:
+    'We understand institutional purchasing. Transparent pricing, flexible payment options, and we\'ll sign your standard data privacy agreement.',
+  paymentMethods: [
+    {
+      name: 'Credit Card',
+      description: 'Immediate activation via credit card. Visa, Mastercard, American Express, and Discover accepted.',
+    },
+    {
+      name: 'Purchase Order',
+      description: 'Purchase orders accepted from schools, universities, churches, and established organizations.',
+    },
+    {
+      name: 'Net 30 Invoice',
+      description: 'After your first successful trip, we can set up Net 30 invoicing or PO terms.',
+    },
+    {
+      name: 'ACH Transfer',
+      description: 'ACH transfer accepted. Contact us for bank details after quote acceptance.',
+    },
+  ],
+  contractTerms: [
+    'No annual commitment -- pay per trip, no minimum trip volume, no forced renewals.',
+    'Volume pricing for organizations managing 5 or more trips per year.',
+    '25% recurring trip discount starting in year two for the same annual trip.',
+    'You own your data. Export anytime. Full data deletion upon request.',
+    'Termination for convenience with 30 days written notice. No early termination fees.',
+  ],
+  vendorEvaluation: [
+    'Sign your standard data privacy agreement or student data privacy addendum',
+    'Walk through the platform\'s security controls in a live demonstration',
+    'Provide answers to your organization\'s vendor security questionnaire',
+    'Discuss data handling practices specific to your regulatory requirements',
+    'Participate in formal RFP processes for institutional buyers',
+  ],
+} as const
+
+// ---------------------------------------------------------------------------
+// Security FAQs
+// Source: reference marketing site security.html
+// ---------------------------------------------------------------------------
+
+export const SECURITY_FAQ_ITEMS = [
+  {
+    question: 'Is Safetrekr designed for FERPA compliance for K-12 schools?',
+    answer:
+      'Safetrekr is designed for FERPA compliance. The platform supports organizations that handle student information through role-based access control, data minimization (no SSNs, academic records, or disciplinary records stored), guardian consent tracking, and comprehensive audit trails. We will sign your standard student data privacy agreement.',
+  },
+  {
+    question: 'What certifications does Safetrekr hold?',
+    answer:
+      'Safetrekr is designed for regulatory alignment with FERPA, the Clery Act, Title IX, and GDPR. The platform enforces role-based access control at the database level, encrypts data in transit and at rest, and maintains comprehensive audit trails. We will sign your organization\'s standard data privacy agreement.',
+  },
+  {
+    question: 'Where is our data stored?',
+    answer:
+      'Data is stored on US-based cloud infrastructure. All data is encrypted in transit via TLS and at rest through database-level storage encryption. Participant data is not shared with third parties for marketing, analytics, or any purpose outside the direct delivery of trip safety management services.',
+  },
+  {
+    question: 'How does Safetrekr handle data deletion requests?',
+    answer:
+      'We support right-to-erasure requests per GDPR and similar regulations. User accounts can be deleted by the user with a 30-day recovery window before permanent removal. Organizations can request data deletion in accordance with applicable data privacy agreements.',
+  },
+  {
+    question: 'Can we conduct a security review of Safetrekr?',
+    answer:
+      'Yes. We welcome security reviews. We are prepared to walk through our platform\'s security controls in a live demonstration, provide answers to your vendor security questionnaire, and discuss data handling practices specific to your regulatory requirements.',
+  },
+  {
+    question: 'What happens if there\'s a security incident?',
+    answer:
+      'We have documented incident response procedures. In the event of a security incident, we work to contain the threat, assess the impact, and notify affected customers in accordance with applicable regulations and our data privacy agreements.',
+  },
+  {
+    question: 'How does background check integration maintain compliance?',
+    answer:
+      'Safetrekr integrates with FCRA-compliant screening providers (Checkr, Sterling, GoodHire). Safetrekr stores check status -- not the full background check report content. Results are tracked at both the trip level and the organization level, and access to results is role-based.',
+  },
+  {
+    question: 'Can we use single sign-on (SSO)?',
+    answer:
+      'Safetrekr supports two-factor authentication and invite-based account activation. SSO is not currently available. Contact us to discuss your organization\'s authentication requirements.',
+  },
+] as const
+
+// ---------------------------------------------------------------------------
 // Bottom CTA
 // ---------------------------------------------------------------------------
 
 export const BOTTOM_CTA = {
-  headline: 'Questions about our security architecture?',
+  headline: 'Questions about security or compliance?',
   primaryButton: {
-    label: 'Schedule a Security Briefing',
+    label: 'Request a Sample Trip Package',
     href: '/contact',
   },
+  secondaryButton: {
+    label: 'Schedule Security Review',
+    href: '/contact?type=security',
+  },
   supportingText:
-    'We walk IT, legal, and insurance teams through our architecture in detail.',
+    'Request our evaluation checklist or schedule a call to discuss your specific compliance requirements.',
 } as const

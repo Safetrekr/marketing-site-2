@@ -119,7 +119,10 @@ export const PAN_PAUSE_DELAY_MS = 150
 // ---------------------------------------------------------------------------
 
 /** Radius of the first capsule ring from origin (world-space pixels). */
-export const CAPSULE_RING_RADIUS = 300
+export const CAPSULE_RING_RADIUS = 400
 
 /** Angular spacing between capsules in the first ring (degrees). */
-export const CAPSULE_ANGULAR_SPACING = 60
+export const CAPSULE_ANGULAR_SPACING = 360 / 7
+
+/** Size of the ring container (world-space pixels). Must accommodate ring + capsules. */
+export const CAPSULE_RING_CONTAINER_SIZE = 1100

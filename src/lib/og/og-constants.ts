@@ -201,7 +201,7 @@ export const OG_PAGE_CONFIGS = {
     alt: 'About Safetrekr -- Team of safety professionals, security experts, and technologists',
   },
   contact: {
-    title: 'Schedule a Briefing',
+    title: 'Request a Sample Trip Package',
     description:
       'Request a personalized demo of Safetrekr for your organization.',
     badgeLabel: 'CONNECT',

@@ -221,7 +221,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
             size="lg"
             data-analytics-id="case-study-bottom-cta"
           >
-            Schedule a Briefing
+            Request a Sample Trip Package
           </BreathingCTA>
         </div>
       </SectionContainer>

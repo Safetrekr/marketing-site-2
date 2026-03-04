@@ -20,6 +20,7 @@
 'use client'
 
 import { useEnrichmentStore } from '@/stores/enrichment.store'
+import { CAPSULE_RING_RADIUS, CAPSULE_ANGULAR_SPACING } from '@/lib/constants'
 import type { DistrictId, HealthState } from '@/lib/interfaces/district'
 
 // ---------------------------------------------------------------------------
@@ -30,8 +31,8 @@ import type { DistrictId, HealthState } from '@/lib/interfaces/district'
 const SVG_SIZE = 1600
 const CENTER = SVG_SIZE / 2
 
-/** Capsule ring radius (must match district layout in page.tsx). */
-const RING_RADIUS = 300
+/** Capsule ring radius (imported from constants). */
+const RING_RADIUS = CAPSULE_RING_RADIUS
 
 /** How far the bezier control point is pushed outward from the midpoint. */
 const CURVE_OUTWARD_PUSH = 80
@@ -44,7 +45,7 @@ const CURVE_OUTWARD_PUSH = 80
  * Compute the angle (in degrees) for a capsule at the given ring index.
  * Index 0 is at 12 o'clock (-90deg), each successive capsule is +60deg.
  */
-const capsuleAngle = (index: number): number => -90 + index * 60
+const capsuleAngle = (index: number): number => -90 + index * CAPSULE_ANGULAR_SPACING
 
 /** World-space X coordinate for a capsule, offset by SVG center. */
 const capsuleX = (index: number): number =>
@@ -162,6 +163,7 @@ const DISTRICT_RING_INDEX: Record<DistrictId, number> = {
   'security': 3,
   'pricing': 4,
   'get-started': 5,
+  'about-us': 6,
 }
 
 /**

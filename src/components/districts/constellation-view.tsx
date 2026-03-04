@@ -18,7 +18,7 @@
 import { useMemo } from 'react'
 import { motion } from 'motion/react'
 
-import { CAPSULE_RING_RADIUS, CAPSULE_ANGULAR_SPACING } from '@/lib/constants'
+import { CAPSULE_RING_RADIUS, CAPSULE_ANGULAR_SPACING, CAPSULE_RING_CONTAINER_SIZE } from '@/lib/constants'
 import { useDistrictsStore } from '@/stores/districts.store'
 import type { AppTelemetry } from '@/lib/telemetry-types'
 import {
@@ -36,8 +36,8 @@ import { GlobalMetrics } from './global-metrics'
 // Layout constants (mirror capsule-ring.tsx)
 // ---------------------------------------------------------------------------
 
-/** Ring container matches capsule ring: 840x840px. */
-const RING_SIZE = 840
+/** Ring container matches capsule ring. */
+const RING_SIZE = CAPSULE_RING_CONTAINER_SIZE
 
 /** Center of the ring container. */
 const RING_CENTER = RING_SIZE / 2

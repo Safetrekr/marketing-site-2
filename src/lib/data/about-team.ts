@@ -14,11 +14,11 @@ import type {
 export const ABOUT_HERO = {
   title: 'The people behind Safetrekr',
   subtitle:
-    'Ex-advance (United States Secret Service) + product and ops leads. We build trip safety that works in the real world.',
+    'Former U.S. Secret Service agents and school security professionals. We build trip safety that works in the real world.',
 } as const
 
 export const ORIGIN_STORY =
-  'We spent decades protecting people in high-risk environments\u2014from presidential details to international operations. We watched trip leaders juggle binders, spreadsheets, and group texts, trying to keep students safe with tools built for something else. We knew there had to be a better way. Safetrekr gives schools, churches, and youth organizations the same level of safety intelligence and evidence we used in the field\u2014minus the complexity. One packet, daily briefs, read-checks that prove who knew what, and an evidence file that stands up when it matters most.'
+  'We spent decades protecting people in high-risk environments\u2014from presidential details to international operations. We watched trip leaders juggle spreadsheets, group texts, and good intentions, trying to keep students safe with tools built for something else. We knew there had to be a better way. Safetrekr gives schools, churches, and youth organizations the same level of safety intelligence and documentation we used in the field\u2014minus the complexity. A professional analyst reviews every trip, real-time intelligence keeps your team informed, and board-ready documentation proves what precautions you took.'
 
 // ---------------------------------------------------------------------------
 // Leadership
@@ -92,55 +92,80 @@ export const LEADERS: Leader[] = [
 // ---------------------------------------------------------------------------
 
 export const FIELD_EXPERTS_INTRO =
-  "Safetrekr's analyst bench includes approximately 20 former federal agents and special operators\u2014each with hundreds of domestic and overseas advances, protective operations, and high-risk missions. They review trips, curate safety intel, and export evidence binders that meet board and insurer standards."
+  "Safetrekr's analyst bench includes approximately 20 former federal agents and special operators\u2014each with hundreds of domestic and overseas advances, protective operations, and high-risk missions. They review trips, curate safety intelligence, and produce board-ready trip packets that meet board and insurer standards."
 
 export const FIELD_EXPERTS_CALLOUT =
-  'All field experts have conducted protective operations alongside U.S. military special operations forces (SOCOM, JSOC, SFOD) across domestic and international venues. They translate decades of advance work, threat assessment, and incident response into trip packets and daily briefs that schools, churches, and youth organizations can actually use.'
+  'All field experts have conducted protective operations alongside U.S. military special operations forces (SOCOM, JSOC, SFOD) across domestic and international venues. They translate decades of advance work, threat assessment, and incident response into trip packets and safety documentation that schools, churches, and youth organizations can actually use.'
 
 export const AGENCY_BADGES: AgencyBadge[] = [
   {
     id: 'usss',
     name: 'U.S. Secret Service',
-    description:
-      'Presidential & VP Protection, Diplomatic Security, Counter Assault Team',
+    description: 'Presidential & VP Protection, Counter Assault Team',
     image: '/images/squads/usss-badge.png',
     imageType: 'file',
   },
   {
-    id: 'dhs',
-    name: 'DHS Homeland Security',
-    description: 'HSI Special Agents, Investigations',
-    image: null,
-    imageType: 'icon',
-    iconName: 'Shield',
-  },
-  {
-    id: 'usms',
-    name: 'U.S. Marshals Service',
-    description: 'Special Operations Group (SOG)',
-    image: null,
-    imageType: 'icon',
-    iconName: 'ShieldCheck',
-  },
-  {
     id: 'nsw',
     name: 'Naval Special Warfare',
-    description: 'SEAL Teams, DEVGRU',
+    description: 'SEAL Teams',
     image: '/images/squads/navy-seals-insignia.png',
     imageType: 'file',
   },
   {
-    id: 'jsoc',
-    name: 'Joint Special Operations',
-    description: 'JSOC, SOCOM collaborative ops',
-    image: '/images/squads/jsoc-seal.png',
+    id: 'devgru',
+    name: 'Naval Special Warfare Development Group',
+    description: 'DEVGRU',
+    image: '/images/squads/devgru-insignia.png',
     imageType: 'file',
   },
   {
     id: 'arsf',
     name: 'U.S. Army Special Forces',
-    description: 'Green Berets, SFOD',
+    description: 'Green Berets',
     image: '/images/squads/army-sf-insignia.png',
+    imageType: 'file',
+  },
+  {
+    id: '75th-ranger',
+    name: '75th Ranger Regiment',
+    description: 'Army Rangers, Direct Action & Reconnaissance',
+    image: '/images/squads/75th-ranger-insignia.png',
+    imageType: 'file',
+  },
+  {
+    id: '160th-soar',
+    name: '160th Special Operations Aviation Regiment',
+    description: 'Night Stalkers',
+    image: '/images/squads/160th-soar-insignia.png',
+    imageType: 'file',
+  },
+  {
+    id: 'jcu',
+    name: 'Joint Communications Unit',
+    description: 'JSOC Signal & Communications Support',
+    image: '/images/squads/jcu-seal.png',
+    imageType: 'file',
+  },
+  {
+    id: 'isa',
+    name: 'Intelligence Support Activity',
+    description: 'JSOC Intelligence, SIGINT/HUMINT',
+    image: '/images/squads/isa-badge.jpg',
+    imageType: 'file',
+  },
+  {
+    id: 'marsoc',
+    name: 'Marine Forces Special Operations Command',
+    description: 'MARSOC, Marine Raiders',
+    image: '/images/squads/marsoc-seal.png',
+    imageType: 'file',
+  },
+  {
+    id: '1st-sow',
+    name: '1st Special Operations Wing',
+    description: 'AFSOC, Air Force Special Operations',
+    image: '/images/squads/1st-sow-insignia.png',
     imageType: 'file',
   },
 ]
@@ -231,7 +256,7 @@ export const CONTACT_CHANNELS: ContactChannel[] = [
 
 export const BOTTOM_CTA = {
   headline: 'Ready to protect your next trip?',
-  buttonLabel: 'Schedule a Briefing',
+  buttonLabel: 'Request a Sample Trip Package',
   href: '/contact',
 } as const
 

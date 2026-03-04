@@ -250,7 +250,7 @@ export function VerticalDetailTemplate({
                 'mkt-cta-breathe',
               )}
             >
-              Schedule a Briefing
+              Request a Sample Trip Package
             </Link>
           </div>
           <p className="mt-4 text-sm text-[var(--color-text-tertiary)]">

@@ -15,79 +15,57 @@ export const K12_VERTICAL: VerticalDetailData = {
 
   // The Challenge
   challengeIntro:
-    'Field trips are where learning comes alive -- and where liability exposure is highest. Most districts manage trip safety with paper forms, spreadsheet trackers, and email chains. The process works until it does not.',
+    'The reality of trip safety at most schools: the person responsible for getting 30 students safely to a destination and back is also a teacher, a coach, or a club advisor.',
   challenges: [
     {
-      title: 'Consent Collection at Scale',
+      title: 'Your Trip Coordinator Is Already Doing Three Jobs',
       description:
-        'Parental consent forms are sent home in backpacks, returned to teachers, and filed in folders. Tracking who has returned what -- and following up with who has not -- falls to administrators already managing a dozen other priorities. Missing forms are discovered on departure day.',
+        'The person responsible for safety planning is also a teacher, a coach, or a club advisor. Their safety plan is a spreadsheet, a shared Google Doc, and a printout from the hotel website. Their emergency protocol is a group text.',
     },
     {
-      title: 'Chaperone Screening Gaps',
+      title: 'The Board Asks for Documentation and Gets a Manila Folder',
       description:
-        'Background checks for volunteer chaperones are managed through separate systems or not managed at all. State requirements vary. Screening status is tracked in spreadsheets that do not alert anyone when a check expires or a new requirement takes effect.',
+        'When a board member or insurer asks what precautions you took, most schools can produce a manila folder and the words "we did our best." That answer is increasingly insufficient as defense costs for educational organizations have nearly doubled -- regardless of prior claims history.',
     },
     {
-      title: 'No Independent Safety Review',
+      title: 'No Real-Time Information During Travel',
       description:
-        'The person who plans the trip is the same person who approves it. There is no separation of duties, no second pair of eyes, and no documented evidence that someone independent verified the safety plan before students boarded the bus.',
+        'When severe weather hits or a security situation develops at your destination, your coordinator finds out from a weather app or a news alert. Getting that information to every chaperone means a group text and hoping everyone sees it.',
     },
     {
-      title: 'Regulatory Complexity',
+      title: 'Rising Liability Exposure',
       description:
-        'FERPA governs student records. COPPA restricts data collection for children under 13. State-level field trip safety mandates vary by jurisdiction. Administrators bear the compliance burden without a system designed to enforce it.',
-    },
-    {
-      title: 'Accountability After the Fact',
-      description:
-        'When a school board member, a superintendent, or a parent asks what safeguards were in place for a trip, the answer depends on which teacher kept the best records. There is no centralized, timestamped audit trail.',
-    },
-    {
-      title: 'Emergency Preparedness as Afterthought',
-      description:
-        'Emergency plans exist as a paragraph in a permission slip, not as an operational system. Rally points, medical facilities, and evacuation routes are not mapped, not communicated to chaperones, and not accessible on a phone at 2 AM.',
+        'K-12 institutions reported $203 million in large losses in a single recent reporting period. A single trip-related incident can cost $50,000 to $500,000 or more in legal fees, settlements, and insurance increases -- and the standard for what constitutes "reasonable care" is rising every year.',
     },
   ],
 
   // The Safetrekr Response
   responseIntro:
-    'Safetrekr replaces scattered tools with one platform that enforces the process, documents every step, and produces the proof that your district acted with diligence.',
+    'Safetrekr replaces scattered tools with one platform where a professional safety analyst handles the safety planning -- your coordinator submits the trip in about 15 minutes, the analyst handles the rest.',
   responses: [
     {
-      title: 'Structured Consent and Document Collection',
+      title: 'Professional Analyst Review for Every Trip',
       description:
-        '9 document requirement templates with role-based targeting. Automated reminders at 7, 3, and 1 day before deadline. Administrators see a real-time compliance dashboard -- not a folder of returned slips.',
-      featureRef: 'Document collection system',
-    },
-    {
-      title: 'Background Check Compliance Matrix',
-      description:
-        "5 background check types across 3 integrated providers (Checkr, Sterling, GoodHire). A participant-by-check matrix shows every chaperone's screening status at a glance -- with six-status tracking from not started through cleared.",
-      featureRef: 'Background check system',
-    },
-    {
-      title: 'Independent Analyst Review',
-      description:
-        'Every trip passes through an independent safety analyst who reviews the plan across 18 dimensions before departure. The analyst is not part of the school. Separation of duties is enforced by the platform, not by policy.',
+        'A trained safety analyst -- not an algorithm, not a volunteer parent -- independently reviews your trip across 18 safety dimensions. They verify every location, map nearby hospitals with trauma levels and travel times, build evacuation plans, and document every decision with a full audit trail.',
       featureRef: 'Analyst review workflow',
     },
     {
-      title: 'Student Data Privacy by Design',
+      title: 'Live Safety Delivery Through the Traveler App',
       description:
-        'Row Level Security isolates organization data at the database layer. Two-factor authentication. Consent audit trails with timestamped records. Safetrekr is designed with student data privacy requirements in mind from the architecture level.',
-      featureRef: 'Data architecture',
+        'Every trip participant -- travelers, chaperones, and guardians -- accesses the Safetrekr Traveler App. Safety checklists delivered directly to their devices. Emergency contacts, medical facilities, and evacuation plans accessible on-device. Every acknowledgment is tracked.',
+      featureRef: 'Traveler App',
     },
     {
-      title: 'Complete Audit Trail',
+      title: 'Real-Time Intelligence Monitoring',
       description:
-        'Every action is logged: trip creation, roster additions, document submissions, analyst reviews, approval decisions, checklist acknowledgments. When stakeholders ask questions, you have timestamped, attributed, complete answers.',
+        'Safetrekr continuously monitors conditions at your destinations using 11+ authoritative government sources including the National Weather Service, USGS, CDC, and State Department. Alerts are reviewed by a human analyst before reaching your team -- with course-of-action guidance.',
+      featureRef: 'Intelligence engine',
+    },
+    {
+      title: 'Board-Ready Trip Packets with Complete Audit Trail',
+      description:
+        "Role-based trip packets in four variants -- traveler, chaperone, guardian, and administrator -- each containing only the information relevant to that role. Your school's branding appears on every packet. Every alert, checklist, and safety decision documented with timestamps.",
       featureRef: 'Audit trail system',
-    },
-    {
-      title: 'Active Emergency Preparedness',
-      description:
-        'Rally points with GPS coordinates and automatic geofencing. Medical facility directories with trauma capability levels. Three-tier evacuation planning. SMS emergency broadcast to all trip participants. Emergency preparedness is an active system, not a paragraph in a permission slip.',
-      featureRef: 'Protection system',
     },
   ],
 

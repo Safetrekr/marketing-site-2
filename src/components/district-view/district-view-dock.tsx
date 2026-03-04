@@ -35,8 +35,8 @@ const MARKETING_DOCK_CONFIG: Record<DistrictId, MarketingDockConfig> = {
     ctaHref: '/how-it-works',
   },
   'who-its-for': {
-    description: 'Built for safety leaders across mining, construction, energy, forestry, and remote operations.',
-    bullets: ['Safety managers', 'Lone workers', 'Compliance officers'],
+    description: 'Built for the people accountable when the group travels — schools, churches, youth sports, and businesses.',
+    bullets: ['Trip leaders', 'Safety officers', 'Administrators'],
     ctaLabel: 'Read More',
     ctaHref: '/solutions',
   },
@@ -61,9 +61,15 @@ const MARKETING_DOCK_CONFIG: Record<DistrictId, MarketingDockConfig> = {
   'get-started': {
     description: 'Start protecting your team today with a 15-minute onboarding walkthrough and free trial.',
     bullets: ['Free trial', 'Onboarding specialist', '15-min walkthrough'],
-    ctaLabel: 'Schedule a Briefing',
+    ctaLabel: 'Request a Sample Trip Package',
     ctaHref: '/contact',
     isConversion: true,
+  },
+  'about-us': {
+    description: 'Built by safety professionals with real-world field operations experience.',
+    bullets: ['US-based team', 'Safety credentials', 'Field-tested'],
+    ctaLabel: 'Read More',
+    ctaHref: '/about',
   },
 }
 

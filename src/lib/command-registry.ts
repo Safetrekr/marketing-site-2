@@ -90,7 +90,7 @@ function createNavigationCommands(): PaletteCommand[] {
     },
   })
 
-  // 3-8. Go to each of the 6 marketing districts
+  // 3-9. Go to each of the 7 marketing districts
   const districtIds: DistrictId[] = [
     'how-it-works',
     'who-its-for',
@@ -98,6 +98,7 @@ function createNavigationCommands(): PaletteCommand[] {
     'security',
     'pricing',
     'get-started',
+    'about-us',
   ]
 
   for (const districtId of districtIds) {

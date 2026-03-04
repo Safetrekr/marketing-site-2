@@ -7,13 +7,13 @@ import type { SolutionVertical } from '@/lib/interfaces/solutions'
 // ---------------------------------------------------------------------------
 
 export const SOLUTIONS_HERO = {
-  title: 'Your travelers. Your responsibility. Your system.',
+  title: 'Professional trip safety management for your organization',
   subtitle:
-    'Schools, churches, sports teams, universities, and businesses each face unique trip safety challenges. Safetrekr is built to handle all of them -- with independent safety review, real-time intelligence, and documented accountability for every trip.',
+    'Every organization that moves groups of people carries a duty of care. Safetrekr assigns a professional safety analyst to every trip -- whether it is a kindergarten field trip, a study abroad program, a mission trip, or a corporate offsite. Professionally reviewed before departure. Actively monitored during travel. Fully documented for the record.',
 } as const
 
 export const CROSS_CUTTING_VALUE_PROP =
-  'Every organization on this page shares one thing: the people they send to travel depend on them to come home safely. Safetrekr gives every organization the same operational rigor -- a 10-step planning wizard, independent analyst review, real-time intelligence, and a complete audit trail -- adapted to the compliance requirements and travel patterns of each vertical.'
+  'Every organization on this page shares one thing: the people they send to travel depend on them to come home safely. Safetrekr gives every organization the same operational rigor -- guided trip planning, independent analyst review, real-time intelligence, and a complete audit trail -- adapted to the compliance requirements and travel patterns of each vertical.'
 
 // ---------------------------------------------------------------------------
 // Five Vertical Cards
@@ -26,16 +26,16 @@ export const VERTICALS: SolutionVertical[] = [
     iconName: 'GraduationCap',
     tagline: 'Every field trip. Every student. Every safeguard documented.',
     painPoints: [
-      'Parental consent forms tracked in folders, not systems',
-      'Background checks for chaperones managed manually',
-      'No independent review of trip safety plans',
-      'Regulatory compliance adds complexity to data handling',
+      'Trip coordinator is already doing three jobs -- safety planning falls on teachers and coaches',
+      'Board asks for documentation and gets a manila folder',
+      'No real-time information during travel when conditions change',
+      'Rising liability exposure -- defense costs have nearly doubled regardless of claims history',
     ],
     solutions: [
-      'Structured document collection with role-based targeting and automated reminders',
-      "Background check compliance matrix showing every chaperone's screening status at a glance",
-      'Independent analyst review of every trip before departure',
-      'Audit trail that answers questions from parents, superintendents, and school boards',
+      'Professional analyst review across 18 safety dimensions before departure',
+      'Live Traveler App with safety checklists, emergency contacts, and acknowledgment tracking',
+      'Real-time intelligence monitoring from 11+ authoritative government sources',
+      'Board-ready trip packets with a complete, timestamped audit trail',
     ],
     ctaLabel: 'Learn more about Safetrekr for K-12',
     ctaHref: '/solutions/k12',
@@ -47,77 +47,77 @@ export const VERTICALS: SolutionVertical[] = [
     tagline:
       'Study abroad. Exchange programs. Research expeditions. All verified.',
     painPoints: [
-      'International travel risk assessment across multiple countries and programs',
-      'Institutional liability exposure for student safety abroad',
-      'Compliance documentation spread across departments',
-      'No centralized system for tracking student safety across all travel programs',
+      'International risk complexity across dozens of countries with distinct risk profiles',
+      'Inconsistent safety standards across departments -- no unified view of institutional travel',
+      'Compliance documentation gaps for Clery Act, Title IX, and risk management',
+      'Emergency response coordination -- first hours of a crisis spent assembling information',
     ],
     solutions: [
-      'International trip planning with visa/passport tracking and destination intelligence',
-      'Independent analyst review with tiered assignment matched to trip complexity',
-      'Real-time intelligence alerts for international destinations',
-      'Institutional audit documentation for risk management and legal review',
+      'Professional analyst review across 18 dimensions for every trip -- domestic or international',
+      'Real-time intelligence from 11+ authoritative government and international sources',
+      'Traveler App for students, faculty, and staff with acknowledgment tracking',
+      'Audit-ready documentation supporting Clery Act reporting and risk management requirements',
     ],
     ctaLabel: 'Learn more about Safetrekr for Higher Education',
     ctaHref: '/solutions/higher-ed',
   },
   {
     id: 'churches',
-    name: 'Churches & Faith-Based Organizations',
+    name: 'Churches & Mission Organizations',
     iconName: 'Church',
     tagline: 'Mission trips deserve mission-grade safety planning.',
     painPoints: [
-      'Volunteer screening is manual and inconsistent',
-      'International mission trips to complex security environments',
-      'Emergency preparedness relies on contact lists, not connected systems',
-      'No documentation trail if something goes wrong',
+      'Volunteer leaders are called to serve, not trained in emergency management',
+      'Remote and high-risk destinations with limited medical infrastructure',
+      'Insurance expects documented safety plans you do not have',
+      'Tight ministry budgets -- but a single incident costs $50K-$500K+',
     ],
     solutions: [
-      '5 background check types across 3 integrated providers for volunteer screening',
-      'International risk assessment with real-time intelligence from multiple sources',
-      'Three-tier evacuation planning with rally points, safe houses, and medical facility directories',
-      'Complete audit trail from volunteer screening through trip completion',
+      'A professional safety analyst handles the safety planning across 18 dimensions',
+      'Volunteer screening with background checks built directly into the trip workflow',
+      'Traveler App for every participant -- no group texts, full acknowledgment tracking',
+      'Per-trip pricing starting at $450 -- fits ministry budgets with no subscription',
     ],
     ctaLabel: 'Learn more about Safetrekr for Churches',
     ctaHref: '/solutions/churches',
   },
   {
     id: 'youth-sports',
-    name: 'Youth Sports',
+    name: 'Youth & Club Sports',
     iconName: 'Trophy',
     tagline:
       'Tournament travel is complex. Protecting your athletes is not optional.',
     painPoints: [
-      'Coach and volunteer screening requirements across multiple jurisdictions',
-      'Medical consent and emergency contact collection for minor athletes',
-      'Multi-team travel coordination for tournaments and competitions',
-      'SafeSport compliance tracking',
+      'Coach and volunteer screening across multiple states and governing bodies',
+      'No real-time visibility into travel conditions during tournaments',
+      'Medical consent forms locked in a binder at the hotel when the emergency is at the venue',
+      'Safety planning falls on people who already have three other jobs',
     ],
     solutions: [
-      'Background check compliance matrix covering every adult with supervisory responsibility',
-      'Structured medical consent and document collection with automated reminders',
-      'Certification tracking with expiration monitoring (SafeSport, CPR, First Aid)',
-      'Real-time alerts and SMS emergency broadcast during travel',
+      'Background check compliance matrix for every adult with supervisory responsibility',
+      'Real-time monitoring with analyst-reviewed alerts and course-of-action guidance',
+      'Traveler App with on-device medical consent, emergency contacts, and evacuation plans',
+      'Board-ready trip packets that demonstrate documented duty of care',
     ],
     ctaLabel: 'Learn more about Safetrekr for Youth Sports',
     ctaHref: '/solutions/youth-sports',
   },
   {
     id: 'business',
-    name: 'Business',
+    name: 'Corporate Travel',
     iconName: 'Briefcase',
-    tagline: 'Corporate duty of care -- documented, not assumed.',
+    tagline: 'Duty of care -- documented, not assumed.',
     painPoints: [
-      'Duty of care obligations that are acknowledged but not systematically documented',
-      'Employee travel risk varies by destination but is managed the same way',
-      'No centralized proof of safety measures for legal or insurance review',
-      'Annual contracts and per-seat licensing create cost overhead for variable travel volumes',
+      'Duty of care without a system behind it -- obligation acknowledged but not documented',
+      'No real-time visibility into travel conditions when employees are on the road',
+      'Unstructured emergency response -- no pre-established evacuation plans or rally points',
+      'Safety planning falls on office managers and coordinators with other primary roles',
     ],
     solutions: [
-      'Per-trip pricing with no annual contracts -- pay only when employees travel',
-      'Tiered trip complexity matching safety requirements to travel risk level',
-      'Independent analyst review provides separation of duties for compliance',
-      'Downloadable audit trail for legal, insurance, and procurement review',
+      'Documented duty of care with professional analyst review across 18 dimensions',
+      'Real-time monitoring from 11+ authoritative government sources with analyst-reviewed alerts',
+      'Traveler App for every employee with emergency contacts and evacuation plans on-device',
+      'Downloadable audit trail for legal, insurance, and board review',
     ],
     ctaLabel: 'Learn more about Safetrekr for Business',
     ctaHref: '/solutions/business',
@@ -140,7 +140,7 @@ export const OBJECTION_HOOK = {
 
 export const SOLUTIONS_BOTTOM_CTA = {
   headline: 'One platform for every type of organizational travel.',
-  buttonLabel: 'Schedule a Briefing',
+  buttonLabel: 'Request a Sample Trip Package',
   microcopy: 'Tell us your vertical. We will tailor the conversation.',
   href: '/contact',
 } as const

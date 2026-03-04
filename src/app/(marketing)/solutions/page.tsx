@@ -21,19 +21,21 @@ import { cn } from '@/lib/utils'
 
 export const metadata = generatePageMetadata({
   title:
-    'Solutions -- Trip Safety for Schools, Churches, Sports, Universities, Business',
+    'Trip Safety Solutions for Schools, Universities, Churches, and Organizations',
   description:
-    'K-12 field trips. Church mission trips. Youth sports tournaments. Study abroad programs. Corporate travel. One platform built for every type of organizational travel.',
+    'Professional trip safety management tailored for K-12 schools, higher education, churches and mission organizations, and corporate and sports teams. Analyst-reviewed. Real-time monitoring. Board-ready documentation.',
   path: '/solutions',
   ogTitle: 'Safetrekr Solutions -- Trip Safety for Every Vertical',
   ogDescription:
-    'K-12 field trips. Church mission trips. Youth sports tournaments. Study abroad. Corporate travel. One platform for every type of organizational travel.',
+    'Professional trip safety management for K-12 schools, universities, churches, and corporate teams. Analyst-reviewed. Board-ready documentation.',
   keywords: [
-    'school trip safety software',
-    'mission trip safety',
-    'youth sports travel management',
-    'study abroad risk management',
-    'corporate duty of care',
+    'trip safety solutions',
+    'K-12 field trip safety',
+    'study abroad safety',
+    'mission trip planning',
+    'corporate travel safety',
+    'sports team travel',
+    'duty of care',
     'trip safety management',
   ],
 })

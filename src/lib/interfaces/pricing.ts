@@ -19,7 +19,7 @@ export interface PricingFeature {
  */
 export interface PricingTier {
   /** Machine-readable tier ID */
-  id: 'day-trip' | 'domestic-overnight' | 'international' | 'enterprise'
+  id: 'day-trip' | 'domestic-overnight' | 'international'
   /** Human-readable tier name */
   name: string
   /** Short tagline describing the tier use case */

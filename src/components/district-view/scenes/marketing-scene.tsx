@@ -28,6 +28,7 @@ const DISTRICT_ACCENTS: Record<DistrictId, { rgb: string; alpha: number }> = {
   'security': { rgb: 'var(--ember-bright-rgb)', alpha: 0.05 },
   'pricing': { rgb: 'var(--ember-rgb)', alpha: 0.04 },
   'get-started': { rgb: '245, 158, 11', alpha: 0.06 },
+  'about-us': { rgb: 'var(--teal-bright-rgb)', alpha: 0.04 },
 }
 
 // ---------------------------------------------------------------------------

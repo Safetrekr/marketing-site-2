@@ -9,6 +9,7 @@
  */
 
 import { cn } from '@/lib/utils'
+import { CAPSULE_RING_CONTAINER_SIZE } from '@/lib/constants'
 
 export interface HubCenterGlyphProps {
   /** Whether any capsule is selected (affects glow intensity). */
@@ -51,6 +52,7 @@ export { HubStarIcon, SafetrekrMarkIcon }
 export function HubCenterGlyph({
   hasSelection = false,
 }: HubCenterGlyphProps) {
+  const cx = CAPSULE_RING_CONTAINER_SIZE / 2
   return (
     <div
       className={cn(
@@ -58,8 +60,8 @@ export function HubCenterGlyph({
         hasSelection && 'opacity-60',
       )}
       style={{
-        left: 420 - 32,
-        top: 420 - 32,
+        left: cx - 32,
+        top: cx - 32,
         width: 64,
         height: 64,
       }}

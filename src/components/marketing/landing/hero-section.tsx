@@ -40,7 +40,9 @@ export function HeroSection() {
             'leading-[1.1]',
           )}
         >
-          Every traveler accounted for.
+          You&rsquo;re responsible for their safety.
+          <br />
+          Can you prove it?
         </h1>
 
         {/* Subheadline */}
@@ -52,9 +54,9 @@ export function HeroSection() {
             'mx-auto max-w-[640px]',
           )}
         >
-          Safetrekr replaces scattered spreadsheets, email chains, and paper
-          checklists with a single, auditable trip safety platform -- backed by
-          independent analyst review that no competitor offers.
+          Safetrekr assigns a professional safety analyst to every trip your
+          organization runs. Professionally reviewed before departure. Actively
+          monitored during travel. Fully documented for the record.
         </p>
 
         {/* CTA group (client island) */}

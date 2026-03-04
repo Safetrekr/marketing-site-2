@@ -6,19 +6,20 @@ import { GlassCard } from '@/components/marketing/glass-card'
 
 const VALUE_PROPS = [
   {
-    label: 'Accountability',
-    heading: 'Every decision documented. Every safeguard verified.',
-    body: 'Independent safety analysts review every trip across 18 dimensions before departure. Every checklist acknowledgment, every background check, every approval decision -- timestamped, attributed, and audit-ready.',
+    label: 'Professional Analyst Review',
+    body: 'Every trip is independently reviewed by a trained safety analyst across 18 dimensions -- lodging, fire safety, emergency preparedness, venue verification, transportation, intelligence alerts, and more. Not an algorithm. Not a volunteer parent. A professional who reviews your plans, verifies your destinations, and documents every decision with a full audit trail.',
   },
   {
-    label: 'Control',
-    heading: 'One platform. Four portals. Complete lifecycle coverage.',
-    body: 'Organization administrators plan trips. Independent analysts verify safety. Travelers receive live safety information on their phones. HQ monitors the entire operation. One system of record replaces dozens of disconnected tools.',
+    label: 'Live Traveler App',
+    body: 'Your travelers are not carrying a printed binder. They get a mobile-first portal with live safety checklists, real-time alerts, day-by-day itineraries, and emergency preparedness information -- with acknowledgment tracking so you know who has been reached.',
   },
   {
-    label: 'Intelligence',
-    heading: 'Know about threats before they reach your travelers.',
-    body: "Safetrekr's intelligence engine monitors destinations for security, weather, health, transport, and political risks. Alerts are risk-scored, analyst-triaged, and delivered to the people who need them -- with proof of receipt.",
+    label: 'Real-Time Intelligence Monitoring',
+    body: 'Safetrekr continuously monitors 11+ authoritative government sources including NWS, USGS, CDC, and the State Department. When conditions change at your destination, alerts are reviewed by analysts and routed to your team via email, SMS, and in-app alerts -- with course-of-action guidance so your team knows what to do, not just what happened.',
+  },
+  {
+    label: 'Board-Ready Documentation',
+    body: 'Role-based trip packets for travelers, chaperones, guardians, and administrators -- with your organization\'s branding. Plus a complete audit trail of every alert sent, every checklist acknowledged, and every safety decision made. Defensible documentation for your board, your insurer, and any future review.',
   },
 ] as const
 
@@ -29,23 +30,43 @@ export function ValuePropsSection() {
       aria-labelledby="value-props-heading"
       className="bg-gradient-to-b from-[var(--color-void)] to-[var(--color-abyss)]"
     >
-      {/* Visually hidden section heading for accessibility */}
-      <h2 id="value-props-heading" className="sr-only">
-        Core Capabilities
-      </h2>
-
-      {/* Section monospace label */}
+      {/* Section eyebrow */}
       <p
         className={cn(
-          'mb-12 text-center font-mono text-xs font-medium uppercase',
+          'mb-4 text-center font-mono text-xs font-medium uppercase',
           'tracking-[0.12em]',
-          'text-[var(--color-text-tertiary)]',
+          'text-[var(--color-ember)]',
         )}
       >
-        Core Capabilities
+        Why Safetrekr
       </p>
 
-      <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+      {/* Section heading */}
+      <h2
+        id="value-props-heading"
+        className={cn(
+          'mb-4 text-center font-sans text-3xl font-bold tracking-tight',
+          'md:text-4xl',
+          'text-[var(--color-text-primary)]',
+        )}
+      >
+        A platform, not a PDF
+      </h2>
+
+      {/* Section subtitle */}
+      <p
+        className={cn(
+          'mx-auto mb-12 max-w-[720px] text-center text-base leading-relaxed',
+          'text-[var(--color-text-secondary)]',
+        )}
+      >
+        Most organizations manage trip safety with spreadsheets, group texts, and good intentions.
+        Safetrekr replaces that with a professional system that reviews, monitors, and documents
+        every trip -- so the answer to &ldquo;what precautions did you take?&rdquo; is a defensible
+        record, not a manila folder.
+      </p>
+
+      <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
         {VALUE_PROPS.map((prop) => (
           <GlassCard key={prop.label}>
             {/* Mono label */}
@@ -60,20 +81,10 @@ export function ValuePropsSection() {
               {prop.label}
             </p>
 
-            {/* Heading */}
-            <h3
-              className={cn(
-                'font-sans text-xl font-semibold leading-snug',
-                'text-[var(--color-text-primary)]',
-              )}
-            >
-              {prop.heading}
-            </h3>
-
             {/* Body */}
             <p
               className={cn(
-                'mt-4 text-sm leading-relaxed',
+                'text-sm leading-relaxed',
                 'text-[var(--color-text-secondary)]',
               )}
             >
