@@ -247,7 +247,7 @@ export function DistrictViewDock({ districtId, panelSide }: DistrictViewDockProp
   return (
     <motion.div
       className={cn(
-        'fixed top-[42px] bottom-0',
+        'fixed top-[42px] bottom-[28px]',
         isRight ? 'right-0 border-l' : 'left-0 border-r',
         'border-white/[0.06]',
         'backdrop-blur-[16px] backdrop-saturate-[130%]',

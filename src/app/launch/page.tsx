@@ -68,7 +68,7 @@ import {
 } from '@/hooks/use-keyboard-shortcuts'
 import { useAttentionChoreography } from '@/hooks/use-attention-choreography'
 import { useEnrichmentCycle } from '@/hooks/use-enrichment-cycle'
-import { useUIStore } from '@/stores/ui.store'
+import { useUIStore, uiSelectors } from '@/stores/ui.store'
 import { useSettingsStore } from '@/stores/settings.store'
 import { ColorSchemeSwitcher } from '@/components/ui/ColorSchemeSwitcher'
 import { returnToHub } from '@/lib/spatial-actions'
@@ -153,6 +153,7 @@ export default function LaunchPage() {
   // Hide peripheral world elements during morph
   const morphPhase = useUIStore((s) => s.morph.phase)
   const isMorphActive = morphPhase !== 'idle'
+  const isDistrictView = useUIStore(uiSelectors.isDistrictView)
 
   // Keyboard shortcuts (WS-1.4)
   const toggleCommandPalette = useUIStore((s) => s.toggleCommandPalette)
@@ -310,7 +311,7 @@ export default function LaunchPage() {
           style={{ height: 22, top: 21, transform: 'translateY(-50%)' }}
         />
         {breadcrumbVisible && <SpatialBreadcrumb />}
-        {minimapVisible && <Minimap />}
+        {minimapVisible && !isDistrictView && <Minimap />}
       </NavigationHUD>
 
       {/* Upper-left HUD: radar rings + gauge arcs (below breadcrumbs) */}
