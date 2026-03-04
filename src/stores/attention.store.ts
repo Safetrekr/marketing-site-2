@@ -21,8 +21,8 @@ import type {
   EffectConfig,
   NextBestAction,
   PerformanceLevel,
-} from '@/lib/ai/attention-types'
-import { EFFECT_BASELINE } from '@/lib/ai/attention-matrix'
+} from '@/lib/attention/attention-types'
+import { EFFECT_BASELINE } from '@/lib/attention/attention-matrix'
 
 // ============================================================================
 // State

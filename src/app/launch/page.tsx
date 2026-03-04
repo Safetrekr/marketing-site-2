@@ -38,11 +38,9 @@ import {
   EnrichmentLayer,
   ZoomGate,
   HaloGlow,
-  RangeRings,
   CoordinateOverlays,
   ConnectionPaths,
   OrbitalReadouts,
-  RadialGaugeCluster,
   SystemStatusPanel,
   FeedPanel,
   SignalPulseMonitor,
@@ -57,6 +55,7 @@ import {
   TopTelemetryBar,
   BottomStatusStrip,
 } from '@/components/ambient'
+import { HudRadarWidget } from '@/components/ambient/hud-radar-widget'
 import { DistrictViewOverlay } from '@/components/district-view'
 import { ScrollHint } from '@/components/spatial/scroll-hint'
 import { IdleNudge } from '@/components/spatial/idle-nudge'
@@ -66,7 +65,6 @@ import {
   useKeyboardShortcuts,
   type KeyboardShortcutConfig,
 } from '@/hooks/use-keyboard-shortcuts'
-import { useNarrationCycle } from '@/hooks/use-narration-cycle'
 import { useAttentionChoreography } from '@/hooks/use-attention-choreography'
 import { useEnrichmentCycle } from '@/hooks/use-enrichment-cycle'
 import { useUIStore } from '@/stores/ui.store'
@@ -86,8 +84,6 @@ import '@/styles/district-view.css'
 // ---------------------------------------------------------------------------
 
 function Phase3Effects() {
-  const effectsEnabled = useSettingsStore((s) => s.effectsEnabled)
-  useNarrationCycle(effectsEnabled)
   useAttentionChoreography()
   useEnrichmentCycle()
   return null
@@ -227,7 +223,6 @@ export default function LaunchPage() {
             >
               <HaloGlow />
               <MicroChronometer />
-              <RangeRings />
               <ZoomGate show={['Z1', 'Z2']}>
                 <CoordinateOverlays />
               </ZoomGate>
@@ -249,19 +244,7 @@ export default function LaunchPage() {
             />
           </div>
 
-          {/* Decorative overlays above capsules: readouts + gauge cluster.
-              Blur + fade during morph to focus on selected card. */}
-          <div
-            className="morph-ambient-fade"
-            style={{ pointerEvents: 'none' }}
-            aria-hidden="true"
-            data-panning={isPanActive ? 'true' : 'false'}
-            data-morph-active={isMorphActive ? 'true' : 'false'}
-          >
-            <ZoomGate show={['Z1', 'Z2']}>
-              <RadialGaugeCluster />
-            </ZoomGate>
-          </div>
+          {/* RadialGaugeCluster + RangeRings moved to fixed HUD (see below) */}
 
           {/* Phase C data panels: push outward + blur during morph. */}
           <div
@@ -328,6 +311,9 @@ export default function LaunchPage() {
         {breadcrumbVisible && <SpatialBreadcrumb />}
         {minimapVisible && <Minimap />}
       </NavigationHUD>
+
+      {/* Upper-left HUD: radar rings + gauge arcs (below breadcrumbs) */}
+      <HudRadarWidget />
 
       {/* Top-right: theme toggle + zoom indicator, vertically centered in header */}
       <div

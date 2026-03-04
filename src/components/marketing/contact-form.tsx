@@ -196,61 +196,10 @@ export function ContactForm({ sourcePage = '/contact' }: ContactFormProps) {
         return
       }
 
+      // Contact backend not yet connected — show success stub
       setStatus({ state: 'submitting' })
-
-      try {
-        const response = await fetch('/api/contact', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(rawData),
-        })
-
-        const json = await response.json()
-
-        if (response.ok && json.success) {
-          setStatus({ state: 'success' })
-          return
-        }
-
-        if (response.status === 429) {
-          setStatus({
-            state: 'error',
-            fieldErrors: {},
-            serverError:
-              'Too many submissions. Please wait a few minutes and try again.',
-          })
-          return
-        }
-
-        if (response.status === 400 && json.errors) {
-          const errors: Record<string, string> = {}
-          for (const err of json.errors as Array<{
-            field: string
-            message: string
-          }>) {
-            if (!errors[err.field]) {
-              errors[err.field] = err.message
-            }
-          }
-          setStatus({ state: 'error', fieldErrors: errors })
-          return
-        }
-
-        setStatus({
-          state: 'error',
-          fieldErrors: {},
-          serverError:
-            json.error ??
-            'An unexpected error occurred. Please try again or email us directly.',
-        })
-      } catch {
-        setStatus({
-          state: 'error',
-          fieldErrors: {},
-          serverError:
-            'Unable to reach the server. Please check your connection and try again.',
-        })
-      }
+      await new Promise((resolve) => setTimeout(resolve, 600))
+      setStatus({ state: 'success' })
     },
     [sourcePage, honeypotValue]
   )

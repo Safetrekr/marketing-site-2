@@ -9,9 +9,6 @@
  * Each command includes its full synonym set from the IA synonym ring
  * (SYNONYM_RING in command-palette.ts) for fuzzy matching.
  *
- * The conditional "Ask AI..." command is handled separately in the
- * component layer, gated by settings.store.aiCameraDirectorEnabled.
- *
  * @module command-registry
  * @see WS-A.2 Section 4.10
  */

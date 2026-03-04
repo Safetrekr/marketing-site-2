@@ -1,18 +1,13 @@
 /**
- * CommandPalette -- full production command palette for Tarva Launch.
+ * CommandPalette -- production command palette for Safetrekr Launch.
  *
- * Replaces the Phase 1 CommandPaletteStub. Uses cmdk (via @tarva/ui
- * Command primitives) with strong glass styling per VISUAL-DESIGN-SPEC.md,
- * real-time fuzzy search via the IA synonym ring, and a conditional
- * "Ask AI..." natural language option gated by settings.store.
+ * Uses cmdk (via @tarva/ui Command primitives) with strong glass styling,
+ * real-time fuzzy search via the IA synonym ring.
  *
  * Three structured command groups:
  * - Navigation (9): districts, evidence ledger, hub, constellation
  * - View (9): zoom controls, toggle minimap/effects/breadcrumb
  * - Action (5): open apps, refresh telemetry, logout
- *
- * Plus one conditional AI command:
- * - Ask AI... (gated by settings.aiCameraDirectorEnabled)
  *
  * Uses raw Command + Dialog components instead of CommandDialog
  * so we can pass a custom cmdk `filter` prop that returns 1 for
@@ -21,8 +16,6 @@
  *
  * @module CommandPalette
  * @see WS-3.3 Section 4.5
- * @see IA Assessment Section 4 (Command Palette Design)
- * @see VISUAL-DESIGN-SPEC.md Section 1.7 (Strong Glass Panel)
  */
 
 'use client'
@@ -40,7 +33,6 @@ import {
   Dialog,
   DialogContent,
   DialogTitle,
-  Badge,
 } from '@tarva/ui'
 import {
   Home,
@@ -52,14 +44,12 @@ import {
   Eye,
   Map,
   Type,
-  Sparkles,
   ExternalLink,
   RefreshCw,
   LogOut,
   Zap,
 } from 'lucide-react'
 import { useCommandPalette } from '@/hooks/use-command-palette'
-import { useCameraDirector } from '@/hooks/use-camera-director'
 import type { PaletteSuggestion } from '@/lib/interfaces/command-palette'
 
 import '@/styles/command-palette.css'
@@ -126,12 +116,9 @@ export function CommandPalette({ onRefresh }: CommandPaletteProps) {
     setOpen,
     getSuggestions,
     executeById,
-    aiEnabled,
   } = useCommandPalette(onRefresh)
 
-  const { processQuery } = useCameraDirector()
-
-  // Track the current input for filtering and AI forwarding
+  // Track the current input for filtering
   const [inputValue, setInputValue] = useState('')
 
   // Get current suggestions based on input (StructuredCommandPalette handles filtering)
@@ -156,21 +143,6 @@ export function CommandPalette({ onRefresh }: CommandPaletteProps) {
     },
     [executeById],
   )
-
-  // Handle "Ask AI..." selection -- forwards to AI Camera Director
-  const handleAskAI = useCallback(async () => {
-    const query = inputValue.trim()
-    if (!query) return
-
-    setInputValue('')
-    setOpen(false)
-
-    try {
-      await processQuery(query)
-    } catch (err) {
-      console.warn('[CommandPalette] AI query failed:', err)
-    }
-  }, [inputValue, setOpen, processQuery])
 
   // Reset input when dialog closes
   const handleOpenChange = useCallback(
@@ -244,9 +216,6 @@ export function CommandPalette({ onRefresh }: CommandPaletteProps) {
              * cmdk's built-in search. Filtering is handled by our
              * StructuredCommandPalette.getSuggestions() which uses the
              * IA synonym ring for fuzzy matching.
-             *
-             * This is a documented cmdk pattern for custom search.
-             * @see SOW WS-3.3 Risk R-2
              */
             filter={() => 1}
             className="[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-muted-foreground [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 [&_[cmdk-group]]:px-2 [&_[cmdk-input-wrapper]_svg]:h-5 [&_[cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-12 [&_[cmdk-item]]:px-2 [&_[cmdk-item]]:py-3 [&_[cmdk-item]_svg]:h-5 [&_[cmdk-item]_svg]:w-5"
@@ -265,16 +234,6 @@ export function CommandPalette({ onRefresh }: CommandPaletteProps) {
                     Try &quot;go [app name]&quot;, &quot;zoom [level]&quot;, or
                     &quot;open [app]&quot;
                   </p>
-                  {aiEnabled && inputValue.trim().length > 0 && (
-                    <button
-                      type="button"
-                      onClick={handleAskAI}
-                      className="mt-2 flex items-center gap-2 rounded-md bg-orange-500/10 px-3 py-1.5 text-xs font-medium tracking-wide text-orange-400 transition-colors hover:bg-orange-500/20"
-                    >
-                      <Sparkles className="h-3.5 w-3.5" />
-                      Press Enter to ask AI
-                    </button>
-                  )}
                 </div>
               </CommandEmpty>
 
@@ -294,42 +253,6 @@ export function CommandPalette({ onRefresh }: CommandPaletteProps) {
                 actionSuggestions,
                 navigationSuggestions.length > 0 || viewSuggestions.length > 0,
               )}
-
-              {/* AI group -- always rendered, conditional behavior */}
-              <CommandSeparator />
-              <CommandGroup heading="AI">
-                {aiEnabled ? (
-                  <CommandItem
-                    value="ask-ai"
-                    onSelect={handleAskAI}
-                  >
-                    <Sparkles className="mr-2 h-4 w-4 shrink-0 text-orange-400" />
-                    <span className="flex-1">
-                      Ask AI...
-                      {inputValue.trim().length > 0 && (
-                        <span className="ml-2 text-xs opacity-50">
-                          &quot;{inputValue.trim().slice(0, 40)}
-                          {inputValue.trim().length > 40 ? '...' : ''}&quot;
-                        </span>
-                      )}
-                    </span>
-                    <Badge
-                      variant="outline"
-                      className="ml-2 border-orange-500/30 text-[9px] font-medium tracking-wider text-orange-400 uppercase"
-                    >
-                      Beta
-                    </Badge>
-                  </CommandItem>
-                ) : (
-                  <CommandItem disabled>
-                    <Sparkles className="mr-2 h-4 w-4 shrink-0 opacity-40" />
-                    <span className="flex-1">Ask AI...</span>
-                    <span className="text-xs opacity-40">
-                      Enable in Settings
-                    </span>
-                  </CommandItem>
-                )}
-              </CommandGroup>
             </CommandList>
           </Command>
         </DialogContent>

@@ -11,16 +11,12 @@ import {
   FIELD_EXPERTS_INTRO,
   FIELD_EXPERTS_CALLOUT,
   AGENCY_BADGES,
-  FEATURED_PARTNERS,
-  ADDITIONAL_PARTNERS,
-  PARTNERS_SUBTITLE,
   CONTACT_CHANNELS,
   BOTTOM_CTA,
   ABOUT_ORGANIZATION_SCHEMA,
 } from '@/lib/data/about-team'
 import { LeadershipSection } from '@/components/marketing/about/leadership-section'
 import { AgencyBadgeGrid } from '@/components/marketing/about/agency-badge-grid'
-import { PartnerGrid } from '@/components/marketing/about/partner-grid'
 import { ContactChannels } from '@/components/marketing/about/contact-channels'
 
 export const metadata = generatePageMetadata({
@@ -124,29 +120,9 @@ export default function AboutPage() {
         </section>
 
         {/* ============================================================
-            Technology & Delivery Partners Section
-            ============================================================ */}
-        <section className="relative py-20 md:py-28">
-          <div className="mx-auto max-w-6xl px-6">
-            <div className="mb-12 text-center md:mb-16">
-              <h2 className="font-sans text-2xl font-bold tracking-tight text-[var(--color-text-primary)] md:text-3xl">
-                Technology & Delivery Partners
-              </h2>
-              <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-[var(--color-text-secondary)]">
-                {PARTNERS_SUBTITLE}
-              </p>
-            </div>
-            <PartnerGrid
-              featured={FEATURED_PARTNERS}
-              additional={ADDITIONAL_PARTNERS}
-            />
-          </div>
-        </section>
-
-        {/* ============================================================
             Contact Section
             ============================================================ */}
-        <section className="relative bg-white/[0.02] py-20 md:py-28">
+        <section className="relative py-20 md:py-28">
           <div className="mx-auto max-w-6xl px-6">
             <div className="mb-12 text-center md:mb-16">
               <h2 className="font-sans text-2xl font-bold tracking-tight text-[var(--color-text-primary)] md:text-3xl">
@@ -157,29 +133,10 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* TODO(post-launch): Advisors Section
-            Enable when advisor names are cleared for public display.
-            Data: Add ADVISORS array to about-team.ts with interface Advisor { title, domain, iconName }.
-            Reference: about.html lines 299-351 (5 advisor cards: K-12 Safety Director,
-            University Study-Abroad Leader, Diocesan Risk Advisor, Insurance/Risk Partner,
-            Public Safety & Legal) */}
-
-        {/* TODO(post-launch): Operating Principles Section
-            Enable when brand team approves final copy.
-            Data: Add OPERATING_PRINCIPLES array to about-team.ts.
-            Reference: about.html lines 353-414 (5 principles: Field-true first,
-            Proof beats promises, Low noise, Simple wins, Privacy by default) */}
-
-        {/* TODO(post-launch): Open Roles Section
-            Enable when hiring pipeline is active.
-            Data: Add OPEN_ROLES array to about-team.ts with interface OpenRole { title, summary, iconName }.
-            Reference: about.html lines 416-457 (3 roles: Senior Full-Stack Engineer,
-            Safety Analyst, Customer Delivery Lead. Apply: founders@safetrekr.com) */}
-
         {/* ============================================================
             Bottom CTA Section
             ============================================================ */}
-        <section className="relative py-20 md:py-28">
+        <section className="relative bg-white/[0.02] py-20 md:py-28">
           <div className="mx-auto max-w-2xl px-6 text-center">
             <h2 className="font-sans text-2xl font-bold tracking-tight text-[var(--color-text-primary)] md:text-3xl">
               {BOTTOM_CTA.headline}
@@ -194,7 +151,6 @@ export default function AboutPage() {
                   'hover:bg-[var(--color-ember-bright)]',
                   'focus-visible:outline-2 focus-visible:outline-offset-2',
                   'focus-visible:outline-[var(--color-ember-bright)]',
-                  // Breathing glow animation
                   'mkt-cta-breathe',
                 )}
               >

@@ -12,13 +12,15 @@ export function MarketingFooter() {
         <div className="grid grid-cols-1 gap-12 md:grid-cols-3">
           {/* Zone 1: Logo + tagline */}
           <div>
-            <Image
-              src="/images/logos/safetrekr-logo-horiz-light.svg"
-              alt="Safetrekr"
-              width={120}
-              height={28}
-              className="h-7 w-auto"
-            />
+            <Link href="/launch" aria-label="Safetrekr home">
+              <Image
+                src="/images/logos/safetrekr-logo-horiz-light.svg"
+                alt="Safetrekr"
+                width={120}
+                height={28}
+                className="h-7 w-auto"
+              />
+            </Link>
             <p className="mt-4 text-sm text-[var(--color-text-secondary)]">
               Every traveler accounted for.
             </p>

@@ -5,16 +5,17 @@ import type {
 } from '@/lib/interfaces/marketing-nav'
 
 export const NAV_ITEMS: MarketingNavItem[] = [
+  { label: 'Home', href: '/landing' },
   { label: 'How It Works', href: '/how-it-works' },
   { label: 'Platform', href: '/platform' },
   { label: 'Solutions', href: '/solutions' },
   { label: 'Pricing', href: '/pricing' },
   { label: 'Security', href: '/security' },
-  { label: 'Resources', href: '/resources' },
+  { label: 'About', href: '/about' },
 ]
 
 export const CTA_CONFIG: MarketingCTAConfig = {
-  label: 'Request a Sample Trip Package',
+  label: 'Contact',
   href: '/contact',
 }
 
@@ -37,9 +38,8 @@ export const FOOTER_NAV_COLUMNS: MarketingFooterColumn[] = [
     ],
   },
   {
-    heading: 'Resources',
+    heading: 'More',
     items: [
-      { label: 'Free Resources', href: '/resources' },
       { label: 'Mission Control', href: '/launch' },
     ],
   },

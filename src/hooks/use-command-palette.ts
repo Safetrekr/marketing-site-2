@@ -3,13 +3,7 @@
  *
  * Bridges the StructuredCommandPalette execution engine (WS-1.7)
  * with the React UI component. Manages command registration,
- * execution lifecycle, and AI forwarding.
- *
- * Responsibilities:
- * 1. Creates and populates the StructuredCommandPalette with all commands
- * 2. Provides suggestions for the cmdk UI (synonym-aware fuzzy matching)
- * 3. Executes commands and closes the palette on success
- * 4. Reads AI availability from settings.store
+ * execution lifecycle, and suggestion retrieval.
  *
  * @module use-command-palette
  * @see WS-3.3 Section 4.4
@@ -19,7 +13,6 @@
 
 import { useCallback, useMemo } from 'react'
 import { useUIStore } from '@/stores/ui.store'
-import { useSettingsStore, settingsSelectors } from '@/stores/settings.store'
 import {
   StructuredCommandPalette,
   type PaletteSuggestion,
@@ -44,8 +37,6 @@ export interface UseCommandPaletteReturn {
   execute: (input: string) => Promise<CommandResult>
   /** Execute a command by its ID. */
   executeById: (commandId: string) => Promise<CommandResult>
-  /** Whether the AI Camera Director is enabled. */
-  aiEnabled: boolean
 }
 
 // ============================================================================
@@ -62,7 +53,6 @@ export function useCommandPalette(onRefresh: () => Promise<void>): UseCommandPal
   const isOpen = useUIStore((s) => s.commandPaletteOpen)
   const setOpen = useUIStore((s) => s.setCommandPaletteOpen)
   const toggle = useUIStore((s) => s.toggleCommandPalette)
-  const aiEnabled = useSettingsStore(settingsSelectors.isAIAvailable)
 
   // Build the command palette instance (stable across renders)
   const palette = useMemo(() => {
@@ -133,6 +123,5 @@ export function useCommandPalette(onRefresh: () => Promise<void>): UseCommandPal
     getSuggestions,
     execute,
     executeById,
-    aiEnabled,
   }
 }

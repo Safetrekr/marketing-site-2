@@ -43,7 +43,7 @@ export function MarketingHeader() {
           className="mx-auto flex h-full max-w-7xl items-center justify-between px-6 lg:px-8"
         >
           {/* Desktop logo */}
-          <Link href="/" className="hidden md:block" aria-label="Safetrekr home">
+          <Link href="/launch" className="hidden md:block" aria-label="Safetrekr home">
             <Image
               src="/images/logos/safetrekr-logo-horiz-light.svg"
               alt="Safetrekr"
@@ -55,7 +55,7 @@ export function MarketingHeader() {
           </Link>
 
           {/* Mobile logo mark */}
-          <Link href="/" className="block md:hidden" aria-label="Safetrekr home">
+          <Link href="/launch" className="block md:hidden" aria-label="Safetrekr home">
             <Image
               src="/images/logos/safetrekr-mark-light.svg"
               alt="Safetrekr"

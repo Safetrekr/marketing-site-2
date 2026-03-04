@@ -45,10 +45,10 @@ import {
   computeNextBestActions,
   getAnomalousApps,
   buildSnapshotFromDistricts,
-} from '@/lib/ai/attention-engine'
-import { resolveEffectConfig, resolveReducedMotionConfig } from '@/lib/ai/attention-matrix'
-import { DEFAULT_ATTENTION_HYSTERESIS } from '@/lib/ai/attention-types'
-import type { AttentionState } from '@/lib/ai/attention-types'
+} from '@/lib/attention/attention-engine'
+import { resolveEffectConfig, resolveReducedMotionConfig } from '@/lib/attention/attention-matrix'
+import { DEFAULT_ATTENTION_HYSTERESIS } from '@/lib/attention/attention-types'
+import type { AttentionState } from '@/lib/attention/attention-types'
 
 // ============================================================================
 // Constants

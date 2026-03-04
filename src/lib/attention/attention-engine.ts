@@ -16,7 +16,7 @@
 
 import type { AppIdentifier, HealthState } from '@/lib/interfaces/types'
 import type { AppTelemetry, SystemSnapshot } from '@/lib/telemetry-types'
-import type { AttentionState, NextBestAction } from '@/lib/ai/attention-types'
+import type { AttentionState, NextBestAction } from '@/lib/attention/attention-types'
 
 // ============================================================================
 // Constants

@@ -15,7 +15,7 @@
  * @see VISUAL-DESIGN-SPEC.md Section 6.1 (Design Tokens)
  */
 
-import type { AttentionState, EffectConfig, PerformanceLevel } from '@/lib/ai/attention-types'
+import type { AttentionState, EffectConfig, PerformanceLevel } from '@/lib/attention/attention-types'
 
 // ============================================================================
 // Baseline Values

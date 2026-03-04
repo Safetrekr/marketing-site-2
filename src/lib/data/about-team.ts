@@ -60,7 +60,7 @@ export const LEADERS: Leader[] = [
     background: [
       '25 years, U.S. Secret Service Special Agent (Ret.); roles include Presidential Protection, Counter-Surveillance, CAT Team Leader, FLETC Instructor',
       'NCFI (National Computer Forensics Institute): DFIR lab manager/instructor; budget & procurement lead; retired as DSAIC managing daily operations',
-      'Post-USSS: Senior Risk Research Specialist, GeoComply (cyber/fraud, identity); Senior Manager, Corporate Security, The Home Depot',
+      'Post-USSS: Senior Risk Research Specialist, GeoComply (cyber/fraud, identity); Senior Manager, Corporate Security for Fortune 100 companies',
       'CRISC (risk) certified; extensive experience turning investigations into prevention programs',
     ],
   },

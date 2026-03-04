@@ -2,7 +2,6 @@
  * Settings store -- user preferences persisted to localStorage.
  *
  * Canonical location for:
- * - AI Camera Director beta toggle (read by ai.store.ts in WS-3.4)
  * - View preference toggles (minimap, effects, breadcrumb)
  *
  * Uses Zustand + persist middleware with localStorage key
@@ -10,7 +9,6 @@
  *
  * @module settings.store
  * @see WS-3.3 Section 4.2
- * @see OQ-3.0.2 resolution
  */
 
 'use client'
@@ -24,9 +22,6 @@ import { immer } from 'zustand/middleware/immer'
 // ============================================================================
 
 interface SettingsState {
-  /** Whether the AI Camera Director beta feature is enabled. */
-  aiCameraDirectorEnabled: boolean
-
   /** Whether the minimap overlay is visible. */
   minimapVisible: boolean
 
@@ -42,11 +37,6 @@ interface SettingsState {
 // ============================================================================
 
 interface SettingsActions {
-  /** Toggle the AI Camera Director on/off. */
-  toggleAICameraDirector: () => void
-  /** Set the AI Camera Director enabled state explicitly. */
-  setAICameraDirector: (enabled: boolean) => void
-
   /** Toggle the minimap overlay visibility. */
   toggleMinimap: () => void
 
@@ -64,7 +54,6 @@ export type SettingsStore = SettingsState & SettingsActions
 // ============================================================================
 
 const DEFAULT_SETTINGS: SettingsState = {
-  aiCameraDirectorEnabled: true,
   minimapVisible: true,
   effectsEnabled: true,
   breadcrumbVisible: true,
@@ -78,16 +67,6 @@ export const useSettingsStore = create<SettingsStore>()(
   persist(
     immer((set) => ({
       ...DEFAULT_SETTINGS,
-
-      toggleAICameraDirector: () =>
-        set((state) => {
-          state.aiCameraDirectorEnabled = !state.aiCameraDirectorEnabled
-        }),
-
-      setAICameraDirector: (enabled) =>
-        set((state) => {
-          state.aiCameraDirectorEnabled = enabled
-        }),
 
       toggleMinimap: () =>
         set((state) => {
@@ -107,7 +86,6 @@ export const useSettingsStore = create<SettingsStore>()(
     {
       name: 'tarva-launch-settings',
       partialize: (state) => ({
-        aiCameraDirectorEnabled: state.aiCameraDirectorEnabled,
         minimapVisible: state.minimapVisible,
         effectsEnabled: state.effectsEnabled,
         breadcrumbVisible: state.breadcrumbVisible,
@@ -121,10 +99,6 @@ export const useSettingsStore = create<SettingsStore>()(
 // ============================================================================
 
 export const settingsSelectors = {
-  /** Whether the AI Camera Director is available (beta toggle is on). */
-  isAIAvailable: (state: SettingsStore): boolean =>
-    state.aiCameraDirectorEnabled,
-
   /** Whether the minimap is visible. */
   isMinimapVisible: (state: SettingsStore): boolean =>
     state.minimapVisible,

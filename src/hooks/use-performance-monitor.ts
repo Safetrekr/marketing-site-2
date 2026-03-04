@@ -17,7 +17,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 
-import type { PerformanceLevel } from '@/lib/ai/attention-types'
+import type { PerformanceLevel } from '@/lib/attention/attention-types'
 
 // ============================================================================
 // Constants
