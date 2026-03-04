@@ -331,7 +331,7 @@ export default function LaunchPage() {
 
       {/* Top-right: theme toggle + zoom indicator, vertically centered in header */}
       <div
-        className="pointer-events-auto fixed right-4 z-40 flex items-center gap-2"
+        className="pointer-events-auto fixed right-8 z-40 flex items-center gap-2"
         style={{ top: 21, transform: 'translateY(-50%)' }}
       >
         <ColorSchemeSwitcher />
@@ -341,7 +341,7 @@ export default function LaunchPage() {
       {/* Tagline -- fixed upper-right, right-justified, below theme picker row */}
       <div
         className="pointer-events-none fixed right-4 z-40 flex flex-col items-end gap-1"
-        style={{ top: 48 }}
+        style={{ top: 72 }}
       >
         <span
           className="font-mono text-[11px] tracking-[0.12em] uppercase text-right leading-[1.5]"
