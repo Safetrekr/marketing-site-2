@@ -325,9 +325,10 @@ export default function LaunchPage() {
         <ZoomIndicator />
       </div>
 
-      {/* Tagline -- fixed upper-right, right-justified, below theme picker row */}
+      {/* Tagline -- fixed upper-right, right-justified, below theme picker row.
+          z-20 keeps it behind the district-view dock (z-31). */}
       <div
-        className="pointer-events-none fixed right-4 z-40 flex flex-col items-end gap-1"
+        className="pointer-events-none fixed right-4 z-20 flex flex-col items-end gap-1"
         style={{ top: 72 }}
       >
         <span

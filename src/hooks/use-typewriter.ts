@@ -42,11 +42,24 @@ export function useTypewriter({
   displayText: string
   isTyping: boolean
   isComplete: boolean
+  reset: () => void
 } {
   const [charIndex, setCharIndex] = useState(0)
   const [started, setStarted] = useState(false)
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
   const onCompleteRef = useRef(onComplete)
-  onCompleteRef.current = onComplete
+
+  // Keep callback ref current (in effect, not during render)
+  useEffect(() => {
+    onCompleteRef.current = onComplete
+  })
+
+  // Check reduced motion preference
+  useEffect(() => {
+    setPrefersReducedMotion(
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+    )
+  }, [])
 
   // Reset when text changes
   useEffect(() => {
@@ -54,16 +67,25 @@ export function useTypewriter({
     setStarted(false)
   }, [text])
 
+  // Instant reveal if reduced motion
+  useEffect(() => {
+    if (prefersReducedMotion && enabled) {
+      setCharIndex(text.length)
+      setStarted(true)
+      onCompleteRef.current?.()
+    }
+  }, [text, enabled, prefersReducedMotion])
+
   // Start delay
   useEffect(() => {
-    if (!enabled) return
+    if (!enabled || prefersReducedMotion) return
     const timer = setTimeout(() => setStarted(true), delay)
     return () => clearTimeout(timer)
-  }, [enabled, delay])
+  }, [enabled, delay, prefersReducedMotion])
 
   // Typing loop
   useEffect(() => {
-    if (!started || !enabled) return
+    if (!started || !enabled || prefersReducedMotion) return
     if (charIndex >= text.length) {
       onCompleteRef.current?.()
       return
@@ -74,14 +96,20 @@ export function useTypewriter({
     }, speed)
 
     return () => clearTimeout(timer)
-  }, [started, enabled, charIndex, text.length, speed])
+  }, [started, enabled, charIndex, text.length, speed, prefersReducedMotion])
 
   const isComplete = charIndex >= text.length
   const isTyping = started && !isComplete
+
+  const reset = () => {
+    setCharIndex(0)
+    setStarted(false)
+  }
 
   return {
     displayText: started ? text.slice(0, charIndex) : '',
     isTyping,
     isComplete,
+    reset,
   }
 }

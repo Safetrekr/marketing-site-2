@@ -20,9 +20,10 @@
 
 'use client'
 
-import { useMemo } from 'react'
+import { useCallback, useEffect, useMemo } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import { useUIStore } from '@/stores/ui.store'
+import { useDistrictExploreStore } from '@/stores/district-explore.store'
 import { DISTRICTS, type DistrictId } from '@/lib/interfaces/district'
 import { computeRingRotation, type PanelSide } from '@/lib/morph-types'
 import { DistrictViewHeader } from './district-view-header'
@@ -62,6 +63,10 @@ export function DistrictViewOverlay() {
   const targetId = useUIStore((s) => s.morph.targetId)
   const reverseMorph = useUIStore((s) => s.reverseMorph)
 
+  const exploreMode = useDistrictExploreStore((s) => s.mode)
+  const exploreGoBack = useDistrictExploreStore((s) => s.goBack)
+  const exploreReset = useDistrictExploreStore((s) => s.reset)
+
   const isVisible =
     phase === 'entering-district' ||
     phase === 'district' ||
@@ -74,15 +79,38 @@ export function DistrictViewOverlay() {
     [districtId],
   )
 
+  // Reset explore store when overlay disappears
+  useEffect(() => {
+    if (!isVisible) {
+      exploreReset()
+    }
+  }, [isVisible, exploreReset])
+
+  // Escape key: pop explore state, or if at overview/autoplay, close overlay
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent) => {
+      if (e.key !== 'Escape') return
+      e.stopPropagation()
+      if (exploreMode === 'overview' || exploreMode === 'autoplay') {
+        reverseMorph()
+      } else {
+        exploreGoBack()
+      }
+    },
+    [exploreMode, reverseMorph, exploreGoBack],
+  )
+
   // Gradient origin follows the dock side
   const gradientOrigin = panelSide === 'right' ? '40% 50%' : '60% 50%'
 
   return (
     <AnimatePresence>
+      {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
       {isVisible && districtId && (
         <motion.div
           key="district-view-overlay"
           className="district-view-active"
+          onKeyDown={handleKeyDown}
           style={{
             position: 'fixed',
             inset: 0,

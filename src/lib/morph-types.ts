@@ -234,6 +234,26 @@ export function computePanelPosition(
 }
 
 // ============================================================
+// DOCK EXPANSION (showcase detail mode)
+// ============================================================
+
+/** Dock width values for the showcase system. */
+export const DOCK_DIMENSIONS = {
+  /** Default dock width in px. */
+  defaultWidth: 360,
+  /** Expanded dock width as CSS value (detail mode). */
+  expandedWidth: 'min(60vw, 900px)',
+  /** Compact center card width in px (when dock is expanded). */
+  compactCenterWidth: 300,
+} as const
+
+/** Spring config for dock expansion animation. */
+export const DOCK_EXPANSION_SPRING = {
+  stiffness: 200,
+  damping: 26,
+} as const
+
+// ============================================================
 // STATION ENTRANCE TYPES
 // ============================================================
 

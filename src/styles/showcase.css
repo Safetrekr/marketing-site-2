@@ -1,0 +1,696 @@
+/* =============================================================
+   DISTRICT SHOWCASE — Step Bar + Typewriter + Tiles
+   Styles for the animated showcase system in district panels.
+
+   @see district-showcase plan
+   ============================================================= */
+
+/* --- Shell ---
+   ----------------------------------------------------------- */
+
+.showcase-shell {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 0;
+}
+
+.showcase-full {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 0;
+  height: 100%;
+}
+
+/* --- District Label ---
+   ----------------------------------------------------------- */
+
+.showcase-district-label {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(var(--ember-rgb), 0.5);
+}
+
+/* --- Step Bar ---
+   ----------------------------------------------------------- */
+
+.showcase-step-bar {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 8px 0 0;
+  min-height: 72px;
+}
+
+.showcase-step-bar[data-compact] {
+  min-height: 32px;
+  padding: 0;
+  gap: 4px;
+}
+
+/* Connector line (background track) */
+.showcase-step-connector {
+  position: absolute;
+  top: 22px;
+  left: 18px;
+  right: 18px;
+  height: 2px;
+  background: rgba(var(--ambient-ink-rgb), 0.08);
+  border-radius: 1px;
+  overflow: hidden;
+}
+
+[data-compact] .showcase-step-connector {
+  top: 12px;
+  left: 8px;
+  right: 8px;
+}
+
+/* Connector fill (animated progress) */
+.showcase-step-connector-fill {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(var(--ember-rgb), 0.4),
+    rgba(var(--ember-rgb), 0.8)
+  );
+  border-radius: 1px;
+}
+
+/* --- Step Node ---
+   ----------------------------------------------------------- */
+
+.showcase-step-node {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.showcase-step-node:disabled {
+  cursor: default;
+}
+
+.showcase-step-node:focus-visible {
+  outline: 2px solid var(--color-ember-bright);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+/* Dot — opaque background so connector line doesn't bleed through */
+.showcase-step-dot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1.5px solid rgba(var(--ambient-ink-rgb), 0.15);
+  background: var(--color-void, #061A23);
+  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+}
+
+.showcase-step-node[data-active] .showcase-step-dot {
+  border-color: rgba(var(--ember-rgb), 0.8);
+  background: color-mix(in srgb, var(--color-void, #061A23) 85%, var(--color-ember, #4BA467));
+  box-shadow: 0 0 12px rgba(var(--ember-rgb), 0.3);
+}
+
+.showcase-step-node[data-past] .showcase-step-dot {
+  border-color: rgba(var(--ember-rgb), 0.5);
+  background: color-mix(in srgb, var(--color-void, #061A23) 92%, var(--color-ember, #4BA467));
+}
+
+/* Overview glow (all nodes breathe) */
+.showcase-step-node[data-glow] .showcase-step-dot {
+  border-color: rgba(var(--ember-rgb), 0.6);
+  background: color-mix(in srgb, var(--color-void, #061A23) 90%, var(--color-ember, #4BA467));
+  animation: showcase-node-breathe 3s ease-in-out infinite;
+}
+
+@keyframes showcase-node-breathe {
+  0%, 100% { box-shadow: 0 0 8px rgba(var(--ember-rgb), 0.15); }
+  50% { box-shadow: 0 0 16px rgba(var(--ember-rgb), 0.35); }
+}
+
+/* Step number inside dot */
+.showcase-step-number {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  color: rgba(var(--ambient-ink-rgb), 0.45);
+}
+
+.showcase-step-node[data-active] .showcase-step-number {
+  color: var(--color-ember, #4BA467);
+  font-size: 14px;
+}
+
+.showcase-step-node[data-past] .showcase-step-number {
+  color: rgba(var(--ember-rgb), 0.6);
+}
+
+/* Label below node */
+.showcase-step-label {
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.2;
+  text-align: center;
+  color: rgba(var(--ambient-ink-rgb), 0.4);
+  max-width: 90px;
+  word-wrap: break-word;
+  margin-top: 2px;
+}
+
+.showcase-step-label[data-active] {
+  color: var(--color-text-primary);
+}
+
+/* --- Step Card (Typewriter Area) ---
+   ----------------------------------------------------------- */
+
+/* --- Step Stack (accumulating cards during autoplay) ---
+   ----------------------------------------------------------- */
+
+.showcase-step-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  overflow-y: auto;
+  max-height: 420px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(var(--ember-rgb), 0.15) transparent;
+}
+
+.showcase-step-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px 0;
+  min-height: 120px;
+}
+
+/* Completed cards are more compact */
+.showcase-step-card[data-completed] {
+  min-height: 0;
+  gap: 8px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(var(--ambient-ink-rgb), 0.04);
+  opacity: 0.75;
+}
+
+.showcase-step-card[data-completed] .showcase-step-heading {
+  font-size: 14px;
+}
+
+.showcase-step-card[data-completed] .showcase-typewriter {
+  font-size: 11px;
+  min-height: 0;
+  line-height: 1.5;
+}
+
+.showcase-step-card[data-completed] .showcase-learn-more {
+  padding: 6px 12px;
+}
+
+.showcase-step-card[data-completed] .showcase-learn-more-label {
+  font-size: 11px;
+}
+
+/* Highlighted card (user selected this step) */
+.showcase-step-card[data-highlighted] {
+  opacity: 1;
+  border-bottom-color: rgba(var(--ember-rgb), 0.15);
+}
+
+.showcase-learn-more[data-highlighted] {
+  border-color: rgba(var(--ember-rgb), 0.4);
+  background: rgba(var(--ember-rgb), 0.1);
+  box-shadow: 0 0 12px rgba(var(--ember-rgb), 0.15);
+}
+
+.showcase-step-heading {
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--color-text-primary);
+}
+
+/* --- Typewriter ---
+   ----------------------------------------------------------- */
+
+.showcase-typewriter {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  min-height: 42px;
+}
+
+.showcase-typewriter-text {
+  /* Inherits font */
+}
+
+.showcase-typewriter-cursor {
+  display: inline-block;
+  animation: showcase-cursor-blink 530ms steps(1) infinite;
+  color: var(--color-ember, #4BA467);
+  font-weight: 700;
+}
+
+@keyframes showcase-cursor-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+/* --- Learn More Button ---
+   ----------------------------------------------------------- */
+
+.showcase-learn-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: 1px solid rgba(var(--ambient-ink-rgb), 0.06);
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.showcase-learn-more:hover {
+  border-color: rgba(var(--ember-rgb), 0.3);
+  background: rgba(var(--ember-rgb), 0.06);
+}
+
+.showcase-learn-more:focus-visible {
+  outline: 2px solid var(--color-ember-bright);
+  outline-offset: 2px;
+}
+
+.showcase-learn-more svg {
+  color: var(--color-ember, #4BA467);
+}
+
+.showcase-learn-more-label {
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.showcase-learn-more-count {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: rgba(var(--ambient-ink-rgb), 0.3);
+}
+
+/* --- Overview Hint ---
+   ----------------------------------------------------------- */
+
+.showcase-overview-hint {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: rgba(var(--ambient-ink-rgb), 0.3);
+  text-align: center;
+  padding: 8px 0;
+}
+
+/* --- Bottom CTA ---
+   ----------------------------------------------------------- */
+
+.showcase-cta-area {
+  margin-top: auto;
+  padding-top: 8px;
+}
+
+.showcase-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: 1px solid rgba(var(--ember-rgb), 0.2);
+  background: rgba(var(--ember-rgb), 0.08);
+  color: var(--color-ember, #4BA467);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.showcase-cta:hover {
+  background: rgba(var(--ember-rgb), 0.14);
+  border-color: rgba(var(--ember-rgb), 0.35);
+}
+
+.showcase-cta:focus-visible {
+  outline: 2px solid var(--color-ember-bright);
+  outline-offset: 2px;
+}
+
+/* --- Compact Indicator ---
+   ----------------------------------------------------------- */
+
+.showcase-compact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 20px;
+  border-radius: 16px;
+  border: 1px solid rgba(var(--ambient-ink-rgb), 0.06);
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  transition: border-color 0.2s, background 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.showcase-compact:hover {
+  border-color: rgba(var(--ember-rgb), 0.2);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.showcase-compact:focus-visible {
+  outline: 2px solid var(--color-ember-bright);
+  outline-offset: 2px;
+}
+
+.showcase-compact-title {
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.showcase-compact-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+/* In compact mode, step bar should spread across the full width */
+.showcase-compact-bar .showcase-step-bar {
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+.showcase-compact-indicator {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: rgba(var(--ambient-ink-rgb), 0.3);
+  white-space: nowrap;
+}
+
+/* --- Dock Back Button ---
+   ----------------------------------------------------------- */
+
+.dock-back-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  background: none;
+  border: none;
+  border-bottom: 1px solid rgba(var(--ambient-ink-rgb), 0.04);
+  cursor: pointer;
+  color: rgba(var(--ambient-ink-rgb), 0.35);
+  transition: color 0.2s;
+  width: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.dock-back-button:hover {
+  color: rgba(var(--ambient-ink-rgb), 0.6);
+}
+
+.dock-back-button:focus-visible {
+  outline: 2px solid var(--color-ember-bright);
+  outline-offset: -2px;
+}
+
+/* --- Dock Tiles ---
+   ----------------------------------------------------------- */
+
+.dock-tiles-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+}
+
+.dock-tiles-step-label {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(var(--ember-rgb), 0.5);
+}
+
+.dock-tiles-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.dock-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  aspect-ratio: 1;
+  padding: 8px;
+  border-radius: 12px;
+  border: 1px solid rgba(var(--ambient-ink-rgb), 0.06);
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s, transform 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.dock-tile:hover {
+  border-color: rgba(var(--ember-rgb), 0.25);
+  background: rgba(var(--ember-rgb), 0.06);
+  transform: translateY(-1px);
+}
+
+.dock-tile:focus-visible {
+  outline: 2px solid var(--color-ember-bright);
+  outline-offset: 2px;
+}
+
+.dock-tile[data-active] {
+  border-color: rgba(var(--ember-rgb), 0.4);
+  background: rgba(var(--ember-rgb), 0.1);
+  box-shadow: 0 0 12px rgba(var(--ember-rgb), 0.15);
+}
+
+.dock-tile-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: rgba(var(--ember-rgb), 0.08);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: rgba(var(--ember-rgb), 0.7);
+}
+
+.dock-tile-label {
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1.2;
+  text-align: center;
+  color: var(--color-text-secondary);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* --- Dock Detail ---
+   ----------------------------------------------------------- */
+
+.dock-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px;
+  height: 100%;
+}
+
+.dock-detail-content {
+  flex: 1;
+  min-height: 0;
+}
+
+.dock-detail-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.dock-detail-monogram {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: rgba(var(--ember-rgb), 0.1);
+  border: 1px solid rgba(var(--ember-rgb), 0.15);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-ember, #4BA467);
+  flex-shrink: 0;
+}
+
+.dock-detail-title {
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--color-text-primary);
+}
+
+.dock-detail-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.dock-detail-paragraph {
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+}
+
+/* Sibling nav */
+.dock-detail-siblings {
+  border-top: 1px solid rgba(var(--ambient-ink-rgb), 0.06);
+  padding-top: 16px;
+}
+
+.dock-detail-siblings-label {
+  display: block;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(var(--ambient-ink-rgb), 0.2);
+  margin-bottom: 8px;
+}
+
+.dock-detail-siblings-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.dock-detail-sibling {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px 4px 4px;
+  border-radius: 8px;
+  border: 1px solid rgba(var(--ambient-ink-rgb), 0.06);
+  background: rgba(255, 255, 255, 0.02);
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.dock-detail-sibling:hover {
+  border-color: rgba(var(--ember-rgb), 0.2);
+  background: rgba(var(--ember-rgb), 0.04);
+}
+
+.dock-detail-sibling:focus-visible {
+  outline: 2px solid var(--color-ember-bright);
+  outline-offset: 1px;
+}
+
+.dock-detail-sibling[data-active] {
+  border-color: rgba(var(--ember-rgb), 0.3);
+  background: rgba(var(--ember-rgb), 0.08);
+}
+
+.dock-detail-sibling-monogram {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  background: rgba(var(--ember-rgb), 0.08);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 8px;
+  font-weight: 700;
+  color: rgba(var(--ember-rgb), 0.6);
+  flex-shrink: 0;
+}
+
+.dock-detail-sibling-name {
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+}
+
+/* --- Reduced Motion ---
+   ----------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .showcase-typewriter-cursor {
+    animation: none;
+    opacity: 1;
+  }
+
+  .showcase-step-node[data-glow] .showcase-step-dot {
+    animation: none;
+    box-shadow: 0 0 12px rgba(var(--ember-rgb), 0.25);
+  }
+
+  .showcase-step-connector-fill {
+    transition: none;
+  }
+}
