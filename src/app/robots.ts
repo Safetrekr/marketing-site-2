@@ -3,6 +3,8 @@
 import type { MetadataRoute } from 'next'
 import { SITE_CONFIG } from '@/lib/config/site'
 
+export const dynamic = 'force-static'
+
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
@@ -10,10 +12,8 @@ export default function robots(): MetadataRoute.Robots {
         userAgent: '*',
         allow: '/',
         disallow: [
-          '/api/', // API routes -- no crawlable content
           '/login', // Authentication page -- no SEO value
           '/launch', // Spatial ZUI -- client-rendered SPA, not crawlable
-          '/spike', // Dev test harness -- must never be indexed
         ],
       },
     ],
