@@ -27,13 +27,13 @@ export const metadata: Metadata = {
 
   description: SITE_CONFIG.description,
 
-  // Favicons (unchanged)
+  // Favicons — must include basePath manually (Next.js metadata doesn't auto-prepend it)
   icons: {
     icon: [
-      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
-      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: `${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/favicon-32x32.png`, sizes: '32x32', type: 'image/png' },
+      { url: `${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/favicon-16x16.png`, sizes: '16x16', type: 'image/png' },
     ],
-    apple: '/apple-touch-icon.png',
+    apple: `${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/apple-touch-icon.png`,
   },
 
   // Site-wide Open Graph defaults
